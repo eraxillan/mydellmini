@@ -1,4 +1,4 @@
-/* 
+(* 
  * About.applescript
  *
  * Copyright (C) 2009  Type11
@@ -20,7 +20,9 @@
  * Full text of agreement at http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
-/*****************************************************************************/
+/*****************************************************************************)
 on choose menu item theObject
-	display dialog "Thanks to all those whose work made this possible.  Munky, Turbo, Dense, dfe, zef and the rest of the chameleon team, ranova, smoothy, unaclocker, fgodfrey, nvrmore100, km9, fassl, and targa " buttons {"Thanks!"} default button "Thanks!"
+	display dialog "MiniScript v7.11 by bmaltais
+	
+Thanks to Type11 for all the hard work!" buttons {"Close"} default button "Close"
 end choose menu item
