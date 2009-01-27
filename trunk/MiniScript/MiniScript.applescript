@@ -59,9 +59,16 @@ end awake from nib
 
 on clicked theObject
 	tell progress indicator "progress" of window "Mini9 Installer"
+		set uses threaded animation to true
 		set visible to true
 		start
 	end tell
+	
+	(*
+	tell window "Progress"
+		set visible to true
+	end tell
+	*)
 	
 	set quietboot to false
 	set twofinger to false
@@ -75,7 +82,7 @@ on clicked theObject
 	
 	set disk to contents of text field "diskname" of window "Mini9 Installer"
 	
-	display dialog "Are you sure you want to erase EFI partition of disk " & disk & "?" buttons ["No", "Yes"]
+	display dialog "Are you sure you want to erase EFI partition of disk " & disk & " and install Type11 files?" buttons ["No", "Yes"]
 	if button returned of result is "No" then
 		tell progress indicator "progress" of window "Mini9 Installer"
 			stop
@@ -161,11 +168,20 @@ on clicked theObject
 		set contents of text field "currentop" of window "Mini9 Installer" to "Installing two finger scrolling"
 		-- do shell script "mkdir /Backup > /dev/null &"
 		do shell script "cp -Rp /Volumes/EFI/Extensions/ApplePS2Controller.kext /.Type11" with administrator privileges
-		do shell script "cp -R " & workingDir & "MiniScript.app/Contents/Resources/2FingerScroll/ApplePS2Controller.kext /Volumes/EFI/Extensions;chown -R root:wheel /Volumes/EFI/Extensions/ApplePS2Controller.kext" with administrator privileges
-		do shell script "mkdir -p /usr/local/bin > /dev/null &; cp " & workingDir & "MiniScript.app/Contents/Resources/2FingerScroll/FFScrollDaemon /usr/local/bin;chmod 755 /usr/local/bin/FFScrollDaemon;chown root:wheel /usr/local/bin/FFScrollDaemon" with administrator privileges
-		do shell script "cp " & workingDir & "MiniScript.app/Contents/Resources/2FingerScroll/start_FFScrollDaemon /usr/local/bin;chmod 755 /usr/local/bin/start_FFScrollDaemon;chown root:wheel /usr/local/bin/start_FFScrollDaemon" with administrator privileges
-		do shell script "cp " & workingDir & "MiniScript.app/Contents/Resources/2FingerScroll/com.apple.driver.ApplePS2Trackpad.plist /Library/Preferences/;chmod 644 /Library/Preferences/com.apple.driver.ApplePS2Trackpad.plist;chown root:admin /Library/Preferences/com.apple.driver.ApplePS2Trackpad.plist" with administrator privileges
-		do shell script "cp " & workingDir & "MiniScript.app/Contents/Resources/2FingerScroll/com.apple.FFScrollDaemon.plist /Library/LaunchAgents/;chmod 644 /Library/LaunchAgents/com.apple.FFScrollDaemon.plist;chown root:wheel /Library/LaunchAgents/com.apple.FFScrollDaemon.plist" with administrator privileges
+		do shell script "cp -R " & workingDir & "MiniScript.app/Contents/Resources/2FingerScroll/ApplePS2Controller.kext /Volumes/EFI/Extensions" with administrator privileges
+		do shell script "chown -R root:wheel /Volumes/EFI/Extensions/ApplePS2Controller.kext" with administrator privileges
+		do shell script "mkdir -p /usr/local/bin > /dev/null &; cp " & workingDir & "MiniScript.app/Contents/Resources/2FingerScroll/FFScrollDaemon /usr/local/bin" with administrator privileges
+		do shell script "chmod 755 /usr/local/bin/FFScrollDaemon" with administrator privileges
+		do shell script "chown root:wheel /usr/local/bin/FFScrollDaemon" with administrator privileges
+		do shell script "cp " & workingDir & "MiniScript.app/Contents/Resources/2FingerScroll/start_FFScrollDaemon /usr/local/bin" with administrator privileges
+		do shell script "chmod 755 /usr/local/bin/start_FFScrollDaemon" with administrator privileges
+		do shell script "chown root:wheel /usr/local/bin/start_FFScrollDaemon" with administrator privileges
+		do shell script "cp " & workingDir & "MiniScript.app/Contents/Resources/2FingerScroll/com.apple.driver.ApplePS2Trackpad.plist /Library/Preferences/" with administrator privileges
+		do shell script "chmod 644 /Library/Preferences/com.apple.driver.ApplePS2Trackpad.plist" with administrator privileges
+		do shell script "chown root:admin /Library/Preferences/com.apple.driver.ApplePS2Trackpad.plist" with administrator privileges
+		do shell script "cp " & workingDir & "MiniScript.app/Contents/Resources/2FingerScroll/com.apple.FFScrollDaemon.plist /Library/LaunchAgents/" with administrator privileges
+		do shell script "chmod 644 /Library/LaunchAgents/com.apple.FFScrollDaemon.plist" with administrator privileges
+		do shell script "chown root:wheel /Library/LaunchAgents/com.apple.FFScrollDaemon.plist" with administrator privileges
 	end if
 	
 	--check and see if we are at 10.5.6 and if so offer to install old keyboard control panel as 10.5.6 does not see our trackpad
