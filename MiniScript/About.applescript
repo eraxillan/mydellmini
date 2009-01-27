@@ -1,0 +1,26 @@
+/* 
+ * About.applescript
+ *
+ * Copyright (C) 2009  Type11
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
+ * 
+ * Full text of agreement at http://www.gnu.org/licenses/gpl-2.0.txt
+ */
+
+/*****************************************************************************/
+on choose menu item theObject
+	display dialog "Thanks to all those whose work made this possible.  Munky, Turbo, Dense, dfe, zef and the rest of the chameleon team, ranova, smoothy, unaclocker, fgodfrey, nvrmore100, km9, fassl, and targa " buttons {"Thanks!"} default button "Thanks!"
+end choose menu item
