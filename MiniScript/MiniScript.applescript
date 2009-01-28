@@ -42,19 +42,26 @@ on awake from nib theObject
 			end tell
 		end if
 		
-		set prefpane_status to do shell script "test -e /.Type11/Keyboard.prefPane && echo 'file exists' || echo 'no file'"
-		if prefpane_status is "no file" then
-			if OSVer is not equal to "10.5.6" then
+		if OSVer is not equal to "10.5.6" then
+			tell button "keyboardpanecb" of box "optionspanel" of window "Mini9 Installer"
+				set enabled to false
+				set integer value to 0
+			end tell
+		else
+			set prefpane_status to do shell script "test -e /.Type11/Keyboard.prefPane && echo 'file exists' || echo 'no file'"
+			if prefpane_status is "file exists" then
 				tell button "keyboardpanecb" of box "optionspanel" of window "Mini9 Installer"
 					set enabled to false
+					set integer value to 0
 				end tell
 			end if
 		end if
 		
 		set remotecd_exists to do shell script "defaults read com.apple.NetworkBrowser | grep EnableODiskBrowsing; exit 0"
-		if remotecd_exists is "" then
+		if remotecd_exists is not "" then
 			tell button "enableremotecb" of box "optionspanel" of window "Mini9 Installer"
 				set enabled to false
+				set integer value to 0
 			end tell
 		end if
 		
@@ -62,6 +69,7 @@ on awake from nib theObject
 		if hibernation_status is "0" then
 			tell button "disablehibernatecb" of box "optionspanel" of window "Mini9 Installer"
 				set enabled to false
+				set integer value to 0
 			end tell
 		end if
 		
@@ -69,6 +77,7 @@ on awake from nib theObject
 		if scroll_status is "file exists" then
 			tell button "twofingercb" of box "optionspanel" of window "Mini9 Installer"
 				set enabled to false
+				set integer value to 0
 			end tell
 		end if
 	end if
