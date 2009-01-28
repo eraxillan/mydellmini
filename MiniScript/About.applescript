@@ -22,7 +22,7 @@
 
 /*****************************************************************************)
 on choose menu item theObject
-	display dialog "MiniScript v7.11 by bmaltais
+	display dialog "MiniScript v7.11 beta 4 by bmaltais, 27/01/09
 	
 Thanks to Type11 for all the hard work!" buttons {"Close"} default button "Close"
 end choose menu item
