@@ -2,7 +2,7 @@
 -- MiniScript
 
 --  Created by Type11 on 1/1/09.
---  V7.11 by bmaltais on 26/1/09
+--  V7.11 beta 5 by bmaltais on 26/1/09
 
 
 on awake from nib theObject
