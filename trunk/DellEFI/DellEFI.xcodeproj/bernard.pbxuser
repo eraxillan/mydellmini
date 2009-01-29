@@ -1,0 +1,179 @@
+// !$*UTF8*$!
+{
+	257572C2072881A4000BE9CA /* DellEFI */ = {
+		activeExec = 0;
+		executables = (
+			25D9445407B1533600FF306F /* DellEFI */,
+		);
+	};
+	25D9445407B1533600FF306F /* DellEFI */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+			"PBXLSLaunchAction-1" = {
+				PBXLSLaunchAction = 1;
+				PBXLSLaunchStartAction = 1;
+				PBXLSLaunchStdioStyle = 2;
+				PBXLSLaunchStyle = 0;
+				class = ASKDebuggerLaunchConfig;
+				displayName = "AppleScript Debugger";
+				identifier = com.apple.AppleScriptStudio.ASKDebugLaunchConfig;
+				remoteHostInfo = "";
+				startActionInfo = "";
+			};
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = ASKDebugger;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+			{
+				active = NO;
+				name = AEDebug;
+				value = 1;
+			},
+			{
+				active = NO;
+				name = AEDebugSends;
+				value = 1;
+			},
+			{
+				active = NO;
+				name = AEDebugReceives;
+				value = 1;
+			},
+			{
+				active = NO;
+				name = AEDebugVerbose;
+				value = 1;
+			},
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = DellEFI;
+		sourceDirectories = (
+		);
+	};
+	25D9445A07B1533700FF306F /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryName = MyDellMini;
+		};
+		scmType = "";
+	};
+	25D9445B07B1533700FF306F /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Release;
+		activeExecutable = 25D9445407B1533600FF306F /* DellEFI */;
+		activeTarget = 257572C2072881A4000BE9CA /* DellEFI */;
+		addToTargets = (
+			257572C2072881A4000BE9CA /* DellEFI */,
+		);
+		codeSenseManager = 25D9445B07B1533700FF306F /* Code sense */;
+		executables = (
+			25D9445407B1533600FF306F /* DellEFI */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					994,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 254888712;
+			PBXWorkspaceStateSaveDate = 254888712;
+		};
+		perUserProjectItems = {
+			A153D9CF0F31548500AEA39E /* PBXTextBookmark */ = A153D9CF0F31548500AEA39E /* PBXTextBookmark */;
+			A153D9D00F31548500AEA39E /* PBXTextBookmark */ = A153D9D00F31548500AEA39E /* PBXTextBookmark */;
+			A153D9D10F31548500AEA39E /* PBXTextBookmark */ = A153D9D10F31548500AEA39E /* PBXTextBookmark */;
+			A153D9D20F31548500AEA39E /* PBXTextBookmark */ = A153D9D20F31548500AEA39E /* PBXTextBookmark */;
+		};
+		sourceControlManager = 25D9445A07B1533700FF306F /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	A153D9A70F314B8600AEA39E /* About.applescript */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1172, 434}}";
+			sepNavSelRange = "{1115, 0}";
+			sepNavVisRange = "{0, 1115}";
+			sepNavWindowFrame = "{{15, 205}, {1264, 668}}";
+		};
+	};
+	A153D9AA0F314B9D00AEA39E /* dellefi.applescript */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1426, 2990}}";
+			sepNavSelRange = "{10406, 0}";
+			sepNavVisRange = "{7521, 1963}";
+		};
+	};
+	A153D9CF0F31548500AEA39E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A153D9AA0F314B9D00AEA39E /* dellefi.applescript */;
+		name = "dellefi.applescript: 241";
+		rLen = 0;
+		rLoc = 10406;
+		rType = 0;
+		vrLen = 1963;
+		vrLoc = 7521;
+	};
+	A153D9D00F31548500AEA39E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A153D9A70F314B8600AEA39E /* About.applescript */;
+		name = "About.applescript: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1115;
+		vrLoc = 0;
+	};
+	A153D9D10F31548500AEA39E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A153D9AA0F314B9D00AEA39E /* dellefi.applescript */;
+		name = "dellefi.applescript: 241";
+		rLen = 0;
+		rLoc = 10406;
+		rType = 0;
+		vrLen = 1963;
+		vrLoc = 7521;
+	};
+	A153D9D20F31548500AEA39E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A153D9A70F314B8600AEA39E /* About.applescript */;
+		name = "About.applescript: 29";
+		rLen = 0;
+		rLoc = 1115;
+		rType = 0;
+		vrLen = 1115;
+		vrLoc = 0;
+	};
+}
