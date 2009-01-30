@@ -8,79 +8,64 @@ on awake from nib theObject
 	tell every window to center
 	
 	tell window "Initializing"
+		tell progress indicator "spinner"
+			set uses threaded animation to true
+			start
+		end tell
 		set visible to true
 	end tell
 	
 	set OSVer to do shell script "sw_vers | grep 'ProductVersion:' |awk '{print $2}'"
-	set currdisk to do shell script "df -k / | grep dev | awk -F\" \" '{print $1}' | awk -F\"/\" '{print $3}'"
-	set x to the length of the currdisk
-	set currdisk to characters 1 thru (x - 2) of currdisk as string
+	set currdisk to do shell script "ls -l /Volumes/ | grep \" /\" | grep root | awk '{print $9}'"
 	set contents of text field "booteddisk" of window "DellEFI Installer" to currdisk
-	set contents of text field "diskname" of window "DellEFI Installer" to currdisk
-	set testdisk to characters 1 thru 5 of currdisk as string
+	-- set testdisk to characters 1 thru 5 of currdisk as string
 	
-	set dellefi_exist to do shell script "test -e /.dellefi/.donoterase && echo 'file exists' || echo 'no file'"
 	
-	if dellefi_exist is "no file" then
-		tell button "eficb" of box "optionspanel" of window "DellEFI Installer"
-			set enabled to false
-		end tell
-		
+	set dsdt_exists to do shell script "test -e /dsdt.aml && echo 'file exists' || echo 'no file'"
+	if dsdt_exists is "file exists" then
 		tell button "dsdtcb" of box "optionspanel" of window "DellEFI Installer"
-			set enabled to false
+			set integer value to 0
+			-- set enabled to false
 		end tell
-		
-		if OSVer is not equal to "10.5.6" then
-			tell button "keyboardpanecb" of box "optionspanel" of window "DellEFI Installer"
-				set enabled to false
-			end tell
-		end if
+	end if
+	
+	if OSVer is not equal to "10.5.6" then
+		tell button "keyboardpanecb" of box "optionspanel" of window "DellEFI Installer"
+			set enabled to false
+			set integer value to 0
+		end tell
 	else
-		set dsdt_exists to do shell script "test -e /dsdt.aml && echo 'file exists' || echo 'no file'"
-		if dsdt_exists is "file exists" then
-			tell button "dsdtcb" of box "optionspanel" of window "DellEFI Installer"
-				set integer value to 0
-			end tell
-		else
-			tell button "dsdtcb" of box "optionspanel" of window "DellEFI Installer"
-				set enabled to false
-			end tell
-		end if
-		
-		if OSVer is not equal to "10.5.6" then
+		set prefpane_status to do shell script "test -e /.dellefi/Keyboard.prefPane && echo 'file exists' || echo 'no file'"
+		if prefpane_status is "file exists" then
 			tell button "keyboardpanecb" of box "optionspanel" of window "DellEFI Installer"
-				set enabled to false
-				set integer value to 0
-			end tell
-		else
-			set prefpane_status to do shell script "test -e /.dellefi/Keyboard.prefPane && echo 'file exists' || echo 'no file'"
-			if prefpane_status is "file exists" then
-				tell button "keyboardpanecb" of box "optionspanel" of window "DellEFI Installer"
-					set enabled to false
-					set integer value to 0
-				end tell
-			end if
-		end if
-		
-		set remotecd_exists to do shell script "defaults read com.apple.NetworkBrowser | grep EnableODiskBrowsing; exit 0"
-		if remotecd_exists is not "" then
-			tell button "enableremotecb" of box "optionspanel" of window "DellEFI Installer"
-				set enabled to false
-				set integer value to 0
-			end tell
-		end if
-		
-		set hibernation_status to do shell script "pmset -g | grep hibernatemode | awk -F\" \" '{print $2}'"
-		if hibernation_status is "0" then
-			tell button "disablehibernatecb" of box "optionspanel" of window "DellEFI Installer"
-				set enabled to false
+				-- set enabled to false
 				set integer value to 0
 			end tell
 		end if
 	end if
 	
+	set remotecd_exists to do shell script "defaults read com.apple.NetworkBrowser | grep EnableODiskBrowsing; exit 0"
+	if remotecd_exists is not "" then
+		tell button "enableremotecb" of box "optionspanel" of window "DellEFI Installer"
+			-- set enabled to false
+			set integer value to 0
+		end tell
+	end if
+	
+	set hibernation_status to do shell script "pmset -g | grep hibernatemode | awk -F\" \" '{print $2}'"
+	if hibernation_status is "0" then
+		tell button "disablehibernatecb" of box "optionspanel" of window "DellEFI Installer"
+			-- set enabled to false
+			set integer value to 0
+		end tell
+	end if
+	
+	
 	tell window "Initializing"
 		set visible to false
+		tell progress indicator "spinner"
+			stop
+		end tell
 	end tell
 	
 	tell window "DellEFI Installer"
@@ -126,9 +111,13 @@ on clicked theObject
 	
 	if efi is true then
 		
-		set disk to contents of text field "diskname" of window "DellEFI Installer"
+		set disk to do shell script "df -k / | grep dev | awk -F\" \" '{print $1}' | awk -F\"/\" '{print $3}'"
+		set x to the length of the disk
+		set disk to characters 1 thru (x - 2) of disk as string
+		set currdisk to do shell script "ls -l /Volumes/ | grep \" /\" | grep root | awk '{print $9}'"
 		
-		display dialog "Are you sure you want to install PCEFIV9 on disk " & disk & " and install custom KEXT files?" buttons ["No", "Yes"]
+		
+		display dialog "Are you sure you want to install PCEFIV9 on disk " & currdisk & "?" buttons ["No", "Yes"]
 		if button returned of result is "No" then
 			tell progress indicator "progress" of window "DellEFI Installer"
 				stop
@@ -147,22 +136,18 @@ on clicked theObject
 		
 		set contents of text field "currentop" of window "DellEFI Installer" to "Setup directory structure"
 		delay 1
-		do shell script "mkdir /Extra > /dev/null &" with administrator privileges
-		
-		--make custom aml file and copy to EFI part root
-		if dsdt is true then
-			set contents of text field "currentop" of window "DellEFI Installer" to "Creating dsdt.aml file"
-			delay 1
-			do shell script "cp -Rf " & workingDir & "DellEFI.app/Contents/Resources/DSDTPatcher /.dellefi/" with administrator privileges
-			do shell script "cd /.dellefi/DSDTPatcher; ./DSDTPatcher > /dev/null 2>&1 &" with administrator privileges
-			delay 3
-			do shell script "cp /.dellefi/DSDTPatcher/dsdt.aml /dsdt.aml" with administrator privileges
-		end if
 		
 		-- move all extensions over to EFI ext dir.
 		set contents of text field "currentop" of window "DellEFI Installer" to "Copy kexts to Extra folder"
 		delay 1
 		try
+			do shell script "rf -rf /Extra.bak" with administrator privileges
+		end try
+		try
+			do shell script "mv /Extra /Extra.bak" with administrator privileges
+		end try
+		try
+			do shell script "mkdir /Extra > /dev/null &" with administrator privileges
 			do shell script "mkdir /Extra/Extensions1" with administrator privileges
 		end try
 		do shell script "cp -R " & workingDir & "DellEFI.app/Contents/Resources/Extensions/*.kext /Extra/Extensions1" with administrator privileges
@@ -195,6 +180,18 @@ on clicked theObject
 		-- remove mkext so it is rebuilt
 		do shell script "rm -r /System/Library/Extensions.mkext > /dev/null &" with administrator privileges
 		
+	end if
+	
+	--make custom aml file and copy to EFI part root
+	if dsdt is true then
+		set contents of text field "currentop" of window "DellEFI Installer" to "Creating dsdt.aml file"
+		delay 1
+		try
+			do shell script "cp -Rf " & workingDir & "DellEFI.app/Contents/Resources/DSDTPatcher /.dellefi/" with administrator privileges
+		end try
+		do shell script "cd /.dellefi/DSDTPatcher; ./DSDTPatcher > /dev/null 2>&1 &" with administrator privileges
+		delay 3
+		do shell script "cp /.dellefi/DSDTPatcher/dsdt.aml /dsdt.aml" with administrator privileges
 	end if
 	
 	--install old keyboard control panel as 10.5.6 does not see our trackpad
