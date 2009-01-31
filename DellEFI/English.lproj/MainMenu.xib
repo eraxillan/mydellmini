@@ -8,8 +8,8 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="2"/>
 			<integer value="506"/>
+			<integer value="2"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -238,22 +238,22 @@
 							<int key="NSTitlePosition">2</int>
 							<bool key="NSTransparent">NO</bool>
 						</object>
-						<object class="NSTextField" id="978118021">
+						<object class="NSTextField" id="693443677">
 							<reference key="NSNextResponder" ref="903778767"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{17, 275}, {281, 81}}</string>
+							<string key="NSFrame">{{17, 241}, {408, 14}}</string>
 							<reference key="NSSuperview" ref="903778767"/>
 							<bool key="NSEnabled">YES</bool>
-							<object class="NSTextFieldCell" key="NSCell" id="110552516">
-								<int key="NSCellFlags">67239424</int>
-								<int key="NSCellFlags2">272891904</int>
-								<string key="NSContents">Thanks to all those whose work made this possible.  Munky, Turbo, Dense, dfe, zef and the rest of the chameleon team, ranova, smoothy, unaclocker, fgodfrey, nvrmore100, km9, fassl, targa and Type11</string>
+							<object class="NSTextFieldCell" key="NSCell" id="600722036">
+								<int key="NSCellFlags">68288064</int>
+								<int key="NSCellFlags2">272892928</int>
+								<string key="NSContents">WARNING! DellEFI will install to the active boot disk of your Dell Mini 9</string>
 								<object class="NSFont" key="NSSupport">
-									<string key="NSName">LucidaGrande</string>
+									<string key="NSName">LucidaGrande-Bold</string>
 									<double key="NSSize">1.100000e+01</double>
 									<int key="NSfFlags">16</int>
 								</object>
-								<reference key="NSControlView" ref="978118021"/>
+								<reference key="NSControlView" ref="693443677"/>
 								<object class="NSColor" key="NSBackgroundColor" id="489294855">
 									<int key="NSColorSpace">6</int>
 									<string key="NSCatalogName">System</string>
@@ -272,42 +272,6 @@
 										<bytes key="NSWhite">MAA</bytes>
 									</object>
 								</object>
-							</object>
-						</object>
-						<object class="NSTextField" id="693443677">
-							<reference key="NSNextResponder" ref="903778767"/>
-							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{17, 241}, {228, 14}}</string>
-							<reference key="NSSuperview" ref="903778767"/>
-							<bool key="NSEnabled">YES</bool>
-							<object class="NSTextFieldCell" key="NSCell" id="600722036">
-								<int key="NSCellFlags">68288064</int>
-								<int key="NSCellFlags2">272892928</int>
-								<string key="NSContents">WARNING! DellEFI will install to volume</string>
-								<object class="NSFont" key="NSSupport" id="147648166">
-									<string key="NSName">LucidaGrande-Bold</string>
-									<double key="NSSize">1.100000e+01</double>
-									<int key="NSfFlags">16</int>
-								</object>
-								<reference key="NSControlView" ref="693443677"/>
-								<reference key="NSBackgroundColor" ref="489294855"/>
-								<reference key="NSTextColor" ref="138975902"/>
-							</object>
-						</object>
-						<object class="NSTextField" id="921645521">
-							<reference key="NSNextResponder" ref="903778767"/>
-							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{247, 241}, {64, 14}}</string>
-							<reference key="NSSuperview" ref="903778767"/>
-							<bool key="NSEnabled">YES</bool>
-							<object class="NSTextFieldCell" key="NSCell" id="370984427">
-								<int key="NSCellFlags">68288064</int>
-								<int key="NSCellFlags2">272892928</int>
-								<string key="NSContents">disk?</string>
-								<reference key="NSSupport" ref="147648166"/>
-								<reference key="NSControlView" ref="921645521"/>
-								<reference key="NSBackgroundColor" ref="489294855"/>
-								<reference key="NSTextColor" ref="138975902"/>
 							</object>
 						</object>
 						<object class="NSButton" id="850244991">
@@ -345,7 +309,7 @@
 									<string>NeXT TIFF v4.0 pasteboard type</string>
 								</object>
 							</object>
-							<string key="NSFrame">{{300, 266}, {173, 113}}</string>
+							<string key="NSFrame">{{148, 266}, {173, 113}}</string>
 							<reference key="NSSuperview" ref="903778767"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSImageCell" key="NSCell" id="410219301">
@@ -744,8 +708,6 @@
 						<reference key="object" ref="903778767"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="978118021"/>
-							<reference ref="633789734"/>
 							<reference ref="552896685"/>
 							<reference ref="693443677"/>
 							<reference ref="672981954"/>
@@ -754,7 +716,7 @@
 							<reference ref="16844584"/>
 							<reference ref="850244991"/>
 							<reference ref="295975424"/>
-							<reference ref="921645521"/>
+							<reference ref="633789734"/>
 						</object>
 						<reference key="parent" ref="801548761"/>
 					</object>
@@ -888,20 +850,6 @@
 						<reference key="parent" ref="882254287"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">439</int>
-						<reference key="object" ref="978118021"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="110552516"/>
-						</object>
-						<reference key="parent" ref="903778767"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">440</int>
-						<reference key="object" ref="110552516"/>
-						<reference key="parent" ref="978118021"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">443</int>
 						<reference key="object" ref="693443677"/>
 						<object class="NSMutableArray" key="children">
@@ -914,20 +862,6 @@
 						<int key="objectID">444</int>
 						<reference key="object" ref="600722036"/>
 						<reference key="parent" ref="693443677"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">449</int>
-						<reference key="object" ref="921645521"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="370984427"/>
-						</object>
-						<reference key="parent" ref="903778767"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">450</int>
-						<reference key="object" ref="370984427"/>
-						<reference key="parent" ref="921645521"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">468</int>
@@ -1188,15 +1122,9 @@
 					<string>306.editorWindowContentRectSynchronizationRect</string>
 					<string>307.IBPluginDependency</string>
 					<string>307.ImportedFromIB2</string>
-					<string>439.IBAttributePlaceholdersKey</string>
-					<string>439.IBPluginDependency</string>
-					<string>440.IBPluginDependency</string>
 					<string>443.IBAttributePlaceholdersKey</string>
 					<string>443.IBPluginDependency</string>
 					<string>444.IBPluginDependency</string>
-					<string>449.IBAttributePlaceholdersKey</string>
-					<string>449.IBPluginDependency</string>
-					<string>450.IBPluginDependency</string>
 					<string>461.IBAttributePlaceholdersKey</string>
 					<string>461.IBPluginDependency</string>
 					<string>462.IBAttributePlaceholdersKey</string>
@@ -1361,20 +1289,6 @@
 						<string key="NS.key.0">IBAppleScriptAttributeName</string>
 						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
 							<string key="name">IBAppleScriptAttributeName</string>
-							<reference key="object" ref="978118021"/>
-							<int key="appleScriptObjectID">0</int>
-							<int key="appleScriptScriptScope">0</int>
-							<nil key="appleScriptEventHandlerNames"/>
-							<string key="appleScriptScriptName">MiniScript.applescript</string>
-							<nil key="appleScriptObjectName"/>
-						</object>
-					</object>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSMutableDictionary">
-						<string key="NS.key.0">IBAppleScriptAttributeName</string>
-						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
-							<string key="name">IBAppleScriptAttributeName</string>
 							<reference key="object" ref="693443677"/>
 							<int key="appleScriptObjectID">0</int>
 							<int key="appleScriptScriptScope">0</int>
@@ -1383,20 +1297,6 @@
 							</object>
 							<string key="appleScriptScriptName">MiniScript.applescript</string>
 							<string key="appleScriptObjectName">disklabel</string>
-						</object>
-					</object>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSMutableDictionary">
-						<string key="NS.key.0">IBAppleScriptAttributeName</string>
-						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
-							<string key="name">IBAppleScriptAttributeName</string>
-							<reference key="object" ref="921645521"/>
-							<int key="appleScriptObjectID">0</int>
-							<int key="appleScriptScriptScope">0</int>
-							<nil key="appleScriptEventHandlerNames"/>
-							<string key="appleScriptScriptName">MiniScript.applescript</string>
-							<string key="appleScriptObjectName">booteddisk</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>

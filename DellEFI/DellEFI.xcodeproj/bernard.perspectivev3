@@ -230,8 +230,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -257,12 +255,10 @@
 						<dict>
 							<key>PBXSmartGroupTreeModuleColumnWidthsKey</key>
 							<array>
-								<real>22</real>
-								<real>163</real>
+								<real>185</real>
 							</array>
 							<key>PBXSmartGroupTreeModuleColumnsKey_v4</key>
 							<array>
-								<string>SCMStatusColumn</string>
 								<string>MainColumn</string>
 							</array>
 						</dict>
@@ -273,12 +269,13 @@
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>A153D94E0F314B3400AEA39E</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>4</integer>
-									<integer>1</integer>
+									<integer>17</integer>
+									<integer>5</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -296,10 +293,8 @@
 						<string>{{0, 0}, {202, 778}}</string>
 						<key>GroupTreeTableConfiguration</key>
 						<array>
-							<string>SCMStatusColumn</string>
-							<real>22</real>
 							<string>MainColumn</string>
-							<real>163</real>
+							<real>185</real>
 						</array>
 						<key>RubberWindowFrame</key>
 						<string>0 59 1440 819 0 0 1440 878 </string>
@@ -313,12 +308,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>A153D9AD0F314BCE00AEA39E</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>About.applescript</string>
+								<string>dellefi.applescript</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,19 +323,40 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>A153D9AE0F314BCE00AEA39E</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>About.applescript</string>
+										<string>dellefi.applescript</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>A153D9D20F31548500AEA39E</string>
+										<string>A1827DC60F33E5F5004AE6FA</string>
 										<key>history</key>
 										<array>
-											<string>A153D9CF0F31548500AEA39E</string>
-											<string>A153D9D00F31548500AEA39E</string>
+											<string>A1827DA10F33E1D6004AE6FA</string>
+											<string>A1827DA20F33E1D6004AE6FA</string>
+											<string>A1827DA30F33E1D6004AE6FA</string>
+											<string>A1827DA40F33E1D6004AE6FA</string>
+											<string>A1827D920F33E06F004AE6FA</string>
 										</array>
 										<key>prevStack</key>
 										<array>
 											<string>A153D9D10F31548500AEA39E</string>
+											<string>A13415D20F33DF9B000877FF</string>
+											<string>A13415D30F33DF9B000877FF</string>
+											<string>A13415D50F33DF9B000877FF</string>
+											<string>A1827D950F33E06F004AE6FA</string>
+											<string>A1827D960F33E06F004AE6FA</string>
+											<string>A1827D970F33E06F004AE6FA</string>
+											<string>A1827D980F33E06F004AE6FA</string>
+											<string>A1827DA50F33E1D6004AE6FA</string>
+											<string>A1827DA60F33E1D6004AE6FA</string>
+											<string>A1827DA70F33E1D6004AE6FA</string>
+											<string>A1827DA80F33E1D6004AE6FA</string>
+											<string>A1827DA90F33E1D6004AE6FA</string>
+											<string>A1827DAA0F33E1D6004AE6FA</string>
+											<string>A1827DAB0F33E1D6004AE6FA</string>
+											<string>A1827DAC0F33E1D6004AE6FA</string>
+											<string>A1827DAD0F33E1D6004AE6FA</string>
+											<string>A1827DAE0F33E1D6004AE6FA</string>
+											<string>A1827DAF0F33E1D6004AE6FA</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -405,27 +423,6 @@
 									<dict>
 										<key>PBXCVSModuleFilterTypeKey</key>
 										<integer>1032</integer>
-										<key>PBXCVSModuleTreeModuleColumnData</key>
-										<dict>
-											<key>PBXCVSModuleTreeModuleColumnWidthsKey</key>
-											<array>
-												<real>200</real>
-												<real>56.66162109375</real>
-												<real>63</real>
-												<real>60</real>
-												<real>63</real>
-												<real>139.556640625</real>
-											</array>
-											<key>PBXCVSModuleTreeModuleColumnsKey</key>
-											<array>
-												<string>Name</string>
-												<string>Status</string>
-												<string>Update</string>
-												<string>Revision</string>
-												<string>Author</string>
-												<string>Date</string>
-											</array>
-										</dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CA23EE10692099D00951B8B</string>
 										<key>PBXProjectModuleLabel</key>
@@ -482,11 +479,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>A153D9AF0F314BCE00AEA39E</string>
+				<string>A1827D9A0F33E06F004AE6FA</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>A153D9B00F314BCE00AEA39E</string>
+				<string>A1827D9B0F33E06F004AE6FA</string>
 				<string>A153D9AD0F314BCE00AEA39E</string>
-				<string>A153D9B10F314BCE00AEA39E</string>
+				<string>A1827D9C0F33E06F004AE6FA</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -633,14 +630,14 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>A153D9B20F314BCE00AEA39E</string>
+				<string>A1827DB30F33E33B004AE6FA</string>
 				<string>1CCC7628064C1048000F2A68</string>
 				<string>1CCC7629064C1048000F2A68</string>
-				<string>A153D9B30F314BCE00AEA39E</string>
-				<string>A153D9B40F314BCE00AEA39E</string>
-				<string>A153D9B50F314BCE00AEA39E</string>
-				<string>A153D9B60F314BCE00AEA39E</string>
-				<string>A153D9B70F314BCE00AEA39E</string>
+				<string>A1827DB40F33E33B004AE6FA</string>
+				<string>A1827DB50F33E33B004AE6FA</string>
+				<string>A1827DB60F33E33B004AE6FA</string>
+				<string>A1827DB70F33E33B004AE6FA</string>
+				<string>A1827DB80F33E33B004AE6FA</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -670,7 +667,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>/Users/bernard/Documents/xcode/DellEFI/DellEFI.xcodeproj</string>
+		<string>/Users/bernard/Documents/src/mydellmini/DellEFI/DellEFI.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 59 1440 819 0 0 1440 878 </string>
