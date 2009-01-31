@@ -16,8 +16,6 @@ on awake from nib theObject
 	end tell
 	
 	set OSVer to do shell script "sw_vers | grep 'ProductVersion:' |awk '{print $2}'"
-	set currdisk to do shell script "ls -l /Volumes/ | grep \" /\" | grep root | awk '{print $9}'"
-	set contents of text field "booteddisk" of window "DellEFI Installer" to currdisk
 	-- set testdisk to characters 1 thru 5 of currdisk as string
 	
 	
@@ -109,15 +107,19 @@ on clicked theObject
 	tell application "Finder" to get folder of (path to me) as Unicode text
 	set workingDir to POSIX path of result
 	
+	set x to the length of the workingDir
+	set workingDir to characters 1 thru (x - 1) of workingDir as string
+	set workingDir to "\"" & workingDir & "\"/"
+	
 	if efi is true then
 		
 		set disk to do shell script "df -k / | grep dev | awk -F\" \" '{print $1}' | awk -F\"/\" '{print $3}'"
 		set x to the length of the disk
 		set disk to characters 1 thru (x - 2) of disk as string
-		set currdisk to do shell script "ls -l /Volumes/ | grep \" /\" | grep root | awk '{print $9}'"
+		-- set currdisk to do shell script "ls -l /Volumes/ | grep \" /\" | grep root | awk '{print $9}'"
 		
 		
-		display dialog "Are you sure you want to install PCEFIV9 on disk " & currdisk & "?" buttons ["No", "Yes"]
+		display dialog "Are you sure you want to install PCEFIV9 on the current boot disk?" buttons ["No", "Yes"]
 		if button returned of result is "No" then
 			tell progress indicator "progress" of window "DellEFI Installer"
 				stop
@@ -218,7 +220,6 @@ on clicked theObject
 		do shell script "pmset hibernatemode 0 > /dev/null &" with administrator privileges
 		do shell script "rm /var/vm/sleepimage > /dev/null &" with administrator privileges
 	end if
-	-- delay 3
 	
 	--reboot
 	tell progress indicator "progress" of window "DellEFI Installer"
