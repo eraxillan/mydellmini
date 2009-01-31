@@ -16,8 +16,20 @@ on awake from nib theObject
 	end tell
 	
 	set OSVer to do shell script "sw_vers | grep 'ProductVersion:' |awk '{print $2}'"
-	-- set testdisk to characters 1 thru 5 of currdisk as string
 	
+	-- check if we are running on a Dell Mini 9... another method might be to check the mac address of the nic
+	set disktype to do shell script "diskutil info disk0 | grep \"Media Name:\" | awk '{print$5}'"
+	
+	-- display dialog "Detected disk type: " & disktype
+	
+	if disktype is not equal to "STEC" then
+		if disktype is not equal to "RunCore" then
+			display dialog "It does not appear that you are running this application on a Dell Mini 9?  Are you sure you want to continue?" buttons ["No", "Yes"]
+			if button returned of result is "No" then
+				quit
+			end if
+		end if
+	end if
 	
 	set dsdt_exists to do shell script "test -e /dsdt.aml && echo 'file exists' || echo 'no file'"
 	if dsdt_exists is "file exists" then
@@ -84,6 +96,8 @@ on clicked theObject
 	set disablehibernate to false
 	set dsdt to false
 	set efi to false
+	set hideefi to false
+	set extensionsfiles to false
 	
 	if state of button "quietbootcb" of box "optionspanel" of window "DellEFI Installer" is 1 then
 		set quietboot to true
@@ -103,6 +117,12 @@ on clicked theObject
 	if state of button "eficb" of box "optionspanel" of window "DellEFI Installer" is 1 then
 		set efi to true
 	end if
+	if state of button "hidecb" of box "optionspanel" of window "DellEFI Installer" is 1 then
+		set hideefi to true
+	end if
+	if state of button "extensionscb" of box "optionspanel" of window "DellEFI Installer" is 1 then
+		set extensionsfiles to true
+	end if
 	
 	tell application "Finder" to get folder of (path to me) as Unicode text
 	set workingDir to POSIX path of result
@@ -119,6 +139,7 @@ on clicked theObject
 		-- set currdisk to do shell script "ls -l /Volumes/ | grep \" /\" | grep root | awk '{print $9}'"
 		
 		
+		(*
 		display dialog "Are you sure you want to install PCEFIV9 on the current boot disk?" buttons ["No", "Yes"]
 		if button returned of result is "No" then
 			tell progress indicator "progress" of window "DellEFI Installer"
@@ -127,8 +148,7 @@ on clicked theObject
 			end tell
 			return
 		end if
-		
-		do shell script "mkdir /.dellefi; touch /.dellefi/.donoterase" with administrator privileges
+		*)
 		
 		set contents of text field "currentop" of window "DellEFI Installer" to "Installing bootloader"
 		delay 1
@@ -136,8 +156,17 @@ on clicked theObject
 		do shell script "dd if=" & workingDir & "DellEFI.app/Contents/Resources/bootpcefiv9/boot1h of=/dev/r" & disk & "s2 > /dev/null &" with administrator privileges
 		do shell script "cp " & workingDir & "DellEFI.app/Contents/Resources/bootpcefiv9/boot /boot > /dev/null &" with administrator privileges
 		
-		set contents of text field "currentop" of window "DellEFI Installer" to "Setup directory structure"
+		set contents of text field "currentop" of window "DellEFI Installer" to "Installing com.apple.Boot"
 		delay 1
+		do shell script "sed -e 's/disk0/" & disk & "/g' " & workingDir & "DellEFI.app/Contents/Resources/Boot/com.apple.Boot.plist >  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
+		
+	end if
+	
+	if extensionsfiles is true then
+		
+		try
+			do shell script "mkdir /.dellefi; touch /.dellefi/.donoterase" with administrator privileges
+		end try
 		
 		-- move all extensions over to EFI ext dir.
 		set contents of text field "currentop" of window "DellEFI Installer" to "Copy kexts to Extra folder"
@@ -158,15 +187,6 @@ on clicked theObject
 		set contents of text field "currentop" of window "DellEFI Installer" to "Update EFI kext cache"
 		delay 1
 		do shell script "kextcache -a i386 -m /Extra/Extensions.mkext /Extra/Extensions1" with administrator privileges
-		if quietboot then
-			set contents of text field "currentop" of window "DellEFI Installer" to "Installing com.apple.Boot"
-			delay 1
-			do shell script "sed -e 's/disk0/" & disk & "/g' " & workingDir & "DellEFI.app/Contents/Resources/Boot/com.apple.Boot.Quiet.plist >  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
-		else
-			set contents of text field "currentop" of window "DellEFI Installer" to "Installing com.apple.Boot"
-			delay 1
-			do shell script "sed -e 's/disk0/" & disk & "/g' " & workingDir & "DellEFI.app/Contents/Resources/Boot/com.apple.Boot.plist >  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
-		end if
 		
 		--clean up old audio installs
 		set contents of text field "currentop" of window "DellEFI Installer" to "Remove old audio files"
@@ -184,10 +204,26 @@ on clicked theObject
 		
 	end if
 	
+	(*
+	if quietboot then
+		set contents of text field "currentop" of window "DellEFI Installer" to "Installing com.apple.Boot"
+		delay 1
+		do shell script "sed -e 's/disk0/" & disk & "/g' " & workingDir & "DellEFI.app/Contents/Resources/Boot/com.apple.Boot.Quiet.plist >  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
+	else
+		set contents of text field "currentop" of window "DellEFI Installer" to "Installing com.apple.Boot"
+		delay 1
+		do shell script "sed -e 's/disk0/" & disk & "/g' " & workingDir & "DellEFI.app/Contents/Resources/Boot/com.apple.Boot.plist >  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
+	end if
+	*)
+	
 	--make custom aml file and copy to EFI part root
 	if dsdt is true then
 		set contents of text field "currentop" of window "DellEFI Installer" to "Creating dsdt.aml file"
 		delay 1
+		try
+			do shell script "mkdir /.dellefi; touch /.dellefi/.donoterase" with administrator privileges
+		end try
+		
 		try
 			do shell script "cp -Rf " & workingDir & "DellEFI.app/Contents/Resources/DSDTPatcher /.dellefi/" with administrator privileges
 		end try
@@ -200,6 +236,10 @@ on clicked theObject
 	if keyboardpane then
 		set contents of text field "currentop" of window "DellEFI Installer" to "Installing 10.5.5 keyboard kext"
 		delay 1
+		try
+			do shell script "mkdir /.dellefi; touch /.dellefi/.donoterase" with administrator privileges
+		end try
+		
 		-- do shell script "mkdir /Backup > /dev/null &" with administrator privileges
 		do shell script "mv /System/Library/PreferencePanes/Keyboard.prefPane /.dellefi > /dev/null &" with administrator privileges
 		do shell script "cp -R " & workingDir & "DellEFI.app/Contents/Resources/PrefPanes/Keyboard.prefPane /System/Library/PreferencePanes/ > /dev/null &" with administrator privileges
@@ -219,6 +259,14 @@ on clicked theObject
 		delay 1
 		do shell script "pmset hibernatemode 0 > /dev/null &" with administrator privileges
 		do shell script "rm /var/vm/sleepimage > /dev/null &" with administrator privileges
+	end if
+	
+	if hideefi then
+		set contents of text field "currentop" of window "DellEFI Installer" to "Hiding DellEFI files"
+		delay 1
+		do shell script "chflags hidden /dsdt.aml > /dev/null &" with administrator privileges
+		do shell script "chflags hidden /boot > /dev/null &" with administrator privileges
+		do shell script "chflags hidden /Extra > /dev/null &" with administrator privileges
 	end if
 	
 	--reboot
