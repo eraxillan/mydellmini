@@ -8,7 +8,10 @@
 	<string>rd=disk0s2</string>
 	<key>Quiet Boot</key>
 	<string>Yes</string>
+<<<<<<< .mine
+=======
 	<key>device-properties</key>
 	<string></string>
+>>>>>>> .r18
 </dict>
 </plist>
