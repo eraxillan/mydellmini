@@ -8,7 +8,10 @@
 	<string></string>
 	<key>Timeout</key>
 	<string>3</string>
+<<<<<<< .mine
+=======
 	<key>device-properties</key>
 	<string></string>
+>>>>>>> .r18
 </dict>
 </plist>
