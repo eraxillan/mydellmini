@@ -3,6 +3,11 @@
 
 --  Created by Bernard Maltais on 28/01/09.
 
+property QuietBootP : false
+property HideEFIP : false
+property RemoteCDP : false
+property HibernationP : false
+
 on awake from nib theObject
 	
 	tell every window to center
@@ -24,7 +29,7 @@ on awake from nib theObject
 	-- display dialog "Detected disk type: " & disktype
 	
 	if disktype is not equal to "00:21:70" then
-		display dialog "It does not appear that you are running this application on a Dell Mini 9?  Are you sure you want to continue?" buttons ["No", "Yes"] with icon caution
+		display dialog "It does not appear that you are running this application on a Dell Mini 9?  Are you sure you want to continue?" buttons ["No", "Yes"] default button "No" with icon caution
 		if button returned of result is "No" then
 			quit
 		end if
@@ -34,6 +39,24 @@ on awake from nib theObject
 	if dsdt_exists is "file exists" then
 		tell button "dsdtcb" of box "optionspanel" of window "DellEFI Installer"
 			set integer value to 0
+			-- set enabled to false
+		end tell
+	end if
+	
+	set extexist to do shell script "test -e /Extra/Extensions.mkext && echo 'file exists' || echo 'no file'"
+	if extexist is "file exists" then
+		tell button "extensionscb" of box "optionspanel" of window "DellEFI Installer"
+			set integer value to 0
+			set title to "Reinstall Dell Mini 9 Extensions"
+			-- set enabled to false
+		end tell
+	end if
+	
+	set bootexist to do shell script "test -e /boot && echo 'file exists' || echo 'no file'"
+	if bootexist is "file exists" then
+		tell button "eficb" of box "optionspanel" of window "DellEFI Installer"
+			set integer value to 0
+			set title to "Reinstall PCEFIV9 Bootloader"
 			-- set enabled to false
 		end tell
 	end if
@@ -55,16 +78,37 @@ on awake from nib theObject
 	
 	set remotecd_exists to do shell script "defaults read com.apple.NetworkBrowser | grep EnableODiskBrowsing; exit 0"
 	if remotecd_exists is not "" then
+		set RemoteCDP to true
 		tell button "enableremotecb" of box "optionspanel" of window "DellEFI Installer"
 			-- set enabled to false
+			set title to "Disable Remote CD"
+			set integer value to 0
+		end tell
+	end if
+	
+	set quietstate to do shell script "grep Quiet /Library/Preferences/SystemConfiguration/com.apple.Boot.plist; exit 0"
+	if quietstate is not "" then
+		set QuietBootP to true
+		tell button "quietbootcb" of box "optionspanel" of window "DellEFI Installer"
+			set title to "Disable Quiet Boot"
+		end tell
+	end if
+	
+	set hideefistate to do shell script "ls -l / | grep dsdt.aml | grep @; exit 0"
+	if hideefistate is not "" then
+		set HideEFIP to true
+		tell button "hidecb" of box "optionspanel" of window "DellEFI Installer"
+			set title to "Show DellEFI files"
 			set integer value to 0
 		end tell
 	end if
 	
 	set hibernation_status to do shell script "pmset -g | grep hibernatemode | awk -F\" \" '{print $2}'"
 	if hibernation_status is "0" then
+		set HibernationP to true
 		tell button "disablehibernatecb" of box "optionspanel" of window "DellEFI Installer"
 			-- set enabled to false
+			set title to "Enable Hibernate (Not Recommended)"
 			set integer value to 0
 		end tell
 	end if
@@ -99,6 +143,7 @@ on clicked theObject
 	set efi to false
 	set hideefi to false
 	set extensionsfiles to false
+	set quietboot to false
 	set needreboot to false
 	
 	if state of button "keyboardpanecb" of box "optionspanel" of window "DellEFI Installer" is 1 then
@@ -122,6 +167,9 @@ on clicked theObject
 	if state of button "extensionscb" of box "optionspanel" of window "DellEFI Installer" is 1 then
 		set extensionsfiles to true
 	end if
+	if state of button "quietbootcb" of box "optionspanel" of window "DellEFI Installer" is 1 then
+		set quietboot to true
+	end if
 	
 	tell application "Finder" to get folder of (path to me) as Unicode text
 	set workingDir to POSIX path of result
@@ -130,11 +178,11 @@ on clicked theObject
 	set workingDir to characters 1 thru (x - 1) of workingDir as string
 	set workingDir to "\"" & workingDir & "\"/"
 	
+	set disk to do shell script "df -k / | grep dev | awk -F\" \" '{print $1}' | awk -F\"/\" '{print $3}'"
+	set x to the length of the disk
+	set disk to characters 1 thru (x - 2) of disk as string
+	
 	if efi is true then
-		
-		set disk to do shell script "df -k / | grep dev | awk -F\" \" '{print $1}' | awk -F\"/\" '{print $3}'"
-		set x to the length of the disk
-		set disk to characters 1 thru (x - 2) of disk as string
 		-- set currdisk to do shell script "ls -l /Volumes/ | grep \" /\" | grep root | awk '{print $9}'"
 		
 		set contents of text field "currentop" of window "DellEFI Installer" to "Installing bootloader"
@@ -145,12 +193,22 @@ on clicked theObject
 		
 		set contents of text field "currentop" of window "DellEFI Installer" to "Installing com.apple.Boot"
 		delay 1
-		do shell script "sed -e 's/disk0/" & disk & "/g' " & workingDir & "DellEFI.app/Contents/Resources/Boot/com.apple.Boot.plist >  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
-		
+		do shell script "cp " & workingDir & "DellEFI.app/Contents/Resources/Boot/com.apple.Boot.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
+	end if
+	
+	if quietboot then
+		if QuietBootP then
+			set contents of text field "currentop" of window "DellEFI Installer" to "Disabling Quiet Boot"
+			delay 1
+			do shell script "cp " & workingDir & "DellEFI.app/Contents/Resources/Boot/com.apple.Boot.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
+		else
+			set contents of text field "currentop" of window "DellEFI Installer" to "Configuring Quiet Boot"
+			delay 1
+			do shell script "sed -e 's/disk0/" & disk & "/g' " & workingDir & "DellEFI.app/Contents/Resources/Boot/com.apple.Boot.Quiet.plist >  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
+		end if
 	end if
 	
 	if extensionsfiles is true then
-		
 		try
 			do shell script "mkdir /.dellefi; touch /.dellefi/.donoterase" with administrator privileges
 		end try
@@ -190,7 +248,6 @@ on clicked theObject
 		do shell script "rm -r /System/Library/Extensions.mkext > /dev/null &" with administrator privileges
 		
 		set needreboot to true
-		
 	end if
 	
 	--make custom aml file and copy to EFI part root
@@ -210,7 +267,6 @@ on clicked theObject
 		do shell script "cp /.dellefi/DSDTPatcher/dsdt.aml /dsdt.aml" with administrator privileges
 		
 		set needreboot to true
-		
 	end if
 	
 	--install old keyboard control panel as 10.5.6 does not see our trackpad
@@ -228,29 +284,51 @@ on clicked theObject
 	end if
 	
 	if enableremote then
-		--enable remote cd
-		set contents of text field "currentop" of window "DellEFI Installer" to "Enabling remote CD"
-		delay 1
-		do shell script "defaults write com.apple.NetworkBrowser EnableODiskBrowsing -bool true"
-		do shell script "defaults write com.apple.NetworkBrowser ODSSupported -bool true"
-		
-		set needreboot to true
-		
+		if RemoteCDP then
+			set contents of text field "currentop" of window "DellEFI Installer" to "Disabling Remote CD"
+			delay 1
+			do shell script "defaults delete com.apple.NetworkBrowser EnableODiskBrowsing"
+			do shell script "defaults delete com.apple.NetworkBrowser ODSSupported"
+			
+			set needreboot to true
+		else
+			--enable remote cd
+			set contents of text field "currentop" of window "DellEFI Installer" to "Enabling Remote CD"
+			delay 1
+			do shell script "defaults write com.apple.NetworkBrowser EnableODiskBrowsing -bool true"
+			do shell script "defaults write com.apple.NetworkBrowser ODSSupported -bool true"
+			
+			set needreboot to true
+		end if
 	end if
 	
 	if disablehibernate then
-		set contents of text field "currentop" of window "DellEFI Installer" to "Disabling hibernate"
-		delay 1
-		do shell script "pmset hibernatemode 0 > /dev/null &" with administrator privileges
-		do shell script "rm /var/vm/sleepimage > /dev/null &" with administrator privileges
+		if HibernationP then
+			set contents of text field "currentop" of window "DellEFI Installer" to "Enabling hibernate to file"
+			delay 1
+			do shell script "pmset hibernatemode 3 > /dev/null &" with administrator privileges
+		else
+			set contents of text field "currentop" of window "DellEFI Installer" to "Disabling hibernate to file"
+			delay 1
+			do shell script "pmset hibernatemode 0 > /dev/null &" with administrator privileges
+			do shell script "rm /var/vm/sleepimage > /dev/null &" with administrator privileges
+		end if
 	end if
 	
 	if hideefi then
-		set contents of text field "currentop" of window "DellEFI Installer" to "Hiding DellEFI files"
-		delay 1
-		do shell script "chflags hidden /dsdt.aml > /dev/null &" with administrator privileges
-		do shell script "chflags hidden /boot > /dev/null &" with administrator privileges
-		do shell script "chflags hidden /Extra > /dev/null &" with administrator privileges
+		if HideEFIP then
+			set contents of text field "currentop" of window "DellEFI Installer" to "Making DellEFI files visible"
+			delay 1
+			do shell script "chflags nohidden /dsdt.aml > /dev/null &" with administrator privileges
+			do shell script "chflags nohidden /boot > /dev/null &" with administrator privileges
+			do shell script "chflags nohidden /Extra > /dev/null &" with administrator privileges
+		else
+			set contents of text field "currentop" of window "DellEFI Installer" to "Hiding DellEFI files"
+			delay 1
+			do shell script "chflags hidden /dsdt.aml > /dev/null &" with administrator privileges
+			do shell script "chflags hidden /boot > /dev/null &" with administrator privileges
+			do shell script "chflags hidden /Extra > /dev/null &" with administrator privileges
+		end if
 	end if
 	
 	--reboot
@@ -261,7 +339,7 @@ on clicked theObject
 	
 	set contents of text field "currentop" of window "DellEFI Installer" to "Finished"
 	if needreboot then
-		display dialog "All done, ready for reboot" buttons ["No", "Yes"] with icon caution
+		display dialog "All done, ready for reboot" buttons ["No", "Yes"] default button "Yes" with icon caution
 		if button returned of result is "No" then
 			quit
 		else
@@ -271,5 +349,6 @@ on clicked theObject
 		end if
 	else
 		display dialog "All done, no need to reboot!" buttons ["Close"] with icon caution
+		quit
 	end if
 end clicked
