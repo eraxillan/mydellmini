@@ -5,10 +5,6 @@ on clicked theObject
 		tell button "dsdtcb" of box "optionspanel" of window "DellEFI Installer"
 			set enabled to false
 		end tell
-		
-		tell button "quietbootcb" of box "optionspanel" of window "DellEFI Installer"
-			set enabled to false
-		end tell
 	else
 		set dsdt_exists to do shell script "test -e /dsdt.aml && echo 'file exists' || echo 'no file'"
 		if dsdt_exists is "file exists" then
@@ -16,10 +12,6 @@ on clicked theObject
 				set enabled to false
 			end tell
 		end if
-		
-		tell button "quietbootcb" of box "optionspanel" of window "DellEFI Installer"
-			set enabled to true
-		end tell
 	end if
 	
 end clicked
