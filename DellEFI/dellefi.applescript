@@ -20,19 +20,39 @@ on awake from nib theObject
 		set visible to true
 	end tell
 	
-	set OSVer to do shell script "sw_vers | grep 'ProductVersion:' |awk '{print $2}'"
-	
-	-- check if we are running on a Dell Mini 9... we check the mac address of the nic to be one of Dell's
-	set disktype to do shell script "ifconfig en0 | grep ether | awk '{print $2}'"
-	set disktype to characters 1 thru 8 of disktype as string
-	
-	-- display dialog "Detected disk type: " & disktype
-	
-	if disktype is not equal to "00:21:70" then
-		display dialog "It does not appear that you are running this application on a Dell Mini 9?  Are you sure you want to continue?" buttons ["No", "Yes"] default button "No" with icon caution
-		if button returned of result is "No" then
-			quit
+	try
+		set OSVer to do shell script "sw_vers | grep 'ProductVersion:' | awk '{print $2}'"
+		
+		if OSVer is not equal to "10.5.6" then
+			display dialog "DellEFI is only meant for 10.5.6 system. Please upgrade to 10.5.6 before running again." buttons ["Quit"] default button "Quit" with icon caution
 		end if
+	on error errMsg number errorNumber
+		display dialog "Could not detect OSX version. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
+		quit
+	end try
+	
+	try
+		-- check if we are running on a Dell Mini 9... we check the mac address of the nic to be one of Dell's
+		set disktype to do shell script "ifconfig en0 | grep ether | awk '{print $2}'"
+		set disktype to characters 1 thru 8 of disktype as string
+		
+		if disktype is not equal to "00:21:70" then
+			display dialog "It does not appear that you are running this application on a Dell Mini 9?  Are you sure you want to continue?" buttons ["No", "Yes"] default button "No" with icon caution
+			if button returned of result is "No" then
+				quit
+			end if
+		end if
+	on error errMsg number errorNumber
+		display dialog "Could not detect MAC address. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
+		quit
+	end try
+	
+	set prefpane_status to do shell script "test -e /.dellefi/Keyboard.prefPane && echo 'file exists' || echo 'no file'"
+	if prefpane_status is "file exists" then
+		tell button "keyboardpanecb" of box "optionspanel" of window "DellEFI Installer"
+			-- set enabled to false
+			set integer value to 0
+		end tell
 	end if
 	
 	set dsdt_exists to do shell script "test -e /dsdt.aml && echo 'file exists' || echo 'no file'"
@@ -59,21 +79,6 @@ on awake from nib theObject
 			set title to "Reinstall PCEFIV9 Bootloader"
 			-- set enabled to false
 		end tell
-	end if
-	
-	if OSVer is not equal to "10.5.6" then
-		tell button "keyboardpanecb" of box "optionspanel" of window "DellEFI Installer"
-			set enabled to false
-			set integer value to 0
-		end tell
-	else
-		set prefpane_status to do shell script "test -e /.dellefi/Keyboard.prefPane && echo 'file exists' || echo 'no file'"
-		if prefpane_status is "file exists" then
-			tell button "keyboardpanecb" of box "optionspanel" of window "DellEFI Installer"
-				-- set enabled to false
-				set integer value to 0
-			end tell
-		end if
 	end if
 	
 	set remotecd_exists to do shell script "defaults read com.apple.NetworkBrowser | grep EnableODiskBrowsing; exit 0"
@@ -182,154 +187,194 @@ on clicked theObject
 	set x to the length of the disk
 	set disk to characters 1 thru (x - 2) of disk as string
 	
-	if efi is true then
-		-- set currdisk to do shell script "ls -l /Volumes/ | grep \" /\" | grep root | awk '{print $9}'"
-		
-		set contents of text field "currentop" of window "DellEFI Installer" to "Installing bootloader"
-		delay 1
-		do shell script workingDir & "DellEFI.app/Contents/Resources/bootpcefiv9/fdisk -f " & workingDir & "DellEFI.app/Contents/Resources/bootpcefiv9/boot0 -u -y /dev/r" & disk & " > /dev/null &" with administrator privileges
-		do shell script "dd if=" & workingDir & "DellEFI.app/Contents/Resources/bootpcefiv9/boot1h of=/dev/r" & disk & "s2 > /dev/null &" with administrator privileges
-		do shell script "cp " & workingDir & "DellEFI.app/Contents/Resources/bootpcefiv9/boot /boot > /dev/null &" with administrator privileges
-		
-		set contents of text field "currentop" of window "DellEFI Installer" to "Installing com.apple.Boot"
-		delay 1
-		do shell script "cp " & workingDir & "DellEFI.app/Contents/Resources/Boot/com.apple.Boot.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
-	end if
-	
-	if quietboot then
-		if QuietBootP then
-			set contents of text field "currentop" of window "DellEFI Installer" to "Disabling Quiet Boot"
+	try
+		if efi is true then
+			-- set currdisk to do shell script "ls -l /Volumes/ | grep \" /\" | grep root | awk '{print $9}'"
+			
+			set contents of text field "currentop" of window "DellEFI Installer" to "Installing bootloader"
+			delay 1
+			do shell script workingDir & "DellEFI.app/Contents/Resources/bootpcefiv9/fdisk -f " & workingDir & "DellEFI.app/Contents/Resources/bootpcefiv9/boot0 -u -y /dev/r" & disk & " > /dev/null &" with administrator privileges
+			do shell script "dd if=" & workingDir & "DellEFI.app/Contents/Resources/bootpcefiv9/boot1h of=/dev/r" & disk & "s2 > /dev/null &" with administrator privileges
+			do shell script "cp " & workingDir & "DellEFI.app/Contents/Resources/bootpcefiv9/boot /boot > /dev/null &" with administrator privileges
+			
+			set contents of text field "currentop" of window "DellEFI Installer" to "Installing com.apple.Boot"
 			delay 1
 			do shell script "cp " & workingDir & "DellEFI.app/Contents/Resources/Boot/com.apple.Boot.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
-		else
-			set contents of text field "currentop" of window "DellEFI Installer" to "Configuring Quiet Boot"
-			delay 1
-			do shell script "sed -e 's/disk0/" & disk & "/g' " & workingDir & "DellEFI.app/Contents/Resources/Boot/com.apple.Boot.Quiet.plist >  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
 		end if
-	end if
+	on error errMsg number errorNumber
+		display dialog "Could not install the Bootloader. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
+		quit
+	end try
 	
-	if extensionsfiles is true then
-		try
-			do shell script "mkdir /.dellefi; touch /.dellefi/.donoterase" with administrator privileges
-		end try
-		
-		-- move all extensions over to EFI ext dir.
-		set contents of text field "currentop" of window "DellEFI Installer" to "Copy kexts to Extra folder"
-		delay 1
-		try
-			do shell script "rf -rf /Extra.bak" with administrator privileges
-		end try
-		try
-			do shell script "mv /Extra /Extra.bak" with administrator privileges
-		end try
-		try
-			do shell script "mkdir /Extra > /dev/null &" with administrator privileges
-			do shell script "mkdir /Extra/Extensions1" with administrator privileges
-		end try
-		do shell script "cp -R " & workingDir & "DellEFI.app/Contents/Resources/Extensions/*.kext /Extra/Extensions1" with administrator privileges
-		do shell script "chown -R 0:0 /Extra/" with administrator privileges
-		do shell script "chmod -R 755 /Extra/" with administrator privileges
-		set contents of text field "currentop" of window "DellEFI Installer" to "Update EFI kext cache"
-		delay 1
-		do shell script "kextcache -a i386 -m /Extra/Extensions.mkext /Extra/Extensions1" with administrator privileges
-		
-		--clean up old audio installs
-		set contents of text field "currentop" of window "DellEFI Installer" to "Remove old audio files"
-		delay 1
-		do shell script "rm -r /System/Library/Extensions/ALCinject.kext > /dev/null &" with administrator privileges
-		do shell script "rm -r /System/Library/Extensions/HDAEnabler.kext > /dev/null &" with administrator privileges
-		
-		set contents of text field "currentop" of window "DellEFI Installer" to "Installing local files"
-		delay 1
-		-- move items that need to be local for audio and battery, hopefully this goes away someday
-		do shell script "cp -R " & workingDir & "DellEFI.app/Contents/Resources/LocalExtensions/*.kext /System/Library/Extensions > /dev/null &" with administrator privileges
-		do shell script "cp -R " & workingDir & "DellEFI.app/Contents/Resources/SystemConfiguration/*.bundle /System/Library/SystemConfiguration > /dev/null &" with administrator privileges
-		-- remove mkext so it is rebuilt
-		do shell script "rm -r /System/Library/Extensions.mkext > /dev/null &" with administrator privileges
-		
-		set needreboot to true
-	end if
+	try
+		if quietboot then
+			if QuietBootP then
+				set contents of text field "currentop" of window "DellEFI Installer" to "Disabling Quiet Boot"
+				delay 1
+				do shell script "cp " & workingDir & "DellEFI.app/Contents/Resources/Boot/com.apple.Boot.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
+			else
+				set contents of text field "currentop" of window "DellEFI Installer" to "Configuring Quiet Boot"
+				delay 1
+				do shell script "sed -e 's/disk0/" & disk & "/g' " & workingDir & "DellEFI.app/Contents/Resources/Boot/com.apple.Boot.Quiet.plist >  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
+			end if
+		end if
+	on error errMsg number errorNumber
+		display dialog "Could not disable quiet boot. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
+		quit
+	end try
 	
-	--make custom aml file and copy to EFI part root
-	if dsdt is true then
-		set contents of text field "currentop" of window "DellEFI Installer" to "Creating dsdt.aml file"
-		delay 1
-		try
-			do shell script "mkdir /.dellefi; touch /.dellefi/.donoterase" with administrator privileges
-		end try
-		
-		try
-			do shell script "cp -Rf " & workingDir & "DellEFI.app/Contents/Resources/DSDTPatcher /.dellefi/" with administrator privileges
-		end try
-		do shell script "cd /.dellefi/DSDTPatcher; ./DSDTPatcher > /dev/null 2>&1 &" with administrator privileges
-		delay 6
-		
-		do shell script "cp /.dellefi/DSDTPatcher/dsdt.aml /dsdt.aml" with administrator privileges
-		
-		set needreboot to true
-	end if
-	
-	--install old keyboard control panel as 10.5.6 does not see our trackpad
-	if keyboardpane then
-		set contents of text field "currentop" of window "DellEFI Installer" to "Installing 10.5.5 keyboard kext"
-		delay 1
-		try
-			do shell script "mkdir /.dellefi; touch /.dellefi/.donoterase" with administrator privileges
-		end try
-		
-		-- do shell script "mkdir /Backup > /dev/null &" with administrator privileges
-		do shell script "mv /System/Library/PreferencePanes/Keyboard.prefPane /.dellefi > /dev/null &" with administrator privileges
-		do shell script "cp -R " & workingDir & "DellEFI.app/Contents/Resources/PrefPanes/Keyboard.prefPane /System/Library/PreferencePanes/ > /dev/null &" with administrator privileges
-		do shell script "chown -R root:wheel /System/Library/PreferencePanes/Keyboard.prefPane > /dev/null &" with administrator privileges
-	end if
-	
-	if enableremote then
-		if RemoteCDP then
-			set contents of text field "currentop" of window "DellEFI Installer" to "Disabling Remote CD"
-			delay 1
-			do shell script "defaults delete com.apple.NetworkBrowser EnableODiskBrowsing"
-			do shell script "defaults delete com.apple.NetworkBrowser ODSSupported"
+	try
+		if extensionsfiles is true then
+			try
+				do shell script "mkdir /.dellefi; touch /.dellefi/.donoterase" with administrator privileges
+			end try
 			
-			set needreboot to true
-		else
-			--enable remote cd
-			set contents of text field "currentop" of window "DellEFI Installer" to "Enabling Remote CD"
+			-- move all extensions over to EFI ext dir.
+			set contents of text field "currentop" of window "DellEFI Installer" to "Copy kexts to Extra folder"
 			delay 1
-			do shell script "defaults write com.apple.NetworkBrowser EnableODiskBrowsing -bool true"
-			do shell script "defaults write com.apple.NetworkBrowser ODSSupported -bool true"
+			try
+				do shell script "rf -rf /Extra.bak" with administrator privileges
+			end try
+			try
+				do shell script "mv /Extra /Extra.bak" with administrator privileges
+			end try
+			try
+				do shell script "mkdir /Extra > /dev/null &" with administrator privileges
+				do shell script "mkdir /Extra/Extensions1" with administrator privileges
+			end try
+			do shell script "cp -R " & workingDir & "DellEFI.app/Contents/Resources/Extensions/*.kext /Extra/Extensions1" with administrator privileges
+			do shell script "chown -R 0:0 /Extra/" with administrator privileges
+			do shell script "chmod -R 755 /Extra/" with administrator privileges
+			set contents of text field "currentop" of window "DellEFI Installer" to "Update EFI kext cache"
+			delay 1
+			do shell script "kextcache -a i386 -m /Extra/Extensions.mkext /Extra/Extensions1" with administrator privileges
+			
+			--clean up old audio installs
+			set contents of text field "currentop" of window "DellEFI Installer" to "Remove old audio files"
+			delay 1
+			do shell script "rm -r /System/Library/Extensions/ALCinject.kext > /dev/null &" with administrator privileges
+			do shell script "rm -r /System/Library/Extensions/HDAEnabler.kext > /dev/null &" with administrator privileges
+			
+			set contents of text field "currentop" of window "DellEFI Installer" to "Installing local files"
+			delay 1
+			-- move items that need to be local for audio and battery, hopefully this goes away someday
+			do shell script "cp -R " & workingDir & "DellEFI.app/Contents/Resources/LocalExtensions/*.kext /System/Library/Extensions > /dev/null &" with administrator privileges
+			do shell script "cp -R " & workingDir & "DellEFI.app/Contents/Resources/SystemConfiguration/*.bundle /System/Library/SystemConfiguration > /dev/null &" with administrator privileges
+			-- remove mkext so it is rebuilt
+			do shell script "rm -r /System/Library/Extensions.mkext > /dev/null &" with administrator privileges
 			
 			set needreboot to true
 		end if
-	end if
+	on error errMsg number errorNumber
+		display dialog "Could not install Extensions. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
+		quit
+	end try
 	
-	if disablehibernate then
-		if HibernationP then
-			set contents of text field "currentop" of window "DellEFI Installer" to "Enabling hibernate to file"
+	try
+		--make custom aml file and copy to EFI part root
+		if dsdt is true then
+			set contents of text field "currentop" of window "DellEFI Installer" to "Creating dsdt.aml file"
 			delay 1
-			do shell script "pmset hibernatemode 3 > /dev/null &" with administrator privileges
-		else
-			set contents of text field "currentop" of window "DellEFI Installer" to "Disabling hibernate to file"
-			delay 1
-			do shell script "pmset hibernatemode 0 > /dev/null &" with administrator privileges
-			do shell script "rm /var/vm/sleepimage > /dev/null &" with administrator privileges
+			try
+				do shell script "mkdir /.dellefi; touch /.dellefi/.donoterase" with administrator privileges
+			end try
+			
+			try
+				do shell script "cp -Rf " & workingDir & "DellEFI.app/Contents/Resources/DSDTPatcher /.dellefi/" with administrator privileges
+			end try
+			do shell script "cd /.dellefi/DSDTPatcher; ./DSDTPatcher > /dev/null 2>&1 &" with administrator privileges
+			delay 6
+			
+			do shell script "cp /.dellefi/DSDTPatcher/dsdt.aml /dsdt.aml" with administrator privileges
+			
+			set needreboot to true
 		end if
-	end if
+	on error errMsg number errorNumber
+		display dialog "Could not create dsdt.aml file. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
+		quit
+	end try
 	
-	if hideefi then
-		if HideEFIP then
-			set contents of text field "currentop" of window "DellEFI Installer" to "Making DellEFI files visible"
+	try
+		--install old keyboard control panel as 10.5.6 does not see our trackpad
+		if keyboardpane then
+			set contents of text field "currentop" of window "DellEFI Installer" to "Installing 10.5.5 keyboard kext"
 			delay 1
-			do shell script "chflags nohidden /dsdt.aml > /dev/null &" with administrator privileges
-			do shell script "chflags nohidden /boot > /dev/null &" with administrator privileges
-			do shell script "chflags nohidden /Extra > /dev/null &" with administrator privileges
-		else
-			set contents of text field "currentop" of window "DellEFI Installer" to "Hiding DellEFI files"
-			delay 1
-			do shell script "chflags hidden /dsdt.aml > /dev/null &" with administrator privileges
-			do shell script "chflags hidden /boot > /dev/null &" with administrator privileges
-			do shell script "chflags hidden /Extra > /dev/null &" with administrator privileges
+			try
+				do shell script "mkdir /.dellefi; touch /.dellefi/.donoterase" with administrator privileges
+			end try
+			
+			-- do shell script "mkdir /Backup > /dev/null &" with administrator privileges
+			do shell script "mv /System/Library/PreferencePanes/Keyboard.prefPane /.dellefi > /dev/null &" with administrator privileges
+			do shell script "cp -R " & workingDir & "DellEFI.app/Contents/Resources/PrefPanes/Keyboard.prefPane /System/Library/PreferencePanes/ > /dev/null &" with administrator privileges
+			do shell script "chown -R root:wheel /System/Library/PreferencePanes/Keyboard.prefPane > /dev/null &" with administrator privileges
 		end if
-	end if
+	on error errMsg number errorNumber
+		display dialog "Could not install 10.5.5 keyboard kext. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
+		quit
+	end try
+	
+	try
+		if enableremote then
+			if RemoteCDP then
+				set contents of text field "currentop" of window "DellEFI Installer" to "Disabling Remote CD"
+				delay 1
+				do shell script "defaults delete com.apple.NetworkBrowser EnableODiskBrowsing"
+				do shell script "defaults delete com.apple.NetworkBrowser ODSSupported"
+				
+				set needreboot to true
+			else
+				--enable remote cd
+				set contents of text field "currentop" of window "DellEFI Installer" to "Enabling Remote CD"
+				delay 1
+				do shell script "defaults write com.apple.NetworkBrowser EnableODiskBrowsing -bool true"
+				do shell script "defaults write com.apple.NetworkBrowser ODSSupported -bool true"
+				
+				set needreboot to true
+			end if
+		end if
+	on error errMsg number errorNumber
+		display dialog "Could not configure Remote CD. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
+		quit
+	end try
+	
+	try
+		if disablehibernate then
+			if HibernationP then
+				set contents of text field "currentop" of window "DellEFI Installer" to "Enabling hibernate to file"
+				delay 1
+				do shell script "pmset hibernatemode 3 > /dev/null &" with administrator privileges
+			else
+				set contents of text field "currentop" of window "DellEFI Installer" to "Disabling hibernate to file"
+				delay 1
+				do shell script "pmset hibernatemode 0 > /dev/null &" with administrator privileges
+				do shell script "rm /var/vm/sleepimage > /dev/null &" with administrator privileges
+			end if
+		end if
+	on error errMsg number errorNumber
+		display dialog "Could not configure Hibernation. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
+		quit
+	end try
+	
+	try
+		if hideefi then
+			if HideEFIP then
+				set contents of text field "currentop" of window "DellEFI Installer" to "Making DellEFI files visible"
+				delay 1
+				do shell script "chflags nohidden /dsdt.aml > /dev/null &" with administrator privileges
+				do shell script "chflags nohidden /boot > /dev/null &" with administrator privileges
+				do shell script "chflags nohidden /Extra > /dev/null &" with administrator privileges
+			else
+				set contents of text field "currentop" of window "DellEFI Installer" to "Hiding DellEFI files"
+				delay 1
+				do shell script "chflags hidden /dsdt.aml > /dev/null &" with administrator privileges
+				do shell script "chflags hidden /boot > /dev/null &" with administrator privileges
+				do shell script "chflags hidden /Extra > /dev/null &" with administrator privileges
+			end if
+		end if
+	on error errMsg number errorNumber
+		display dialog "Could not perform DellEFI file hiding. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
+		quit
+	end try
 	
 	--reboot
 	tell progress indicator "progress" of window "DellEFI Installer"
