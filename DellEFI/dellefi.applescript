@@ -7,6 +7,7 @@ property QuietBootP : false
 property HideEFIP : false
 property RemoteCDP : false
 property HibernationP : false
+property FingerP : false
 
 on awake from nib theObject
 	
@@ -43,8 +44,10 @@ on awake from nib theObject
 			end if
 		end if
 	on error errMsg number errorNumber
-		display dialog "Could not detect MAC address. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
-		quit
+		display dialog "Could not detect MAC address. Do you want to continue? You are on a Dell Mini 9 right?" buttons ["No", "Yes"] default button "No" with icon caution
+		if button returned of result is "No" then
+			quit
+		end if
 	end try
 	
 	set prefpane_status to do shell script "test -e /.dellefi/Keyboard.prefPane && echo 'file exists' || echo 'no file'"
@@ -118,6 +121,22 @@ on awake from nib theObject
 		end tell
 	end if
 	
+	set fingerexist to do shell script "test -e /.dellefi/.2finger && echo 'file exists' || echo 'no file'"
+	if fingerexist is "file exists" then
+		set FingerP to true
+		tell button "2fingercb" of box "optionspanel" of window "DellEFI Installer"
+			set title to "Remove 2 finger scroll"
+			-- set enabled to false
+		end tell
+	end if
+	
+	set bluetoothexist to do shell script "test -e /Library/Preferences/com.apple.Bluetooth.plist && echo 'file exists' || echo 'no file'"
+	if bluetoothexist is "no file" then
+		tell button "fixbluetoothcb" of box "optionspanel" of window "DellEFI Installer"
+			set integer value to 0
+		end tell
+	end if
+	
 	tell matrix 1 of window "DellEFI Installer"
 		set current row to 1
 	end tell
@@ -150,6 +169,8 @@ on clicked theObject
 	set extensionsfiles to false
 	set quietboot to false
 	set needreboot to false
+	set twofinger to false
+	set bluetooth to false
 	
 	if state of button "keyboardpanecb" of box "optionspanel" of window "DellEFI Installer" is 1 then
 		set keyboardpane to true
@@ -175,13 +196,20 @@ on clicked theObject
 	if state of button "quietbootcb" of box "optionspanel" of window "DellEFI Installer" is 1 then
 		set quietboot to true
 	end if
+	if state of button "2fingercb" of box "optionspanel" of window "DellEFI Installer" is 1 then
+		set twofinger to true
+	end if
+	if state of button "fixbluetoothcb" of box "optionspanel" of window "DellEFI Installer" is 1 then
+		set bluetooth to true
+	end if
 	
-	tell application "Finder" to get folder of (path to me) as Unicode text
-	set workingDir to POSIX path of result
+	set workingDir to path to me
+	set workingDir to POSIX path of workingDir
 	
 	set x to the length of the workingDir
 	set workingDir to characters 1 thru (x - 1) of workingDir as string
-	set workingDir to "\"" & workingDir & "\"/"
+	set workingDir to "\"" & workingDir & "\"/Contents/Resources"
+	-- display dialog workingDir
 	
 	set disk to do shell script "df -k / | grep dev | awk -F\" \" '{print $1}' | awk -F\"/\" '{print $3}'"
 	set x to the length of the disk
@@ -193,17 +221,16 @@ on clicked theObject
 			
 			set contents of text field "currentop" of window "DellEFI Installer" to "Installing bootloader"
 			delay 1
-			do shell script workingDir & "DellEFI.app/Contents/Resources/bootpcefiv9/fdisk -f " & workingDir & "DellEFI.app/Contents/Resources/bootpcefiv9/boot0 -u -y /dev/r" & disk & " > /dev/null &" with administrator privileges
-			do shell script "dd if=" & workingDir & "DellEFI.app/Contents/Resources/bootpcefiv9/boot1h of=/dev/r" & disk & "s2 > /dev/null &" with administrator privileges
-			do shell script "cp " & workingDir & "DellEFI.app/Contents/Resources/bootpcefiv9/boot /boot > /dev/null &" with administrator privileges
+			do shell script workingDir & "/bootpcefiv9/fdisk -f " & workingDir & "/bootpcefiv9/boot0 -u -y /dev/r" & disk & " > /dev/null &" with administrator privileges
+			do shell script "dd if=" & workingDir & "/bootpcefiv9/boot1h of=/dev/r" & disk & "s2 > /dev/null &" with administrator privileges
+			do shell script "cp " & workingDir & "/bootpcefiv9/boot /boot > /dev/null &" with administrator privileges
 			
 			set contents of text field "currentop" of window "DellEFI Installer" to "Installing com.apple.Boot"
 			delay 1
-			do shell script "cp " & workingDir & "DellEFI.app/Contents/Resources/Boot/com.apple.Boot.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
+			do shell script "cp " & workingDir & "/Boot/com.apple.Boot.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
 		end if
 	on error errMsg number errorNumber
 		display dialog "Could not install the Bootloader. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
-		quit
 	end try
 	
 	try
@@ -211,16 +238,15 @@ on clicked theObject
 			if QuietBootP then
 				set contents of text field "currentop" of window "DellEFI Installer" to "Disabling Quiet Boot"
 				delay 1
-				do shell script "cp " & workingDir & "DellEFI.app/Contents/Resources/Boot/com.apple.Boot.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
+				do shell script "cp " & workingDir & "/Boot/com.apple.Boot.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
 			else
 				set contents of text field "currentop" of window "DellEFI Installer" to "Configuring Quiet Boot"
 				delay 1
-				do shell script "sed -e 's/disk0/" & disk & "/g' " & workingDir & "DellEFI.app/Contents/Resources/Boot/com.apple.Boot.Quiet.plist >  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
+				do shell script "sed -e 's/disk0/" & disk & "/g' " & workingDir & "/Boot/com.apple.Boot.Quiet.plist >  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
 			end if
 		end if
 	on error errMsg number errorNumber
 		display dialog "Could not disable quiet boot. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
-		quit
 	end try
 	
 	try
@@ -242,10 +268,10 @@ on clicked theObject
 				do shell script "mkdir /Extra > /dev/null &" with administrator privileges
 				do shell script "mkdir /Extra/Extensions1" with administrator privileges
 			end try
-			do shell script "cp -R " & workingDir & "DellEFI.app/Contents/Resources/Extensions/*.kext /Extra/Extensions1" with administrator privileges
+			do shell script "cp -R " & workingDir & "/Extensions/*.kext /Extra/Extensions1" with administrator privileges
 			do shell script "chown -R 0:0 /Extra/" with administrator privileges
 			do shell script "chmod -R 755 /Extra/" with administrator privileges
-			set contents of text field "currentop" of window "DellEFI Installer" to "Update EFI kext cache"
+			set contents of text field "currentop" of window "DellEFI Installer" to "Update Extra kext cache"
 			delay 1
 			do shell script "kextcache -a i386 -m /Extra/Extensions.mkext /Extra/Extensions1" with administrator privileges
 			
@@ -258,8 +284,8 @@ on clicked theObject
 			set contents of text field "currentop" of window "DellEFI Installer" to "Installing local files"
 			delay 1
 			-- move items that need to be local for audio and battery, hopefully this goes away someday
-			do shell script "cp -R " & workingDir & "DellEFI.app/Contents/Resources/LocalExtensions/*.kext /System/Library/Extensions > /dev/null &" with administrator privileges
-			do shell script "cp -R " & workingDir & "DellEFI.app/Contents/Resources/SystemConfiguration/*.bundle /System/Library/SystemConfiguration > /dev/null &" with administrator privileges
+			do shell script "cp -R " & workingDir & "/LocalExtensions/*.kext /System/Library/Extensions > /dev/null &" with administrator privileges
+			do shell script "cp -R " & workingDir & "/SystemConfiguration/*.bundle /System/Library/SystemConfiguration > /dev/null &" with administrator privileges
 			-- remove mkext so it is rebuilt
 			do shell script "rm -r /System/Library/Extensions.mkext > /dev/null &" with administrator privileges
 			
@@ -267,7 +293,6 @@ on clicked theObject
 		end if
 	on error errMsg number errorNumber
 		display dialog "Could not install Extensions. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
-		quit
 	end try
 	
 	try
@@ -280,7 +305,7 @@ on clicked theObject
 			end try
 			
 			try
-				do shell script "cp -Rf " & workingDir & "DellEFI.app/Contents/Resources/DSDTPatcher /.dellefi/" with administrator privileges
+				do shell script "cp -Rf " & workingDir & "/DSDTPatcher /.dellefi/" with administrator privileges
 			end try
 			do shell script "cd /.dellefi/DSDTPatcher; ./DSDTPatcher > /dev/null 2>&1 &" with administrator privileges
 			delay 6
@@ -291,7 +316,6 @@ on clicked theObject
 		end if
 	on error errMsg number errorNumber
 		display dialog "Could not create dsdt.aml file. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
-		quit
 	end try
 	
 	try
@@ -305,12 +329,11 @@ on clicked theObject
 			
 			-- do shell script "mkdir /Backup > /dev/null &" with administrator privileges
 			do shell script "mv /System/Library/PreferencePanes/Keyboard.prefPane /.dellefi > /dev/null &" with administrator privileges
-			do shell script "cp -R " & workingDir & "DellEFI.app/Contents/Resources/PrefPanes/Keyboard.prefPane /System/Library/PreferencePanes/ > /dev/null &" with administrator privileges
+			do shell script "cp -R " & workingDir & "/PrefPanes/Keyboard.prefPane /System/Library/PreferencePanes/ > /dev/null &" with administrator privileges
 			do shell script "chown -R root:wheel /System/Library/PreferencePanes/Keyboard.prefPane > /dev/null &" with administrator privileges
 		end if
 	on error errMsg number errorNumber
 		display dialog "Could not install 10.5.5 keyboard kext. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
-		quit
 	end try
 	
 	try
@@ -334,7 +357,6 @@ on clicked theObject
 		end if
 	on error errMsg number errorNumber
 		display dialog "Could not configure Remote CD. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
-		quit
 	end try
 	
 	try
@@ -352,7 +374,6 @@ on clicked theObject
 		end if
 	on error errMsg number errorNumber
 		display dialog "Could not configure Hibernation. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
-		quit
 	end try
 	
 	try
@@ -373,7 +394,81 @@ on clicked theObject
 		end if
 	on error errMsg number errorNumber
 		display dialog "Could not perform DellEFI file hiding. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
-		quit
+	end try
+	
+	try
+		if twofinger then
+			if FingerP then
+				set contents of text field "currentop" of window "DellEFI Installer" to "Removing two finger scrolling"
+				delay 1
+				try
+					do shell script "rm /.dellefi/.2finger" with administrator privileges
+				end try
+				try
+					do shell script "rm -r /Extra/Extensions1/ApplePS2Controller.kext" with administrator privileges
+				end try
+				try
+					do shell script "cp -R " & workingDir & "/Extensions/ApplePS2Controller.kext /Extra/Extensions1" with administrator privileges
+				end try
+				try
+					do shell script "rm /usr/local/bin/FFScrollDaemon" with administrator privileges
+				end try
+				try
+					do shell script "rm /usr/local/bin/start_FFScrollDaemon" with administrator privileges
+				end try
+				try
+					do shell script "rm /Library/Preferences/com.apple.driver.ApplePS2Trackpad.plist" with administrator privileges
+				end try
+				try
+					do shell script "rm /Library/LaunchAgents/com.apple.FFScrollDaemon.plist" with administrator privileges
+				end try
+			else
+				try
+					do shell script "mkdir /.dellefi" with administrator privileges
+				end try
+				try
+					do shell script "touch /.dellefi/.2finger" with administrator privileges
+				end try
+				
+				set contents of text field "currentop" of window "DellEFI Installer" to "Installing two finger scrolling"
+				delay 1
+				do shell script "cp -R " & workingDir & "/2FingerScroll/ApplePS2Controller.kext /Extra/Extensions1" with administrator privileges
+				do shell script "chown -R root:wheel /Extra/Extensions1/ApplePS2Controller.kext" with administrator privileges
+				try
+					do shell script "mkdir -p /usr/local/bin > /dev/null &" with administrator privileges
+				end try
+				do shell script "cp " & workingDir & "/2FingerScroll/FFScrollDaemon /usr/local/bin" with administrator privileges
+				do shell script "chmod 755 /usr/local/bin/FFScrollDaemon" with administrator privileges
+				do shell script "chown root:wheel /usr/local/bin/FFScrollDaemon" with administrator privileges
+				do shell script "cp " & workingDir & "/2FingerScroll/start_FFScrollDaemon /usr/local/bin" with administrator privileges
+				do shell script "chmod 755 /usr/local/bin/start_FFScrollDaemon" with administrator privileges
+				do shell script "chown root:wheel /usr/local/bin/start_FFScrollDaemon" with administrator privileges
+				do shell script "cp " & workingDir & "/2FingerScroll/com.apple.driver.ApplePS2Trackpad.plist /Library/Preferences/" with administrator privileges
+				do shell script "chmod 644 /Library/Preferences/com.apple.driver.ApplePS2Trackpad.plist" with administrator privileges
+				do shell script "chown root:admin /Library/Preferences/com.apple.driver.ApplePS2Trackpad.plist" with administrator privileges
+				do shell script "cp " & workingDir & "/2FingerScroll/com.apple.FFScrollDaemon.plist /Library/LaunchAgents/" with administrator privileges
+				do shell script "chmod 644 /Library/LaunchAgents/com.apple.FFScrollDaemon.plist" with administrator privileges
+				do shell script "chown root:wheel /Library/LaunchAgents/com.apple.FFScrollDaemon.plist" with administrator privileges
+			end if
+			
+			set contents of text field "currentop" of window "DellEFI Installer" to "Update Extra kext cache"
+			delay 1
+			do shell script "kextcache -a i386 -m /Extra/Extensions.mkext /Extra/Extensions1" with administrator privileges
+		end if
+	on error errMsg number errorNumber
+		display dialog "Could not perform configuration of 2 finger scrolling. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
+	end try
+	
+	try
+		if bluetooth then
+			set contents of text field "currentop" of window "DellEFI Installer" to "Fixing bluetooth"
+			delay 1
+			try
+				do shell script "rm /Library/Preferences/com.apple.Bluetooth.plist" with administrator privileges
+			end try
+		end if
+	on error errMsg number errorNumber
+		display dialog "Could not fix bluetooth. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
 	end try
 	
 	--reboot
