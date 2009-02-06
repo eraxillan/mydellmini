@@ -1,0 +1,14 @@
+#!/bin/bash
+# This script is not necessary if we can find out why the daemon has issues when first starting up.
+# This work around allows the daemon to startup immediately (allowing you to use your trackpad on bootup) but then restarts 
+# it a few times to make sure it removes the "jumpy" scrolling issues users were encountering - nvr
+/usr/local/bin/FFScrollDaemon
+sleep 5
+killall -9 FFScrollDaemon
+/usr/local/bin/FFScrollDaemon
+sleep 5
+killall -9 FFScrollDaemon
+/usr/local/bin/FFScrollDaemon
+sleep 5
+killall -9 FFScrollDaemon
+/usr/local/bin/FFScrollDaemon
