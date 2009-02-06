@@ -22,7 +22,7 @@
 
 /*****************************************************************************)
 on choose menu item theObject
-	display dialog "DellEFI v1.0 by bmaltais, 03/02/09
+	display dialog "DellEFI v1.03 by bmaltais, 05/02/09
 	
 Thanks to Type11 for all his hard work leading to this application!" buttons {"Close"} default button "Close"
 end choose menu item

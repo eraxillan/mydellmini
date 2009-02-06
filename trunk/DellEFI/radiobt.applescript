@@ -47,6 +47,14 @@ on changegui()
 	tell button "quietbootcb" of box "optionspanel" of window "DellEFI Installer"
 		set enabled to guivalue
 	end tell
+	
+	tell button "2fingercb" of box "optionspanel" of window "DellEFI Installer"
+		set enabled to guivalue
+	end tell
+	tell button "fixbluetoothcb" of box "optionspanel" of window "DellEFI Installer"
+		set enabled to guivalue
+	end tell
+	
 end changegui
 
 on clicked theObject
