@@ -1,0 +1,808 @@
+// !$*UTF8*$!
+{
+	089C1669FE841209C02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeTarget = 32D94FC30562CBF700B6AF17 /* ApplePS2Keyboard */;
+		codeSenseManager = 6694ABC90F467B240030E85A /* Code sense */;
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					777,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					737,
+					60,
+					20,
+					48.16259765625,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 256277253;
+			PBXWorkspaceStateSaveDate = 256277253;
+		};
+		perUserProjectItems = {
+			6694ABD00F467EC90030E85A /* PBXTextBookmark */ = 6694ABD00F467EC90030E85A /* PBXTextBookmark */;
+			6694ABD10F467EC90030E85A /* PBXTextBookmark */ = 6694ABD10F467EC90030E85A /* PBXTextBookmark */;
+			6694ABD20F467EC90030E85A /* PBXTextBookmark */ = 6694ABD20F467EC90030E85A /* PBXTextBookmark */;
+			6694ABD30F467EC90030E85A /* PlistBookmark */ = 6694ABD30F467EC90030E85A /* PlistBookmark */;
+			6694ABD40F467EC90030E85A /* PBXTextBookmark */ = 6694ABD40F467EC90030E85A /* PBXTextBookmark */;
+			6694ABD50F467EC90030E85A /* PlistBookmark */ = 6694ABD50F467EC90030E85A /* PlistBookmark */;
+			6694ABD60F467EC90030E85A /* PBXTextBookmark */ = 6694ABD60F467EC90030E85A /* PBXTextBookmark */;
+			6694ABD70F467EC90030E85A /* PBXTextBookmark */ = 6694ABD70F467EC90030E85A /* PBXTextBookmark */;
+			6694ABD80F467EC90030E85A /* PBXTextBookmark */ = 6694ABD80F467EC90030E85A /* PBXTextBookmark */;
+			6694ABD90F467EC90030E85A /* PBXTextBookmark */ = 6694ABD90F467EC90030E85A /* PBXTextBookmark */;
+			6694ABDA0F467EC90030E85A /* PlistBookmark */ = 6694ABDA0F467EC90030E85A /* PlistBookmark */;
+			6694ABE30F467F670030E85A /* PlistBookmark */ = 6694ABE30F467F670030E85A /* PlistBookmark */;
+			6694ABE80F4686F20030E85A /* PBXTextBookmark */ = 6694ABE80F4686F20030E85A /* PBXTextBookmark */;
+			6694ABE90F4686F20030E85A /* PlistBookmark */ = 6694ABE90F4686F20030E85A /* PlistBookmark */;
+			6694ABEA0F4686F20030E85A /* PBXTextBookmark */ = 6694ABEA0F4686F20030E85A /* PBXTextBookmark */;
+			6694ABEB0F4686F20030E85A /* PlistBookmark */ = 6694ABEB0F4686F20030E85A /* PlistBookmark */;
+			6694ABEC0F4686F20030E85A /* PBXTextBookmark */ = 6694ABEC0F4686F20030E85A /* PBXTextBookmark */;
+			6694ABED0F4686F20030E85A /* PlistBookmark */ = 6694ABED0F4686F20030E85A /* PlistBookmark */;
+			6694ABEE0F4686F20030E85A /* PBXTextBookmark */ = 6694ABEE0F4686F20030E85A /* PBXTextBookmark */;
+			6694ABF00F4687E30030E85A /* PBXTextBookmark */ = 6694ABF00F4687E30030E85A /* PBXTextBookmark */;
+			6694ABF10F4687E30030E85A /* PlistBookmark */ = 6694ABF10F4687E30030E85A /* PlistBookmark */;
+			6694ABF20F4687E30030E85A /* PBXTextBookmark */ = 6694ABF20F4687E30030E85A /* PBXTextBookmark */;
+			6694ABF30F4687E30030E85A /* PlistBookmark */ = 6694ABF30F4687E30030E85A /* PlistBookmark */;
+			6694B0590F4721CA0030E85A /* PBXTextBookmark */ = 6694B0590F4721CA0030E85A /* PBXTextBookmark */;
+			6694B05A0F4721CA0030E85A /* PlistBookmark */ = 6694B05A0F4721CA0030E85A /* PlistBookmark */;
+			6694B05B0F4721CA0030E85A /* PBXTextBookmark */ = 6694B05B0F4721CA0030E85A /* PBXTextBookmark */;
+			6694B05C0F4721CA0030E85A /* PBXTextBookmark */ = 6694B05C0F4721CA0030E85A /* PBXTextBookmark */;
+			6694B05D0F4721CA0030E85A /* PlistBookmark */ = 6694B05D0F4721CA0030E85A /* PlistBookmark */;
+			6694B05E0F4721CA0030E85A /* PBXTextBookmark */ = 6694B05E0F4721CA0030E85A /* PBXTextBookmark */;
+			6694B05F0F4721CA0030E85A /* PBXTextBookmark */ = 6694B05F0F4721CA0030E85A /* PBXTextBookmark */;
+			6694B0600F4721CA0030E85A /* PBXTextBookmark */ = 6694B0600F4721CA0030E85A /* PBXTextBookmark */;
+			6694B0610F4721CA0030E85A /* PlistBookmark */ = 6694B0610F4721CA0030E85A /* PlistBookmark */;
+			6694B0620F4721CA0030E85A /* PBXTextBookmark */ = 6694B0620F4721CA0030E85A /* PBXTextBookmark */;
+			6694B0630F4721CA0030E85A /* PBXTextBookmark */ = 6694B0630F4721CA0030E85A /* PBXTextBookmark */;
+			6694B0640F4721CA0030E85A /* PBXTextBookmark */ = 6694B0640F4721CA0030E85A /* PBXTextBookmark */;
+			6694B0650F4721CA0030E85A /* PBXTextBookmark */ = 6694B0650F4721CA0030E85A /* PBXTextBookmark */;
+			6694B0660F4721CA0030E85A /* PBXTextBookmark */ = 6694B0660F4721CA0030E85A /* PBXTextBookmark */;
+			6694B06A0F47241D0030E85A /* PBXTextBookmark */ = 6694B06A0F47241D0030E85A /* PBXTextBookmark */;
+			6694B06B0F47241D0030E85A /* PBXTextBookmark */ = 6694B06B0F47241D0030E85A /* PBXTextBookmark */;
+			6694B06D0F47241D0030E85A /* PBXTextBookmark */ = 6694B06D0F47241D0030E85A /* PBXTextBookmark */;
+			6694B06E0F47241D0030E85A /* PBXTextBookmark */ = 6694B06E0F47241D0030E85A /* PBXTextBookmark */;
+			6694B06F0F47241D0030E85A /* PBXTextBookmark */ = 6694B06F0F47241D0030E85A /* PBXTextBookmark */;
+			6694B0700F47241D0030E85A /* PBXTextBookmark */ = 6694B0700F47241D0030E85A /* PBXTextBookmark */;
+			6694B0720F47241D0030E85A /* PBXTextBookmark */ = 6694B0720F47241D0030E85A /* PBXTextBookmark */;
+			6694B0750F4724750030E85A /* PBXTextBookmark */ = 6694B0750F4724750030E85A /* PBXTextBookmark */;
+			6694B0760F4724750030E85A /* PBXTextBookmark */ = 6694B0760F4724750030E85A /* PBXTextBookmark */;
+			6694B0770F4724760030E85A /* PBXTextBookmark */ = 6694B0770F4724760030E85A /* PBXTextBookmark */;
+			6694B0780F4724760030E85A /* PBXTextBookmark */ = 6694B0780F4724760030E85A /* PBXTextBookmark */;
+			6694B07A0F4725960030E85A /* PBXTextBookmark */ = 6694B07A0F4725960030E85A /* PBXTextBookmark */;
+			6694B07B0F4725960030E85A /* PBXTextBookmark */ = 6694B07B0F4725960030E85A /* PBXTextBookmark */;
+			6694B07D0F4725A30030E85A /* PBXTextBookmark */ = 6694B07D0F4725A30030E85A /* PBXTextBookmark */;
+			6694B07E0F4725A30030E85A /* PBXTextBookmark */ = 6694B07E0F4725A30030E85A /* PBXTextBookmark */;
+			6694B0850F4727440030E85A /* PBXTextBookmark */ = 6694B0850F4727440030E85A /* PBXTextBookmark */;
+			6694B0890F4727D60030E85A /* PBXTextBookmark */ = 6694B0890F4727D60030E85A /* PBXTextBookmark */;
+			6694B08D0F4728B30030E85A /* PBXTextBookmark */ = 6694B08D0F4728B30030E85A /* PBXTextBookmark */;
+			6694B08F0F472A9A0030E85A /* PBXTextBookmark */ = 6694B08F0F472A9A0030E85A /* PBXTextBookmark */;
+			6694B0920F472B050030E85A /* PBXTextBookmark */ = 6694B0920F472B050030E85A /* PBXTextBookmark */;
+			6694B0930F472B050030E85A /* PBXTextBookmark */ = 6694B0930F472B050030E85A /* PBXTextBookmark */;
+			6694B0980F4731160030E85A /* PBXTextBookmark */ = 6694B0980F4731160030E85A /* PBXTextBookmark */;
+		};
+		sourceControlManager = 6694ABC80F467B240030E85A /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	089C167EFE841241C02AAC07 /* English */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {955, 472}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 267}";
+		};
+	};
+	32D94FC30562CBF700B6AF17 /* ApplePS2Keyboard */ = {
+		activeExec = 0;
+	};
+	32D94FCF0562CBF700B6AF17 /* Info.plist */ = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, -5}, {1095, 778}}";
+		};
+	};
+	6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {955, 11354}}";
+			sepNavSelRange = "{14451, 0}";
+			sepNavVisRange = "{13941, 886}";
+			sepNavWindowFrame = "{{15, -5}, {1095, 778}}";
+		};
+	};
+	6392ECA30B46902C00B4F2E4 /* ApplePS2Keyboard.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {955, 1358}}";
+			sepNavSelRange = "{967, 0}";
+			sepNavVisRange = "{0, 1424}";
+		};
+	};
+	6392ECA40B46902C00B4F2E4 /* ApplePS2ToADBMap.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {955, 2282}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{3362, 807}";
+		};
+	};
+	6694ABC80F467B240030E85A /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	6694ABC90F467B240030E85A /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	6694ABD00F467EC90030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA30B46902C00B4F2E4 /* ApplePS2Keyboard.h */;
+		name = "ApplePS2Keyboard.h: 70";
+		rLen = 6;
+		rLoc = 2703;
+		rType = 0;
+		vrLen = 1191;
+		vrLoc = 2270;
+	};
+	6694ABD10F467EC90030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 133";
+		rLen = 26;
+		rLoc = 4275;
+		rType = 0;
+		vrLen = 873;
+		vrLoc = 3972;
+	};
+	6694ABD20F467EC90030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 089C167EFE841241C02AAC07 /* English */;
+		name = "InfoPlist.strings: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 267;
+		vrLoc = 0;
+	};
+	6694ABD30F467EC90030E85A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			IOKitPersonalities,
+			ApplePS2Keyboard,
+			"Save screenshot to desktop",
+		);
+		name = "/Users/moomeklort/iwidarwin-read-only/ApplePS2Keyboard/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	6694ABD40F467EC90030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 418";
+		rLen = 6;
+		rLoc = 13326;
+		rType = 0;
+		vrLen = 904;
+		vrLoc = 3849;
+	};
+	6694ABD50F467EC90030E85A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			IOKitPersonalities,
+			ApplePS2Keyboard,
+			"Save screenshot to desktop",
+		);
+		name = "/Users/moomeklort/iwidarwin-read-only/ApplePS2Keyboard/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	6694ABD60F467EC90030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 135";
+		rLen = 0;
+		rLoc = 4301;
+		rType = 0;
+		vrLen = 900;
+		vrLoc = 3848;
+	};
+	6694ABD70F467EC90030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA30B46902C00B4F2E4 /* ApplePS2Keyboard.h */;
+		name = "ApplePS2Keyboard.h: 70";
+		rLen = 6;
+		rLoc = 2703;
+		rType = 0;
+		vrLen = 1191;
+		vrLoc = 2270;
+	};
+	6694ABD80F467EC90030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 133";
+		rLen = 26;
+		rLoc = 4275;
+		rType = 0;
+		vrLen = 873;
+		vrLoc = 3972;
+	};
+	6694ABD90F467EC90030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 089C167EFE841241C02AAC07 /* English */;
+		name = "InfoPlist.strings: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 267;
+		vrLoc = 0;
+	};
+	6694ABDA0F467EC90030E85A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			IOKitPersonalities,
+			ApplePS2Keyboard,
+			"Make capslock into control",
+		);
+		name = "/Users/moomeklort/iwidarwin-read-only/ApplePS2Keyboard/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	6694ABE30F467F670030E85A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			IOKitPersonalities,
+			ApplePS2Keyboard,
+			"Make capslock into control",
+		);
+		name = "/Users/moomeklort/iwidarwin-read-only/ApplePS2Keyboard/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	6694ABE80F4686F20030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA40B46902C00B4F2E4 /* ApplePS2ToADBMap.h */;
+		name = "ApplePS2ToADBMap.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1187;
+		vrLoc = 0;
+	};
+	6694ABE90F4686F20030E85A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			IOKitPersonalities,
+			ApplePS2Keyboard,
+			"Save screenshot to desktop",
+		);
+		name = "/Users/moomeklort/iwidarwin-read-only/ApplePS2Keyboard/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	6694ABEA0F4686F20030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 133";
+		rLen = 26;
+		rLoc = 4275;
+		rType = 0;
+		vrLen = 873;
+		vrLoc = 3972;
+	};
+	6694ABEB0F4686F20030E85A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			IOKitPersonalities,
+			ApplePS2Keyboard,
+			"Save screenshot to desktop",
+		);
+		name = "/Users/moomeklort/iwidarwin-read-only/ApplePS2Keyboard/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	6694ABEC0F4686F20030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA40B46902C00B4F2E4 /* ApplePS2ToADBMap.h */;
+		name = "ApplePS2ToADBMap.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1187;
+		vrLoc = 0;
+	};
+	6694ABED0F4686F20030E85A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			IOKitPersonalities,
+			ApplePS2Keyboard,
+			"Save screenshot to desktop",
+		);
+		name = "/Users/moomeklort/iwidarwin-read-only/ApplePS2Keyboard/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	6694ABEE0F4686F20030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 760";
+		rLen = 0;
+		rLoc = 28369;
+		rType = 0;
+		vrLen = 794;
+		vrLoc = 27205;
+	};
+	6694ABF00F4687E30030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 748";
+		rLen = 0;
+		rLoc = 27946;
+		rType = 0;
+		vrLen = 842;
+		vrLoc = 27061;
+	};
+	6694ABF10F4687E30030E85A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			IOKitPersonalities,
+			ApplePS2Keyboard,
+			"Save screenshot to desktop",
+		);
+		name = "/Users/moomeklort/iwidarwin-read-only/ApplePS2Keyboard/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	6694ABF20F4687E30030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 748";
+		rLen = 0;
+		rLoc = 27946;
+		rType = 0;
+		vrLen = 842;
+		vrLoc = 27061;
+	};
+	6694ABF30F4687E30030E85A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			IOKitPersonalities,
+			ApplePS2Keyboard,
+			"Save screenshot to desktop",
+		);
+		name = "/Users/moomeklort/iwidarwin-read-only/ApplePS2Keyboard/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	6694B0590F4721CA0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA40B46902C00B4F2E4 /* ApplePS2ToADBMap.h */;
+		name = "ApplePS2ToADBMap.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 807;
+		vrLoc = 3362;
+	};
+	6694B05A0F4721CA0030E85A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			IOKitPersonalities,
+			ApplePS2Keyboard,
+			"Save screenshot to desktop",
+		);
+		name = "/Users/moomeklort/iwidarwin-read-only/ApplePS2Keyboard/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	6694B05B0F4721CA0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA30B46902C00B4F2E4 /* ApplePS2Keyboard.h */;
+		name = "ApplePS2Keyboard.h: 23";
+		rLen = 0;
+		rLoc = 967;
+		rType = 0;
+		vrLen = 1424;
+		vrLoc = 0;
+	};
+	6694B05C0F4721CA0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 175";
+		rLen = 0;
+		rLoc = 5014;
+		rType = 0;
+		vrLen = 1013;
+		vrLoc = 4909;
+	};
+	6694B05D0F4721CA0030E85A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			IOKitPersonalities,
+			ApplePS2Keyboard,
+			"Save screenshot to desktop",
+		);
+		name = "/Users/moomeklort/iwidarwin-read-only/ApplePS2Keyboard/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	6694B05E0F4721CA0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 530";
+		rLen = 5;
+		rLoc = 16503;
+		rType = 0;
+		vrLen = 1222;
+		vrLoc = 15957;
+	};
+	6694B05F0F4721CA0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA30B46902C00B4F2E4 /* ApplePS2Keyboard.h */;
+		name = "ApplePS2Keyboard.h: 70";
+		rLen = 6;
+		rLoc = 2703;
+		rType = 0;
+		vrLen = 1046;
+		vrLoc = 2566;
+	};
+	6694B0600F4721CA0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA40B46902C00B4F2E4 /* ApplePS2ToADBMap.h */;
+		name = "ApplePS2ToADBMap.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 807;
+		vrLoc = 3362;
+	};
+	6694B0610F4721CA0030E85A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			IOKitPersonalities,
+			ApplePS2Keyboard,
+			"Save screenshot to desktop",
+		);
+		name = "/Users/moomeklort/iwidarwin-read-only/ApplePS2Keyboard/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	6694B0620F4721CA0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 530";
+		rLen = 5;
+		rLoc = 16503;
+		rType = 0;
+		vrLen = 1321;
+		vrLoc = 75;
+	};
+	6694B0630F4721CA0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA30B46902C00B4F2E4 /* ApplePS2Keyboard.h */;
+		name = "ApplePS2Keyboard.h: 23";
+		rLen = 0;
+		rLoc = 967;
+		rType = 0;
+		vrLen = 1479;
+		vrLoc = 183;
+	};
+	6694B0640F4721CA0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 175";
+		rLen = 0;
+		rLoc = 5014;
+		rType = 0;
+		vrLen = 1018;
+		vrLoc = 4904;
+	};
+	6694B0650F4721CA0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA30B46902C00B4F2E4 /* ApplePS2Keyboard.h */;
+		name = "ApplePS2Keyboard.h: 23";
+		rLen = 0;
+		rLoc = 967;
+		rType = 0;
+		vrLen = 1424;
+		vrLoc = 0;
+	};
+	6694B0660F4721CA0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 175";
+		rLen = 0;
+		rLoc = 5014;
+		rType = 0;
+		vrLen = 1013;
+		vrLoc = 4909;
+	};
+	6694B06A0F47241D0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA30B46902C00B4F2E4 /* ApplePS2Keyboard.h */;
+		name = "ApplePS2Keyboard.h: 23";
+		rLen = 0;
+		rLoc = 967;
+		rType = 0;
+		vrLen = 1424;
+		vrLoc = 0;
+	};
+	6694B06B0F47241D0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6694B06C0F47241D0030E85A /* ApplePS2Device.h */;
+		name = "ApplePS2Device.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1338;
+		vrLoc = 0;
+	};
+	6694B06C0F47241D0030E85A /* ApplePS2Device.h */ = {
+		isa = PBXFileReference;
+		name = ApplePS2Device.h;
+		path = "/Users/moomeklort/Downloads/iwidarwin-orig/ApplePS2Trackpad-hp/ApplePS2Device.h";
+		sourceTree = "<absolute>";
+	};
+	6694B06D0F47241D0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 80";
+		rLen = 22;
+		rLoc = 2829;
+		rType = 0;
+		vrLen = 1326;
+		vrLoc = 0;
+	};
+	6694B06E0F47241D0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 80";
+		rLen = 22;
+		rLoc = 2829;
+		rType = 0;
+		vrLen = 1326;
+		vrLoc = 0;
+	};
+	6694B06F0F47241D0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA30B46902C00B4F2E4 /* ApplePS2Keyboard.h */;
+		name = "ApplePS2Keyboard.h: 23";
+		rLen = 0;
+		rLoc = 967;
+		rType = 0;
+		vrLen = 1424;
+		vrLoc = 0;
+	};
+	6694B0700F47241D0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6694B0710F47241D0030E85A /* ApplePS2Device.h */;
+		name = "ApplePS2Device.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1338;
+		vrLoc = 0;
+	};
+	6694B0710F47241D0030E85A /* ApplePS2Device.h */ = {
+		isa = PBXFileReference;
+		name = ApplePS2Device.h;
+		path = "/Users/moomeklort/Downloads/iwidarwin-orig/ApplePS2Trackpad-hp/ApplePS2Device.h";
+		sourceTree = "<absolute>";
+	};
+	6694B0720F47241D0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 177";
+		rLen = 0;
+		rLoc = 5014;
+		rType = 0;
+		vrLen = 1130;
+		vrLoc = 4764;
+	};
+	6694B0750F4724750030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "error: invalid conversion from 'UInt8*' to 'UInt8'";
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		rLen = 0;
+		rLoc = 159;
+		rType = 1;
+	};
+	6694B0760F4724750030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 177";
+		rLen = 0;
+		rLoc = 5014;
+		rType = 0;
+		vrLen = 386;
+		vrLoc = 5412;
+	};
+	6694B0770F4724760030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "error: invalid conversion from 'UInt8*' to 'UInt8'";
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		rLen = 0;
+		rLoc = 159;
+		rType = 1;
+	};
+	6694B0780F4724760030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 177";
+		rLen = 0;
+		rLoc = 5014;
+		rType = 0;
+		vrLen = 1113;
+		vrLoc = 4789;
+	};
+	6694B07A0F4725960030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "warning: unused variable 'kbdVersion'";
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		rLen = 1;
+		rLoc = 108;
+		rType = 1;
+	};
+	6694B07B0F4725960030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 109";
+		rLen = 0;
+		rLoc = 3681;
+		rType = 0;
+		vrLen = 348;
+		vrLoc = 3436;
+	};
+	6694B07D0F4725A30030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "warning: unused variable 'kbdVersion'";
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		rLen = 1;
+		rLoc = 108;
+		rType = 1;
+	};
+	6694B07E0F4725A30030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 109";
+		rLen = 0;
+		rLoc = 3681;
+		rType = 0;
+		vrLen = 1019;
+		vrLoc = 5095;
+	};
+	6694B0850F4727440030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 187";
+		rLen = 0;
+		rLoc = 5014;
+		rType = 0;
+		vrLen = 908;
+		vrLoc = 5383;
+	};
+	6694B0890F4727D60030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 187";
+		rLen = 0;
+		rLoc = 5014;
+		rType = 0;
+		vrLen = 907;
+		vrLoc = 5379;
+	};
+	6694B08D0F4728B30030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 170";
+		rLen = 0;
+		rLoc = 5014;
+		rType = 0;
+		vrLen = 808;
+		vrLoc = 28702;
+	};
+	6694B08F0F472A9A0030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 449";
+		rLen = 0;
+		rLoc = 14451;
+		rType = 0;
+		vrLen = 877;
+		vrLoc = 13883;
+	};
+	6694B0920F472B050030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "warning: unused variable 'returnValue'";
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		rLen = 1;
+		rLoc = 749;
+		rType = 1;
+	};
+	6694B0930F472B050030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 748";
+		rLen = 0;
+		rLoc = 27597;
+		rType = 0;
+		vrLen = 856;
+		vrLoc = 27029;
+	};
+	6694B0980F4731160030E85A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6392ECA20B46902C00B4F2E4 /* ApplePS2Keyboard.cpp */;
+		name = "ApplePS2Keyboard.cpp: 449";
+		rLen = 0;
+		rLoc = 14451;
+		rType = 0;
+		vrLen = 886;
+		vrLoc = 13941;
+	};
+}
