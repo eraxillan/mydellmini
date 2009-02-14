@@ -328,7 +328,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>6694B0980F4731160030E85A</string>
+										<string>6651299E0F4746FF00C74019</string>
 										<key>history</key>
 										<array>
 											<string>6694ABD20F467EC90030E85A</string>
@@ -336,31 +336,15 @@
 											<string>6694B05A0F4721CA0030E85A</string>
 											<string>6694B06A0F47241D0030E85A</string>
 											<string>6694B06B0F47241D0030E85A</string>
-											<string>6694B0920F472B050030E85A</string>
+											<string>6694B0980F4731160030E85A</string>
 										</array>
 										<key>prevStack</key>
 										<array>
 											<string>6694ABD40F467EC90030E85A</string>
 											<string>6694ABD50F467EC90030E85A</string>
-											<string>6694ABD60F467EC90030E85A</string>
 											<string>6694ABD70F467EC90030E85A</string>
-											<string>6694ABD80F467EC90030E85A</string>
 											<string>6694ABD90F467EC90030E85A</string>
-											<string>6694ABEB0F4686F20030E85A</string>
 											<string>6694ABEC0F4686F20030E85A</string>
-											<string>6694ABED0F4686F20030E85A</string>
-											<string>6694ABF20F4687E30030E85A</string>
-											<string>6694B05D0F4721CA0030E85A</string>
-											<string>6694B05E0F4721CA0030E85A</string>
-											<string>6694B05F0F4721CA0030E85A</string>
-											<string>6694B0600F4721CA0030E85A</string>
-											<string>6694B0610F4721CA0030E85A</string>
-											<string>6694B0620F4721CA0030E85A</string>
-											<string>6694B0630F4721CA0030E85A</string>
-											<string>6694B0640F4721CA0030E85A</string>
-											<string>6694B0650F4721CA0030E85A</string>
-											<string>6694B06E0F47241D0030E85A</string>
-											<string>6694B06F0F47241D0030E85A</string>
 											<string>6694B0700F47241D0030E85A</string>
 										</array>
 									</dict>
@@ -419,9 +403,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>6694ABDB0F467EC90030E85A</string>
+				<string>665129820F47457000C74019</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>6694ABDC0F467EC90030E85A</string>
+				<string>665129830F47457000C74019</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -556,7 +540,7 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>6694AA810F45FBED0030E85A</string>
-		<string>/Users/moomeklort/iwidarwin-read-only/ApplePS2Keyboard/ApplePS2Keyboard.xcodeproj</string>
+		<string>/Users/moomeklort/mydellmini/ApplePS2Keyboard/ApplePS2Keyboard.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 55 1224 723 0 0 1280 778 </string>
@@ -580,7 +564,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ApplePS2Keyboard.cpp</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -597,8 +581,6 @@
 							<string>218pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -638,7 +620,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>6694AA810F45FBED0030E85A</string>
-				<string>6694ABDD0F467EC90030E85A</string>
+				<string>665129890F47467700C74019</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -649,7 +631,7 @@
 			<key>WindowToolGUID</key>
 			<string>6694AA810F45FBED0030E85A</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
