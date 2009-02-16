@@ -4,6 +4,10 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
+	<key>CFBundleDocumentTypes</key>
+	<array/>
 	<key>CFBundleExecutable</key>
 	<string>ApplePS2Keyboard</string>
 	<key>CFBundleGetInfoString</key>
@@ -20,8 +24,6 @@
 	<string>1.1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleDisplayName</key>
-	<string></string>
 	<key>CFBundleVersion</key>
 	<string>1.1.0</string>
 	<key>IOKitPersonalities</key>
@@ -36,9 +38,11 @@
 			<string>ApplePS2KeyboardDevice</string>
 			<key>Make capslock into control</key>
 			<false/>
-			<key>Swap alt and windows key</key>
-			<true/>
+			<key>Swap keys for UK Layout</key>
+			<false/>
 			<key>Save screenshot to desktop</key>
+			<true/>
+			<key>Swap alt and windows key</key>
 			<true/>
 		</dict>
 	</dict>

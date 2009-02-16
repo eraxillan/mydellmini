@@ -20,12 +20,19 @@
  * @APPLE_LICENSE_HEADER_END@
  */
 
+
+typedef int errno_t; // WHY ARE OYU REQUIRED??????
+#include <sys/errno.h>
+#include <sys/kern_event.h>
+
+
 #include <IOKit/assert.h>
 #include <IOKit/IOLib.h>
 #include <IOKit/hidsystem/IOHIDTypes.h>
 #include <IOKit/hidsystem/IOLLEvent.h>
 #include <IOKit/pwr_mgt/IOPM.h>
 #include <IOKit/pwr_mgt/RootDomain.h>
+
 #include "ApplePS2Keyboard.h"
 #include "ApplePS2ToADBMap.h"
 
@@ -57,7 +64,7 @@ bool ApplePS2Keyboard::init(OSDictionary * properties)
   _device                    = 0;
   _extendCount               = 0;
   _interruptHandlerInstalled = false;
-  _ledState                  = 0;
+  //_ledState                  = 0;
 
   for (int index = 0; index < KBV_NUNITS; index++)  _keyBitVector[index] = 0;
 
@@ -120,21 +127,16 @@ bool ApplePS2Keyboard::start(IOService * provider)
   _device->retain();
 
 
-  if (kOSBooleanTrue == getProperty("Make capslock into control")) {
-    emacsMode = true;
-  } else {
-    emacsMode = false;
-  }
-  if (kOSBooleanTrue == getProperty("Swap alt and windows key")) {
-    macintoshMode = true;
-  } else {
-    macintoshMode = false;
-  }
-  if (kOSBooleanTrue == getProperty("Save screenshot to desktop")) {
-	  saveSS = true;
-  } else {
-	  saveSS = false;
-  }
+  if (kOSBooleanTrue == getProperty("Make capslock into control"))	emacsMode = true;
+  else emacsMode = false;
+  if (kOSBooleanTrue == getProperty("Swap alt and windows key"))	macintoshMode = true;
+  else macintoshMode = false;
+  if (kOSBooleanTrue == getProperty("Save screenshot to desktop"))	saveSS = true;
+  else saveSS = false;
+  if (kOSBooleanTrue == getProperty("Swap keys for UK Layout"))	swapUK = true;
+  else swapUK = false;
+	
+  	
   //
   // Install our driver's interrupt handler, for asynchronous data delivery.
   //
@@ -148,7 +150,7 @@ bool ApplePS2Keyboard::start(IOService * provider)
   // Initialize the keyboard LED state.
   //
 
-  setLEDs(_ledState);
+  //setLEDs(_ledState);
 
   //
   // Enable the keyboard clock (should already be so), the keyboard IRQ line,
@@ -296,6 +298,8 @@ bool ApplePS2Keyboard::dispatchKeyboardEventWithScancode(UInt8 scanCode)
     return false;
   }
 
+  goingDown = !(scanCode & kSC_UpBit);
+	
   //
   // Convert the scan code into a key code.
   //
@@ -304,25 +308,45 @@ bool ApplePS2Keyboard::dispatchKeyboardEventWithScancode(UInt8 scanCode)
 
   if (_extendCount == 0)
   {
-    keyCode = scanCode & ~kSC_UpBit;
+    keyCode = scanCode & ~(kSC_UpBit);
 
     // from "The Undocumented PC" chapter 8, The Keyboard System some
     // keyboard scan codes are single byte, some are multi-byte
-    // 3023805:  I want to swap alt and windows, since the windows
-    // key is located where the alt/option key is on an Apple PowerBook
-    // or USB keyboard, and the alt key is where the Apple/Command
-    // key is on the PB or USB keyboard. Left alt is a single scan
-    // code byte, right alt is a double scan code byte. Left and
-    // right windows keys are double bytes.  This is all set by an
-    // entry in Info.plist for ApplePS2Keyboard.kext
     switch (keyCode)
     {
-      case 0x3A:	// caps button
-	    if (emacsMode == true) keyCode = 0x60; 
-	    break;			// caps lock becomes ctrl
-      case 0x38:	// alt button (left)
-	    if (macintoshMode == true) keyCode = 0x70; 
-	    break;		// left alt becomes left windows
+      case 0x3A: if (emacsMode == true) keyCode = 0x60; break;			// caps lock becomes ctrl
+	  case 0x38: if (macintoshMode == true) keyCode = 0x70; break;		// left alt becomes left windows
+			
+		// UK Keymap fixes...
+		//case 0x04:	// We may need to change this so that the layout works correctly
+			// If Shift
+			//keyCode = ??;
+			
+		case 0x29: if(swapUK = true) keyCode = 0x2b; break;	
+		case 0x2b: if(swapUK = true) keyCode = 0x29; break;				//		 US \| => UK ~ / #
+		  /*if(scanCode == 0x2b) {
+			//Send keycode 0x2a (both options are shift on us kbd)
+			if(KBV_IS_KEYDOWN(0x2a, _keyBitVector))
+			{
+				//IOLog("The # should be outputted");
+				// The shift button is down...
+				// already pressed dispatchKeyboardEventWithScancode(0x2a);
+
+				dispatchKeyboardEventWithScancode(0x04);	// The hash
+			} else {
+				//IOLog("The ~ should be outputted...");
+				dispatchKeyboardEventWithScancode(0x2a);
+
+				dispatchKeyboardEventWithScancode(0x29);	// The ~
+			}
+		  } else {
+			dispatchKeyboardEventWithScancode(0xaa); // shift;
+		    dispatchKeyboardEventWithScancode(0x84);	// 3 / #
+			dispatchKeyboardEventWithScancode(0xa9); // the ~
+		  }
+		  return true;
+		  break;*/
+	  
     } // End switch
   }
   else
@@ -349,7 +373,8 @@ bool ApplePS2Keyboard::dispatchKeyboardEventWithScancode(UInt8 scanCode)
 	   
 	  */
 	  case 0x34: //  $ = F12 - press and hold to eject cd rom
-	    if(scanCode==0x34) 
+	    //if(scanCode==0x34) // key is going down
+		if(goingDown)
 		{
 			dispatchKeyboardEventWithScancode(0x38);
 			dispatchKeyboardEventWithScancode(0x10);
@@ -365,33 +390,57 @@ bool ApplePS2Keyboard::dispatchKeyboardEventWithScancode(UInt8 scanCode)
       case 0x30: keyCode = 0x7d; break;		   // E030 = volume up
       case 0x2e: keyCode = 0x7e; break;		   // E02E = volume down
       case 0x20: keyCode = 0x7f; break;		   // E020 = volume mute
-	  case 0x29: keyCode = 0x7d; break;		   // Display mode button = mute
-	  case 0x02: keyCode = 0x7d; break;		   // Display mode button = mute
+			
+	  // The following code doesnt work, it causes the keyboard driver to not work (keyboard doesnt respond)
+	  //it would be better to just intercept the keycode anyways...
+	  /* case 0x04:							   // The wireless button
+		if(goingDown) {
+		  struct kev_msg event_msg;
+		  bzero(&event_msg, sizeof(event_msg));
 
-	  /*case 0x04:
-			interface = IONetworkInterface
-			virtual IOReturn disable( IONetworkInterface *interface); 
-	    if(enabled)// The wireless button
-		*/	
+		
+		  event_msg.vendor_code = DELL_VEN_CODE;	// Lets identify us as being from dell
+		  event_msg.kev_class = KEV_SYSTEM_CLASS;	// And since we are a kext, lets sue the sys class
+		  event_msg.kev_subclass = PS2_KEYBOARD_SUBCLASS;	// random subclass
+		  event_msg.event_code = PS2_WIFI_EVENT;			// You pressed the wireless button
+		  bzero(&event_msg.dv, sizeof(event_msg.dv));		
+		  // Go forth and notify the world of the keypress...
+		  if(0 == kev_msg_post(&event_msg)) IOLog("PS2: WIFI button mesg press sent"); 
+			else IOLog("PS2-Error: WIFI button mesg press failed");
+		}
+	    break;		   // keycode x90 should have been rewind
+	  case 0x07:
+	    if(goingDown) {
+		  struct kev_msg event_msg;
+		  bzero(&event_msg, sizeof(event_msg));
+				
+		  event_msg.vendor_code = DELL_VEN_CODE;	// Lets identify us as being from dell
+		  event_msg.kev_class = KEV_SYSTEM_CLASS;	// And since we are a kext, lets sue the sys class
+		  event_msg.kev_subclass = PS2_KEYBOARD_SUBCLASS;	// random subclass
+		  event_msg.event_code = PS2_BATT_EVENT;			// You pressed the battery button
+		  bzero(&event_msg.dv, sizeof(event_msg.dv));
+				
+		  // Go forth and notify the world of the keypress...
+			if(0 == kev_msg_post(&event_msg)) IOLog("PS2: BATT button mesg press sent"); 
+			else  IOLog("PS2-Error: BATT button mesg press failed");
+
+	    }
+		break; //*/
 
       //case 0x5e: keyCode = 0x7c; break;            // E05E = power
       case 0x5f:                                   // E05F = sleep
         keyCode = 0;
-        if (!(scanCode & kSC_UpBit))
+        if (goingDown)
         {
           IOPMrootDomain * rootDomain = getPMRootDomain();
-          if (rootDomain)
-            rootDomain->receivePowerNotification( kIOPMSleepNow );
+		  if (rootDomain) rootDomain->receivePowerNotification( kIOPMSleepNow );
         }
         break;
 
       case 0x1D: keyCode = 0x60; break;            // ctrl
       case 0x38:             			   // right alt may become right command
-	    if (macintoshMode == true) {
-	      keyCode = 0x71; 
-	    } else {
-	      keyCode = 0x61;			  
-	    }
+	    if (macintoshMode == true)	keyCode = 0x71; 
+	    else						keyCode = 0x61;			  
 	    break;
 
       case 0x1C: keyCode = 0x62; break;            // enter
@@ -406,14 +455,19 @@ bool ApplePS2Keyboard::dispatchKeyboardEventWithScancode(UInt8 scanCode)
       case 0x51: keyCode = 0x6B; break;            // page down
       case 0x47: keyCode = 0x6C; break;            // home
       case 0x4F: keyCode = 0x6D; break;            // end
+	
+	  // Handeling printscreen, instead of passing the printscreen keycode
+	  // we are passing command + shift + 4 (and ctrl if we dont want to save the SS)
       case 0x37: //keyCode = 0x6E; break;            // PrintScreen
-		if(scanCode==0x37) 
+		//if(scanCode==0x37) 
+		if(goingDown)
 		{
-		  /* there is something wrong with thise code, what could it be??
-		  if (KBV_IS_KEYDOWN(0x38, _keyBitVector)) { // If alt is pressed
-			  IOLog("ALTpressed\n");
-			dispatchKeyboardEventWithScancode(0x39);	// spacebar press
-		  } else IOLog("No alt\n"); */
+		  // Check to see if alt is pressed, if it is we want to press spacebar
+		
+		  //if (KBV_IS_KEYDOWN(0x38, _keyBitVector)) { // If alt is pressed
+			//  dispatchKeyboardEventWithScancode(0xb8);	// alt release, since it seams ot interfere (0xb8 is a guess (80 + 38)
+			//  dispatchKeyboardEventWithScancode(0x39);	// spacebar press
+		  //} 
 		  if(saveSS == false) dispatchKeyboardEventWithScancode(0x1d);	// Ctrl
 		  dispatchKeyboardEventWithScancode(0x38);
 		  dispatchKeyboardEventWithScancode(0x2a);
@@ -428,25 +482,26 @@ bool ApplePS2Keyboard::dispatchKeyboardEventWithScancode(UInt8 scanCode)
 		  dispatchKeyboardEventWithScancode(0x85);		// 4 release
 		}
 		return true;
-	  case 0x5B: 				   // left Windows key may become alt
-	    if (macintoshMode == true) {
-	      keyCode = 0x38; 
-	    } else {
-	      keyCode = 0x70;			   // Left command
-	    }
+			
+	  // Windows Keys
+	  case 0x5B: 				   // left Windows key
+	    if (macintoshMode == true)	keyCode = 0x38;		// L alt
+		else						keyCode = 0x70;		// L command
 	    break;
-      case 0x5c:  				   // right Windows key may become alt
-	    if (macintoshMode == true)	keyCode = 0x61; 	// alt
-	    else						keyCode = 0x71; 	// Right command
+      case 0x5c:  				   // right Windows key
+	    if (macintoshMode == true)	keyCode = 0x61; 	// R alt
+	    else						keyCode = 0x71; 	// R command
 	    break;
-	  case 0x5D: keyCode = 0x71; break;            // Menu list button? becomes command
-	  case 0x2A:             // header or trailer for PrintScreen
+			
+	  // Menu button, right of spacebar
+	  case 0x5D:					keyCode = 0x71; break;		// R command
+			
+	  case 0x2A:             // header or trailer for PrintScreen, we ignore it
 	  default: 
 	    return false;
     }
   }
   
-  //IOLog("keycode 0x%x\n",keyCode);
 
 
   if (keyCode == 0)  return false;
@@ -454,8 +509,6 @@ bool ApplePS2Keyboard::dispatchKeyboardEventWithScancode(UInt8 scanCode)
   //
   // Update our key bit vector, which maintains the up/down status of all keys.
   //
-
-  goingDown = !(scanCode & kSC_UpBit);
 
   if (goingDown)
   {
@@ -467,10 +520,12 @@ bool ApplePS2Keyboard::dispatchKeyboardEventWithScancode(UInt8 scanCode)
 
     KBV_KEYDOWN(keyCode, _keyBitVector);
   }
-  else
+  else // going up...
   {
     KBV_KEYUP(keyCode, _keyBitVector);
   }
+  //IOLog("keycode 0x%x sent to os\n",keyCode);
+
 
   //
   // We have a valid key event -- dispatch it to our superclass.
@@ -495,8 +550,8 @@ void ApplePS2Keyboard::setAlphaLockFeedback(bool locked)
   // It is safe to issue this request from the interrupt/completion context.
   //
 
-  _ledState = locked ? (_ledState | kLED_CapsLock):(_ledState & ~kLED_CapsLock);
-  setLEDs(_ledState);
+  //_ledState = locked ? (_ledState | kLED_CapsLock):(_ledState & ~kLED_CapsLock);
+  //setLEDs(_ledState);
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -509,14 +564,16 @@ void ApplePS2Keyboard::setNumLockFeedback(bool locked)
   // It is safe to issue this request from the interrupt/completion context.
   //
 
-  _ledState = locked ? (_ledState | kLED_NumLock):(_ledState & ~kLED_NumLock);
-  setLEDs(_ledState);
+  //_ledState = locked ? (_ledState | kLED_NumLock):(_ledState & ~kLED_NumLock);
+  //setLEDs(_ledState);
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 void ApplePS2Keyboard::setLEDs(UInt8 ledState)
 {
+  return;	// We are on a dell mini 9, there are no LED's, TODO: test with external kbd
+  /*
   //
   // Asynchronously instructs the controller to set the keyboard LED state.
   //
@@ -536,6 +593,7 @@ void ApplePS2Keyboard::setLEDs(UInt8 ledState)
   request->commands[3].inOrOut = kSC_Acknowledge;
   request->commandsCount = 4;
   _device->submitRequest(request); // asynchronous, auto-free'd
+  */
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -736,11 +794,9 @@ const unsigned char * ApplePS2Keyboard::defaultKeymapOfLength(UInt32 * length)
 
 void ApplePS2Keyboard::setDevicePowerState( UInt32 whatToDo )
 {
-	PS2Request * request = _device->allocateRequest();
-	
-	
+	/*PS2Request * request = _device->allocateRequest();
 	// Gets the keyboard id, used for debugging
-	/*
+	
 	request->commands[0].command = kPS2C_WriteDataPort;
 	request->commands[0].inOrOut = kDP_GetId;
 	request->commands[1].command = kPS2C_ReadDataPort;
@@ -788,7 +844,7 @@ void ApplePS2Keyboard::setDevicePowerState( UInt32 whatToDo )
 	  //
 
 
-      setLEDs(_ledState);
+      //setLEDs(_ledState);
 
       //
       // Enable the keyboard clock (should already be so), the keyboard
