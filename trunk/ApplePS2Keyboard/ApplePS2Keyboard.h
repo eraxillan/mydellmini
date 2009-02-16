@@ -27,6 +27,12 @@
 #include <IOKit/ps2/ApplePS2KeyboardDevice.h>
 #include <IOKit/hidsystem/IOHIKeyboard.h>
 
+// kernel communication define
+#define DELL_VEN_CODE			451313	// Randomish number (D = 4, E = 5, etc)
+#define PS2_KEYBOARD_SUBCLASS	10
+#define	PS2_WIFI_EVENT			1		// We could use 0x4
+#define PS2_BATT_EVENT			2		// and 0x7 to correispond ot keycodes...
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Definitions used to keep track of key state.   Key up/down state is tracked
 // in a bit list.  Bits are set for key-down, and cleared for key-up.  The bit
@@ -67,7 +73,8 @@ private:
 
   bool			    emacsMode;		// make caps lock into a control key
   bool			    macintoshMode;	// swap alt and windows key meaning
-  bool				saveSS;		// make printscreen save to disk
+  bool				saveSS;			// make printscreen save to disk
+  bool				swapUK;			// Swap the \| and `~ keys (taken care of in a layout file)
 
   virtual bool dispatchKeyboardEventWithScancode(UInt8 scanCode);
   virtual void setCommandByte(UInt8 setBits, UInt8 clearBits);
