@@ -54,6 +54,9 @@ on changegui()
 	tell button "fixbluetoothcb" of box "optionspanel" of window "DellEFI Installer"
 		set enabled to guivalue
 	end tell
+	tell button "oldgmacb" of box "optionspanel" of window "DellEFI Installer"
+		set enabled to guivalue
+	end tell
 	
 end changegui
 

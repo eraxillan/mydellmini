@@ -1,0 +1,3 @@
+mount -uw /
+rm -r /Extra
+mount -u /
