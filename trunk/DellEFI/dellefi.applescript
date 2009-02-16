@@ -8,6 +8,8 @@ property HideEFIP : false
 property RemoteCDP : false
 property HibernationP : false
 property FingerP : false
+property dsdtP : false
+property dellefiver : "1.07.1"
 
 on awake from nib theObject
 	
@@ -60,19 +62,26 @@ on awake from nib theObject
 	
 	set dsdt_exists to do shell script "test -e /dsdt.aml && echo 'file exists' || echo 'no file'"
 	if dsdt_exists is "file exists" then
+		set dsdtP to true
 		tell button "dsdtcb" of box "optionspanel" of window "DellEFI Installer"
 			set integer value to 0
+			set title to "Remove custom dsdt.aml file"
 			-- set enabled to false
 		end tell
 	end if
 	
 	set extexist to do shell script "test -e /Extra/Extensions.mkext && echo 'file exists' || echo 'no file'"
+	set extver to do shell script "test -e /.dellefi/.extv" & dellefiver & " && echo 'file exists' || echo 'no file'"
 	if extexist is "file exists" then
-		tell button "extensionscb" of box "optionspanel" of window "DellEFI Installer"
-			set integer value to 0
-			set title to "Reinstall Dell Mini 9 Extensions"
-			-- set enabled to false
-		end tell
+		if extver is "file exists" then
+			tell button "extensionscb" of box "optionspanel" of window "DellEFI Installer"
+				set integer value to 0
+				set title to "Reinstall Dell Mini 9 Extensions"
+			end tell
+			tell button "oldgmacb" of box "optionspanel" of window "DellEFI Installer"
+				set enabled to false
+			end tell
+		end if
 	end if
 	
 	set bootexist to do shell script "test -e /boot && echo 'file exists' || echo 'no file'"
@@ -167,6 +176,7 @@ on clicked theObject
 	set efi to false
 	set hideefi to false
 	set extensionsfiles to false
+	set oldgma to false
 	set quietboot to false
 	set needreboot to false
 	set twofinger to false
@@ -192,6 +202,9 @@ on clicked theObject
 	end if
 	if state of button "extensionscb" of box "optionspanel" of window "DellEFI Installer" is 1 then
 		set extensionsfiles to true
+	end if
+	if state of button "oldgmacb" of box "optionspanel" of window "DellEFI Installer" is 1 then
+		set oldgma to true
 	end if
 	if state of button "quietbootcb" of box "optionspanel" of window "DellEFI Installer" is 1 then
 		set quietboot to true
@@ -242,7 +255,7 @@ on clicked theObject
 			else
 				set contents of text field "currentop" of window "DellEFI Installer" to "Configuring Quiet Boot"
 				delay 1
-				do shell script "sed -e 's/disk0/" & disk & "/g' " & workingDir & "/Boot/com.apple.Boot.Quiet.plist >  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
+				do shell script "cp " & workingDir & "/Boot/com.apple.Boot.Quiet.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
 			end if
 		end if
 	on error errMsg number errorNumber
@@ -252,14 +265,22 @@ on clicked theObject
 	try
 		if extensionsfiles is true then
 			try
-				do shell script "mkdir /.dellefi; touch /.dellefi/.donoterase" with administrator privileges
+				do shell script "mkdir /.dellefi; touch" with administrator privileges
+				do shell script "/.dellefi/.donoterase" with administrator privileges
+			end try
+			
+			try
+				do shell script "rm /.dellefi/.extv*" with administrator privileges
+			end try
+			try
+				do shell script "touch /.dellefi/.extv" & dellefiver as text with administrator privileges
 			end try
 			
 			-- move all extensions over to EFI ext dir.
 			set contents of text field "currentop" of window "DellEFI Installer" to "Copy kexts to Extra folder"
 			delay 1
 			try
-				do shell script "rf -rf /Extra.bak" with administrator privileges
+				do shell script "rf -r /Extra.bak" with administrator privileges
 			end try
 			try
 				do shell script "mv /Extra /Extra.bak" with administrator privileges
@@ -268,9 +289,34 @@ on clicked theObject
 				do shell script "mkdir /Extra > /dev/null &" with administrator privileges
 				do shell script "mkdir /Extra/Extensions1" with administrator privileges
 			end try
+			do shell script "cp -R " & workingDir & "/UpdateExtra.app /Extra" with administrator privileges
 			do shell script "cp -R " & workingDir & "/Extensions/*.kext /Extra/Extensions1" with administrator privileges
+			do shell script "cp " & workingDir & "/bin/rmdellefi /usr/bin" with administrator privileges
+			do shell script "chmod -R 755 /usr/bin/rmdellefi" with administrator privileges
+			
+			try
+				--restore old GMA drivers with functional mirror mode
+				if oldgma is true then
+					set contents of text field "currentop" of window "DellEFI Installer" to "Installing old GMA kext"
+					delay 1
+					try
+						do shell script "rm -r /Extra/Extensions1/AppleIntelGMA950.kext" with administrator privileges
+					end try
+					try
+						do shell script "rm -r /Extra/Extensions1/AppleIntelIntegratedFramebuffer.kext" with administrator privileges
+					end try
+					try
+						do shell script "rm -r /Extra/Extensions1/Natit.kext" with administrator privileges
+					end try
+					do shell script "cp -R " & workingDir & "/oldgma/*.kext /Extra/Extensions1" with administrator privileges
+				end if
+			on error errMsg number errorNumber
+				display dialog "Could not install old GMA kext. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
+			end try
+			
 			do shell script "chown -R 0:0 /Extra/" with administrator privileges
 			do shell script "chmod -R 755 /Extra/" with administrator privileges
+			
 			set contents of text field "currentop" of window "DellEFI Installer" to "Update Extra kext cache"
 			delay 1
 			do shell script "kextcache -a i386 -m /Extra/Extensions.mkext /Extra/Extensions1" with administrator privileges
@@ -285,9 +331,18 @@ on clicked theObject
 			delay 1
 			-- move items that need to be local for audio and battery, hopefully this goes away someday
 			do shell script "cp -R " & workingDir & "/LocalExtensions/*.kext /System/Library/Extensions > /dev/null &" with administrator privileges
+			do shell script "chown -R 0:0 /System/Library/Extensions" with administrator privileges
+			do shell script "chmod -R 755 /System/Library/Extensions" with administrator privileges
 			do shell script "cp -R " & workingDir & "/SystemConfiguration/*.bundle /System/Library/SystemConfiguration > /dev/null &" with administrator privileges
 			-- remove mkext so it is rebuilt
 			do shell script "rm -r /System/Library/Extensions.mkext > /dev/null &" with administrator privileges
+			
+			set contents of text field "currentop" of window "DellEFI Installer" to "Installing Mirroring application"
+			delay 1
+			try
+				do shell script "cp " & workingDir & "/bin/mirroring /usr/bin" with administrator privileges
+				do shell script "chmod -R 755 /usr/bin/mirroring" with administrator privileges
+			end try
 			
 			set needreboot to true
 		end if
@@ -298,21 +353,29 @@ on clicked theObject
 	try
 		--make custom aml file and copy to EFI part root
 		if dsdt is true then
-			set contents of text field "currentop" of window "DellEFI Installer" to "Creating dsdt.aml file"
-			delay 1
-			try
-				do shell script "mkdir /.dellefi; touch /.dellefi/.donoterase" with administrator privileges
-			end try
-			
-			try
-				do shell script "cp -Rf " & workingDir & "/DSDTPatcher /.dellefi/" with administrator privileges
-			end try
-			do shell script "cd /.dellefi/DSDTPatcher; ./DSDTPatcher > /dev/null 2>&1 &" with administrator privileges
-			delay 6
-			
-			do shell script "cp /.dellefi/DSDTPatcher/dsdt.aml /dsdt.aml" with administrator privileges
-			
-			set needreboot to true
+			if dsdtP then
+				set contents of text field "currentop" of window "DellEFI Installer" to "Deleting dsdt.aml file"
+				delay 1
+				try
+					do shell script "rm /dsdt.aml" with administrator privileges
+				end try
+			else
+				set contents of text field "currentop" of window "DellEFI Installer" to "Creating dsdt.aml file"
+				delay 1
+				try
+					do shell script "mkdir /.dellefi; touch /.dellefi/.donoterase" with administrator privileges
+				end try
+				
+				try
+					do shell script "cp -Rf " & workingDir & "/DSDTPatcher /.dellefi/" with administrator privileges
+				end try
+				do shell script "cd /.dellefi/DSDTPatcher; ./DSDTPatcher > /dev/null 2>&1 &" with administrator privileges
+				delay 6
+				
+				do shell script "cp /.dellefi/DSDTPatcher/dsdt.aml /dsdt.aml" with administrator privileges
+				
+				set needreboot to true
+			end if
 		end if
 	on error errMsg number errorNumber
 		display dialog "Could not create dsdt.aml file. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
