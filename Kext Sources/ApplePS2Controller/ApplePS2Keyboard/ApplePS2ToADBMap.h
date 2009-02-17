@@ -25,7 +25,7 @@
 
 #define DEADKEY 0x80
 
-static const UInt8 PS2ToADBMap[0x80] = 
+static const UInt8 PS2ToADBMap[0x82] = 
 {
 /*  ADB       AT  Key-Legend
     ======================== */
@@ -115,7 +115,7 @@ static const UInt8 PS2ToADBMap[0x80] =
     0x41,  // 53  Keypad Del
     DEADKEY,  // 54  SysReq
     DEADKEY,  // 55
-    DEADKEY,  // 56
+    /*DEADKEY*/ 0x0a,  // 56 ABNT2 "\|"
     0x67,  // 57  F11
     0x6f,  // 58  F12
     DEADKEY,  // 59
@@ -144,7 +144,7 @@ static const UInt8 PS2ToADBMap[0x80] =
     0x37,  // 70  Left Window
     0x36,  // 71  Right Window
     0x6e,  // 72  Applications
-    DEADKEY,  // 73
+    /*DEADKEY*/ 0x5e,  // 73 ABNT2 "?/"
     DEADKEY,  // 74
     DEADKEY,  // 75
     DEADKEY,  // 76
