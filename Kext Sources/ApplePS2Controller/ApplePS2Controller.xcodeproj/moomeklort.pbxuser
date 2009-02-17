@@ -1,0 +1,29 @@
+// !$*UTF8*$!
+{
+	089C1669FE841209C02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Development;
+		activeTarget = 089C1673FE841209C02AAC07 /* ApplePS2Controller */;
+		codeSenseManager = 66FECD410F4A6B620062C8BC /* Code sense */;
+		perUserDictionary = {
+			PBXPerProjectTemplateStateSaveDate = 256535364;
+			PBXWorkspaceStateSaveDate = 256535364;
+		};
+		sourceControlManager = 66FECD400F4A6B620062C8BC /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	089C1673FE841209C02AAC07 /* ApplePS2Controller */ = {
+		activeExec = 0;
+	};
+	66FECD400F4A6B620062C8BC /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	66FECD410F4A6B620062C8BC /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+}
