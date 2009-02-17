@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -180,7 +180,7 @@
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = ECF226FB0A675286007C1D41 /* Build configuration list for PBXProject "ApplePS2Controller" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 089C166AFE841209C02AAC07 /* ApplePS2Controller */;
 			projectDirPath = "";
@@ -347,7 +347,7 @@
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
 				OBJROOT = "$(PROJECT_DIR)/build";
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = macosx10.5;
 				SYMROOT = "$(PROJECT_DIR)";
 			};
 			name = Development;
@@ -357,7 +357,7 @@
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
 				OBJROOT = "$(PROJECT_DIR)/build";
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = macosx10.5;
 				SYMROOT = "$(PROJECT_DIR)";
 			};
 			name = Deployment;
@@ -367,7 +367,7 @@
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
 				OBJROOT = "$(PROJECT_DIR)/build";
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = macosx10.5;
 				SYMROOT = "$(PROJECT_DIR)";
 			};
 			name = Default;

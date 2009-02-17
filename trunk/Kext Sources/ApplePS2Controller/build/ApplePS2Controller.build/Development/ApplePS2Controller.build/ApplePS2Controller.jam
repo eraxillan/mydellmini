@@ -16,11 +16,11 @@ export deferred GROUP = staff ;
 export deferred MAC_OS_X_VERSION_ACTUAL = 1056 ;
 export deferred MAC_OS_X_VERSION_MAJOR = 1050 ;
 export deferred PROJECT = $(PROJECT_NAME) ;
-export deferred PROJECT_DIR = /Users/moomeklort/Downloads/ApplePS2Controller ;
-export deferred PROJECT_FILE_PATH = /Users/moomeklort/Downloads/ApplePS2Controller/ApplePS2Controller.xcodeproj ;
+export deferred PROJECT_DIR = /Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller ;
+export deferred PROJECT_FILE_PATH = /Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/ApplePS2Controller.xcodeproj ;
 export deferred PROJECT_NAME = ApplePS2Controller ;
 export deferred PROJECT_TEMP_DIR = $(OBJROOT)/$(PROJECT_NAME).build ;
-export deferred SRCROOT = /Users/moomeklort/Downloads/ApplePS2Controller ;
+export deferred SRCROOT = /Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller ;
 export deferred TARGET_TEMP_DIR = $(CONFIGURATION_TEMP_DIR)/$(TARGET_NAME).build ;
 export deferred TEMP_DIR = $(TARGET_TEMP_DIR) ;
 export deferred UID = 502 ;
@@ -31,7 +31,7 @@ export deferred XCODE_VERSION_MAJOR = 0300 ;
 # Project-wide settings for project "ApplePS2Controller"
 export deferred CONFIGURATION_BUILD_DIR = $(BUILD_DIR) ;
 export deferred OBJROOT = $(PROJECT_DIR)/build ;
-export deferred SDKROOT = macosx10.4 ;
+export deferred SDKROOT = macosx10.5 ;
 export deferred SYMROOT = $(PROJECT_DIR) ;
 
 # User-defined project-wide settings for project "ApplePS2Controller"
