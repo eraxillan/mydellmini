@@ -1,0 +1,19 @@
+#summary One-This is a list of all kexts installed with DellEFI and their uses
+
+= Dell Mini 9 Custom Kexts and their uses =
+
+|| *Kext* || *Use* || *Reason for inclusion* || *Future Plans* ||
+|| AppleACPIPS2Nub.kext || Provides an interface to the PS2Controller kext to enable and dissable interupts || Apple has discontinued support for PS2 devices in 10.5 Leopard || ||
+|| AppleDecrypt.kext || || || ||
+|| AppleIntelGMA950.kext || Driver for the GMA950 display || || ||
+|| AppleIntelIntegratedFramebuffer.kext || || || ||
+|| AppleIntelPIIXATA.kext || || || ||
+|| ApplePS2Controller.kext || Driver for PS2 Devices, includes keyboard and trackpad kexts || Needed to enable keyboard and trackpad || ||
+|| AppleRTL8169Ethernet.kext || || || ||
+|| IO80211Family.kext || || || ||
+|| IOGraphicsFamily.kext || || || ||
+|| IONDRVSupport.kext || || || ||
+|| IONetworkingFamily.kext || || || ||
+|| IOSDHCIBlockDevice.kext || || || ||
+|| Natit.kext || || || ||
+|| SMBIOSResolver.kext || || || ||
