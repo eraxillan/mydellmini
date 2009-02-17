@@ -1,4 +1,4 @@
-#summary One-This is a list of all kexts installed with DellEFI and their uses
+#summary This is a list of all kexts installed with DellEFI and their uses
 
 = Dell Mini 9 Custom Kexts and their uses =
 
