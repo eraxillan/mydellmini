@@ -36,6 +36,8 @@
 			<string>ApplePS2KeyboardDevice</string>
 			<key>Make capslock into control</key>
 			<false/>
+			<key>Save screenshot to desktop</key>
+			<false/>
 			<key>Swap alt and windows key</key>
 			<true/>
 		</dict>
