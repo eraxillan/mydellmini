@@ -1,0 +1,29 @@
+// !$*UTF8*$!
+{
+	089C1669FE841209C02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeTarget = 32D94FC30562CBF700B6AF17 /* AppleACPIBatteryManager */;
+		codeSenseManager = 6622AFF70F4CE1A8005456C9 /* Code sense */;
+		perUserDictionary = {
+			PBXPerProjectTemplateStateSaveDate = 256696714;
+			PBXWorkspaceStateSaveDate = 256696714;
+		};
+		sourceControlManager = 6622AFF60F4CE1A8005456C9 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	32D94FC30562CBF700B6AF17 /* AppleACPIBatteryManager */ = {
+		activeExec = 0;
+	};
+	6622AFF60F4CE1A8005456C9 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	6622AFF70F4CE1A8005456C9 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+}
