@@ -1,0 +1,29 @@
+// !$*UTF8*$!
+{
+	089C1669FE841209C02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeTarget = 32D94FC30562CBF700B6AF17 /* SMBIOSResolver */;
+		codeSenseManager = 6624D5F80F4DA941003479DC /* Code sense */;
+		perUserDictionary = {
+			PBXPerProjectTemplateStateSaveDate = 256747811;
+			PBXWorkspaceStateSaveDate = 256747811;
+		};
+		sourceControlManager = 6624D5F70F4DA941003479DC /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	32D94FC30562CBF700B6AF17 /* SMBIOSResolver */ = {
+		activeExec = 0;
+	};
+	6624D5F70F4DA941003479DC /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	6624D5F80F4DA941003479DC /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+}
