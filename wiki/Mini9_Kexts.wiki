@@ -7,7 +7,7 @@
 || AppleDecrypt.kext || || || ||
 || AppleIntelGMA950.kext || Driver for the GMA950 display || || ||
 || AppleIntelIntegratedFramebuffer.kext || || || ||
-|| AppleIntelPIIXATA.kext || || || ||
+|| AppleIntelPIIXATA.kext || PATA driver || If I remember correctly, this driver also allows sleep / resume to work correctly || ||
 || ApplePS2Controller.kext || Driver for PS2 Devices, includes keyboard and trackpad kexts || Needed to enable keyboard and trackpad || ||
 || AppleRTL8169Ethernet.kext || || || ||
 || IO80211Family.kext || || || ||
@@ -15,11 +15,12 @@
 || IONDRVSupport.kext || || || ||
 || IONetworkingFamily.kext || || || ||
 || IOSDHCIBlockDevice.kext || || || ||
-|| Natit.kext || || || ||
+|| Natit.kext || Enables dual screens? || || ||
 || SMBIOSResolver.kext || || || ||
 
 = Dell Mini 9 Custom LocalExtensions kexts and their uses =
+Quick qestions... Why are these not in the /Extra/Extensions1 folder?
 || AppleHDA.kext || HD Audio kext || || Why is this a "LocalExtensions" and not installed in the Extra/ directory? ||
 || ClamshellDisplay.kext || Enables sleep when display is closed || Add glue so that sleep works properly || ||
-|| HDAEnabler.kext || || || ||
-|| IOAudioFamily.kext || || || Why is this a "LocalExtensions" and not installed in the Extra/ director? ||
+|| HDAEnabler.kext || This kext `injects` the soundcard into the device tree so that it can be used by the AppleHDa driver|| Enables the sound by allowing AppleHDA associate with it. || This can (read: should) be replaced with an efi string. Also, using an efi string may negate the need for the IOAudioFamily kext ||
+|| IOAudioFamily.kext || Provides an interface for audio drivers || The kext has been patched so that audio works on resume. || Why is this a "LocalExtensions" and not installed in the Extra/ director? ||
