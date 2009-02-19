@@ -17,3 +17,9 @@
 || IOSDHCIBlockDevice.kext || || || ||
 || Natit.kext || || || ||
 || SMBIOSResolver.kext || || || ||
+
+= Dell Mini 9 Custom LocalExtensions kexts and their uses =
+|| AppleHDA.kext || HD Audio kext || || Why is this a "LocalExtensions" and not installed in the Extra/ directory? ||
+|| ClamshellDisplay.kext || Enables sleep when display is closed || Add glue so that sleep works properly || ||
+|| HDAEnabler.kext || || || ||
+|| IOAudioFamily.kext || || || Why is this a "LocalExtensions" and not installed in the Extra/ director? ||
