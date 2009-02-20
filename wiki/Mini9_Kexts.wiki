@@ -11,8 +11,8 @@
 || ApplePS2Controller.kext || Driver for PS2 Devices, includes keyboard and trackpad kexts || *<font color="red">Required</font>* for PS/2 support (Apple does not include ps2 drivers in os x) || ||
 || AppleRTL8169Ethernet.kext || || || Alternative: RealtekR100 (I have modified psystar's sorce so it reports almost all needed information to the os. (Doesn't report duplex / speed correctly)||
 || IO80211Family.kext || || || ||
-|| IOGraphicsFamily.kext || || Driver needed so that IONDRVSupport will load || ||
-|| IONDRVSupport.kext || Framebuffer stuff... || This driver  (From 10.4.7) enables QE/CI || ||
+|| IOGraphicsFamily.kext || || Driver needed so that IONDRVSupport will load || Can use the one from 10.5.6 as long as we copy it to /Extra ||
+|| IONDRVSupport.kext || Framebuffer stuff... || This driver  (From 10.4.7) enables QE/CI || Can use the 10.5.6 one as long as we copy it to /Extra ||
 || IONetworkingFamily.kext || || || ||
 || IOSDHCIBlockDevice.kext || Jmicron SDHC driver || Min 9 includes a card reader, this driver enables it || ||
 || Natit.kext || Injects the display info into the ioregister || Used to enable GMA950 driver usage ||  Can be replaced with an efi string (also boots a second ot two faster w/ the string) ||
