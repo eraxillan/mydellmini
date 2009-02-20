@@ -20,7 +20,7 @@
 
 = Dell Mini 9 Custom LocalExtensions kexts and their uses =
 Quick qestions... Why are these not in the /Extra/Extensions1 folder?
-|| AppleHDA.kext || HD Audio kext || || Why is this a "LocalExtensions" and not installed in the Extra/ directory? ||
-|| ClamshellDisplay.kext || Enables sleep when display is closed || Add glue so that sleep works properly || This should probably be moved to the /Extra folder instead of /S/L/E/ (I have moved it on my mini and it works fine) ||
+|| AppleHDA.kext || HD Audio kext || || Why is this a "LocalExtensions" and not installed in the Extra/ directory? Currently won't load if in /Extra... maybe could be fixed with custom compile of code?  There is apparently a way to patch the source to make it load from /Extra||
+|| ClamshellDisplay.kext || Enables sleep when display is closed || Add glue so that sleep works properly || This should probably be moved to the /Extra folder instead of /S/L/E/ (I have moved it on my mini and it works fine) Should mo in next release of DellEFI||
 || HDAEnabler.kext || This kext `injects` the soundcard into the device tree so that it can be used by the AppleHDa driver|| Enables the sound by allowing AppleHDA associate with it. || This can (read: should) be replaced with an efi string. Also, using an efi string may negate the need for the IOAudioFamily kext (I have replaced it with an efi string) ||
 || IOAudioFamily.kext || Provides an interface for audio drivers || The kext has been patched so that audio works on resume. || Why is this a "LocalExtensions" and not installed in the Extra/ director? ||
