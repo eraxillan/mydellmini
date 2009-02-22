@@ -3,17 +3,17 @@
 = Dell Mini 9 Custom Kexts and their uses =
 
 || *Kext* || *Use* || *Reason for inclusion* || *Future Plans* ||
-|| AppleACPIPS2Nub.kext || Provides an interface to the PS2Controller kext to enable and dissable interrupts || *<font color="red">Required</font>* for PS/2 Support (enables / disables ps2 interrupts) || ||
+|| AppleACPIPS2Nub.kext || Provides an interface to the PS2Controller kext to enable and dissable interrupts || *<font color="red">Required</font>* for PS/2 Support (enables / disables ps2 interrupts) || New version from meklort in v1.1 ||
 || AppleDecrypt.kext || Enables use of apple encrypted kexts || *<font color="red">Required</font>* so that apple encrypted kexts will load (example: enables GUI)|| ||
-|| AppleIntelGMA950.kext || Driver for the GMA950 display || Only change is that it has been patched (read: hex edited) so that it recognizes 0x27AE as a supported device || Make a script (using tr / sed) to patch the driver when dellEFI is run, that way we are not distributing apple code that has not been released, also reduces download size. The script will also make it so that the latest driver is always used. ||
-|| AppleIntelIntegratedFramebuffer.kext || framebuffer stuff for the intel cards || Only change is that it has been patched (read: hex edited) so that it recognizes 0x27AE as a supported device || Make a script (using tr / sed) to patch the driver when dellEFI is run, that way we are not distributing apple code that has not been released, also reduces download size. The script will also make it so that the latest driver is always used. ||
-|| AppleIntelPIIXATA.kext || PATA driver || If I remember correctly, this driver also allows sleep / resume to work correctly || ||
-|| ApplePS2Controller.kext || Driver for PS2 Devices, includes keyboard and trackpad kexts || *<font color="red">Required</font>* for PS/2 support (Apple does not include ps2 drivers in os x) || ||
+|| AppleIntelGMA950.kext || Driver for the GMA950 display || Only change is that it has been patched (read: hex edited) so that it recognizes 0x27AE as a supported device || Will be created on the fly in v1.1 ||
+|| AppleIntelIntegratedFramebuffer.kext || framebuffer stuff for the intel cards || Only change is that it has been patched (read: hex edited) so that it recognizes 0x27AE as a supported device || Will be created on the fly in v1.1 ||
+|| AppleIntelPIIXATA.kext || PATA driver || This driver allows sleep / resume to work correctly on STEC SSD || ||
+|| ApplePS2Controller.kext || Driver for PS2 Devices, includes keyboard and trackpad kexts || *<font color="red">Required</font>* for PS/2 support (Apple does not include ps2 drivers in os x) || New version from meklort in v1.1 ||
 || AppleRTL8169Ethernet.kext || || || Alternative: RealtekR100 (I have modified psystar's sorce so it reports almost all needed information to the os. (Doesn't report duplex / speed correctly)||
-|| IO80211Family.kext || || || ||
-|| IOGraphicsFamily.kext || || Driver needed so that IONDRVSupport will load || Can use the one from 10.5.6 as long as we copy it to /Extra ||
-|| IONDRVSupport.kext || Framebuffer stuff... || This driver  (From 10.4.7) enables QE/CI || Can use the 10.5.6 one as long as we copy it to /Extra ||
-|| IONetworkingFamily.kext || || || ||
+|| IO80211Family.kext || Enable WiFi || || Will be created on the fly in v1.1 ||
+|| IOGraphicsFamily.kext || || Driver needed so that IONDRVSupport will load || v1.1 will use local copy from 10.5.6 into /Extra ||
+|| IONDRVSupport.kext || Framebuffer stuff... || || v1.1 will use local copy from 10.5.6 into /Extra ||
+|| IONetworkingFamily.kext || || Needed to load Ethernet card kext || v1.1 will use local copy from 10.5.6 into /Extra ||
 || IOSDHCIBlockDevice.kext || Jmicron SDHC driver || Min 9 includes a card reader, this driver enables it || ||
 || Natit.kext || Injects the display info into the ioregister || Used to enable GMA950 driver usage ||  Can be replaced with an efi string (also boots a second ot two faster w/ the string) ||
 || SMBIOSResolver.kext || || || ||
