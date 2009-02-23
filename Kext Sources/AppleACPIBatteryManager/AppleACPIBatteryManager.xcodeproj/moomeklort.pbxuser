@@ -1,12 +1,39 @@
 // !$*UTF8*$!
 {
 	089C1669FE841209C02AAC07 /* Project object */ = {
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Release;
+		activeSDKPreference = macosx10.5;
 		activeTarget = 32D94FC30562CBF700B6AF17 /* AppleACPIBatteryManager */;
 		codeSenseManager = 6622AFF70F4CE1A8005456C9 /* Code sense */;
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 256696714;
-			PBXWorkspaceStateSaveDate = 256696714;
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					780,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 257060343;
+			PBXWorkspaceStateSaveDate = 257060343;
+		};
+		perUserProjectItems = {
+			667ED0650F5272D700BB83BE /* PBXTextBookmark */ = 667ED0650F5272D700BB83BE /* PBXTextBookmark */;
+			667ED0660F5272D700BB83BE /* PBXTextBookmark */ = 667ED0660F5272D700BB83BE /* PBXTextBookmark */;
 		};
 		sourceControlManager = 6622AFF60F4CE1A8005456C9 /* Source Control */;
 		userBuildSettings = {
@@ -25,5 +52,32 @@
 	6622AFF70F4CE1A8005456C9 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
+	};
+	667ED0650F5272D700BB83BE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
+		name = "AppleACPIBatteryDevice.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 941;
+		vrLoc = 0;
+	};
+	667ED0660F5272D700BB83BE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
+		name = "AppleACPIBatteryDevice.cpp: 39";
+		rLen = 25;
+		rLoc = 1346;
+		rType = 0;
+		vrLen = 1046;
+		vrLoc = 621;
+	};
+	A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {958, 14294}}";
+			sepNavSelRange = "{1346, 25}";
+			sepNavVisRange = "{621, 1046}";
+		};
 	};
 }
