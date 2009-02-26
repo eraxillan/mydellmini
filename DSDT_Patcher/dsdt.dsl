@@ -4280,8 +4280,8 @@ DefinitionBlock ("/dsdt.aml", "DSDT", 1, "INTEL ", "CALISTGA", 0x06040000)
                         Notify (^^BAT1, 0x80)
                     }
 
-		    // Commentign does seam to dissable brightness ????????? -- TODO verify
-                    /*Method (_Q11, 0, NotSerialized)
+		    		// I thought this was the brightness stuff, but it lookg like it isnt now
+                    Method (_Q11, 0, NotSerialized)
                     {
                         P8XH (Zero, 0xE0)
                         Store (0x87, P80H)
@@ -4293,7 +4293,7 @@ DefinitionBlock ("/dsdt.aml", "DSDT", 1, "INTEL ", "CALISTGA", 0x06040000)
                         P8XH (Zero, 0xE1)
                         Store (0x86, P80H)
                         Notify (^^^GFX0.LCD, 0x86)
-                    }*/
+                    }
 
                     OperationRegion (CCLK, SystemIO, 0x1010, 0x04)
                     Field (CCLK, DWordAcc, NoLock, Preserve)
