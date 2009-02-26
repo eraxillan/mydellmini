@@ -1,0 +1,22 @@
+#summary Information regarding the EC0 (embedded controller) battery information
+
+= DSDT Battery Refrences =
+
+The following list of names are memory locations, the size in bytes of the location, and what I believe they are for
+|| EC0.NAME || size of || What its for || What we use it for || 
+|| BMF0 || 3 || Manufacturer Code,	My KR battery = 0x07 || Used in_BIF method ||
+|| BTY0 || 1 ||  Battery type (1 = rechargeable) || (_BIF) ||
+|| BST0 || 8 || Battery state bitfield || (_BST) ||
+|| BRC0 || 16 || Remaining capacty || (_BST) ||
+|| BSN0 || 16 || Serial number || (_BIF) ||
+|| BPV0 || 16 || Present Voltage || (_BST) ||
+|| BDV0 || 16 || Design Volatge || (_BIF) ||
+|| BDC0 || 16 || Design Capacity (watts / amps) || (_BIF) ||
+|| BFC0 || 16 || Last Full current || (_BIF) ||
+|| GAU0 || 8 || Percentage full || Not used, calculated from BRC and BFC ||
+|| CYC0 || 8 || Cycle count || ||
+|| BPC0 || 16 || Batter current (Inst rate) || (_BST) , must be ones complimented ||
+|| BAC0 || 16 || Battery current (Avg Rate?) || Not used, can be used for (_BST) ||
+|| BAT0 || 8 || Average Time? to full? to empty? || || 
+|| BTW0 || 16 || || || 
+|| BDN0 || 8 || Display Number ??? (BAT1, BAT2 etc) || || 
