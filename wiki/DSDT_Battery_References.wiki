@@ -17,6 +17,6 @@ The following list of names are memory locations, the size in bytes of the locat
 || CYC0 || 8 || Cycle count || ||
 || BPC0 || 16 || Batter current (Inst rate) || (_BST) , must be ones complimented ||
 || BAC0 || 16 || Battery current (Avg Rate?) || Not used, can be used for (_BST) ||
-|| BAT0 || 8 || Average Time? to full? to empty? || || 
+|| BAT0 || 8 || Battery bitfield (may be similar to BST0), lsb is 0 when charging / AC and 1 when discharging / on battery || || 
 || BTW0 || 16 || || || 
 || BDN0 || 8 || Display Number ??? (BAT1, BAT2 etc) || || 
