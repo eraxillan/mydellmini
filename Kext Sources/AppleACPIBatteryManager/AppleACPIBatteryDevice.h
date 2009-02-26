@@ -32,6 +32,9 @@
 
 #define kBatteryPollingDebugKey     "BatteryPollingPeriodOverride"
 
+#define POWER_WATT_UNIT		0
+#define POWER_AMP_UNIT		1
+
 class AppleACPIBatteryManager;
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -128,7 +131,7 @@ protected:
     void    rebuildLegacyIOBatteryInfo(void);
 
 private:
-	UInt32   fUnitFactor;
+	UInt32   fPowerUnit;
 	UInt32   fDesignVoltage;
 	UInt32   fCurrentVoltage;
 	UInt32   fDesignCapacity;
@@ -143,6 +146,8 @@ private:
 	OSSymbol *fType;
 	OSSymbol *fManufacturer;
 	OSData   *fManufacturerData;
+	
+	UInt32 fPrevCapacity;
 
 	UInt8    fMaxErr;
 	UInt16   fManufactureDate;
