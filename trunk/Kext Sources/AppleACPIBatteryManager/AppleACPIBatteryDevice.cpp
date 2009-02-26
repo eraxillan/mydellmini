@@ -55,13 +55,14 @@ enum {
 // battery load
 static uint32_t milliSecPollingTable[2] =
     { 
-      30000,    // 0 == Regular 30 second polling
-      1000      // 1 == Quick 1 second polling
+      15000,    // 0 == Regular 15 second polling, was set to 30
+      2000      // 1 == Quick 2 second polling, was at 1
     };
 
-static const uint32_t kBatteryReadAllTimeout = 10000;       // 10 seconds
+static const uint32_t kBatteryReadAllTimeout = 8000;       // 8 seconds
 
 // Keys we use to publish battery state in our IOPMPowerSource::properties array
+
 static const OSSymbol *_MaxErrSym = 
                         OSSymbol::withCString(kIOPMPSMaxErrKey);
 static const OSSymbol *_DeviceNameSym = 
@@ -733,19 +734,17 @@ IOReturn AppleACPIBatteryDevice::setBatteryBIF(OSArray *acpibat_bif)
 {
 	fDesignVoltage = OSDynamicCast(OSNumber, acpibat_bif->getObject(4))->unsigned32BitValue();
 
-	fUnitFactor = OSDynamicCast(OSNumber, acpibat_bif->getObject(0))->unsigned32BitValue();
-	if (fUnitFactor == 0) fUnitFactor = fDesignVoltage / 1000;
-	if (fUnitFactor == 0) fUnitFactor = 1; //FIXME: 0 Power Unit ?
+	
+	fPowerUnit = OSDynamicCast(OSNumber, acpibat_bif->getObject(0))->unsigned32BitValue();
 
 	fDesignCapacity = OSDynamicCast(OSNumber, acpibat_bif->getObject(1))->unsigned32BitValue();
-	if ((fUnitFactor > 1) && (fDesignCapacity < 10000)) { //FIXME: Wrong Power Unit ?
-		fUnitFactor = 1;
-	}
-
-	fDesignCapacity = OSDynamicCast(OSNumber, acpibat_bif->getObject(1))->unsigned32BitValue() / fUnitFactor;
+	//if(fPowerUnit == POWER_WATT_UNIT) fDesignCapacity /= fDesignVoltage;					// OS X Wants mAh, not mWh, convert it, TODO, create
+	// For some reason this causes a kernel panic (when in WATT_UNIT), but it doesnt in the BST function
 	setDesignCapacity(fDesignCapacity);
 
-	fMaxCapacity = OSDynamicCast(OSNumber, acpibat_bif->getObject(2))->unsigned32BitValue() / fUnitFactor;
+	fMaxCapacity = OSDynamicCast(OSNumber, acpibat_bif->getObject(2))->unsigned32BitValue();
+	//if(fPowerUnit == POWER_WATT_UNIT) fMaxCapacity /= fDesignVoltage;					// OS X Wants mAh, not mWh, convert it, TODO, create 
+	// For some reason this causes a kernel panic (when in WATT_UNIT), but it doesnt in the BST function
 	setMaxCapacity(fMaxCapacity);
 
 	if ((fDesignCapacity == 0) || (fMaxCapacity == 0))  {
@@ -837,15 +836,19 @@ IOReturn AppleACPIBatteryDevice::setBatteryBST(OSArray *acpibat_bst)
 	fCurrentVoltage = OSDynamicCast(OSNumber, acpibat_bst->getObject(3))->unsigned32BitValue();
 	setVoltage(fCurrentVoltage);
 
-	fCurentCapacity = OSDynamicCast(OSNumber, acpibat_bst->getObject(2))->unsigned32BitValue() / fUnitFactor;
+	fCurentCapacity = OSDynamicCast(OSNumber, acpibat_bst->getObject(2))->unsigned32BitValue();
+	//if(fPowerUnit == POWER_WATT_UNIT) fCurentCapacity = (fCurentCapacity * 10000) / fCurrentVoltage;					// OS X Wants mAh, not mWh, convert it, TODO, create 
+	
 	setCurrentCapacity(fCurentCapacity);
 
-	fCurrentRate = (OSDynamicCast(OSNumber, acpibat_bst->getObject(1))->unsigned32BitValue()) / fUnitFactor;
-	if (fCurrentRate <= 0x00000000)
-		fCurrentRate = fMaxCapacity / 2;
-	else
-		fCurrentRate &= 0x00000FFF;
+	fCurrentRate = (OSDynamicCast(OSNumber, acpibat_bst->getObject(1))->unsigned32BitValue());
+	// The current rate is providede in mAh
+	
+	//if(fPowerUnit == POWER_WATT_UNIT) fCurrentRate = (fCurrentRate * 10000) / fCurrentVoltage;					// OS X Wants mAh, not mWh, convert it, TODO, create 
 
+	
+	// TODO: Verify that this is needed
+	
 	if (fAverageRate) {
 		fAverageRate = (fAverageRate + fCurrentRate) / 2;
 	} else {
@@ -855,9 +858,10 @@ IOReturn AppleACPIBatteryDevice::setBatteryBST(OSArray *acpibat_bst)
 	UInt32 value = OSDynamicCast(OSNumber, acpibat_bst->getObject(0))->unsigned32BitValue();
 	DEBUG_LOG("AppleACPIBatteryDevice: Battery State 0x%x.\n", value);
 
-	if (value ^ fStatus) {
+	if (value ^ fStatus) { // If the state has changed, reset the cischarge rate
 		fStatus = value;
 		fAverageRate = 0;
+		//fCurrentRate = 0;
 	}
 
 	if ((value & 0x01) && (value & 0x02)) {
@@ -999,19 +1003,19 @@ IOReturn AppleACPIBatteryDevice::setBatteryBST(OSArray *acpibat_bst)
     OSNumber *num;
 	fCellVoltages = OSArray::withCapacity(4); // FIXME: Assuming 3 cells ?
 
-	fCellVoltage1 = fCurrentVoltage / 3;
+	fCellVoltage1 = fCurrentVoltage / 4;
     num = OSNumber::withNumber((unsigned long long)fCellVoltage1 , 16);
     fCellVoltages->setObject(num);
 
-	fCellVoltage2 = fCurrentVoltage  /3;
+	fCellVoltage2 = fCurrentVoltage  /4;
     num = OSNumber::withNumber((unsigned long long)fCellVoltage2 , 16);
     fCellVoltages->setObject(num);
 
-	fCellVoltage3 = fCurrentVoltage - fCellVoltage1 - fCellVoltage2;
+	fCellVoltage3 = fCurrentVoltage / 4;
     num = OSNumber::withNumber((unsigned long long)fCellVoltage3 , 16);
     fCellVoltages->setObject(num);
 
-	fCellVoltage4 = 0;
+	fCellVoltage4 = fCurrentVoltage - fCellVoltage1 - fCellVoltage2 - fCellVoltage3;
     num = OSNumber::withNumber((unsigned long long)fCellVoltage4 , 16);
     fCellVoltages->setObject(num);
 
