@@ -52,7 +52,8 @@ extern "C"
 #include "mii.h"
 
 #ifdef DEBUG
-#define DLog(args...) IOLog("REALTEK: "args)
+#define DLog(args...)
+//#define DLog(args...) IOLog("REALTEK: "args)
 #else 
 #define DLog(args...)
 #endif
@@ -70,6 +71,7 @@ enum
 	MEDIUM_INDEX_AUTO	= 6,
 	MEDIUM_INDEX_COUNT	= 7
 };
+
 
 enum 
 {
@@ -215,7 +217,7 @@ private:
 	void R1000HwPhyReset();
 	void R1000HwPhyConfig();
 	void R1000HwStart();
-	
+		
 	ulong ether_crc(int length, unsigned char *data);
 	
 	bool AllocateDescriptorsMemory();
