@@ -161,8 +161,8 @@ bool RealtekR1000::start(IOService *provider)
 		OSAddNetworkMedium(kIOMediumEthernet10BaseT | kIOMediumOptionFullDuplex, 10 * MBit, MEDIUM_INDEX_10FD);
 		OSAddNetworkMedium(kIOMediumEthernet100BaseTX | kIOMediumOptionHalfDuplex, 100 * MBit, MEDIUM_INDEX_100HD);
 		OSAddNetworkMedium(kIOMediumEthernet100BaseTX | kIOMediumOptionFullDuplex, 100 * MBit, MEDIUM_INDEX_100FD);	
-		OSAddNetworkMedium(kIOMediumEthernet1000BaseTX | kIOMediumOptionHalfDuplex, 1000 * MBit, MEDIUM_INDEX_1000HD);
-		OSAddNetworkMedium(kIOMediumEthernet1000BaseTX | kIOMediumOptionFullDuplex, 1000 * MBit, MEDIUM_INDEX_1000FD);
+		//OSAddNetworkMedium(kIOMediumEthernet1000BaseTX | kIOMediumOptionHalfDuplex, 1000 * MBit, MEDIUM_INDEX_1000HD);
+		//OSAddNetworkMedium(kIOMediumEthernet1000BaseTX | kIOMediumOptionFullDuplex, 1000 * MBit, MEDIUM_INDEX_1000FD);
 		
 		if (!publishMediumDictionary(mediumDict))
 		{
@@ -503,12 +503,12 @@ IOReturn RealtekR1000::selectMedium(const IONetworkMedium *medium)
 		case MEDIUM_INDEX_100FD:
 			R1000SetMedium(SPEED_100, DUPLEX_FULL, AUTONEG_DISABLE);
 			break;
-		case MEDIUM_INDEX_1000HD:
-			R1000SetMedium(SPEED_1000, DUPLEX_HALF, AUTONEG_DISABLE);
-			break;
-		case MEDIUM_INDEX_1000FD:
-			R1000SetMedium(SPEED_1000, DUPLEX_FULL, AUTONEG_DISABLE);
-			break;
+		//case MEDIUM_INDEX_1000HD:
+		//	R1000SetMedium(SPEED_1000, DUPLEX_HALF, AUTONEG_DISABLE);
+		//	break;
+		//case MEDIUM_INDEX_1000FD:
+		//	R1000SetMedium(SPEED_1000, DUPLEX_FULL, AUTONEG_DISABLE);
+		//	break;
 		}
 		setCurrentMedium(medium);
 	}
@@ -519,8 +519,18 @@ IOReturn RealtekR1000::selectMedium(const IONetworkMedium *medium)
 	
 	if (ReadMMIO8(PHYstatus) & LinkStatus)
 	{
-		if (ReadMMIO8(PHYstatus) & _1000Mbps) setLinkStatus(kIONetworkLinkActive | kIONetworkLinkValid, getSelectedMedium(), 1000 * MBit, NULL);
-		else if(ReadMMIO8(PHYstatus) & _100Mbps) setLinkStatus(kIONetworkLinkActive | kIONetworkLinkValid, getSelectedMedium(), 100 * MBit, NULL);
+		// Notify the OS of any changes
+		
+		// Commented out the 1000 since not supported on rtl 8139 (will probably break the 8169)
+		//if (ReadMMIO8(PHYstatus) & _1000Mbps) setLinkStatus(kIONetworkLinkActive | kIONetworkLinkValid, getSelectedMedium(), 1000 * MBit, NULL);
+		/*else*/
+		//const IONetworkMedium * activeMedium = IONetworkMedium::medium(getSelectedMedium()->getType(), 100 * MBit, kIOMediumOptionFullDuplex, NULL);
+		//getSelectedMedium() | kIOMediumOptionFullDuplex;
+		
+		//activeMedium = IONetworkMedium::getMediumWithType(_mediumDict, (kMediaPort10BaseT | kIOMediumOptionFullDuplex));
+        //}
+		
+		if(ReadMMIO8(PHYstatus) & _100Mbps) setLinkStatus(kIONetworkLinkActive | kIONetworkLinkValid, getSelectedMedium(), 100 * MBit, NULL);
 		else if(ReadMMIO8(PHYstatus) & _10Mbps) setLinkStatus(kIONetworkLinkActive | kIONetworkLinkValid, getSelectedMedium(), 10 * MBit, NULL);
 	}
 	else
@@ -530,6 +540,8 @@ IOReturn RealtekR1000::selectMedium(const IONetworkMedium *medium)
 
 	return kIOReturnSuccess;
 }
+
+
 
 /*
  * Configures a newly created network interface object.
@@ -1060,8 +1072,9 @@ bool RealtekR1000::R1000ProbeAndStartBoard()
 	{
 		DLog("Link Status: %s\n","Linked");
 
-		if (ReadMMIO8(PHYstatus) & _1000Mbps) DLog("Link Speed: 1000Mbps\n");
-		else if(ReadMMIO8(PHYstatus) & _100Mbps) DLog("Link Speed: 100Mbps\n");
+		//if (ReadMMIO8(PHYstatus) & _1000Mbps) DLog("Link Speed: 1000Mbps\n");
+		/*else */
+		if(ReadMMIO8(PHYstatus) & _100Mbps) DLog("Link Speed: 100Mbps\n");
 		else if(ReadMMIO8(PHYstatus) & _10Mbps) DLog("Link Speed: 10Mbps\n");
 
 		DLog("Duplex mode: %s\n", ReadMMIO8(PHYstatus) & FullDup ? "Full-Duplex" : "Half-Duplex");
@@ -1116,7 +1129,7 @@ bool RealtekR1000::R1000SetMedium(ushort speed, uchar duplex, uchar autoneg)
 	else
 	{
 		this->autoneg = AUTONEG_DISABLE;
-		if(speed == SPEED_1000)
+		/*if(speed == SPEED_1000)
 		{
 			this->speed = SPEED_1000;
 			this->duplex = DUPLEX_FULL;
@@ -1126,7 +1139,7 @@ bool RealtekR1000::R1000SetMedium(ushort speed, uchar duplex, uchar autoneg)
 				 (mcfg == MCFG_METHOD_15)) gbcr = PHY_Cap_Null;
 			else gbcr = PHY_Cap_1000_Half | PHY_Cap_1000_Full;
 		}
-		else if ((speed == SPEED_100) && (duplex == DUPLEX_FULL))
+		else */ if ((speed == SPEED_100) && (duplex == DUPLEX_FULL))
 		{
 			this->speed = SPEED_100;
 			this->duplex = DUPLEX_FULL;
@@ -1810,7 +1823,8 @@ void RealtekR1000::R1000Interrupt(OSObject * client, IOInterruptEventSource * sr
 					WriteGMII32(0x1f, 0x0000);
 					DLog("Interrupt :: Link up?\n");
 					// report to OSX that link is up
-					this->setLinkStatus( kIONetworkLinkValid | kIONetworkLinkActive );					
+					this->setLinkStatus( kIONetworkLinkValid | kIONetworkLinkActive );
+					
 				}
 				// link must be down
 				else

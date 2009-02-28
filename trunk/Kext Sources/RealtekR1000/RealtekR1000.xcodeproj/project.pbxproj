@@ -20,7 +20,7 @@
 		1A224C3EFF42367911CA2CB7 /* RealtekR1000.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtekR1000.h; sourceTree = "<group>"; };
 		1A224C3FFF42367911CA2CB7 /* RealtekR1000.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RealtekR1000.cpp; sourceTree = "<group>"; };
 		32D3551C0AD2F3FC0076BB14 /* mii.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mii.h; sourceTree = "<group>"; };
-		32D94FCF0562CBF700B6AF17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
+		32D94FCF0562CBF700B6AF17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32D94FD00562CBF700B6AF17 /* RealtekR1000.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RealtekR1000.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		32DB9F870ACD8E6C00F04437 /* R1000Regs.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = R1000Regs.h; sourceTree = "<group>"; };
 		8DA8362C06AD9B9200E5AC22 /* Kernel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kernel.framework; path = /System/Library/Frameworks/Kernel.framework; sourceTree = "<absolute>"; };
@@ -221,19 +221,31 @@
 		32DB9BF80ACD8D7300F04437 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
 					"$(inherited)",
 				);
-				MODULE_VERSION = 1.6.4;
+				MODULE_VERSION = 1.8.2;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DDEBUG";
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SKIP_INSTALL = NO;
+				VALID_ARCHS = i386;
 			};
 			name = Debug;
 		};
 		32DB9BF90ACD8D7300F04437 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MODULE_VERSION = 1.6.4;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
+				MODULE_VERSION = 1.8.2;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SKIP_INSTALL = NO;
+				VALID_ARCHS = i386;
 			};
 			name = Release;
 		};

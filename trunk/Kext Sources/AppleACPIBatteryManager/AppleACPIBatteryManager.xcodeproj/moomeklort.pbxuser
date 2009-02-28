@@ -31,31 +31,16 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 257189251;
-			PBXWorkspaceStateSaveDate = 257189251;
+			PBXPerProjectTemplateStateSaveDate = 257552308;
+			PBXWorkspaceStateSaveDate = 257552308;
 		};
 		perUserProjectItems = {
 			667ED07E0F5274B600BB83BE = 667ED07E0F5274B600BB83BE /* PBXTextBookmark */;
 			667ED07F0F5274B600BB83BE = 667ED07F0F5274B600BB83BE /* PBXTextBookmark */;
-			667ED0800F5274B600BB83BE = 667ED0800F5274B600BB83BE /* PBXTextBookmark */;
-			667ED0810F5274B600BB83BE = 667ED0810F5274B600BB83BE /* PBXTextBookmark */;
-			667ED08B0F52EB6600BB83BE = 667ED08B0F52EB6600BB83BE /* PBXTextBookmark */;
 			667ED08C0F52EB6600BB83BE = 667ED08C0F52EB6600BB83BE /* PBXTextBookmark */;
 			667ED08D0F52EB6600BB83BE = 667ED08D0F52EB6600BB83BE /* PBXTextBookmark */;
-			667ED08E0F52EB6600BB83BE = 667ED08E0F52EB6600BB83BE /* PBXTextBookmark */;
-			667ED08F0F52EB6600BB83BE = 667ED08F0F52EB6600BB83BE /* PBXTextBookmark */;
 			667ED0940F52EF1C00BB83BE = 667ED0940F52EF1C00BB83BE /* PlistBookmark */;
-			667ED0970F52EF1C00BB83BE = 667ED0970F52EF1C00BB83BE /* PBXTextBookmark */;
-			667ED0980F52EF1C00BB83BE = 667ED0980F52EF1C00BB83BE /* PBXTextBookmark */;
-			667ED0990F52EF1C00BB83BE = 667ED0990F52EF1C00BB83BE /* PBXTextBookmark */;
-			667ED09A0F52EF1C00BB83BE = 667ED09A0F52EF1C00BB83BE /* PBXTextBookmark */;
-			667ED09B0F52EF1C00BB83BE = 667ED09B0F52EF1C00BB83BE /* PBXTextBookmark */;
 			667ED09C0F52EF1C00BB83BE = 667ED09C0F52EF1C00BB83BE /* PlistBookmark */;
-			667ED09D0F52EF1C00BB83BE = 667ED09D0F52EF1C00BB83BE /* PBXTextBookmark */;
-			667ED09E0F52EF1C00BB83BE = 667ED09E0F52EF1C00BB83BE /* PBXTextBookmark */;
-			667ED0B70F533B2200BB83BE = 667ED0B70F533B2200BB83BE /* PBXTextBookmark */;
-			667ED0B90F533B2200BB83BE = 667ED0B90F533B2200BB83BE /* PBXTextBookmark */;
-			667ED0BA0F533B2200BB83BE = 667ED0BA0F533B2200BB83BE /* PBXTextBookmark */;
 			667ED0CC0F53D40D00BB83BE = 667ED0CC0F53D40D00BB83BE /* PBXTextBookmark */;
 			667ED0CE0F53D40D00BB83BE = 667ED0CE0F53D40D00BB83BE /* PBXTextBookmark */;
 			667ED0D00F53D40D00BB83BE = 667ED0D00F53D40D00BB83BE /* PBXTextBookmark */;
@@ -63,114 +48,64 @@
 			667ED0D40F53D40D00BB83BE = 667ED0D40F53D40D00BB83BE /* PBXTextBookmark */;
 			667ED0D60F53D40D00BB83BE = 667ED0D60F53D40D00BB83BE /* PBXTextBookmark */;
 			667ED0D80F53D40D00BB83BE = 667ED0D80F53D40D00BB83BE /* PBXTextBookmark */;
-			667ED0DA0F53D40D00BB83BE = 667ED0DA0F53D40D00BB83BE /* PBXTextBookmark */;
-			667ED0DB0F53D40D00BB83BE = 667ED0DB0F53D40D00BB83BE /* PBXTextBookmark */;
 			667ED0DC0F53D40D00BB83BE = 667ED0DC0F53D40D00BB83BE /* PBXTextBookmark */;
-			667ED0DF0F53D40D00BB83BE = 667ED0DF0F53D40D00BB83BE /* PBXTextBookmark */;
 			667ED0E00F53D40D00BB83BE = 667ED0E00F53D40D00BB83BE /* PBXTextBookmark */;
 			667ED0E20F53D40D00BB83BE = 667ED0E20F53D40D00BB83BE /* PBXTextBookmark */;
 			667ED0E40F53D40D00BB83BE = 667ED0E40F53D40D00BB83BE /* PBXTextBookmark */;
-			667ED0E60F53D40D00BB83BE = 667ED0E60F53D40D00BB83BE /* PBXTextBookmark */;
-			667ED0E70F53D40D00BB83BE = 667ED0E70F53D40D00BB83BE /* PBXTextBookmark */;
-			667ED0E80F53D40D00BB83BE = 667ED0E80F53D40D00BB83BE /* PBXTextBookmark */;
 			667ED0E90F53D40D00BB83BE = 667ED0E90F53D40D00BB83BE /* PBXTextBookmark */;
 			667ED0EB0F53D40D00BB83BE = 667ED0EB0F53D40D00BB83BE /* PBXTextBookmark */;
-			667ED0ED0F53D40D00BB83BE = 667ED0ED0F53D40D00BB83BE /* PBXTextBookmark */;
 			667ED0EE0F53D40D00BB83BE = 667ED0EE0F53D40D00BB83BE /* PBXTextBookmark */;
 			667ED0F00F53D40D00BB83BE = 667ED0F00F53D40D00BB83BE /* PBXTextBookmark */;
 			667ED0F20F53D40D00BB83BE = 667ED0F20F53D40D00BB83BE /* PBXTextBookmark */;
-			667ED0F40F53D40D00BB83BE = 667ED0F40F53D40D00BB83BE /* PBXTextBookmark */;
-			667ED0F60F53D40D00BB83BE = 667ED0F60F53D40D00BB83BE /* PBXTextBookmark */;
-			667ED0F70F53D40D00BB83BE = 667ED0F70F53D40D00BB83BE /* PBXTextBookmark */;
-			667ED0F80F53D40D00BB83BE = 667ED0F80F53D40D00BB83BE /* PBXTextBookmark */;
-			667ED0F90F53D40D00BB83BE = 667ED0F90F53D40D00BB83BE /* PBXTextBookmark */;
-			667ED1000F545A3C00BB83BE = 667ED1000F545A3C00BB83BE /* PBXTextBookmark */;
 			667ED1010F545A3C00BB83BE = 667ED1010F545A3C00BB83BE /* PBXTextBookmark */;
-			667ED1030F545A3C00BB83BE = 667ED1030F545A3C00BB83BE /* PBXTextBookmark */;
-			667ED1050F545A3C00BB83BE = 667ED1050F545A3C00BB83BE /* PBXTextBookmark */;
 			667ED1060F545A3C00BB83BE = 667ED1060F545A3C00BB83BE /* PBXTextBookmark */;
-			667ED1080F545A3C00BB83BE = 667ED1080F545A3C00BB83BE /* PBXTextBookmark */;
-			667ED1200F5493E000BB83BE /* PBXTextBookmark */ = 667ED1200F5493E000BB83BE /* PBXTextBookmark */;
-			667ED1210F5493E000BB83BE /* PBXTextBookmark */ = 667ED1210F5493E000BB83BE /* PBXTextBookmark */;
-			667ED1230F5493E300BB83BE /* PBXTextBookmark */ = 667ED1230F5493E300BB83BE /* PBXTextBookmark */;
-			667ED1240F5493E300BB83BE /* PBXTextBookmark */ = 667ED1240F5493E300BB83BE /* PBXTextBookmark */;
-			667ED1250F5493E300BB83BE /* PBXTextBookmark */ = 667ED1250F5493E300BB83BE /* PBXTextBookmark */;
-			667ED1260F5493E300BB83BE /* PBXTextBookmark */ = 667ED1260F5493E300BB83BE /* PBXTextBookmark */;
-			667ED1270F5493E300BB83BE /* PBXTextBookmark */ = 667ED1270F5493E300BB83BE /* PBXTextBookmark */;
-			667ED1280F5493E300BB83BE /* PBXTextBookmark */ = 667ED1280F5493E300BB83BE /* PBXTextBookmark */;
-			667ED1290F5493E300BB83BE /* PBXTextBookmark */ = 667ED1290F5493E300BB83BE /* PBXTextBookmark */;
-			667ED12A0F5493E300BB83BE /* PBXTextBookmark */ = 667ED12A0F5493E300BB83BE /* PBXTextBookmark */;
-			667ED12B0F5493E300BB83BE /* PBXTextBookmark */ = 667ED12B0F5493E300BB83BE /* PBXTextBookmark */;
-			667ED12C0F5493E300BB83BE /* PBXTextBookmark */ = 667ED12C0F5493E300BB83BE /* PBXTextBookmark */;
-			667ED12D0F5493E300BB83BE /* PBXTextBookmark */ = 667ED12D0F5493E300BB83BE /* PBXTextBookmark */;
-			667ED12E0F5493E300BB83BE /* PBXTextBookmark */ = 667ED12E0F5493E300BB83BE /* PBXTextBookmark */;
-			667ED12F0F5493E300BB83BE /* PBXTextBookmark */ = 667ED12F0F5493E300BB83BE /* PBXTextBookmark */;
-			667ED1300F5493E300BB83BE /* PBXTextBookmark */ = 667ED1300F5493E300BB83BE /* PBXTextBookmark */;
-			667ED1310F5493E300BB83BE /* PBXTextBookmark */ = 667ED1310F5493E300BB83BE /* PBXTextBookmark */;
-			667ED13B0F5494BB00BB83BE /* PBXTextBookmark */ = 667ED13B0F5494BB00BB83BE /* PBXTextBookmark */;
-			667ED1F90F54CB8900BB83BE /* PBXTextBookmark */ = 667ED1F90F54CB8900BB83BE /* PBXTextBookmark */;
-			667ED1FA0F54CB8900BB83BE /* PBXTextBookmark */ = 667ED1FA0F54CB8900BB83BE /* PBXTextBookmark */;
-			667ED1FB0F54CB8900BB83BE /* PBXTextBookmark */ = 667ED1FB0F54CB8900BB83BE /* PBXTextBookmark */;
-			667ED1FC0F54CB8900BB83BE /* PBXTextBookmark */ = 667ED1FC0F54CB8900BB83BE /* PBXTextBookmark */;
-			667ED1FD0F54CB8900BB83BE /* PBXTextBookmark */ = 667ED1FD0F54CB8900BB83BE /* PBXTextBookmark */;
-			667ED1FE0F54CB8900BB83BE /* PBXTextBookmark */ = 667ED1FE0F54CB8900BB83BE /* PBXTextBookmark */;
-			667ED1FF0F54CB8900BB83BE /* PBXTextBookmark */ = 667ED1FF0F54CB8900BB83BE /* PBXTextBookmark */;
-			667ED2000F54CB8900BB83BE /* PBXTextBookmark */ = 667ED2000F54CB8900BB83BE /* PBXTextBookmark */;
-			667ED2010F54CB8900BB83BE /* PBXTextBookmark */ = 667ED2010F54CB8900BB83BE /* PBXTextBookmark */;
-			667ED2060F54CC6B00BB83BE /* PBXTextBookmark */ = 667ED2060F54CC6B00BB83BE /* PBXTextBookmark */;
-			667ED2070F54CC6B00BB83BE /* PBXTextBookmark */ = 667ED2070F54CC6B00BB83BE /* PBXTextBookmark */;
-			667ED2080F54CC6B00BB83BE /* PBXTextBookmark */ = 667ED2080F54CC6B00BB83BE /* PBXTextBookmark */;
-			667ED2090F54CC6B00BB83BE /* PBXTextBookmark */ = 667ED2090F54CC6B00BB83BE /* PBXTextBookmark */;
-			667ED20A0F54CC6B00BB83BE /* PBXTextBookmark */ = 667ED20A0F54CC6B00BB83BE /* PBXTextBookmark */;
-			667ED20B0F54CC6B00BB83BE /* PBXTextBookmark */ = 667ED20B0F54CC6B00BB83BE /* PBXTextBookmark */;
-			667ED20C0F54CC6B00BB83BE /* PBXTextBookmark */ = 667ED20C0F54CC6B00BB83BE /* PBXTextBookmark */;
-			667ED2110F54CEDD00BB83BE /* PBXTextBookmark */ = 667ED2110F54CEDD00BB83BE /* PBXTextBookmark */;
-			667ED2130F54D48A00BB83BE /* PBXTextBookmark */ = 667ED2130F54D48A00BB83BE /* PBXTextBookmark */;
-			667ED2160F54E34600BB83BE /* PBXTextBookmark */ = 667ED2160F54E34600BB83BE /* PBXTextBookmark */;
-			667ED2170F54E34600BB83BE /* PBXTextBookmark */ = 667ED2170F54E34600BB83BE /* PBXTextBookmark */;
-			667ED2180F54E34600BB83BE /* PBXTextBookmark */ = 667ED2180F54E34600BB83BE /* PBXTextBookmark */;
-			667ED2190F54E34600BB83BE /* PBXTextBookmark */ = 667ED2190F54E34600BB83BE /* PBXTextBookmark */;
-			667ED21B0F54E39000BB83BE /* PBXTextBookmark */ = 667ED21B0F54E39000BB83BE /* PBXTextBookmark */;
-			667ED21C0F54E39000BB83BE /* PBXTextBookmark */ = 667ED21C0F54E39000BB83BE /* PBXTextBookmark */;
-			667ED21D0F54E39000BB83BE /* PBXTextBookmark */ = 667ED21D0F54E39000BB83BE /* PBXTextBookmark */;
-			667ED21E0F54E39000BB83BE /* PBXTextBookmark */ = 667ED21E0F54E39000BB83BE /* PBXTextBookmark */;
-			667ED21F0F54E39000BB83BE /* PBXTextBookmark */ = 667ED21F0F54E39000BB83BE /* PBXTextBookmark */;
-			667ED2200F54E39000BB83BE /* PBXTextBookmark */ = 667ED2200F54E39000BB83BE /* PBXTextBookmark */;
-			667ED2210F54E39000BB83BE /* PBXTextBookmark */ = 667ED2210F54E39000BB83BE /* PBXTextBookmark */;
-			667ED2220F54E39000BB83BE /* PBXTextBookmark */ = 667ED2220F54E39000BB83BE /* PBXTextBookmark */;
-			667ED2230F54E39000BB83BE /* PBXTextBookmark */ = 667ED2230F54E39000BB83BE /* PBXTextBookmark */;
-			667ED2240F54E39000BB83BE /* PBXTextBookmark */ = 667ED2240F54E39000BB83BE /* PBXTextBookmark */;
-			667ED2250F54E39000BB83BE /* PBXTextBookmark */ = 667ED2250F54E39000BB83BE /* PBXTextBookmark */;
-			667ED2260F54E39000BB83BE /* PBXTextBookmark */ = 667ED2260F54E39000BB83BE /* PBXTextBookmark */;
-			667ED2270F54E39000BB83BE /* PBXTextBookmark */ = 667ED2270F54E39000BB83BE /* PBXTextBookmark */;
-			667ED2280F54E39000BB83BE /* PBXTextBookmark */ = 667ED2280F54E39000BB83BE /* PBXTextBookmark */;
-			667ED2290F54E39000BB83BE /* PBXTextBookmark */ = 667ED2290F54E39000BB83BE /* PBXTextBookmark */;
-			667ED22A0F54E39000BB83BE /* PBXTextBookmark */ = 667ED22A0F54E39000BB83BE /* PBXTextBookmark */;
-			667ED22B0F54E39000BB83BE /* PBXTextBookmark */ = 667ED22B0F54E39000BB83BE /* PBXTextBookmark */;
-			667ED22C0F54E39000BB83BE /* PBXTextBookmark */ = 667ED22C0F54E39000BB83BE /* PBXTextBookmark */;
-			667ED22F0F54EA2C00BB83BE /* PBXTextBookmark */ = 667ED22F0F54EA2C00BB83BE /* PBXTextBookmark */;
-			667ED2320F54EAE700BB83BE /* PBXTextBookmark */ = 667ED2320F54EAE700BB83BE /* PBXTextBookmark */;
-			667ED2370F54EFBB00BB83BE /* PBXTextBookmark */ = 667ED2370F54EFBB00BB83BE /* PBXTextBookmark */;
-			667ED23C0F54F2C200BB83BE /* PBXTextBookmark */ = 667ED23C0F54F2C200BB83BE /* PBXTextBookmark */;
-			667ED23D0F54F55300BB83BE /* PBXTextBookmark */ = 667ED23D0F54F55300BB83BE /* PBXTextBookmark */;
-			667ED23F0F54F9E400BB83BE /* PBXTextBookmark */ = 667ED23F0F54F9E400BB83BE /* PBXTextBookmark */;
-			667ED2400F54F9E400BB83BE /* PBXTextBookmark */ = 667ED2400F54F9E400BB83BE /* PBXTextBookmark */;
-			667ED2410F54F9E400BB83BE /* PBXTextBookmark */ = 667ED2410F54F9E400BB83BE /* PBXTextBookmark */;
-			667ED2420F54F9E400BB83BE /* PBXTextBookmark */ = 667ED2420F54F9E400BB83BE /* PBXTextBookmark */;
-			667ED2430F54F9E400BB83BE /* PBXTextBookmark */ = 667ED2430F54F9E400BB83BE /* PBXTextBookmark */;
-			667ED2440F54F9E400BB83BE /* PBXTextBookmark */ = 667ED2440F54F9E400BB83BE /* PBXTextBookmark */;
-			667ED2450F54F9E400BB83BE /* PBXTextBookmark */ = 667ED2450F54F9E400BB83BE /* PBXTextBookmark */;
-			667ED2470F54FB1800BB83BE /* PBXTextBookmark */ = 667ED2470F54FB1800BB83BE /* PBXTextBookmark */;
-			667ED2480F563BDB00BB83BE /* PBXTextBookmark */ = 667ED2480F563BDB00BB83BE /* PBXTextBookmark */;
-			667ED2490F563BDB00BB83BE /* PBXTextBookmark */ = 667ED2490F563BDB00BB83BE /* PBXTextBookmark */;
-			667ED24A0F563BDB00BB83BE /* PBXTextBookmark */ = 667ED24A0F563BDB00BB83BE /* PBXTextBookmark */;
-			667ED24B0F563BDB00BB83BE /* PBXTextBookmark */ = 667ED24B0F563BDB00BB83BE /* PBXTextBookmark */;
-			667ED24C0F563BDB00BB83BE /* PBXTextBookmark */ = 667ED24C0F563BDB00BB83BE /* PBXTextBookmark */;
-			667ED24D0F563BDB00BB83BE /* PBXTextBookmark */ = 667ED24D0F563BDB00BB83BE /* PBXTextBookmark */;
-			667ED24E0F563BDB00BB83BE /* PBXTextBookmark */ = 667ED24E0F563BDB00BB83BE /* PBXTextBookmark */;
-			667ED2530F563D1400BB83BE /* PBXTextBookmark */ = 667ED2530F563D1400BB83BE /* PBXTextBookmark */;
-			667ED2550F563DE600BB83BE /* PBXTextBookmark */ = 667ED2550F563DE600BB83BE /* PBXTextBookmark */;
-			667ED2570F56FF3400BB83BE /* PBXTextBookmark */ = 667ED2570F56FF3400BB83BE /* PBXTextBookmark */;
+			667ED1230F5493E300BB83BE = 667ED1230F5493E300BB83BE /* PBXTextBookmark */;
+			667ED1260F5493E300BB83BE = 667ED1260F5493E300BB83BE /* PBXTextBookmark */;
+			667ED1270F5493E300BB83BE = 667ED1270F5493E300BB83BE /* PBXTextBookmark */;
+			667ED1280F5493E300BB83BE = 667ED1280F5493E300BB83BE /* PBXTextBookmark */;
+			667ED1290F5493E300BB83BE = 667ED1290F5493E300BB83BE /* PBXTextBookmark */;
+			667ED12A0F5493E300BB83BE = 667ED12A0F5493E300BB83BE /* PBXTextBookmark */;
+			667ED12B0F5493E300BB83BE = 667ED12B0F5493E300BB83BE /* PBXTextBookmark */;
+			667ED12C0F5493E300BB83BE = 667ED12C0F5493E300BB83BE /* PBXTextBookmark */;
+			667ED12D0F5493E300BB83BE = 667ED12D0F5493E300BB83BE /* PBXTextBookmark */;
+			667ED12E0F5493E300BB83BE = 667ED12E0F5493E300BB83BE /* PBXTextBookmark */;
+			667ED12F0F5493E300BB83BE = 667ED12F0F5493E300BB83BE /* PBXTextBookmark */;
+			667ED1300F5493E300BB83BE = 667ED1300F5493E300BB83BE /* PBXTextBookmark */;
+			667ED1FC0F54CB8900BB83BE = 667ED1FC0F54CB8900BB83BE /* PBXTextBookmark */;
+			667ED1FD0F54CB8900BB83BE = 667ED1FD0F54CB8900BB83BE /* PBXTextBookmark */;
+			667ED1FE0F54CB8900BB83BE = 667ED1FE0F54CB8900BB83BE /* PBXTextBookmark */;
+			667ED1FF0F54CB8900BB83BE = 667ED1FF0F54CB8900BB83BE /* PBXTextBookmark */;
+			667ED2000F54CB8900BB83BE = 667ED2000F54CB8900BB83BE /* PBXTextBookmark */;
+			667ED2080F54CC6B00BB83BE = 667ED2080F54CC6B00BB83BE /* PBXTextBookmark */;
+			667ED2090F54CC6B00BB83BE = 667ED2090F54CC6B00BB83BE /* PBXTextBookmark */;
+			667ED20A0F54CC6B00BB83BE = 667ED20A0F54CC6B00BB83BE /* PBXTextBookmark */;
+			667ED20B0F54CC6B00BB83BE = 667ED20B0F54CC6B00BB83BE /* PBXTextBookmark */;
+			667ED21C0F54E39000BB83BE = 667ED21C0F54E39000BB83BE /* PBXTextBookmark */;
+			667ED21D0F54E39000BB83BE = 667ED21D0F54E39000BB83BE /* PBXTextBookmark */;
+			667ED21F0F54E39000BB83BE = 667ED21F0F54E39000BB83BE /* PBXTextBookmark */;
+			667ED2200F54E39000BB83BE = 667ED2200F54E39000BB83BE /* PBXTextBookmark */;
+			667ED2210F54E39000BB83BE = 667ED2210F54E39000BB83BE /* PBXTextBookmark */;
+			667ED2220F54E39000BB83BE = 667ED2220F54E39000BB83BE /* PBXTextBookmark */;
+			667ED2230F54E39000BB83BE = 667ED2230F54E39000BB83BE /* PBXTextBookmark */;
+			667ED2240F54E39000BB83BE = 667ED2240F54E39000BB83BE /* PBXTextBookmark */;
+			667ED2250F54E39000BB83BE = 667ED2250F54E39000BB83BE /* PBXTextBookmark */;
+			667ED2260F54E39000BB83BE = 667ED2260F54E39000BB83BE /* PBXTextBookmark */;
+			667ED2270F54E39000BB83BE = 667ED2270F54E39000BB83BE /* PBXTextBookmark */;
+			667ED2280F54E39000BB83BE = 667ED2280F54E39000BB83BE /* PBXTextBookmark */;
+			667ED2290F54E39000BB83BE = 667ED2290F54E39000BB83BE /* PBXTextBookmark */;
+			667ED22A0F54E39000BB83BE = 667ED22A0F54E39000BB83BE /* PBXTextBookmark */;
+			667ED22B0F54E39000BB83BE = 667ED22B0F54E39000BB83BE /* PBXTextBookmark */;
+			667ED2410F54F9E400BB83BE = 667ED2410F54F9E400BB83BE /* PBXTextBookmark */;
+			667ED2420F54F9E400BB83BE = 667ED2420F54F9E400BB83BE /* PBXTextBookmark */;
+			667ED2430F54F9E400BB83BE = 667ED2430F54F9E400BB83BE /* PBXTextBookmark */;
+			667ED2440F54F9E400BB83BE = 667ED2440F54F9E400BB83BE /* PBXTextBookmark */;
+			667ED2480F563BDB00BB83BE = 667ED2480F563BDB00BB83BE /* PBXTextBookmark */;
+			667ED2490F563BDB00BB83BE = 667ED2490F563BDB00BB83BE /* PBXTextBookmark */;
+			667ED24A0F563BDB00BB83BE = 667ED24A0F563BDB00BB83BE /* PBXTextBookmark */;
+			667ED24B0F563BDB00BB83BE = 667ED24B0F563BDB00BB83BE /* PBXTextBookmark */;
+			667ED24C0F563BDB00BB83BE = 667ED24C0F563BDB00BB83BE /* PBXTextBookmark */;
+			667ED24D0F563BDB00BB83BE = 667ED24D0F563BDB00BB83BE /* PBXTextBookmark */;
+			667ED25A0F57067500BB83BE = 667ED25A0F57067500BB83BE /* PBXTextBookmark */;
 		};
 		sourceControlManager = 6622AFF60F4CE1A8005456C9 /* Source Control */;
 		userBuildSettings = {
@@ -224,36 +159,6 @@
 		vrLen = 1251;
 		vrLoc = 253;
 	};
-	667ED0800F5274B600BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 736";
-		rLen = 10;
-		rLoc = 23489;
-		rType = 0;
-		vrLen = 1171;
-		vrLoc = 22936;
-	};
-	667ED0810F5274B600BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */;
-		name = "AppleACPIBatteryDevice.h: 134";
-		rLen = 0;
-		rLoc = 4190;
-		rType = 0;
-		vrLen = 805;
-		vrLoc = 3680;
-	};
-	667ED08B0F52EB6600BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 837";
-		rLen = 0;
-		rLoc = 27565;
-		rType = 0;
-		vrLen = 1277;
-		vrLoc = 26583;
-	};
 	667ED08C0F52EB6600BB83BE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1A224C3EFF42367911CA2CB7 /* AppleACPIBatteryManager.h */;
@@ -274,26 +179,6 @@
 		vrLen = 1222;
 		vrLoc = 3532;
 	};
-	667ED08E0F52EB6600BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A224C3EFF42367911CA2CB7 /* AppleACPIBatteryManager.h */;
-		name = "AppleACPIBatteryManager.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 766;
-		vrLoc = 1252;
-	};
-	667ED08F0F52EB6600BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A224C3FFF42367911CA2CB7 /* AppleACPIBatteryManager.cpp */;
-		name = "AppleACPIBatteryManager.cpp: 38";
-		rLen = 0;
-		rLoc = 1321;
-		rType = 0;
-		vrLen = 1220;
-		vrLoc = 3532;
-	};
 	667ED0940F52EF1C00BB83BE /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
@@ -305,56 +190,6 @@
 		rLen = 0;
 		rLoc = 2147483647;
 	};
-	667ED0970F52EF1C00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 739";
-		rLen = 0;
-		rLoc = 23673;
-		rType = 0;
-		vrLen = 1233;
-		vrLoc = 26709;
-	};
-	667ED0980F52EF1C00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A224C3FFF42367911CA2CB7 /* AppleACPIBatteryManager.cpp */;
-		name = "AppleACPIBatteryManager.cpp: 61";
-		rLen = 5;
-		rLoc = 1906;
-		rType = 0;
-		vrLen = 1028;
-		vrLoc = 1494;
-	};
-	667ED0990F52EF1C00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A224C3EFF42367911CA2CB7 /* AppleACPIBatteryManager.h */;
-		name = "AppleACPIBatteryManager.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 766;
-		vrLoc = 1252;
-	};
-	667ED09A0F52EF1C00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A224C3FFF42367911CA2CB7 /* AppleACPIBatteryManager.cpp */;
-		name = "AppleACPIBatteryManager.cpp: 61";
-		rLen = 5;
-		rLoc = 1906;
-		rType = 0;
-		vrLen = 872;
-		vrLoc = 941;
-	};
-	667ED09B0F52EF1C00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 745";
-		rLen = 14;
-		rLoc = 24259;
-		rType = 0;
-		vrLen = 918;
-		vrLoc = 4964;
-	};
 	667ED09C0F52EF1C00BB83BE /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
@@ -365,56 +200,6 @@
 		name = "/Users/moomeklort/mydellmini/Kext Sources/AppleACPIBatteryManager/Info.plist";
 		rLen = 0;
 		rLoc = 2147483647;
-	};
-	667ED09D0F52EF1C00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 367";
-		rLen = 10;
-		rLoc = 12305;
-		rType = 0;
-		vrLen = 1146;
-		vrLoc = 11520;
-	};
-	667ED09E0F52EF1C00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */;
-		name = "AppleACPIBatteryDevice.h: 134";
-		rLen = 0;
-		rLoc = 4190;
-		rType = 0;
-		vrLen = 779;
-		vrLoc = 3680;
-	};
-	667ED0B70F533B2200BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */;
-		name = "AppleACPIBatteryDevice.h: 36";
-		rLen = 0;
-		rLoc = 1327;
-		rType = 0;
-		vrLen = 964;
-		vrLoc = 945;
-	};
-	667ED0B90F533B2200BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 841";
-		rLen = 0;
-		rLoc = 27598;
-		rType = 0;
-		vrLen = 1217;
-		vrLoc = 26928;
-	};
-	667ED0BA0F533B2200BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */;
-		name = "AppleACPIBatteryDevice.h: 36";
-		rLen = 0;
-		rLoc = 1327;
-		rType = 0;
-		vrLen = 964;
-		vrLoc = 945;
 	};
 	667ED0CC0F53D40D00BB83BE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -535,26 +320,6 @@
 		path = "/Users/moomeklort/Downloads/IOACPIFamily-5/IOACPITypes.h";
 		sourceTree = "<absolute>";
 	};
-	667ED0DA0F53D40D00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A224C3EFF42367911CA2CB7 /* AppleACPIBatteryManager.h */;
-		name = "AppleACPIBatteryManager.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 766;
-		vrLoc = 1252;
-	};
-	667ED0DB0F53D40D00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A224C3FFF42367911CA2CB7 /* AppleACPIBatteryManager.cpp */;
-		name = "AppleACPIBatteryManager.cpp: 231";
-		rLen = 14;
-		rLoc = 7184;
-		rType = 0;
-		vrLen = 965;
-		vrLoc = 6505;
-	};
 	667ED0DC0F53D40D00BB83BE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 667ED0DD0F53D40D00BB83BE /* IOACPIPlatformDevice.cpp */;
@@ -571,16 +336,6 @@
 		name = IOACPIPlatformDevice.cpp;
 		path = "/Users/moomeklort/Downloads/IOACPIFamily-5/IOACPIPlatformDevice.cpp";
 		sourceTree = "<absolute>";
-	};
-	667ED0DF0F53D40D00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 863";
-		rLen = 0;
-		rLoc = 28466;
-		rType = 0;
-		vrLen = 1349;
-		vrLoc = 26428;
 	};
 	667ED0E00F53D40D00BB83BE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -633,36 +388,6 @@
 		path = "/Users/moomeklort/Downloads/tpb-0.6.4/src/cfg.c";
 		sourceTree = "<absolute>";
 	};
-	667ED0E60F53D40D00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 863";
-		rLen = 0;
-		rLoc = 28466;
-		rType = 0;
-		vrLen = 1349;
-		vrLoc = 26428;
-	};
-	667ED0E70F53D40D00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A224C3EFF42367911CA2CB7 /* AppleACPIBatteryManager.h */;
-		name = "AppleACPIBatteryManager.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 766;
-		vrLoc = 1252;
-	};
-	667ED0E80F53D40D00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A224C3FFF42367911CA2CB7 /* AppleACPIBatteryManager.cpp */;
-		name = "AppleACPIBatteryManager.cpp: 50";
-		rLen = 20;
-		rLoc = 1702;
-		rType = 0;
-		vrLen = 997;
-		vrLoc = 1160;
-	};
 	667ED0E90F53D40D00BB83BE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 667ED0EA0F53D40D00BB83BE /* IOACPIPlatformDevice.cpp */;
@@ -696,16 +421,6 @@
 		name = IOACPIPlatformExpert.cpp;
 		path = "/Users/moomeklort/Downloads/IOACPIFamily-5/IOACPIPlatformExpert.cpp";
 		sourceTree = "<absolute>";
-	};
-	667ED0ED0F53D40D00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 64";
-		rLen = 3;
-		rLoc = 2179;
-		rType = 0;
-		vrLen = 1536;
-		vrLoc = 3053;
 	};
 	667ED0EE0F53D40D00BB83BE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -758,80 +473,6 @@
 		path = "/Users/moomeklort/Downloads/IOACPIFamily-5/IOACPITypes.h";
 		sourceTree = "<absolute>";
 	};
-	667ED0F40F53D40D00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 667ED0F50F53D40D00BB83BE /* IOACPIPlatformDevice.cpp */;
-		name = "IOACPIPlatformDevice.cpp: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1310;
-		vrLoc = 11115;
-	};
-	667ED0F50F53D40D00BB83BE /* IOACPIPlatformDevice.cpp */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.cpp.cpp;
-		name = IOACPIPlatformDevice.cpp;
-		path = "/Users/moomeklort/Downloads/IOACPIFamily-5/IOACPIPlatformDevice.cpp";
-		sourceTree = "<absolute>";
-	};
-	667ED0F60F53D40D00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 64";
-		rLen = 3;
-		rLoc = 2179;
-		rType = 0;
-		vrLen = 1528;
-		vrLoc = 3053;
-	};
-	667ED0F70F53D40D00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A224C3EFF42367911CA2CB7 /* AppleACPIBatteryManager.h */;
-		name = "AppleACPIBatteryManager.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 766;
-		vrLoc = 1252;
-	};
-	667ED0F80F53D40D00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A224C3FFF42367911CA2CB7 /* AppleACPIBatteryManager.cpp */;
-		name = "AppleACPIBatteryManager.cpp: 231";
-		rLen = 14;
-		rLoc = 7184;
-		rType = 0;
-		vrLen = 965;
-		vrLoc = 6505;
-	};
-	667ED0F90F53D40D00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 667ED0FA0F53D40D00BB83BE /* IOACPIPlatformDevice.cpp */;
-		name = "IOACPIPlatformDevice.cpp: 286";
-		rLen = 0;
-		rLoc = 9768;
-		rType = 0;
-		vrLen = 1682;
-		vrLoc = 9038;
-	};
-	667ED0FA0F53D40D00BB83BE /* IOACPIPlatformDevice.cpp */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.cpp.cpp;
-		name = IOACPIPlatformDevice.cpp;
-		path = "/Users/moomeklort/Downloads/IOACPIFamily-5/IOACPIPlatformDevice.cpp";
-		sourceTree = "<absolute>";
-	};
-	667ED1000F545A3C00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 206";
-		rLen = 35;
-		rLoc = 7380;
-		rType = 0;
-		vrLen = 1300;
-		vrLoc = 27038;
-	};
 	667ED1010F545A3C00BB83BE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 667ED1020F545A3C00BB83BE /* battery.c */;
@@ -848,30 +489,6 @@
 		name = battery.c;
 		path = "/Users/moomeklort/Downloads/linux-2.6.9/drivers/acpi/battery.c";
 		sourceTree = "<absolute>";
-	};
-	667ED1030F545A3C00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 667ED1040F545A3C00BB83BE /* button.c */;
-		rLen = 0;
-		rLoc = 2147483647;
-		rType = 0;
-	};
-	667ED1040F545A3C00BB83BE /* button.c */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.c;
-		name = button.c;
-		path = "/Users/moomeklort/Downloads/linux-2.6.28.7/drivers/acpi/button.c";
-		sourceTree = "<absolute>";
-	};
-	667ED1050F545A3C00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 206";
-		rLen = 35;
-		rLoc = 7380;
-		rType = 0;
-		vrLen = 1300;
-		vrLoc = 27038;
 	};
 	667ED1060F545A3C00BB83BE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -890,45 +507,12 @@
 		path = "/Users/moomeklort/Downloads/linux-2.6.9/drivers/acpi/battery.c";
 		sourceTree = "<absolute>";
 	};
-	667ED1080F545A3C00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 667ED1090F545A3C00BB83BE /* button.c */;
-		name = "button.c: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1039;
-		vrLoc = 2319;
-	};
 	667ED1090F545A3C00BB83BE /* button.c */ = {
 		isa = PBXFileReference;
 		lastKnownFileType = sourcecode.c.c;
 		name = button.c;
 		path = "/Users/moomeklort/Downloads/linux-2.6.28.7/drivers/acpi/button.c";
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {958, 7490}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{11407, 1271}";
-		};
-	};
-	667ED1200F5493E000BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "error: 'time' was not declared in this scope";
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		rLen = 0;
-		rLoc = 835;
-		rType = 1;
-	};
-	667ED1210F5493E000BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 840";
-		rLen = 0;
-		rLoc = 27346;
-		rType = 0;
-		vrLen = 484;
-		vrLoc = 27167;
 	};
 	667ED1230F5493E300BB83BE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -939,26 +523,6 @@
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 11407;
-	};
-	667ED1240F5493E300BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A224C3FFF42367911CA2CB7 /* AppleACPIBatteryManager.cpp */;
-		name = "AppleACPIBatteryManager.cpp: 231";
-		rLen = 14;
-		rLoc = 7184;
-		rType = 0;
-		vrLen = 1018;
-		vrLoc = 6450;
-	};
-	667ED1250F5493E300BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */;
-		name = "AppleACPIBatteryDevice.h: 138";
-		rLen = 15;
-		rLoc = 4282;
-		rType = 0;
-		vrLen = 683;
-		vrLoc = 4347;
 	};
 	667ED1260F5493E300BB83BE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1070,56 +634,6 @@
 		vrLen = 683;
 		vrLoc = 4347;
 	};
-	667ED1310F5493E300BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 840";
-		rLen = 0;
-		rLoc = 27346;
-		rType = 0;
-		vrLen = 1156;
-		vrLoc = 26819;
-	};
-	667ED13B0F5494BB00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 859";
-		rLen = 0;
-		rLoc = 28172;
-		rType = 0;
-		vrLen = 1385;
-		vrLoc = 27099;
-	};
-	667ED1F90F54CB8900BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A224C3FFF42367911CA2CB7 /* AppleACPIBatteryManager.cpp */;
-		name = "AppleACPIBatteryManager.cpp: 231";
-		rLen = 14;
-		rLoc = 7184;
-		rType = 0;
-		vrLen = 1046;
-		vrLoc = 5813;
-	};
-	667ED1FA0F54CB8900BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */;
-		name = "AppleACPIBatteryDevice.h: 150";
-		rLen = 0;
-		rLoc = 4519;
-		rType = 0;
-		vrLen = 734;
-		vrLoc = 4299;
-	};
-	667ED1FB0F54CB8900BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 839";
-		rLen = 0;
-		rLoc = 27346;
-		rType = 0;
-		vrLen = 1109;
-		vrLoc = 27099;
-	};
 	667ED1FC0F54CB8900BB83BE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
@@ -1170,36 +684,6 @@
 		vrLen = 734;
 		vrLoc = 4299;
 	};
-	667ED2010F54CB8900BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 836";
-		rLen = 0;
-		rLoc = 27346;
-		rType = 0;
-		vrLen = 1105;
-		vrLoc = 27066;
-	};
-	667ED2060F54CC6B00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */;
-		name = "AppleACPIBatteryDevice.h: 150";
-		rLen = 0;
-		rLoc = 4514;
-		rType = 0;
-		vrLen = 673;
-		vrLoc = 4067;
-	};
-	667ED2070F54CC6B00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 852";
-		rLen = 0;
-		rLoc = 27895;
-		rType = 0;
-		vrLen = 1279;
-		vrLoc = 26985;
-	};
 	667ED2080F54CC6B00BB83BE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
@@ -1240,84 +724,6 @@
 		vrLen = 673;
 		vrLoc = 4067;
 	};
-	667ED20C0F54CC6B00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 852";
-		rLen = 0;
-		rLoc = 27895;
-		rType = 0;
-		vrLen = 1405;
-		vrLoc = 26951;
-	};
-	667ED2110F54CEDD00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 853";
-		rLen = 0;
-		rLoc = 27895;
-		rType = 0;
-		vrLen = 1481;
-		vrLoc = 27226;
-	};
-	667ED2130F54D48A00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 44";
-		rLen = 0;
-		rLoc = 1419;
-		rType = 0;
-		vrLen = 1044;
-		vrLoc = 1056;
-	};
-	667ED2160F54E34600BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 838";
-		rLen = 0;
-		rLoc = 27346;
-		rType = 0;
-		vrLen = 718;
-		vrLoc = 27169;
-	};
-	667ED2170F54E34600BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "error: ISO C++ forbids initialization of member 'fCurentCapacity'";
-		fRef = A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */;
-		rLen = 1;
-		rLoc = 137;
-		rType = 1;
-	};
-	667ED2180F54E34600BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 838";
-		rLen = 0;
-		rLoc = 27346;
-		rType = 0;
-		vrLen = 718;
-		vrLoc = 27169;
-	};
-	667ED2190F54E34600BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */;
-		name = "AppleACPIBatteryDevice.h: 138";
-		rLen = 27;
-		rLoc = 4272;
-		rType = 0;
-		vrLen = 323;
-		vrLoc = 4072;
-	};
-	667ED21B0F54E39000BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A224C3FFF42367911CA2CB7 /* AppleACPIBatteryManager.cpp */;
-		name = "AppleACPIBatteryManager.cpp: 231";
-		rLen = 14;
-		rLoc = 7184;
-		rType = 0;
-		vrLen = 1044;
-		vrLoc = 5815;
-	};
 	667ED21C0F54E39000BB83BE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1A224C3EFF42367911CA2CB7 /* AppleACPIBatteryManager.h */;
@@ -1337,16 +743,6 @@
 		rType = 0;
 		vrLen = 673;
 		vrLoc = 4067;
-	};
-	667ED21E0F54E39000BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 182";
-		rLen = 0;
-		rLoc = 6358;
-		rType = 0;
-		vrLen = 1289;
-		vrLoc = 5706;
 	};
 	667ED21F0F54E39000BB83BE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1478,86 +874,6 @@
 		vrLen = 673;
 		vrLoc = 4067;
 	};
-	667ED22C0F54E39000BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 183";
-		rLen = 0;
-		rLoc = 6358;
-		rType = 0;
-		vrLen = 1312;
-		vrLoc = 5706;
-	};
-	667ED22F0F54EA2C00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 854";
-		rLen = 0;
-		rLoc = 27895;
-		rType = 0;
-		vrLen = 1377;
-		vrLoc = 27108;
-	};
-	667ED2320F54EAE700BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 858";
-		rLen = 0;
-		rLoc = 27895;
-		rType = 0;
-		vrLen = 1475;
-		vrLoc = 27273;
-	};
-	667ED2370F54EFBB00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 843";
-		rLen = 0;
-		rLoc = 27853;
-		rType = 0;
-		vrLen = 1290;
-		vrLoc = 26712;
-	};
-	667ED23C0F54F2C200BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 846";
-		rLen = 0;
-		rLoc = 27853;
-		rType = 0;
-		vrLen = 1270;
-		vrLoc = 27213;
-	};
-	667ED23D0F54F55300BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 840";
-		rLen = 0;
-		rLoc = 27721;
-		rType = 0;
-		vrLen = 1280;
-		vrLoc = 27039;
-	};
-	667ED23F0F54F9E400BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A224C3FFF42367911CA2CB7 /* AppleACPIBatteryManager.cpp */;
-		name = "AppleACPIBatteryManager.cpp: 203";
-		rLen = 3;
-		rLoc = 6362;
-		rType = 0;
-		vrLen = 1046;
-		vrLoc = 5813;
-	};
-	667ED2400F54F9E400BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 697";
-		rLen = 0;
-		rLoc = 22327;
-		rType = 0;
-		vrLen = 996;
-		vrLoc = 21309;
-	};
 	667ED2410F54F9E400BB83BE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
@@ -1597,26 +913,6 @@
 		rType = 0;
 		vrLen = 1046;
 		vrLoc = 5813;
-	};
-	667ED2450F54F9E400BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 849";
-		rLen = 0;
-		rLoc = 27853;
-		rType = 0;
-		vrLen = 1281;
-		vrLoc = 27044;
-	};
-	667ED2470F54FB1800BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 848";
-		rLen = 0;
-		rLoc = 27853;
-		rType = 0;
-		vrLen = 1106;
-		vrLoc = 27683;
 	};
 	667ED2480F563BDB00BB83BE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1678,58 +974,28 @@
 		vrLen = 863;
 		vrLoc = 1813;
 	};
-	667ED24E0F563BDB00BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 851";
-		rLen = 0;
-		rLoc = 27899;
-		rType = 0;
-		vrLen = 898;
-		vrLoc = 29520;
-	};
-	667ED2530F563D1400BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 778";
-		rLen = 0;
-		rLoc = 25494;
-		rType = 0;
-		vrLen = 1458;
-		vrLoc = 23838;
-	};
-	667ED2550F563DE600BB83BE /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
-		name = "AppleACPIBatteryDevice.cpp: 1006";
-		rLen = 0;
-		rLoc = 32201;
-		rType = 0;
-		vrLen = 1165;
-		vrLoc = 26353;
-	};
-	667ED2570F56FF3400BB83BE /* PBXTextBookmark */ = {
+	667ED25A0F57067500BB83BE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 927";
 		rLen = 0;
 		rLoc = 30190;
 		rType = 0;
-		vrLen = 917;
-		vrLoc = 29248;
+		vrLen = 1245;
+		vrLoc = 27264;
 	};
 	A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1050, 14686}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1050, 14784}}";
 			sepNavSelRange = "{30190, 0}";
-			sepNavVisRange = "{29248, 917}";
+			sepNavVisRange = "{27264, 1245}";
 		};
 	};
 	A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {958, 2534}}";
-			sepNavSelRange = "{4282, 15}";
-			sepNavVisRange = "{4067, 673}";
+			sepNavIntBoundsRect = "{{0, 0}, {439, 2604}}";
+			sepNavSelRange = "{4297, 0}";
+			sepNavVisRange = "{4114, 321}";
 		};
 	};
 }

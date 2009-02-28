@@ -848,6 +848,9 @@ IOReturn AppleACPIBatteryDevice::setBatteryBST(OSArray *acpibat_bst)
 
 	
 	// TODO: Verify that this is needed
+	if(!fCurrentRate)
+		fCurrentRate = (fDesignCapacity - fCurentCapacity + 1) / 20;		// Random guess on charge rate THIS IS WRONG
+	
 	
 	if (fAverageRate) {
 		fAverageRate = (fAverageRate + fCurrentRate) / 2;
