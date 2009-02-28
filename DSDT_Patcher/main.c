@@ -59,7 +59,7 @@ void flagCheck(int argc, const char *argv[]) {
 			if (!strcmp(argv[i], "-d")) debug=1;			// checks for debug flag
 			else if (!strcmp(argv[i], "-f")) forceBuild=1;	// checks for force build flag
 			else if (!strcmp(argv[i], "-newHPET")) writeFixedHPET=1;
-			else if (!strcmp(argv[i], "-mini9")) fixmini9=1;
+			else if (!strcmp(argv[i], "-notmini9")) fixmini9=1;
 			else {											// checks for an other dsdt.dsl to patch
 				sprintf(origDSDTPath, "%s", argv[i]);
 				otherDSDTFileGiven=1;
