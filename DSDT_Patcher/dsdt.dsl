@@ -5107,7 +5107,7 @@ DefinitionBlock ("/dsdt.aml", "DSDT", 1, "INTEL ", "CALISTGA", 0x06040000)
                         }
                         Else // do nothing (testing...) we may want to check if charging before we set to zero though
                         {
-                            Store (Zero, Local1)
+                            //Store (Zero, Local1)
                         }
                         Store (Local1, Index (PBST, 0x01))
                         
