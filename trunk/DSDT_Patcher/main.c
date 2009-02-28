@@ -16,9 +16,12 @@ char origDSDTPath[50] = "./dsdt.dsl", patchedDSDTPath[] ="./dsdt_fixed.txt";
 // THis is the HPET device we write if no HPET device is found
 char fixedHPET[]	= "		Device (HPET)\n                {\n                    Name (_HID, EisaId (\"PNP0103\"))\n                    Name (ATT3, ResourceTemplate ()\n                    {\n                        IRQNoFlags ()\n                            {0}\n                        IRQNoFlags ()\n                            {8}\n                        Memory32Fixed (ReadWrite,\n                            0xFED00000,         // Address Base\n                            0x00000400,         // Address Length\n                            )\n                    })\n                    Name (ATT4, ResourceTemplate ()\n                    {\n                    })\n                    Method (_STA, 0, NotSerialized)\n                    {\n                        Return (0x0F)\n                    }\n                    Method (_CRS, 0, NotSerialized)\n                    {\n                        Return (ATT3)\n                    }\n                }\n";
 char fixedBAT[]		= "                Device (BAT1)\n{\nName (_HID, EisaId (\"PNP0C0A\"))\nName (_UID, One)\nName (_PCL, Package (0x01)\n{\n_SB\n\n})\nMethod (_STA, 0, NotSerialized)\n{\nIf (LAnd (ECOK (), LEqual (ECDY, Zero)))\n{\nIf (^^EC0.BAL0)\n{\nSleep (0x14)\nReturn (0x1F)\n}\nElse\n{\nSleep (0x14)\nReturn (0x0F)\n}\n}\nElse\n{\nSleep (0x14)\nReturn (0x1F)\n}\n}\nMethod (_BIF, 0, NotSerialized)\n{\nName (STAT, Package (0x0D)\n{\nOne, 		// Power UNit (0 = mWh, 1 = mAh)			Not read anywhere, we decide which to do (os x wants mAh)\nZero,	 	// Design Capacity				   			EC0.BDC0 (batt provides in mWh)\nZero,	 	// Last full capacity						EC0.BFC0 (batt provides in mWh)\nOne, 		// Battery technology (1 = rechargeable) 	EC0.BTY0 \nZero,	 	// Battery Voltage				 			EC0.BDV0\n0x01A4, 	// Design capacity of warning	UNKNOWN, these are from before I edited (aka, whatever the bios people had it at)\n0x9C, 		// Design capacity of low		UNKNOWN\n0x0108, 	// Granuility 1					UNKNOWN\n0x0EC4, 	// ‘		‘ 2					UNKNOWN	\n\"W953G\", 	// Model Number					UNKNOWN\n\"\", 		// Serial Number							EC0.BSN0\n\"Lion\", 	// Battery Type					UNKNOWN		(Mini 9 uses Lion batteries, so default works)\n\"Unknown\"	// OEM, read from 							EC0.BMF0\n})\n\n// We decide the power unit, in our case (OS X) we shall use mAh\n//Sleep (0x14)\n//Store (One, Index (STAT, 0x00))	// Power Unit = BFC1\n\n// The Design capacity goes here\nSleep (0x14)\nStore (^^EC0.BDC0, Local1)	// Batter design capacity = BDC0 in mWh\nSleep (0x14)\nStore (^^EC0.BFC0, Local2)	// Last full charce = BFC0 in mWh\nSleep (0x14)\n\n// Battery type, should be one for rechargeable\nStore (^^EC0.BTY0, Index (STAT, 0x03))\nSleep (0x14)\n\n// Get the voltag\n//Store (^^EC0.BDV0, Index (STAT, 0x04))	// Voltage\n//Sleep (0x14)\n\nStore (^^EC0.BDV0, Local4) // Design voltage\nSleep (0x14)\n\n\n// Now that we know the design voltage, let calculate the design capacity in mAh\nStore (Divide(Multiply(Local1, 0x2710), Local4), Index (STAT, 0x01))\n\n// And the Last full capacity im mAh\nStore (Divide(Multiply(Local2, 0x2710), Local4), Index (STAT, 0x02))\n\n//Store the voltage so we can tell the os what it is...\nStore (Local4, Index (STAT, 0x04))\n\n\nStore (Local4, Index (STAT, 0x01))	// Stored Design voltage (Probably used to calculate if battery is good or not\nStore (^^EC0.BTW0, Index (STAT, 0x01))	// BAT in BDV = BDC1\nSleep (0x14)\n\n//Store (^^EC0.BDC0, Index (STAT, 0x05))	// Warning = BFC1\n//Sleep (0x14)                        \n//Store (^^EC0.BDC0, Index (STAT, 0x06))	// Low (Critical) ?Warning = BFC1\n//Sleep (0x14)\n//Store (^^EC0.BDC0, Index (STAT, 0x07))	//  Capacity Granularity 1\n//Sleep (0x14)\n//Store (^^EC0.BDC0, Index (STAT, 0x08))	//  Capacity Granularity 2\n//Sleep (0x14)\n//Store (^^EC0.BDC0, Index (STAT, 0x09))	// Model Number\n//Sleep (0x14)\n\nStore (^^EC0.BSN0, Index (STAT, 0x0A))	// Serial number\nSleep (0x14)\nStore (^^EC0.BTY0, Index (STAT, 0x0B))	// Battery Type\nSleep (0x14)\nStore (^^EC0.BMF0, Local1)				// oem\n\nSleep (0x14)\n\n\n\nIf (LEqual (Local1, One))\n\n{\n\nStore (\"Sanyo\", Index (STAT, 0x0C))\n\n}\nElse\n{\nIf (LEqual (Local1, 0x02))\n{\nStore (\"Sony\", Index (STAT, 0x0C))\n}\nElse\n{\nIf (LEqual (Local1, 0x04))\n{\nStore (\"Panasonic\", Index (STAT, 0x0C))\n}\nElse\n{\nIf (LEqual (Local1, 0x05))\n{\nStore (\"Samsung\", Index (STAT, 0x0C))\n}\nElse\n{\nIf (LEqual (Local1, 0x07))	// According to dell, my battery is form Dynapack\n{\nStore (\"Dynapack\", Index (STAT, 0x0C))\n}\nElse\n{\nStore (\"Compal\", Index (STAT, 0x0C))\n}\n}\n}\n}\n}\n\nIf (ECOK ())\n{\n//Getting the model number???\nStore (^^EC0.BDN0, Local0)\nIf (LEqual (BRAD, One))\n{\nIf (LEqual (Local0, 0x02))\n{\nStore (\"PA3421U \", Index (STAT, 0x09))\n}\n\nIf (LEqual (Local0, 0x08))\n{\nStore (\"PA3395U \", Index (STAT, 0x09))\n}\n}\nElse\n{\nIf (LEqual (Local0, 0x02))\n{\nStore (\"PA3421U \", Index (STAT, 0x09))\n}\n\nIf (LEqual (Local0, 0x08))\n{\nStore (\"PA3395U \", Index (STAT, 0x09))\n}\n}\n}\nElse\n{\nStore (\"Li-Ion\", Index (STAT, 0x0B))\n}\n\nReturn (STAT)\n}\n\nMethod (_BST, 0, NotSerialized)\n{\nName (PBST, Package (0x04)\n{\nZero, 	// State, EC.BST0\nZero, 	// Discharge Rate\nZero, 	// Current Capacity (remaining)\nZero	// Current Voltage\n})\n\nSleep (0x14)\nStore (^^EC0.BST0, Index (PBST, 0x00))	// Battery State\nSleep (0x14)\n\n//Store (^^EC0.BAC0, Local1)	// Present Rate, Average\nStore (^^EC0.BPC0, Local1)					// Instant\nSleep (0x14)\n\nIf (And (Local1, 0x8000, Local1))\n{\nSleep (0x14)\nStore (^^EC0.BPC0, Local1)\nSleep (0x14)\nSubtract (0xFFFF, Local1, Local1)\n}\nElse // do nothing (testing...) we may want to check if charging before we set to zero though\n{\n//Store (Zero, Local1)\n}\nStore (Local1, Index (PBST, 0x01))\n\n\nSleep (0x14)\nStore (^^EC0.BRC0, Local2) //Index (PBST, 0x02))	// Remaining Capacity\nSleep (0x14)\n\nStore (^^EC0.BPV0, Local3) //Index (PBST, 0x03))	// Present Voltage\nSleep (0x14)\nStore (^^EC0.BDV0, Local4) 	// Design Voltage, used to convert mWh to mAh\nSleep (0x14)\n\n// Convert to mAh\n\nStore (Divide(Multiply(Local2, 0x2710), Local4), Index (PBST, 0x02))\nStore (Local3, Index (PBST, 0x03))\n\n\nIf (LGreater (ECDY, Zero))\n{\nDecrement (ECDY)\nIf (LEqual (ECDY, Zero))\n{\nNotify (BAT1, 0x81)			// Notify OSPM of status change\n}\n}\n\nReturn (PBST)\n}\n}";
+//char fixedfn8[]		= "		Method (_Q1C, 0, NotSerialized)\n			{\n			}\n";
+char fixedfn8[]		= "\n";		// Replace the fn-8 button with nothing...
+
+
 // These are the IRQ's that are required in HPET
 char HPETIRQ[]		= "                        IRQNoFlags ()\n                            {0}\n                        IRQNoFlags ()\n                            {8}\n";
-
 // File pointers
 FILE *origDSDT, *patchedDSDT;
 
@@ -27,6 +30,7 @@ int HPETDeviceFound=0;
 int RTCDeviceFound=0;
 int RTCIRQFound=0;
 int BATDeviceFound=0;
+int fn8DeviceFound=0;
 
 // Device Strings
 char RTCDevice[] = "Device (RTC";				// RTC device
@@ -34,6 +38,7 @@ char RTCDevice2[] = "PNP0B00";					// RTC device
 char HPETDevice[] = "Device (HPET";				// HPET device
 char HPETDevice2[] = "PNP0103";					// HPET device
 char BAT1Device[] = "Device (BAT1";				// Battery device
+char FN8Device[] = "Method (_Q1C";				// Method tha thandels the FN-8 button press
 
 char IRQ[] = "IRQNoFlags ()";					// needed for RTC fix
 char RESOURCETEMP[] = "ResourceTemplate ()";	// search for this entry when we dont find "human" device name like HPET but PNP0103
@@ -101,8 +106,8 @@ int main (int argc, const char * argv[]) {
 	
 	// Patching the RTC here
 	if(!patchRTC()) goto errorRTC;						// Patch the RTC and save to rtc_fixed.txt
-	if(!patchBAT()) goto errorBAT;				// Patch various issues and save to bat_fixed.txt
-
+	if(!patchBAT()) goto errorBAT;						// Patch bettery issues and save to bat_fixed.txt
+	if(!patchFN8()) goto errorFN8;						// Dissable fn-8
 	// Patching the HPET here
 	if(!patchHPET()) goto errorHPET;					// Patch the HPET and save to hpet_fixed.txt
 	
@@ -123,7 +128,7 @@ int main (int argc, const char * argv[]) {
 	// Clean up & make a tar for debug
 	system("rm dsdt_fixed.hex && rm dsdt.dat");			
 	system("mkdir ./Debug");
-	system("mv ./rtc_fixed.txt ./Debug && mv ./bat_fixed.txt ./Debug && mv ./hpet_fixed.txt ./Debug && mv ./dsdt_fixed.txt ./Debug && mv ./dsdt.dsl ./Debug");
+	system("mv ./rtc_fixed.txt ./Debug && mv ./bat_fixed.txt ./Debug && mv ./fn8_fixed.txt ./Debug && mv ./hpet_fixed.txt ./Debug && mv ./dsdt_fixed.txt ./Debug && mv ./dsdt.dsl ./Debug");
 	system("tar -czf ./Debug/$USER.tar ./Debug/*");
 	return 0;
 	
@@ -135,6 +140,10 @@ int main (int argc, const char * argv[]) {
 	errorBAT:
 	printf("There were errors pacthing the Battery\n\n");
 	return 0;
+
+	errorFN8:
+	printf("There were errors pacthing out the fn-8 button\n\n");
+	return 0;	
 	
 	// HPET patching failed
 	errorHPET:
@@ -213,6 +222,21 @@ int foundBATDevice (char *s) {
 	}*/
 	return 0;
 }						// Found teh battery
+
+
+int foundFn8Device (char *s) {
+	if (cmpStr(s, FN8Device)) {								// compare to "Device (BAT"
+		fn8DeviceFound=1;
+		printf("FN-8 Method found : %s",s);
+		return 1;
+	} /*else if (cmpStr(s, RTCDevice2) && !BATDeviceFound) {	// compare to "PNP0B00"
+	 BATDeviceFound=1;
+	 printf("Battery found : %s",s);
+	 open++;								// if we found this it means there is already an open { so we need to increment it, otherwise the routine wouldnt find the Battery device end
+	 return 1;
+	 }*/
+	return 0;
+}	
 
 int foundHPETDevice (char *s) {
 	if (cmpStr(s, HPETDevice)) {							// compare to "Device (HPET"
@@ -334,10 +358,61 @@ int patchBAT() {
 	return 1;
 }
 
-
-int patchHPET() {
+int patchFN8() {
+	//if(!fixmini9) return 1;	// Dont fix for mini 9
 	if ((origDSDT=fopen("./bat_fixed.txt","r"))==NULL) {
 		printf("Could not open file ./bat_fixed.txt\n\n");
+		return 0;
+	}							// Open Files
+	if ((patchedDSDT=fopen("./fn8_fixed.txt","w"))==NULL) {
+		printf("Could not create file ./fn8_fixed.txt\n\n");
+		return 0;
+	}					// Open Files
+	
+	open = 0;				// count of open {
+	int start = 0;
+	
+	printf("Patching out Fn8...\n\n");
+	currLine=0;
+	
+	// Patching the RTC -> removing IRQ
+	while(!feof(origDSDT)) {
+		if(fgets(s,126,origDSDT)) {
+			currLine++;	
+			// Write as is until we reach the RTC Device
+			if (foundFn8Device(s)) {
+				// We reached to RTC Device, search for IRQ now
+				//fprintf(patchedDSDT,s);		// Write the Device line
+				
+				start++;
+				
+				while(start) {			// Read untill teh end of the BAT1 sections and replace it with our new one
+					fgets(s,126,origDSDT);	// Get a new Line
+					if (cmpStr(s,"{")) open++;		// If its a { we increment open
+					if (cmpStr(s,"}")) open--;	// If its a } we decrement open
+					if(open == 0) {				// If there are no more open { we reached the Device RTC end -> break
+						printf("Removing FN8 method\n\n");
+						fprintf(patchedDSDT, fixedfn8);
+						// Read the next line so that the next fprintf doesnt write something twice
+						fgets(s,126,origDSDT);	// Get a new Line
+						start--;
+					}
+					//if(open!=0) fprintf(patchedDSDT,s);	// While we havent reached the Device RTC end we write the lines to the patched dsdt
+				}
+				
+			}
+			fprintf(patchedDSDT,s);			// Write the rest as it is to the patched DSDT
+		}
+	}
+	closeFiles();
+	
+	return 1;
+}
+
+
+int patchHPET() {
+	if ((origDSDT=fopen("./fn8_fixed.txt","r"))==NULL) {
+		printf("Could not open file ./fn8_fixed.txt\n\n");
 		return 0;
 	}				// Open Files
 	if ((patchedDSDT=fopen("./hpet_fixed.txt","w"))==NULL) {
