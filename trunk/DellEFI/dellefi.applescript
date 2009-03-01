@@ -9,7 +9,8 @@ property RemoteCDP : false
 property HibernationP : false
 property FingerP : false
 property dsdtP : false
-property dellefiver : "1.07.1"
+property dellefiver : "1.1b1"
+property needUpdate : false
 
 on awake from nib theObject
 	
@@ -22,6 +23,8 @@ on awake from nib theObject
 		end tell
 		set visible to true
 	end tell
+	
+	set contents of text field "verlb" of window "DellEFI Installer" to "v" & dellefiver
 	
 	try
 		set OSVer to do shell script "sw_vers | grep 'ProductVersion:' | awk '{print $2}'"
@@ -81,6 +84,8 @@ on awake from nib theObject
 			tell button "oldgmacb" of box "optionspanel" of window "DellEFI Installer"
 				set enabled to false
 			end tell
+		else
+			set needUpdate to true
 		end if
 	end if
 	
@@ -163,6 +168,7 @@ on awake from nib theObject
 end awake from nib
 
 on clicked theObject
+	
 	tell progress indicator "progress" of window "DellEFI Installer"
 		set uses threaded animation to true
 		set visible to true
@@ -287,12 +293,61 @@ on clicked theObject
 			end try
 			try
 				do shell script "mkdir /Extra > /dev/null &" with administrator privileges
-				do shell script "mkdir /Extra/Extensions1" with administrator privileges
+				do shell script "mkdir /Extra/Mini9Ext" with administrator privileges
 			end try
 			do shell script "cp -R " & workingDir & "/UpdateExtra.app /Extra" with administrator privileges
-			do shell script "cp -R " & workingDir & "/Extensions/*.kext /Extra/Extensions1" with administrator privileges
-			do shell script "cp " & workingDir & "/bin/rmdellefi /usr/bin" with administrator privileges
-			do shell script "chmod -R 755 /usr/bin/rmdellefi" with administrator privileges
+			
+			do shell script "cp " & workingDir & "/bin/binmay /usr/bin" with administrator privileges
+			do shell script "chmod -R 755 /usr/bin/binmay" with administrator privileges
+			
+			-- Patch AppleIntelGMA950.kext
+			do shell script "cp -R /System/Library/Extensions/AppleIntelGMA950.kext /Extra/Mini9Ext/" with administrator privileges
+			do shell script "/usr/bin/binmay -i /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/MacOS/AppleIntelGMA950 -o /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/MacOS/AppleIntelGMA950.hex -s 8680A227 -r 8680AE27" with administrator privileges
+			do shell script "mv /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/MacOS/AppleIntelGMA950.hex /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/MacOS/AppleIntelGMA950" with administrator privileges
+			do shell script "/usr/bin/perl -pe \"s/27A28086/27AE8086/g\" /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/Info.plist > /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/Info.plist.new" with administrator privileges
+			do shell script "mv /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/Info.plist.new /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/Info.plist" with administrator privileges
+			
+			-- Patch AppleIntelIntegratedFramebuffer.kext
+			do shell script "cp -R /System/Library/Extensions/AppleIntelIntegratedFramebuffer.kext /Extra/Mini9Ext/" with administrator privileges
+			do shell script "/usr/bin/binmay -i /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/AppleIntelIntegratedFramebuffer -o /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/AppleIntelIntegratedFramebuffer.hex -s 8680A227 -r 8680AE27" with administrator privileges
+			do shell script "mv /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/AppleIntelIntegratedFramebuffer.hex /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/AppleIntelIntegratedFramebuffer" with administrator privileges
+			do shell script "/usr/bin/perl -pe \"s/27A28086/27AE8086/g\" /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/Info.plist > /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/Info.plist.new" with administrator privileges
+			do shell script "mv /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/Info.plist.new /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/Info.plist" with administrator privileges
+			
+			-- Copy IONetworkingFamily.kext
+			do shell script "cp -R /System/Library/Extensions/IONetworkingFamily.kext /Extra/Mini9Ext/" with administrator privileges
+			
+			-- Copy IONDRVSupport.kext
+			do shell script "cp -R /System/Library/Extensions/IONDRVSupport.kext /Extra/Mini9Ext/" with administrator privileges
+			
+			-- Copy IOGraphicsFamily.kext
+			do shell script "cp -R /System/Library/Extensions/IOGraphicsFamily.kext /Extra/Mini9Ext/" with administrator privileges
+			
+			-- Patch IO80211Family.kext
+			
+			do shell script "cp -R /System/Library/Extensions/IO80211Family.kext /Extra/Mini9Ext/" with administrator privileges
+			do shell script "cat /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist|grep -B 100 \"<array>\" > /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new" with administrator privileges
+			do shell script "echo \"				<string>pci14e4,4306</string>\" >> /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new" with administrator privileges
+			do shell script "echo \"				<string>pci14e4,4309</string>\" >> /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new" with administrator privileges
+			do shell script "echo \"				<string>pci14e4,4328</string>\" >> /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new" with administrator privileges
+			do shell script "echo \"				<string>pci14e4,4329</string>\" >> /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new" with administrator privileges
+			do shell script "echo \"				<string>pci14e4,432a</string>\" >> /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new" with administrator privileges
+			do shell script "echo \"				<string>pci14e4,4311</string>\" >> /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new" with administrator privileges
+			do shell script "echo \"				<string>pci14e4,4312</string>\" >> /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new" with administrator privileges
+			do shell script "echo \"				<string>pci14e4,4313</string>\" >> /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new" with administrator privileges
+			do shell script "echo \"				<string>pci14e4,4318</string>\" >> /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new" with administrator privileges
+			do shell script "echo \"				<string>pci14e4,4319</string>\" >> /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new" with administrator privileges
+			do shell script "echo \"				<string>pci14e4,431a</string>\" >> /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new" with administrator privileges
+			do shell script "echo \"				<string>pci14e4,4320</string>\" >> /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new" with administrator privileges
+			do shell script "echo \"				<string>pci14e4,4324</string>\" >> /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new" with administrator privileges
+			do shell script "echo \"				<string>pci14e4,4315</string>\" >> /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new" with administrator privileges
+			do shell script "cat /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist|grep -A 100 \"</array>\" >> /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new" with administrator privileges
+			do shell script "mv /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist" with administrator privileges
+			
+			-- Copy other required opensource kext
+			do shell script "cp -R " & workingDir & "/Extensions/*.kext /Extra/Mini9Ext" with administrator privileges
+			-- do shell script "cp " & workingDir & "/bin/rmdellefi /usr/bin" with administrator privileges
+			-- do shell script "chmod -R 755 /usr/bin/rmdellefi" with administrator privileges
 			
 			try
 				--restore old GMA drivers with functional mirror mode
@@ -300,15 +355,9 @@ on clicked theObject
 					set contents of text field "currentop" of window "DellEFI Installer" to "Installing old GMA kext"
 					delay 1
 					try
-						do shell script "rm -r /Extra/Extensions1/AppleIntelGMA950.kext" with administrator privileges
+						do shell script "rm -r /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext" with administrator privileges
 					end try
-					try
-						do shell script "rm -r /Extra/Extensions1/AppleIntelIntegratedFramebuffer.kext" with administrator privileges
-					end try
-					try
-						do shell script "rm -r /Extra/Extensions1/Natit.kext" with administrator privileges
-					end try
-					do shell script "cp -R " & workingDir & "/oldgma/*.kext /Extra/Extensions1" with administrator privileges
+					do shell script "cp -R " & workingDir & "/oldgma/*.kext /Extra/Mini9Ext" with administrator privileges
 				end if
 			on error errMsg number errorNumber
 				display dialog "Could not install old GMA kext. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
@@ -319,9 +368,9 @@ on clicked theObject
 			
 			set contents of text field "currentop" of window "DellEFI Installer" to "Update Extra kext cache"
 			delay 1
-			do shell script "kextcache -a i386 -m /Extra/Extensions.mkext /Extra/Extensions1" with administrator privileges
+			do shell script "kextcache -a i386 -m /Extra/Extensions.mkext /Extra/Mini9Ext" with administrator privileges
 			
-			--clean up old audio installs
+			--clean up old audio installs just in case there are some bits left over
 			set contents of text field "currentop" of window "DellEFI Installer" to "Remove old audio files"
 			delay 1
 			do shell script "rm -r /System/Library/Extensions/ALCinject.kext > /dev/null &" with administrator privileges
@@ -331,17 +380,41 @@ on clicked theObject
 			delay 1
 			-- move items that need to be local for audio and battery, hopefully this goes away someday
 			do shell script "cp -R " & workingDir & "/LocalExtensions/*.kext /System/Library/Extensions > /dev/null &" with administrator privileges
-			do shell script "chown -R 0:0 /System/Library/Extensions" with administrator privileges
-			do shell script "chmod -R 755 /System/Library/Extensions" with administrator privileges
-			do shell script "cp -R " & workingDir & "/SystemConfiguration/*.bundle /System/Library/SystemConfiguration > /dev/null &" with administrator privileges
+			do shell script "chown -R 0:0 /System/Library/Extensions/AppleHDA.kext" with administrator privileges
+			do shell script "chmod -R 755 /System/Library/Extensions/AppleHDA.kext" with administrator privileges
+			do shell script "chown -R 0:0 /System/Library/Extensions/ClamshellDisplay.kext" with administrator privileges
+			do shell script "chmod -R 755 /System/Library/Extensions/ClamshellDisplay.kext" with administrator privileges
+			do shell script "chown -R 0:0 /System/Library/Extensions/IOAudioFamily.kext" with administrator privileges
+			do shell script "chmod -R 755 /System/Library/Extensions/IOAudioFamily.kext" with administrator privileges
 			-- remove mkext so it is rebuilt
 			do shell script "rm -r /System/Library/Extensions.mkext > /dev/null &" with administrator privileges
+			
+			do shell script "cp -R " & workingDir & "/SystemConfiguration/*.bundle /System/Library/SystemConfiguration > /dev/null &" with administrator privileges
 			
 			set contents of text field "currentop" of window "DellEFI Installer" to "Installing Mirroring application"
 			delay 1
 			try
 				do shell script "cp " & workingDir & "/bin/mirroring /usr/bin" with administrator privileges
 				do shell script "chmod -R 755 /usr/bin/mirroring" with administrator privileges
+			end try
+			
+			-- Install color profile
+			set contents of text field "currentop" of window "DellEFI Installer" to "Installing Color Profile"
+			delay 1
+			try
+				do shell script "cp " & workingDir & "/colorsync/* /Library/ColorSync/Profiles/" with administrator privileges
+			end try
+			
+			if needUpdate then
+				set contents of text field "currentop" of window "DellEFI Installer" to "Installing com.apple.Boot.plist"
+				delay 1
+				do shell script "cp " & workingDir & "/Boot/com.apple.Boot.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
+			end if
+			
+			-- Remove temporary binmay from system
+			
+			try
+				do shell script "rm /usr/bin/binmay" with administrator privileges
 			end try
 			
 			set needreboot to true
@@ -362,19 +435,22 @@ on clicked theObject
 			else
 				set contents of text field "currentop" of window "DellEFI Installer" to "Creating dsdt.aml file"
 				delay 1
-				try
-					do shell script "mkdir /.dellefi; touch /.dellefi/.donoterase" with administrator privileges
-				end try
 				
-				try
-					do shell script "cp -Rf " & workingDir & "/DSDTPatcher /.dellefi/" with administrator privileges
-				end try
-				do shell script "cd /.dellefi/DSDTPatcher; ./DSDTPatcher > /dev/null 2>&1 &" with administrator privileges
-				delay 6
-				
-				do shell script "cp /.dellefi/DSDTPatcher/dsdt.aml /dsdt.aml" with administrator privileges
+				makeDSDT()
 				
 				set needreboot to true
+			end if
+		else
+			-- Check if we are doing an update and if an existing dsdt exist.
+			if dsdtP then
+				if needUpdate then
+					set contents of text field "currentop" of window "DellEFI Installer" to "Updating dsdt.aml file"
+					delay 1
+					
+					makeDSDT()
+					
+					set needreboot to true
+				end if
 			end if
 		end if
 	on error errMsg number errorNumber
@@ -454,6 +530,15 @@ on clicked theObject
 				do shell script "chflags hidden /boot > /dev/null &" with administrator privileges
 				do shell script "chflags hidden /Extra > /dev/null &" with administrator privileges
 			end if
+		else
+			-- If user does not ask to hide or reveal files then check if files where hidden and then apply hiding again to hide updated files
+			if HideEFIP then
+				set contents of text field "currentop" of window "DellEFI Installer" to "Hiding updated DellEFI files"
+				delay 1
+				do shell script "chflags hidden /dsdt.aml > /dev/null &" with administrator privileges
+				do shell script "chflags hidden /boot > /dev/null &" with administrator privileges
+				do shell script "chflags hidden /Extra > /dev/null &" with administrator privileges
+			end if
 		end if
 	on error errMsg number errorNumber
 		display dialog "Could not perform DellEFI file hiding. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
@@ -468,10 +553,10 @@ on clicked theObject
 					do shell script "rm /.dellefi/.2finger" with administrator privileges
 				end try
 				try
-					do shell script "rm -r /Extra/Extensions1/ApplePS2Controller.kext" with administrator privileges
+					do shell script "rm -r /Extra/Mini9Ext/ApplePS2Controller.kext" with administrator privileges
 				end try
 				try
-					do shell script "cp -R " & workingDir & "/Extensions/ApplePS2Controller.kext /Extra/Extensions1" with administrator privileges
+					do shell script "cp -R " & workingDir & "/Extensions/ApplePS2Controller.kext /Extra/Mini9Ext" with administrator privileges
 				end try
 				try
 					do shell script "rm /usr/local/bin/FFScrollDaemon" with administrator privileges
@@ -495,8 +580,8 @@ on clicked theObject
 				
 				set contents of text field "currentop" of window "DellEFI Installer" to "Installing two finger scrolling"
 				delay 1
-				do shell script "cp -R " & workingDir & "/2FingerScroll/ApplePS2Controller.kext /Extra/Extensions1" with administrator privileges
-				do shell script "chown -R root:wheel /Extra/Extensions1/ApplePS2Controller.kext" with administrator privileges
+				do shell script "cp -R " & workingDir & "/2FingerScroll/ApplePS2Controller.kext /Extra/Mini9Ext" with administrator privileges
+				do shell script "chown -R root:wheel /Extra/Mini9Ext/ApplePS2Controller.kext" with administrator privileges
 				try
 					do shell script "mkdir -p /usr/local/bin > /dev/null &" with administrator privileges
 				end try
@@ -516,7 +601,7 @@ on clicked theObject
 			
 			set contents of text field "currentop" of window "DellEFI Installer" to "Update Extra kext cache"
 			delay 1
-			do shell script "kextcache -a i386 -m /Extra/Extensions.mkext /Extra/Extensions1" with administrator privileges
+			do shell script "kextcache -a i386 -m /Extra/Extensions.mkext /Extra/Mini9Ext" with administrator privileges
 		end if
 	on error errMsg number errorNumber
 		display dialog "Could not perform configuration of 2 finger scrolling. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
@@ -555,3 +640,19 @@ on clicked theObject
 		quit
 	end if
 end clicked
+
+on makeDSDT()
+	try
+		do shell script "mkdir /.dellefi; touch /.dellefi/.donoterase" with administrator privileges
+	end try
+	
+	try
+		do shell script "cp -Rf " & workingDir & "/DSDTPatcher /.dellefi/" with administrator privileges
+	end try
+	do shell script "cd /.dellefi/DSDTPatcher; ./DSDTPatcher > /dev/null 2>&1 &" with administrator privileges
+	delay 6
+	
+	do shell script "cp /.dellefi/DSDTPatcher/dsdt.aml /dsdt.aml" with administrator privileges
+	
+	set needreboot to true
+end makeDSDT
