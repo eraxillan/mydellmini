@@ -41,6 +41,7 @@
 		A153D9A80F314B8600AEA39E /* extbt.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = A153D9A60F314B8600AEA39E /* extbt.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		A153D9A90F314B8600AEA39E /* About.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = A153D9A70F314B8600AEA39E /* About.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		A153D9AB0F314B9D00AEA39E /* dellefi.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = A153D9AA0F314B9D00AEA39E /* dellefi.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		A17619E30F50E7010062FD99 /* colorsync in Resources */ = {isa = PBXBuildFile; fileRef = A17619E00F50E7010062FD99 /* colorsync */; };
 		A199B42D0F3A67A700BB581E /* 2FingerScroll in Resources */ = {isa = PBXBuildFile; fileRef = A199B4240F3A67A700BB581E /* 2FingerScroll */; };
 		A1B828450F3E675500DAFAC4 /* Extensions in Resources */ = {isa = PBXBuildFile; fileRef = A1B828440F3E675500DAFAC4 /* Extensions */; };
 		A1B82A0C0F406CF300DAFAC4 /* bin in Resources */ = {isa = PBXBuildFile; fileRef = A1B82A090F406CF300DAFAC4 /* bin */; };
@@ -86,6 +87,7 @@
 		A153D9A60F314B8600AEA39E /* extbt.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = extbt.applescript; sourceTree = "<group>"; };
 		A153D9A70F314B8600AEA39E /* About.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = About.applescript; sourceTree = "<group>"; };
 		A153D9AA0F314B9D00AEA39E /* dellefi.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = dellefi.applescript; sourceTree = "<group>"; };
+		A17619E00F50E7010062FD99 /* colorsync */ = {isa = PBXFileReference; lastKnownFileType = folder; path = colorsync; sourceTree = "<group>"; };
 		A199B4240F3A67A700BB581E /* 2FingerScroll */ = {isa = PBXFileReference; lastKnownFileType = folder; path = 2FingerScroll; sourceTree = "<group>"; };
 		A1B828440F3E675500DAFAC4 /* Extensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Extensions; sourceTree = "<group>"; };
 		A1B82A090F406CF300DAFAC4 /* bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bin; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A17619E00F50E7010062FD99 /* colorsync */,
 				A10152F20F476D0900E065AB /* oldgma */,
 				A1221FE80F43AD8100F06954 /* UpdateExtra.app */,
 				A1B82A090F406CF300DAFAC4 /* bin */,
@@ -273,6 +276,7 @@
 				A1B82A0C0F406CF300DAFAC4 /* bin in Resources */,
 				A1221FE90F43AD8100F06954 /* UpdateExtra.app in Resources */,
 				A10152F60F476D0900E065AB /* oldgma in Resources */,
+				A17619E30F50E7010062FD99 /* colorsync in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +369,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 			};
