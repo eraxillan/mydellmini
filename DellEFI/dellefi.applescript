@@ -9,8 +9,10 @@ property RemoteCDP : false
 property HibernationP : false
 property FingerP : false
 property dsdtP : false
-property dellefiver : "1.1b1"
+property dellefiver : "1.1b2"
 property needUpdate : false
+property needreboot : false
+property workingDir : "/"
 
 on awake from nib theObject
 	
@@ -263,6 +265,18 @@ on clicked theObject
 				delay 1
 				do shell script "cp " & workingDir & "/Boot/com.apple.Boot.Quiet.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
 			end if
+		else
+			if needUpdate then
+				if QuietBootP then
+					set contents of text field "currentop" of window "DellEFI Installer" to "Updating Quiet Boot"
+					delay 1
+					do shell script "cp " & workingDir & "/Boot/com.apple.Boot.Quiet.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
+				else
+					set contents of text field "currentop" of window "DellEFI Installer" to "Updating Boot"
+					delay 1
+					do shell script "cp " & workingDir & "/Boot/com.apple.Boot.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
+				end if
+			end if
 		end if
 	on error errMsg number errorNumber
 		display dialog "Could not disable quiet boot. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
@@ -404,12 +418,6 @@ on clicked theObject
 			try
 				do shell script "cp " & workingDir & "/colorsync/* /Library/ColorSync/Profiles/" with administrator privileges
 			end try
-			
-			if needUpdate then
-				set contents of text field "currentop" of window "DellEFI Installer" to "Installing com.apple.Boot.plist"
-				delay 1
-				do shell script "cp " & workingDir & "/Boot/com.apple.Boot.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
-			end if
 			
 			-- Remove temporary binmay from system
 			
@@ -647,8 +655,13 @@ on makeDSDT()
 	end try
 	
 	try
+		do shell script "rm -rf /.dellefi/DSDTPatcher" with administrator privileges
+	end try
+	
+	try
 		do shell script "cp -Rf " & workingDir & "/DSDTPatcher /.dellefi/" with administrator privileges
 	end try
+	
 	do shell script "cd /.dellefi/DSDTPatcher; ./DSDTPatcher > /dev/null 2>&1 &" with administrator privileges
 	delay 6
 	
