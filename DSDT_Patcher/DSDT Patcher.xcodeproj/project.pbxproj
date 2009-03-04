@@ -26,6 +26,8 @@
 
 /* Begin PBXFileReference section */
 		08FB7796FE84155DC02AAC07 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		6603C6740F5E489D00DDFBB6 /* patches */ = {isa = PBXFileReference; lastKnownFileType = folder; path = patches; sourceTree = "<group>"; };
+		6603C6780F5E48AA00DDFBB6 /* config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config; sourceTree = "<group>"; };
 		8DD76FB20486AB0100D96B5E /* DSDT Patcher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "DSDT Patcher"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6A0FF2C0290799A04C91782 /* DSDT Patcher.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = "DSDT Patcher.1"; sourceTree = "<group>"; };
 		F4B7CDCC0EBCEA140007EB30 /* Readme.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Readme.rtf; path = build/Release/Readme.rtf; sourceTree = "<group>"; };
@@ -56,6 +58,8 @@
 		08FB7795FE84155DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				6603C6780F5E48AA00DDFBB6 /* config */,
+				6603C6740F5E489D00DDFBB6 /* patches */,
 				08FB7796FE84155DC02AAC07 /* main.c */,
 			);
 			name = Source;
