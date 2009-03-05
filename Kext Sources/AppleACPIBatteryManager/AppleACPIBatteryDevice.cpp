@@ -94,6 +94,9 @@ static const OSSymbol *_ManufacturerDataSym =
 static const OSSymbol *_TypeSym = 
                         OSSymbol::withCString("Type");
 
+static const OSSymbol *_RawEBIF = 
+						OSSymbol::withCString("RawEBIF");
+
 /* _SerialNumberSym represents the manufacturer's 16-bit serial number in
     numeric format. 
  */
@@ -275,8 +278,9 @@ bool AppleACPIBatteryDevice::pollBatteryState(int path)
         fProvider->getBatterySTA();
 
         if (fBatteryPresent) {
-            fProvider->getBatteryBIF();
+			fProvider->getBatteryBIF();
 			fProvider->getBatteryBST();
+			//fProvider->getBatteryEBIF();
         } else {
             setFullyCharged(false);
             clearBatteryState(true);
@@ -405,6 +409,9 @@ void AppleACPIBatteryDevice::clearBatteryState(bool do_set)
     removeProperty(_TemperatureSym);
 	properties->removeObject(_SoftwareSerialSym);
     removeProperty(_SoftwareSerialSym);
+	// EBIF
+	properties->removeObject(_RawEBIF);
+	removeProperty(_RawEBIF);
 
     rebuildLegacyIOBatteryInfo();
 
@@ -732,8 +739,14 @@ IOReturn AppleACPIBatteryDevice::setBatterySTA(UInt32 acpibat_bif)
 
 IOReturn AppleACPIBatteryDevice::setBatteryBIF(OSArray *acpibat_bif)
 {
+	UInt32 cycleCount = 0;
+	
+	///setProperty("Test1", OSSymbol::withCString("Testing IOREG"));
 	fDesignVoltage = OSDynamicCast(OSNumber, acpibat_bif->getObject(4))->unsigned32BitValue();
 
+	cycleCount = OSDynamicCast(OSNumber, acpibat_bif->getObject(13))->unsigned32BitValue();
+	setCycleCount(cycleCount);
+	
 	
 	fPowerUnit = OSDynamicCast(OSNumber, acpibat_bif->getObject(0))->unsigned32BitValue();
 
@@ -815,6 +828,124 @@ IOReturn AppleACPIBatteryDevice::setBatteryBIF(OSArray *acpibat_bif)
 	return kIOReturnSuccess;
 }
 
+IOReturn AppleACPIBatteryDevice::setBatteryRAW(OSArray *acpibat_ebif) {
+	
+	properties->setObject(_RawEBIF, acpibat_ebif);
+	//setProperty(_RawEBIF, acpibat_ebif);
+	//setProperty("Test2", OSSymbol::withCString("Testing IOREG"));
+
+	//acpibat_ebif->release();
+	return kIOReturnSuccess;
+}
+
+/*
+Name (STAT, Package (0x0E)
+	  {
+	  One, 		// Power UNit (0 = mWh, 1 = mAh)			Not read anywhere, we decide which to do (os x wants mAh)
+	  Zero,	 	// Design Capacity				   			EC0.BDC0 (batt provides in mWh)
+	  Zero,	 	// Last full capacity						EC0.BFC0 (batt provides in mWh)
+	  One, 		// Battery technology (1 = rechargeable) 	EC0.BTY0 
+	  Zero,	 	// Battery Voltage				 			EC0.BDV0
+	  0x01A4, 	// Design capacity of warning				// We will make this 13% of total capacity
+	  0x9C, 		// Design capacity of low					// We will make this 6% of total capacity
+	  Zero,		// Cycle Count								EC0.CYC0
+	  0x0A, 		// Granuility 1								Unknown location to read from
+	  0x0A, 		// ‘		‘ 2								UNKNOWN	
+	  "W953G", 	// Model Number								UNKNOWN
+	  "", 		// Serial Number							EC0.BSN0
+	  "Lion", 	// Battery Type								(Mini 9 uses Lion batteries, so default works)
+	  "Unknown"	// OEM, read from 							EC0.BMF0, Default = unknown
+*/
+
+IOReturn AppleACPIBatteryDevice::setBatteryEBIF(OSArray *acpibat_bif)
+{
+	//IOLog("ACPI: Entering Battery information.\n");
+	UInt32 cycleCount = 0;
+	
+	fPowerUnit		= OSDynamicCast(OSNumber, acpibat_bif->getObject(0))->unsigned32BitValue();	// This is not handled
+	fDesignCapacity = OSDynamicCast(OSNumber, acpibat_bif->getObject(1))->unsigned32BitValue();
+	fMaxCapacity	= OSDynamicCast(OSNumber, acpibat_bif->getObject(2))->unsigned32BitValue();
+	// 3 - Technology, not used, rechargeable is assumned
+	fDesignVoltage	= OSDynamicCast(OSNumber, acpibat_bif->getObject(4))->unsigned32BitValue();
+	// 5 - Warning capacity
+	// 6 - Low warning capacity
+	cycleCount		= OSDynamicCast(OSNumber, acpibat_bif->getObject(7))->unsigned32BitValue();
+	// 8 - Granuility
+	// 9 - Granuility
+
+	setDesignCapacity(fDesignCapacity);
+	setMaxCapacity(fMaxCapacity);
+	setCycleCount(cycleCount);
+
+	
+	if ((fDesignCapacity == 0) || (fMaxCapacity == 0))  {
+		logReadError(kErrorZeroCapacity, 0, NULL);
+	}
+	
+    const OSMetaClass *typeID;
+    const OSSymbol *stringSym;
+    char stringBuf[255];
+	
+    typeID = OSTypeIDInst(acpibat_bif->getObject(10)); //FIXME: OSString or OSData ?
+	if (typeID == OSTypeID(OSString)) {
+		fDeviceName = (OSSymbol *)OSDynamicCast(OSString, acpibat_bif->getObject(10));
+	} else if (typeID == OSTypeID(OSData)) {
+		bzero(stringBuf, sizeof(stringBuf));
+		snprintf(stringBuf, sizeof(stringBuf), "%s", 
+				 OSDynamicCast(OSData, acpibat_bif->getObject(10))->getBytesNoCopy());
+		stringSym = OSSymbol::withCString(stringBuf);
+		fDeviceName = (OSSymbol *)stringSym;
+	}
+	setDeviceName(fDeviceName);
+	
+    typeID = OSTypeIDInst(acpibat_bif->getObject(11)); //FIXME: OSString or OSData ?
+	if (typeID == OSTypeID(OSString)) {
+		fSerial = (OSSymbol *)OSDynamicCast(OSString, acpibat_bif->getObject(11));
+	} else if (typeID == OSTypeID(OSData)) {
+		bzero(stringBuf, sizeof(stringBuf));
+		snprintf(stringBuf, sizeof(stringBuf), "%s", 
+				 OSDynamicCast(OSData, acpibat_bif->getObject(11))->getBytesNoCopy());
+		stringSym = OSSymbol::withCString(stringBuf);
+		fSerial = (OSSymbol *)stringSym;
+	}
+	setSerial(fSerial);
+	
+    typeID = OSTypeIDInst(acpibat_bif->getObject(11)); //FIXME: OSString or OSData ?
+	if (typeID == OSTypeID(OSString)) {
+		fType = (OSSymbol *)OSDynamicCast(OSString, acpibat_bif->getObject(12));
+	} else if (typeID == OSTypeID(OSData)) {
+		bzero(stringBuf, sizeof(stringBuf));
+		snprintf(stringBuf, sizeof(stringBuf), "%s", 
+				 OSDynamicCast(OSData, acpibat_bif->getObject(12))->getBytesNoCopy());
+		stringSym = OSSymbol::withCString(stringBuf);
+		fType = (OSSymbol *)stringSym;
+	}
+	setType(fType);
+	
+    typeID = OSTypeIDInst(acpibat_bif->getObject(13)); //FIXME: OSString or OSData ?
+	if (typeID == OSTypeID(OSString)) {
+		fManufacturer = (OSSymbol *)OSDynamicCast(OSString, acpibat_bif->getObject(13));
+	} else if (typeID == OSTypeID(OSData)) {
+		bzero(stringBuf, sizeof(stringBuf));
+		snprintf(stringBuf, sizeof(stringBuf), "%s", 
+				 OSDynamicCast(OSData, acpibat_bif->getObject(13))->getBytesNoCopy());
+		stringSym = OSSymbol::withCString(stringBuf);
+		fManufacturer = (OSSymbol *)stringSym;
+	}
+	setManufacturer(fManufacturer);
+	
+	if (stringSym) stringSym->release();
+	
+	setMaxErr(0);
+	setManufactureDate(0);
+	setSerialNumber(0);
+	
+	fManufacturerData = OSData::withCapacity(10);
+	setManufacturerData((uint8_t *)fManufacturerData, fManufacturerData->getLength());
+	
+	return kIOReturnSuccess;
+}
+
 /******************************************************************************
  * AppleACPIBatteryDevice::setBatteryBST
  *
@@ -831,8 +962,11 @@ IOReturn AppleACPIBatteryDevice::setBatteryBIF(OSArray *acpibat_bif)
  * }
  */
 
-IOReturn AppleACPIBatteryDevice::setBatteryBST(OSArray *acpibat_bst)
+IOReturn AppleACPIBatteryDevice::setBatteryEBST(OSArray *acpibat_bst)
 {
+	//IOLog("ACPI: Entering BST method: This should never happen...\n");
+	return kIOReturnSuccess;
+	
 	fCurrentVoltage = OSDynamicCast(OSNumber, acpibat_bst->getObject(3))->unsigned32BitValue();
 	setVoltage(fCurrentVoltage);
 
@@ -848,8 +982,8 @@ IOReturn AppleACPIBatteryDevice::setBatteryBST(OSArray *acpibat_bst)
 
 	
 	// TODO: Verify that this is needed
-	if(!fCurrentRate)
-		fCurrentRate = (fDesignCapacity - fCurentCapacity + 1) / 20;		// Random guess on charge rate THIS IS WRONG
+	//if(!fCurrentRate)
+	//	fCurrentRate = (fDesignCapacity - fCurentCapacity + 1) / 20;		// Random guess on charge rate THIS IS WRONG
 	
 	
 	if (fAverageRate) {
@@ -996,32 +1130,16 @@ IOReturn AppleACPIBatteryDevice::setBatteryBST(OSArray *acpibat_bst)
 			fPollingInterval = kDefaultPollInterval;
 		}
 	}
-#if 1
-	if (fDesignCapacity > fMaxCapacity) { // FIXME: Unknown denominator ?
-		setCycleCount((fDesignCapacity - fMaxCapacity) / 7);
-	} else {
-		setCycleCount((fMaxCapacity - fDesignCapacity) / 7);
-	}
-#endif
-    OSNumber *num;
+
+	
+	//setCycleCount(0);
+
+
 	fCellVoltages = OSArray::withCapacity(4); // FIXME: Assuming 3 cells ?
-
-	fCellVoltage1 = fCurrentVoltage / 4;
-    num = OSNumber::withNumber((unsigned long long)fCellVoltage1 , 16);
-    fCellVoltages->setObject(num);
-
-	fCellVoltage2 = fCurrentVoltage  /4;
-    num = OSNumber::withNumber((unsigned long long)fCellVoltage2 , 16);
-    fCellVoltages->setObject(num);
-
-	fCellVoltage3 = fCurrentVoltage / 4;
-    num = OSNumber::withNumber((unsigned long long)fCellVoltage3 , 16);
-    fCellVoltages->setObject(num);
-
-	fCellVoltage4 = fCurrentVoltage - fCellVoltage1 - fCellVoltage2 - fCellVoltage3;
-    num = OSNumber::withNumber((unsigned long long)fCellVoltage4 , 16);
-    fCellVoltages->setObject(num);
-
+    fCellVoltages->setObject(OSNumber::withNumber((unsigned long long) fCurrentVoltage / 4 , 16));
+	fCellVoltages->setObject(OSNumber::withNumber((unsigned long long) fCurrentVoltage / 4 , 16));
+    fCellVoltages->setObject(OSNumber::withNumber((unsigned long long) fCurrentVoltage / 4 , 16));
+	fCellVoltages->setObject(OSNumber::withNumber((unsigned long long) (fCurrentVoltage - (fCurrentVoltage * .75)) , 16));
 	setProperty("CellVoltage", fCellVoltages);
 
 	fTemperature = fCurrentVoltage / 4; // FIXME: Skipping Amperage variable ?
@@ -1039,3 +1157,199 @@ IOReturn AppleACPIBatteryDevice::setBatteryBST(OSArray *acpibat_bst)
 
 	return kIOReturnSuccess;
 }
+
+
+/* Copied from teh dsdt
+Name (PBST, Package (0x04)
+{
+	Zero,	// Batery State
+	Zero,	// Discharge / Charge Rate
+	Zero,	// Int Charge (aka Remaining)
+	Zero, 	// Inst Voltage
+}
+ */	  
+
+IOReturn AppleACPIBatteryDevice::setBatteryBST(OSArray *acpibat_bst)
+{
+	IOLog("ACPI: Entering batery status method.\n");
+	UInt32 value	= OSDynamicCast(OSNumber, acpibat_bst->getObject(0))->unsigned32BitValue();
+	fCurrentRate	= OSDynamicCast(OSNumber, acpibat_bst->getObject(1))->unsigned32BitValue();
+	fCurentCapacity = OSDynamicCast(OSNumber, acpibat_bst->getObject(2))->unsigned32BitValue();
+	fCurrentVoltage = OSDynamicCast(OSNumber, acpibat_bst->getObject(3))->unsigned32BitValue();
+	
+	setVoltage(fCurrentVoltage);
+	setCurrentCapacity(fCurentCapacity);
+	
+	
+	
+	// TODO: take into account the power unit.
+	//if(fPowerUnit == POWER_WATT_UNIT) fCurentCapacity = (fCurentCapacity * 10000) / fCurrentVoltage;					// OS X Wants mAh, not mWh, convert it, TODO, create 
+	
+	//if((value & 0x02) && (value && 0x01)) {
+		// The batteyr is charging AND discharging AKA: its fully charged
+		
+	
+	if (value ^ fStatus) { // If the state has changed, reset the discharge rate
+		fStatus = value;
+		fAverageRate = 0;
+		fCurrentRate = 0;
+	}
+	
+	
+	if ((value & 0x01) && (value & 0x02)) {
+		fCurrentRate = 0;
+		const OSSymbol *permanentFailureSym = OSSymbol::withCString(kErrorPermanentFailure);
+		logReadError( kErrorPermanentFailure, 0, NULL);
+		setErrorCondition( (OSSymbol *)permanentFailureSym );
+		permanentFailureSym->release();
+		
+		/* We want to display the battery as present & completely discharged, not charging */
+		setFullyCharged(false);
+		setIsCharging(false);
+		
+		setExternalConnected(fACConnected = true);
+		setExternalChargeCapable(fACChargeCapable = false);
+		
+		setAmperage(0);
+		setInstantAmperage(0);
+		
+		setTimeRemaining(0);
+		setAverageTimeToEmpty(0);
+		setAverageTimeToFull(0);
+		setInstantaneousTimeToFull(0);
+		setInstantaneousTimeToEmpty(0);
+	} else if(value & 0x1) {
+		// The battery is discharging
+		if(fCurrentRate & 0x8000) fCurrentRate = 0xFFFF - fCurrentRate;
+		//else fCurrentRate = 0;
+		
+		setFullyCharged(false);
+		setIsCharging(false);
+		
+		setExternalConnected(fACConnected = false);
+		setExternalChargeCapable(fACChargeCapable = false);
+		
+		setAmperage(fCurrentRate * -1);
+		setInstantAmperage(fCurrentRate * -1);
+		
+		if (fCurrentRate) {
+			setTimeRemaining((60 * fCurentCapacity) / fCurrentRate);
+			setAverageTimeToEmpty((60 * fCurentCapacity) / fCurrentRate);
+			setInstantaneousTimeToEmpty((60 * fCurentCapacity) / fCurrentRate);
+
+		} else {
+			setTimeRemaining(0xffff);
+			setAverageTimeToEmpty(0xffff);
+			setInstantaneousTimeToEmpty(0xffff);
+		}
+
+		setAverageTimeToFull(0xffff);
+		setInstantaneousTimeToFull(0xffff);
+		
+	} else if(value & 0x2) {
+		// The battery is charging
+		//fCurrentRate = fCurrentRate;
+		
+		// We may need to defive fCurrentRate by some number (aka, voltage or somethign)
+		
+		setFullyCharged(false);
+		setIsCharging(true);
+		
+		setExternalConnected(fACConnected = true);
+		setExternalChargeCapable(fACChargeCapable = true);
+		
+		setAmperage(fCurrentRate);
+		setInstantAmperage(fCurrentRate);
+		
+		if (fCurrentRate) {
+			//setTimeRemaining((fCurrentRate - 0x280));
+			//setAverageTimeToFull((fCurrentRate - 0x280));
+			//setInstantaneousTimeToFull((fCurrentRate - 0x280));
+			setTimeRemaining(fCurrentRate);
+			setAverageTimeToFull(fCurrentRate);
+			setInstantaneousTimeToFull(fCurrentRate);
+		} else {
+			setTimeRemaining(0xffff);
+			setAverageTimeToFull(0xffff);
+			setInstantaneousTimeToFull(0xffff);
+		}
+		
+		setAverageTimeToEmpty(0xffff);
+		setInstantaneousTimeToEmpty(0xffff);
+		
+	} else {
+		// The battery is charged
+		fCurrentRate = 0;
+		
+		setFullyCharged(true);
+		setIsCharging(false);
+		
+		setExternalConnected(fACConnected = true);
+		setExternalChargeCapable(fACChargeCapable = true);
+		
+		setAmperage(0);
+		setInstantAmperage(0);
+		
+		setTimeRemaining(0xffff);
+		setAverageTimeToFull(0xffff);
+		setAverageTimeToEmpty(0xffff);
+		setInstantaneousTimeToFull(0xffff);
+		setInstantaneousTimeToEmpty(0xffff);
+		
+		//fCurentCapacity = fMaxCapacity;
+		setCurrentCapacity(fCurentCapacity);
+		
+	}
+	
+	
+	// TODO: Verify that this is needed
+
+	// The EBST method provedes and already averaged rate
+	/*if (fAverageRate) {
+		fAverageRate = (fAverageRate + fCurrentRate) / 2;
+	} else {
+		fAverageRate = fCurrentRate;
+	}*/
+	
+	DEBUG_LOG("AppleACPIBatteryDevice: Battery State 0x%x.\n", value);
+	
+	
+	if (!fPollingOverridden && fMaxCapacity) {
+		/*
+		 * Conditionally set polling interval to 1 second if we're
+		 *     discharging && below 5% && on AC power
+		 * i.e. we're doing an Inflow Disabled discharge
+		 */
+		if ((((100*fCurentCapacity) / fMaxCapacity) < 5) && fACConnected) {
+			setProperty("Quick Poll", true);
+			fPollingInterval = kQuickPollInterval;
+		} else {
+			setProperty("Quick Poll", false);
+			fPollingInterval = kDefaultPollInterval;
+		}
+	}
+
+	fCellVoltages = OSArray::withCapacity(4); // FIXME: Assuming 3 cells ?
+    fCellVoltages->setObject(OSNumber::withNumber((unsigned long long) fCurrentVoltage / 4 , 16));
+	fCellVoltages->setObject(OSNumber::withNumber((unsigned long long) fCurrentVoltage / 4 , 16));
+    fCellVoltages->setObject(OSNumber::withNumber((unsigned long long) fCurrentVoltage / 4 , 16));
+	fCellVoltages->setObject(OSNumber::withNumber((unsigned long long) (fCurrentVoltage - (fCurrentVoltage * .75)) , 16));
+	setProperty("CellVoltage", fCellVoltages);
+	
+	// TODO: Read the batery temperature
+	fTemperature = fCurrentVoltage / 4; // FIXME: Skipping Amperage variable ?
+	setProperty("Temperature", (long long unsigned int)fTemperature, (unsigned int)16);
+	
+	/* construct and publish our battery serial number here */
+	constructAppleSerialNumber();
+	
+	/* Cancel read-completion timeout; Successfully read battery state */
+	fBatteryReadAllTimer->cancelTimeout();
+	
+	rebuildLegacyIOBatteryInfo();
+	
+	updateStatus();
+	
+	return kIOReturnSuccess;
+}
+

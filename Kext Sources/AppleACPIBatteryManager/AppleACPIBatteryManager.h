@@ -63,8 +63,11 @@ public:
 	IOReturn getBatterySTA(void);
 
 	IOReturn getBatteryBIF(void);
+	IOReturn getBatteryEBIF(void);
 
 	IOReturn getBatteryBST(void);
+	IOReturn getBatteryEBST(void);
+
 
 };
 
