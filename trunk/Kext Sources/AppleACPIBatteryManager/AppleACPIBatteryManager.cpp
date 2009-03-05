@@ -209,12 +209,15 @@ IOReturn AppleACPIBatteryManager::getBatteryBIF(void)
 	OSObject * batteryBIF;
 
 	if (kIOReturnSuccess == fProvider->evaluateObject("_BIF", &batteryBIF)) {
+	//if (kIOReturnSuccess == fProvider->evaluateObject("EBIF", &batteryBIF)) {
 		OSArray * acpibat_bif = OSDynamicCast(OSArray, batteryBIF);
 		setProperty("Battery Information", acpibat_bif);
 		IOReturn value = fBattery->setBatteryBIF(acpibat_bif);
 		acpibat_bif->release();
+		//batteryBIF->release();
 		return value;
 	} else {
+		//batteryBIF->release();
 		return kIOReturnError;
 	}
 }
@@ -233,8 +236,11 @@ IOReturn AppleACPIBatteryManager::getBatteryBST(void)
 		setProperty("Battery Status", acpibat_bst);
 		IOReturn value = fBattery->setBatteryBST(acpibat_bst);
 		acpibat_bst->release();
+		//batteryBST->release();
 		return value;
 	} else {
+		//batteryBST->release();
 		return kIOReturnError;
 	}
 }
+

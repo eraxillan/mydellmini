@@ -165,11 +165,16 @@ public:
     void    setType(OSSymbol *sym);
     OSSymbol *Type(void);
 
+	IOReturn setBatteryRAW(OSArray *acpibat_raw);
+
 	IOReturn setBatterySTA(UInt32 acpibat_bif);
 
 	IOReturn setBatteryBIF(OSArray *acpibat_bif);
+	IOReturn setBatteryEBIF(OSArray *acpibat_ebif);
 
 	IOReturn setBatteryBST(OSArray *acpibat_bst);
+	IOReturn setBatteryEBST(OSArray *acpibat_bst);
+
 
 };
 
