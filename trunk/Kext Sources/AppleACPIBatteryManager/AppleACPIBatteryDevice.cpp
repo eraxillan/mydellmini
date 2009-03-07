@@ -734,6 +734,7 @@ IOReturn AppleACPIBatteryDevice::setBatterySTA(UInt32 acpibat_bif)
  * 	Serial Number					//ASCIIZ
  * 	Battery Type					//ASCIIZ
  * 	OEM Information					//ASCIIZ
+ *	Cycle Count
  * }
  */
 
@@ -743,8 +744,8 @@ IOReturn AppleACPIBatteryDevice::setBatteryBIF(OSArray *acpibat_bif)
 	
 	///setProperty("Test1", OSSymbol::withCString("Testing IOREG"));
 	fDesignVoltage = OSDynamicCast(OSNumber, acpibat_bif->getObject(4))->unsigned32BitValue();
-
-	cycleCount = OSDynamicCast(OSNumber, acpibat_bif->getObject(13))->unsigned32BitValue();
+	
+	if(acpibat_bif->getCount() > 13) cycleCount = OSDynamicCast(OSNumber, acpibat_bif->getObject(13))->unsigned32BitValue();
 	setCycleCount(cycleCount);
 	
 	
@@ -1221,7 +1222,7 @@ IOReturn AppleACPIBatteryDevice::setBatteryBST(OSArray *acpibat_bst)
 	} else if(value & 0x1) {
 		// The battery is discharging
 		if(fCurrentRate & 0x8000) fCurrentRate = 0xFFFF - fCurrentRate;
-		//else fCurrentRate = 0;
+		else fCurrentRate = 0;
 		
 		setFullyCharged(false);
 		setIsCharging(false);
