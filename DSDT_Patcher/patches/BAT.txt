@@ -199,7 +199,7 @@
                         	Store (^^EC0.BST0, Index (PSTS, 0x00))	// Battery State
                         	Sleep (0x14)
                         
-                        	Store (^^EC0.BAC0, Index (PSTS, 0x01))					// Instant
+                        	Store (^^EC0.BPC0, Index (PSTS, 0x01))					// Instant
                         	Sleep (0x14)
                         	
                         	Store (^^EC0.BPV0, Index (PSTS, 0x03))	// Present Voltage
