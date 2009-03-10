@@ -1,5 +1,19 @@
 // !$*UTF8*$!
 {
+	0107A3BD008BB6FE7F000001 /* ApplePS2Mouse.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {859, 10682}}";
+			sepNavSelRange = "{12571, 24}";
+			sepNavVisRange = "{12354, 948}";
+		};
+	};
+	0107A3BE008BB6FE7F000001 /* ApplePS2Mouse.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {859, 1316}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{1296, 1294}";
+		};
+	};
 	089C1669FE841209C02AAC07 /* Project object */ = {
 		activeBuildConfigurationName = Deployment;
 		activeTarget = 661372410F4A9A5900415899 /* ApplePS2Mouse (Upgraded) */;
@@ -19,13 +33,27 @@
 					PBXBookmarksDataSource_CommentsID,
 				);
 			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXErrorsWarningsDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXErrorsWarningsDataSource_LocationID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					300,
+					135,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXErrorsWarningsDataSource_TypeID,
+					PBXErrorsWarningsDataSource_MessageID,
+					PBXErrorsWarningsDataSource_LocationID,
+				);
+			};
 			PBXConfiguration.PBXFileTableDataSource3.PBXExecutablesDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
 				PBXFileTableDataSourceColumnSortingKey = PBXExecutablesDataSource_NameID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					22,
 					300,
-					229,
+					133,
 				);
 				PBXFileTableDataSourceColumnsKey = (
 					PBXExecutablesDataSource_ActiveFlagID,
@@ -38,7 +66,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					245,
+					681,
 					20,
 					48,
 					43,
@@ -89,15 +117,19 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 256579971;
-			PBXWorkspaceStateSaveDate = 256579971;
+			PBXPerProjectTemplateStateSaveDate = 258154040;
+			PBXWorkspaceStateSaveDate = 258154040;
 		};
 		perUserProjectItems = {
-			663520510F4B14F7003F1AF7 /* PlistBookmark */ = 663520510F4B14F7003F1AF7 /* PlistBookmark */;
-			663520A30F4B1998003F1AF7 /* PlistBookmark */ = 663520A30F4B1998003F1AF7 /* PlistBookmark */;
 			6641CBE60F4B11A400546D6A /* PlistBookmark */ = 6641CBE60F4B11A400546D6A /* PlistBookmark */;
 			6641CBE90F4B11A400546D6A /* PlistBookmark */ = 6641CBE90F4B11A400546D6A /* PlistBookmark */;
 			6641CBEA0F4B11A400546D6A /* PlistBookmark */ = 6641CBEA0F4B11A400546D6A /* PlistBookmark */;
+			66C3CE270F631E5800C13CC9 /* PlistBookmark */ = 66C3CE270F631E5800C13CC9 /* PlistBookmark */;
+			66C3CE280F631E5800C13CC9 /* PBXTextBookmark */ = 66C3CE280F631E5800C13CC9 /* PBXTextBookmark */;
+			66C3CE290F631E5800C13CC9 /* PBXTextBookmark */ = 66C3CE290F631E5800C13CC9 /* PBXTextBookmark */;
+			66C3CE2A0F631E5800C13CC9 /* PlistBookmark */ = 66C3CE2A0F631E5800C13CC9 /* PlistBookmark */;
+			66C3CE2B0F631E5800C13CC9 /* PBXTextBookmark */ = 66C3CE2B0F631E5800C13CC9 /* PBXTextBookmark */;
+			66C3CE330F6367FC00C13CC9 /* PBXTextBookmark */ = 66C3CE330F6367FC00C13CC9 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 661372520F4A9A5A00415899 /* Source Control */;
 		userBuildSettings = {
@@ -120,37 +152,9 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	663520510F4B14F7003F1AF7 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 663520520F4B14F7003F1AF7 /* Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = "/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/build/Deployment/ApplePS2Controller.kext/Contents/PlugIns/ApplePS2Mouse.kext/Contents/Info.plist";
-		rLen = 0;
-		rLoc = 2147483647;
-	};
-	663520520F4B14F7003F1AF7 /* Info.plist */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = text.plist.xml;
-		name = Info.plist;
-		path = "/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/build/Deployment/ApplePS2Controller.kext/Contents/PlugIns/ApplePS2Mouse.kext/Contents/Info.plist";
-		sourceTree = "<absolute>";
-	};
-	663520A30F4B1998003F1AF7 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 663520A40F4B1998003F1AF7 /* Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = "/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/build/Deployment/ApplePS2Controller.kext/Contents/PlugIns/ApplePS2Mouse.kext/Contents/Info.plist";
-		rLen = 0;
-		rLoc = 2147483647;
-	};
 	663520A40F4B1998003F1AF7 /* Info.plist */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = text.plist.xml;
 		name = Info.plist;
 		path = "/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/build/Deployment/ApplePS2Controller.kext/Contents/PlugIns/ApplePS2Mouse.kext/Contents/Info.plist";
 		sourceTree = "<absolute>";
@@ -194,5 +198,67 @@
 		name = Info.plist;
 		path = "/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/build/Deployment/ApplePS2Controller.kext/Contents/PlugIns/ApplePS2Mouse.kext/Contents/Info.plist";
 		sourceTree = "<absolute>";
+	};
+	66C3CE270F631E5800C13CC9 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 663520A40F4B1998003F1AF7 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/build/Deployment/ApplePS2Controller.kext/Contents/PlugIns/ApplePS2Mouse.kext/Contents/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	66C3CE280F631E5800C13CC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 0107A3BD008BB6FE7F000001 /* ApplePS2Mouse.cpp */;
+		name = "ApplePS2Mouse.cpp: 425";
+		rLen = 24;
+		rLoc = 12571;
+		rType = 0;
+		vrLen = 948;
+		vrLoc = 12354;
+	};
+	66C3CE290F631E5800C13CC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 0107A3BE008BB6FE7F000001 /* ApplePS2Mouse.h */;
+		name = "ApplePS2Mouse.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1246;
+		vrLoc = 0;
+	};
+	66C3CE2A0F631E5800C13CC9 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 663520A40F4B1998003F1AF7 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/build/Deployment/ApplePS2Controller.kext/Contents/PlugIns/ApplePS2Mouse.kext/Contents/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	66C3CE2B0F631E5800C13CC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 0107A3BD008BB6FE7F000001 /* ApplePS2Mouse.cpp */;
+		name = "ApplePS2Mouse.cpp: 425";
+		rLen = 24;
+		rLoc = 12571;
+		rType = 0;
+		vrLen = 948;
+		vrLoc = 12354;
+	};
+	66C3CE330F6367FC00C13CC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 0107A3BE008BB6FE7F000001 /* ApplePS2Mouse.h */;
+		name = "ApplePS2Mouse.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1294;
+		vrLoc = 1296;
 	};
 }

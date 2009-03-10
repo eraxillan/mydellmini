@@ -55,7 +55,7 @@ enum {
 // battery load
 static uint32_t milliSecPollingTable[2] =
     { 
-      15000,    // 0 == Regular 15 second polling, was set to 30
+      30000,    // 0 == Regular 30 second polling
       2000      // 1 == Quick 2 second polling, was at 1
     };
 
@@ -1172,7 +1172,7 @@ Name (PBST, Package (0x04)
 
 IOReturn AppleACPIBatteryDevice::setBatteryBST(OSArray *acpibat_bst)
 {
-	IOLog("ACPI: Entering batery status method.\n");
+	//IOLog("ACPI: Entering batery status method.\n");
 	UInt32 value	= OSDynamicCast(OSNumber, acpibat_bst->getObject(0))->unsigned32BitValue();
 	fCurrentRate	= OSDynamicCast(OSNumber, acpibat_bst->getObject(1))->unsigned32BitValue();
 	fCurentCapacity = OSDynamicCast(OSNumber, acpibat_bst->getObject(2))->unsigned32BitValue();

@@ -10,7 +10,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					341,
+					777,
 					20,
 					48,
 					43,
@@ -27,8 +27,12 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 256579999;
-			PBXWorkspaceStateSaveDate = 256579999;
+			PBXPerProjectTemplateStateSaveDate = 258154041;
+			PBXWorkspaceStateSaveDate = 258154041;
+		};
+		perUserProjectItems = {
+			66C3CE2F0F6367FB00C13CC9 /* PBXTextBookmark */ = 66C3CE2F0F6367FB00C13CC9 /* PBXTextBookmark */;
+			66C3CE300F6367FB00C13CC9 /* PBXTextBookmark */ = 66C3CE300F6367FB00C13CC9 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 6613722E0F4A9A1000415899 /* Source Control */;
 		userBuildSettings = {
@@ -42,6 +46,13 @@
 			sepNavIntBoundsRect = "{{0, 0}, {955, 1120}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{1708, 1163}";
+		};
+	};
+	1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {955, 8722}}";
+			sepNavSelRange = "{10585, 1}";
+			sepNavVisRange = "{10116, 1139}";
 		};
 	};
 	219BA5C905EE680D00AA3E64 /* ApplePS2ALPSGlidePoint.cpp */ = {
@@ -64,5 +75,25 @@
 	6613722F0F4A9A1000415899 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
+	};
+	66C3CE2F0F6367FB00C13CC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 900;
+		vrLoc = 0;
+	};
+	66C3CE300F6367FB00C13CC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 328";
+		rLen = 1;
+		rLoc = 10585;
+		rType = 0;
+		vrLen = 1139;
+		vrLoc = 10116;
 	};
 }

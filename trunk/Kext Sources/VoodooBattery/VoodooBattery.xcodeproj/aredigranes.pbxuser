@@ -1,0 +1,564 @@
+// !$*UTF8*$!
+{
+	089C1669FE841209C02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Release;
+		activeTarget = 32D94FC30562CBF700B6AF17 /* VoodooBattery */;
+		addToTargets = (
+			32D94FC30562CBF700B6AF17 /* VoodooBattery */,
+		);
+		codeSenseManager = BE505B330F0278410045C40E /* Code sense */;
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					341,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					301,
+					60,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 254086798;
+			PBXWorkspaceStateSaveDate = 254086798;
+		};
+		perUserProjectItems = {
+			BE7D8A8B0F250E61003F591A = BE7D8A8B0F250E61003F591A /* PBXTextBookmark */;
+			BE7D8A8F0F250E61003F591A = BE7D8A8F0F250E61003F591A /* PBXTextBookmark */;
+			BEB15E5A0F250ED100303DA3 /* PBXBookmark */ = BEB15E5A0F250ED100303DA3 /* PBXBookmark */;
+			BEB15E5F0F250EF500303DA3 /* PBXBookmark */ = BEB15E5F0F250EF500303DA3 /* PBXBookmark */;
+			BEB15FAC0F25380300303DA3 /* PBXTextBookmark */ = BEB15FAC0F25380300303DA3 /* PBXTextBookmark */;
+			BEB15FAD0F25380300303DA3 /* PBXTextBookmark */ = BEB15FAD0F25380300303DA3 /* PBXTextBookmark */;
+			BEB15FAE0F25380300303DA3 /* PBXTextBookmark */ = BEB15FAE0F25380300303DA3 /* PBXTextBookmark */;
+			BEB15FAF0F25380300303DA3 /* PBXBookmark */ = BEB15FAF0F25380300303DA3 /* PBXBookmark */;
+			BEB15FB00F25380300303DA3 /* PBXTextBookmark */ = BEB15FB00F25380300303DA3 /* PBXTextBookmark */;
+			BEB15FB10F25380300303DA3 /* PBXTextBookmark */ = BEB15FB10F25380300303DA3 /* PBXTextBookmark */;
+			BEB15FB20F25380300303DA3 /* PBXTextBookmark */ = BEB15FB20F25380300303DA3 /* PBXTextBookmark */;
+			BEB15FB30F25380300303DA3 /* PBXTextBookmark */ = BEB15FB30F25380300303DA3 /* PBXTextBookmark */;
+			BEB15FB40F25380300303DA3 /* PBXTextBookmark */ = BEB15FB40F25380300303DA3 /* PBXTextBookmark */;
+			BEB15FB50F25380300303DA3 /* PlistBookmark */ = BEB15FB50F25380300303DA3 /* PlistBookmark */;
+			BEB15FBA0F25380300303DA3 /* PBXTextBookmark */ = BEB15FBA0F25380300303DA3 /* PBXTextBookmark */;
+			BEB15FBD0F25380300303DA3 /* PBXTextBookmark */ = BEB15FBD0F25380300303DA3 /* PBXTextBookmark */;
+			BEB1610F0F2578C300303DA3 /* PlistBookmark */ = BEB1610F0F2578C300303DA3 /* PlistBookmark */;
+			BEB161100F2578C300303DA3 /* PBXTextBookmark */ = BEB161100F2578C300303DA3 /* PBXTextBookmark */;
+			BEB161110F2578C300303DA3 /* PBXTextBookmark */ = BEB161110F2578C300303DA3 /* PBXTextBookmark */;
+			BEB161140F2578C300303DA3 /* PBXTextBookmark */ = BEB161140F2578C300303DA3 /* PBXTextBookmark */;
+			BEB161160F2578C300303DA3 /* PBXTextBookmark */ = BEB161160F2578C300303DA3 /* PBXTextBookmark */;
+			BEB1612F0F2579F100303DA3 /* PlistBookmark */ = BEB1612F0F2579F100303DA3 /* PlistBookmark */;
+			BEB161300F2579F100303DA3 /* PBXTextBookmark */ = BEB161300F2579F100303DA3 /* PBXTextBookmark */;
+			BEB161310F2579F100303DA3 /* PBXTextBookmark */ = BEB161310F2579F100303DA3 /* PBXTextBookmark */;
+			BEB161320F2579F100303DA3 /* PBXTextBookmark */ = BEB161320F2579F100303DA3 /* PBXTextBookmark */;
+			BEB161F60F25A6FD00303DA3 /* PlistBookmark */ = BEB161F60F25A6FD00303DA3 /* PlistBookmark */;
+			BEB161F70F25A6FD00303DA3 /* PBXTextBookmark */ = BEB161F70F25A6FD00303DA3 /* PBXTextBookmark */;
+			BEB161F80F25A6FD00303DA3 /* PBXTextBookmark */ = BEB161F80F25A6FD00303DA3 /* PBXTextBookmark */;
+			BEB161F90F25A6FD00303DA3 /* PBXTextBookmark */ = BEB161F90F25A6FD00303DA3 /* PBXTextBookmark */;
+			BEB1622C0F2622C200303DA3 /* PlistBookmark */ = BEB1622C0F2622C200303DA3 /* PlistBookmark */;
+			BEB1622D0F2622C200303DA3 /* PBXTextBookmark */ = BEB1622D0F2622C200303DA3 /* PBXTextBookmark */;
+			BEB1622E0F2622C200303DA3 /* PBXTextBookmark */ = BEB1622E0F2622C200303DA3 /* PBXTextBookmark */;
+			BEB1622F0F2622C200303DA3 /* PBXTextBookmark */ = BEB1622F0F2622C200303DA3 /* PBXTextBookmark */;
+			BEB162690F2630EE00303DA3 /* PlistBookmark */ = BEB162690F2630EE00303DA3 /* PlistBookmark */;
+			BEB1626A0F2630EE00303DA3 /* PBXTextBookmark */ = BEB1626A0F2630EE00303DA3 /* PBXTextBookmark */;
+			BEB1626B0F2630EE00303DA3 /* PBXTextBookmark */ = BEB1626B0F2630EE00303DA3 /* PBXTextBookmark */;
+			BEB1626C0F2630EE00303DA3 /* PBXTextBookmark */ = BEB1626C0F2630EE00303DA3 /* PBXTextBookmark */;
+			BEB162720F26A0DA00303DA3 /* PlistBookmark */ = BEB162720F26A0DA00303DA3 /* PlistBookmark */;
+			BEB162730F26A0DA00303DA3 /* PBXTextBookmark */ = BEB162730F26A0DA00303DA3 /* PBXTextBookmark */;
+			BEB162740F26A0DA00303DA3 /* PBXTextBookmark */ = BEB162740F26A0DA00303DA3 /* PBXTextBookmark */;
+			BEB162750F26A0DA00303DA3 /* PBXTextBookmark */ = BEB162750F26A0DA00303DA3 /* PBXTextBookmark */;
+		};
+		sourceControlManager = BE505B320F0278410045C40E /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	1A224C3EFF42367911CA2CB7 /* VoodooBattery.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1006, 2640}}";
+			sepNavSelRange = "{3106, 0}";
+			sepNavVisRange = "{2256, 1889}";
+		};
+	};
+	1A224C3FFF42367911CA2CB7 /* VoodooBattery.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {831, 8688}}";
+			sepNavSelRange = "{105, 0}";
+			sepNavVisRange = "{0, 1736}";
+		};
+	};
+	32D94FC30562CBF700B6AF17 /* VoodooBattery */ = {
+		activeExec = 0;
+	};
+	BE505B320F0278410045C40E /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	BE505B330F0278410045C40E /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	BE7D8A8B0F250E61003F591A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = BEBEEA970F0289DD0029EDD4 /* Support.h */;
+		name = "Support.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 245;
+		vrLoc = 0;
+	};
+	BE7D8A8F0F250E61003F591A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = BEBEEA940F0289DA0029EDD4 /* Support.h */;
+		name = "Support.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 245;
+		vrLoc = 0;
+	};
+	BEB15E5A0F250ED100303DA3 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* VoodooBattery.h */;
+	};
+	BEB15E5F0F250EF500303DA3 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* VoodooBattery.cpp */;
+	};
+	BEB15FAC0F25380300303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = BEBEEA940F0289DA0029EDD4 /* Support.h */;
+		name = "Support.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 245;
+		vrLoc = 0;
+	};
+	BEB15FAD0F25380300303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* VoodooBattery.h */;
+		name = "VoodooBattery.h: 28";
+		rLen = 41;
+		rLoc = 3221;
+		rType = 0;
+		vrLen = 272;
+		vrLoc = 0;
+	};
+	BEB15FAE0F25380300303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* VoodooBattery.cpp */;
+		name = "VoodooBattery.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 278;
+		vrLoc = 0;
+	};
+	BEB15FAF0F25380300303DA3 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+	};
+	BEB15FB00F25380300303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = BEBEEA940F0289DA0029EDD4 /* Support.h */;
+		name = "Support.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 245;
+		vrLoc = 0;
+	};
+	BEB15FB10F25380300303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* VoodooBattery.h */;
+		name = "VoodooBattery.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 87;
+		vrLoc = 0;
+	};
+	BEB15FB20F25380300303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* VoodooBattery.cpp */;
+		name = "VoodooBattery.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 268;
+		vrLoc = 0;
+	};
+	BEB15FB30F25380300303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* VoodooBattery.h */;
+		name = "VoodooBattery.h: 28";
+		rLen = 41;
+		rLoc = 3221;
+		rType = 0;
+		vrLen = 272;
+		vrLoc = 0;
+	};
+	BEB15FB40F25380300303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* VoodooBattery.cpp */;
+		name = "VoodooBattery.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 278;
+		vrLoc = 0;
+	};
+	BEB15FB50F25380300303DA3 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			OSBundleLibraries,
+			com.apple.iokit.IOACPIFamily,
+		);
+		name = "/Users/aredigranes/Offline Projects/VoodooBattery/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	BEB15FBA0F25380300303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* VoodooBattery.cpp */;
+		name = "VoodooBattery.cpp: 7";
+		rLen = 0;
+		rLoc = 112;
+		rType = 0;
+		vrLen = 1386;
+		vrLoc = 2443;
+	};
+	BEB15FBD0F25380300303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* VoodooBattery.h */;
+		name = "VoodooBattery.h: 30";
+		rLen = 0;
+		rLoc = 3217;
+		rType = 0;
+		vrLen = 1361;
+		vrLoc = 0;
+	};
+	BEB1610F0F2578C300303DA3 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/aredigranes/Offline Projects/VoodooBattery/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	BEB161100F2578C300303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* VoodooBattery.h */;
+		name = "VoodooBattery.h: 61";
+		rLen = 0;
+		rLoc = 3048;
+		rType = 0;
+		vrLen = 1953;
+		vrLoc = 858;
+	};
+	BEB161110F2578C300303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* VoodooBattery.cpp */;
+		name = "VoodooBattery.cpp: 280";
+		rLen = 0;
+		rLoc = 18299;
+		rType = 0;
+		vrLen = 1296;
+		vrLoc = 7265;
+	};
+	BEB161140F2578C300303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = BEB161150F2578C300303DA3 /* IOPM.h */;
+		rLen = 1;
+		rLoc = 310;
+		rType = 1;
+	};
+	BEB161150F2578C300303DA3 /* IOPM.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = IOPM.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Kernel.framework/Versions/A/Headers/IOKit/pwr_mgt/IOPM.h;
+		sourceTree = "<absolute>";
+	};
+	BEB161160F2578C300303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = BEB161170F2578C300303DA3 /* IOPM.h */;
+		name = "IOPM.h: 290";
+		rLen = 15;
+		rLoc = 12476;
+		rType = 0;
+		vrLen = 2766;
+		vrLoc = 11894;
+	};
+	BEB161170F2578C300303DA3 /* IOPM.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = IOPM.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Kernel.framework/Versions/A/Headers/IOKit/pwr_mgt/IOPM.h;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {977, 8352}}";
+			sepNavSelRange = "{15619, 19}";
+			sepNavVisRange = "{13640, 2953}";
+		};
+	};
+	BEB1612F0F2579F100303DA3 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/aredigranes/Offline Projects/VoodooBattery/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	BEB161300F2579F100303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* VoodooBattery.cpp */;
+		name = "VoodooBattery.cpp: 231";
+		rLen = 0;
+		rLoc = 8547;
+		rType = 0;
+		vrLen = 1720;
+		vrLoc = 6841;
+	};
+	BEB161310F2579F100303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* VoodooBattery.h */;
+		name = "VoodooBattery.h: 127";
+		rLen = 0;
+		rLoc = 5350;
+		rType = 0;
+		vrLen = 2096;
+		vrLoc = 1893;
+	};
+	BEB161320F2579F100303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = BEB161170F2578C300303DA3 /* IOPM.h */;
+		name = "IOPM.h: 290";
+		rLen = 15;
+		rLoc = 12476;
+		rType = 0;
+		vrLen = 2766;
+		vrLoc = 11894;
+	};
+	BEB161F60F25A6FD00303DA3 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/aredigranes/Offline Projects/VoodooBattery/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	BEB161F70F25A6FD00303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* VoodooBattery.cpp */;
+		name = "VoodooBattery.cpp: 325";
+		rLen = 0;
+		rLoc = 14592;
+		rType = 0;
+		vrLen = 3021;
+		vrLoc = 8577;
+	};
+	BEB161F80F25A6FD00303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* VoodooBattery.h */;
+		name = "VoodooBattery.h: 76";
+		rLen = 0;
+		rLoc = 2519;
+		rType = 0;
+		vrLen = 1992;
+		vrLoc = 0;
+	};
+	BEB161F90F25A6FD00303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = BEB161170F2578C300303DA3 /* IOPM.h */;
+		name = "IOPM.h: 356";
+		rLen = 19;
+		rLoc = 15619;
+		rType = 0;
+		vrLen = 2953;
+		vrLoc = 13640;
+	};
+	BEB1622C0F2622C200303DA3 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/aredigranes/Offline Projects/VoodooBattery/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	BEB1622D0F2622C200303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* VoodooBattery.cpp */;
+		name = "VoodooBattery.cpp: 411";
+		rLen = 0;
+		rLoc = 15792;
+		rType = 0;
+		vrLen = 2129;
+		vrLoc = 14423;
+	};
+	BEB1622E0F2622C200303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* VoodooBattery.h */;
+		name = "VoodooBattery.h: 80";
+		rLen = 21;
+		rLoc = 2555;
+		rType = 0;
+		vrLen = 1842;
+		vrLoc = 2190;
+	};
+	BEB1622F0F2622C200303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = BEB161170F2578C300303DA3 /* IOPM.h */;
+		name = "IOPM.h: 356";
+		rLen = 19;
+		rLoc = 15619;
+		rType = 0;
+		vrLen = 2953;
+		vrLoc = 13640;
+	};
+	BEB162690F2630EE00303DA3 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/aredigranes/Offline Projects/VoodooBattery/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	BEB1626A0F2630EE00303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* VoodooBattery.cpp */;
+		name = "VoodooBattery.cpp: 519";
+		rLen = 0;
+		rLoc = 18408;
+		rType = 0;
+		vrLen = 1736;
+		vrLoc = 0;
+	};
+	BEB1626B0F2630EE00303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* VoodooBattery.h */;
+		name = "VoodooBattery.h: 99";
+		rLen = 0;
+		rLoc = 3106;
+		rType = 0;
+		vrLen = 1885;
+		vrLoc = 2117;
+	};
+	BEB1626C0F2630EE00303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = BEB161170F2578C300303DA3 /* IOPM.h */;
+		name = "IOPM.h: 356";
+		rLen = 19;
+		rLoc = 15619;
+		rType = 0;
+		vrLen = 2953;
+		vrLoc = 13640;
+	};
+	BEB162720F26A0DA00303DA3 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/aredigranes/Offline Projects/VoodooBattery/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	BEB162730F26A0DA00303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* VoodooBattery.cpp */;
+		name = "VoodooBattery.cpp: 6";
+		rLen = 0;
+		rLoc = 105;
+		rType = 0;
+		vrLen = 1736;
+		vrLoc = 0;
+	};
+	BEB162740F26A0DA00303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* VoodooBattery.h */;
+		name = "VoodooBattery.h: 99";
+		rLen = 0;
+		rLoc = 3106;
+		rType = 0;
+		vrLen = 1889;
+		vrLoc = 2256;
+	};
+	BEB162750F26A0DA00303DA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = BEB161170F2578C300303DA3 /* IOPM.h */;
+		name = "IOPM.h: 356";
+		rLen = 19;
+		rLoc = 15619;
+		rType = 0;
+		vrLen = 2953;
+		vrLoc = 13640;
+	};
+	BEBEEA940F0289DA0029EDD4 /* Support.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {519, 960}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 245}";
+		};
+	};
+	BEBEEA970F0289DD0029EDD4 /* Support.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = Support.h;
+		path = "/Users/aredigranes/Library/Application Support/Developer/Shared/Xcode/Project Templates/Superhai/IOKit Driver/Support.h";
+		sourceTree = "<absolute>";
+	};
+}
