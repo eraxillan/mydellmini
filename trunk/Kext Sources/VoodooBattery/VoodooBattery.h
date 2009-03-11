@@ -17,10 +17,13 @@ const UInt8	MaxBatteriesSupported = 16;
 const UInt8 MaxAcAdaptersSupported = 4;
 const UInt8	AverageBoundPercent = 25;
 
-const UInt32	QuickPollInterval =		  1000;
-const UInt32	NormalPollInterval =	 60000;
-const UInt32	QuickPollPeriod =		 60000;
+const UInt32	QuickPollInterval =		  3000;	// Possibly make this information read from the info.plist file
+const UInt32	NormalPollInterval =	 30000;
+const UInt32	StateChangeInterval =	 30000;
+const UInt32	QuickPollPeriod =		 30000;	
 const UInt32	QuickPollCount = QuickPollPeriod / QuickPollInterval;
+
+const UInt32	SettleTime =			 30000;
 
 const UInt32	AcpiUnknown =		0xFFFFFFFF;
 const UInt32	AcpiMax =			0x80000000;
@@ -108,6 +111,7 @@ private:
 	UInt8	BatteryCount;
 	UInt8	AcAdapterCount;
 	UInt32	QuickPoll;
+	uint64_t TimeSinceStateChange;
 	// *** Booleans ***
 	bool	BatteryConnected[MaxBatteriesSupported];
 	bool	AcAdapterConnected[MaxAcAdaptersSupported];

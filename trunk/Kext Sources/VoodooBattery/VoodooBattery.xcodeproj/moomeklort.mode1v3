@@ -306,12 +306,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Info.plist</string>
+								<string>Support.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -319,29 +321,62 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Info.plist</string>
+										<string>Support.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>668375DD0F662D77001C2710</string>
+										<string>6682A2860F66D7B100106E00</string>
 										<key>history</key>
 										<array>
-											<string>668375D20F662D77001C2710</string>
-											<string>668375D30F662D77001C2710</string>
 											<string>668375D40F662D77001C2710</string>
-											<string>668375D50F662D77001C2710</string>
+											<string>6682A22F0F66C9AB00106E00</string>
+											<string>6682A2310F66C9AB00106E00</string>
+											<string>6682A2330F66C9AB00106E00</string>
+											<string>6682A2730F66D4D500106E00</string>
+											<string>6682A2830F66D7B100106E00</string>
+											<string>6682A2840F66D7B100106E00</string>
 										</array>
 										<key>prevStack</key>
 										<array>
 											<string>66C3CE4D0F6616FE00C13CC9</string>
 											<string>66C3CE4E0F6616FE00C13CC9</string>
-											<string>668375D60F662D77001C2710</string>
-											<string>668375D70F662D77001C2710</string>
-											<string>668375D80F662D77001C2710</string>
-											<string>668375D90F662D77001C2710</string>
-											<string>668375DA0F662D77001C2710</string>
 											<string>668375DB0F662D77001C2710</string>
 											<string>668375DC0F662D77001C2710</string>
+											<string>6682A2360F66C9AB00106E00</string>
+											<string>6682A2370F66C9AB00106E00</string>
+											<string>6682A2380F66C9AB00106E00</string>
+											<string>6682A2390F66C9AB00106E00</string>
+											<string>6682A23A0F66C9AB00106E00</string>
+											<string>6682A23B0F66C9AB00106E00</string>
+											<string>6682A23C0F66C9AB00106E00</string>
+											<string>6682A23D0F66C9AB00106E00</string>
+											<string>6682A23E0F66C9AB00106E00</string>
+											<string>6682A23F0F66C9AB00106E00</string>
+											<string>6682A2400F66C9AB00106E00</string>
+											<string>6682A2410F66C9AB00106E00</string>
+											<string>6682A2420F66C9AB00106E00</string>
+											<string>6682A2430F66C9AB00106E00</string>
+											<string>6682A2440F66C9AB00106E00</string>
+											<string>6682A2450F66C9AB00106E00</string>
+											<string>6682A2470F66C9AB00106E00</string>
+											<string>6682A2490F66C9AB00106E00</string>
+											<string>6682A2520F66CB0200106E00</string>
+											<string>6682A2530F66CB0200106E00</string>
+											<string>6682A2540F66CB0200106E00</string>
+											<string>6682A2550F66CB0200106E00</string>
+											<string>6682A2630F66CF7900106E00</string>
+											<string>6682A2640F66CF7900106E00</string>
+											<string>6682A2760F66D4D500106E00</string>
+											<string>6682A2770F66D4D500106E00</string>
+											<string>6682A2780F66D4D500106E00</string>
+											<string>6682A2790F66D4D500106E00</string>
+											<string>6682A27A0F66D4D500106E00</string>
+											<string>6682A27B0F66D4D500106E00</string>
+											<string>6682A27C0F66D4D500106E00</string>
+											<string>6682A27D0F66D4D500106E00</string>
+											<string>6682A27E0F66D4D500106E00</string>
+											<string>6682A27F0F66D4D500106E00</string>
+											<string>6682A2850F66D7B100106E00</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -399,9 +434,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>668375DE0F662D77001C2710</string>
+				<string>6682A24B0F66C9AB00106E00</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>668375DF0F662D77001C2710</string>
+				<string>6682A24C0F66C9AB00106E00</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -536,7 +571,7 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>66C3CE5B0F6616FE00C13CC9</string>
-		<string>/Users/moomeklort/Downloads/VoodooBattery/VoodooBattery.xcodeproj</string>
+		<string>/Users/moomeklort/mydellmini/Kext Sources/VoodooBattery/VoodooBattery.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 55 1227 723 0 0 1280 778 </string>
@@ -560,7 +595,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>VoodooBattery.cpp</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -577,6 +612,8 @@
 							<string>218pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -616,7 +653,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>66C3CE5B0F6616FE00C13CC9</string>
-				<string>668375E00F662D77001C2710</string>
+				<string>6682A22D0F66C99C00106E00</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
