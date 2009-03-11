@@ -9,7 +9,7 @@
 // Information helpers
 
 #include <IOKit/IOLib.h>
-
+#include <mach/mach_time.h>
 #define defString(s) defXString(s)
 #define defXString(s) #s
 

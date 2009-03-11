@@ -229,12 +229,12 @@ VoodooBattery::BatteryInformation(UInt8 battery) {
 			if (acpi && (OSTypeIDInst(acpi) == OSTypeID(OSArray))) {
 				OSArray * info = OSDynamicCast(OSArray, acpi);
 				if (GetValueFromArray(info, 0) == 0x00000000) PowerUnitIsWatt = true;
-				Battery[battery].DesignCapacity = GetValueFromArray(info, 1);
-				Battery[battery].LastFullChargeCapacity = GetValueFromArray(info, 2);
-				Battery[battery].Technology = GetValueFromArray(info, 3);
-				Battery[battery].DesignVoltage = GetValueFromArray(info, 4);
-				Battery[battery].DesignCapacityWarning = GetValueFromArray(info, 5);
-				Battery[battery].DesignCapacityLow = GetValueFromArray(info, 6);
+				Battery[battery].DesignCapacity										= GetValueFromArray(info, 1);
+				Battery[battery].LastFullChargeCapacity								= GetValueFromArray(info, 2);
+				Battery[battery].Technology											= GetValueFromArray(info, 3);
+				Battery[battery].DesignVoltage										= GetValueFromArray(info, 4);
+				Battery[battery].DesignCapacityWarning								= GetValueFromArray(info, 5);
+				Battery[battery].DesignCapacityLow									= GetValueFromArray(info, 6);
 				if (!Battery[battery].DesignVoltage) Battery[battery].DesignVoltage = DummyVoltage;
 				if (PowerUnitIsWatt) {
 					UInt32 volt = Battery[battery].DesignVoltage / 1000;
@@ -300,30 +300,74 @@ VoodooBattery::BatteryStatus(UInt8 battery) {
 			setProperty(BatteryDevice[battery]->getName(), status);
 #endif
 			UInt32 TimeRemaining = 0;
-			UInt32 HighAverageBound, LowAverageBound; 
-			bool bogus = false;
-			bool warning = false;
+			//UInt32 HighAverageBound, LowAverageBound; 
+ 			bool warning = false;
 			bool critical = false;
+			bool bogus = false;
+			uint64_t now = mach_absolute_time();
+			
+			
+
 			Battery[battery].State = GetValueFromArray(status, 0);
-			Battery[battery].PresentRate = GetValueFromArray(status, 1);
+
+			// In case of a state change, reset stuff
+			if(Battery[battery].State ^ GetValueFromArray(status, 0)) {	// We changed battery states, reset all averages
+				TimeSinceStateChange = now;
+
+				Battery[battery].AverageRate = 0;
+				Battery[battery].PresentRate = 0;
+				Poller->setTimeoutMS(StateChangeInterval);	// Overwrite teh quickpoll
+				//UInt32 interval = QuickPoll ? 3600 / (StateChangeInterval / 1000) : 3600 / (NormalPollInterval / 1000);
+				Battery[battery].LastRemainingCapacity = 0;
+				//switch (Battery[battery].State & 0x3) {
+				//	case BatteryFullyCharged:
+				BatteryPowerSource[battery]->setTimeRemaining(0xFFFF);	// tell the os we are calculating
+				if ((Battery[battery].State & 0x3) == BatteryDischarging) {
+					ExternalPower(false);
+					CalculatedAcAdapterConnected[battery] = false;
+				} else {
+					ExternalPower(true);
+					CalculatedAcAdapterConnected[battery] = true;
+				}
+
+				
+				BatteryPowerSource[battery]->rebuildLegacyIOBatteryInfo();
+				BatteryPowerSource[battery]->updateStatus();
+				acpi->release();
+			} else {
+				Battery[battery].PresentRate = GetValueFromArray(status, 1);
+			}
+			
+			if(now < (TimeSinceStateChange + SettleTime)) {
+				acpi->release();
+				return;
+			}
+			
+			
 			Battery[battery].RemainingCapacity = GetValueFromArray(status, 2);
 			Battery[battery].PresentVoltage = GetValueFromArray(status, 3);
+			
+			Battery[battery].AverageRate = Battery[battery].PresentRate;
+			
 			if (PowerUnitIsWatt) {
 				UInt32 volt = Battery[battery].DesignVoltage / 1000;
 				Battery[battery].PresentRate /= volt;
 				Battery[battery].RemainingCapacity /= volt;
 			}
+			
+			/*
 			// Average rate calculation
 			if (!Battery[battery].PresentRate || (Battery[battery].PresentRate == AcpiUnknown)) {
 				UInt32 delta = (Battery[battery].RemainingCapacity > Battery[battery].LastRemainingCapacity ?
 								Battery[battery].RemainingCapacity - Battery[battery].LastRemainingCapacity :
 								Battery[battery].LastRemainingCapacity - Battery[battery].RemainingCapacity);
 				UInt32 interval = QuickPoll ? 3600 / (QuickPollInterval / 1000) : 3600 / (NormalPollInterval / 1000);
+				// Check if we really want this here
 				Battery[battery].PresentRate = delta ? delta * interval : interval;
 			}
 			if (!Battery[battery].AverageRate) Battery[battery].AverageRate = Battery[battery].PresentRate;
 			Battery[battery].AverageRate += Battery[battery].PresentRate;
-			Battery[battery].AverageRate >>= 1;
+			//Battery[battery].AverageRate >>= 1;
 			HighAverageBound = Battery[battery].PresentRate * (100 + AverageBoundPercent) / 100;
 			LowAverageBound  = Battery[battery].PresentRate * (100 - AverageBoundPercent) / 100;
 			if (Battery[battery].AverageRate > HighAverageBound) {
@@ -332,29 +376,24 @@ VoodooBattery::BatteryStatus(UInt8 battery) {
 			if (Battery[battery].AverageRate < LowAverageBound) {
 				Battery[battery].AverageRate = LowAverageBound;
 			}
-			// Remaining capacity
-			if (!Battery[battery].RemainingCapacity || (Battery[battery].RemainingCapacity == AcpiUnknown)) {
-				WarningLog("Battery %u has no remaining capacity reported", battery);
-			} else {
-				TimeRemaining = (Battery[battery].AverageRate ?
-								 60 * Battery[battery].RemainingCapacity / Battery[battery].AverageRate :
-								 60 * Battery[battery].RemainingCapacity);
-				BatteryPowerSource[battery]->setTimeRemaining(TimeRemaining);
-				TimeRemaining = (Battery[battery].PresentRate ?
-								 60 * Battery[battery].RemainingCapacity / Battery[battery].PresentRate :
-								 60 * Battery[battery].RemainingCapacity);
-				BatteryPowerSource[battery]->setInstantaneousTimeToEmpty(TimeRemaining);
-			}
+			
+			*/
+			
+
 			// Voltage
 			if (!Battery[battery].PresentVoltage || (Battery[battery].PresentVoltage == AcpiUnknown)) {
 				Battery[battery].PresentVoltage = Battery[battery].DesignVoltage;
 			}
+			
 			// Check battery state
 			switch (Battery[battery].State & 0x3) {
 				case BatteryFullyCharged:
 					DebugLog("Battery %u Full", battery);
+					ExternalPower(true);
+
 					CalculatedAcAdapterConnected[battery] = true;
-					BatteriesAreFull &= true;
+					//BatteriesAreFull &= true;
+					BatteriesAreFull = true;
 					BatteryPowerSource[battery]->setIsCharging(false);
 					BatteryPowerSource[battery]->setFullyCharged(true);
 					if ((Battery[battery].LastRemainingCapacity >= Battery[battery].DesignCapacity) ||
@@ -363,11 +402,14 @@ VoodooBattery::BatteryStatus(UInt8 battery) {
 					} else {
 						BatteryPowerSource[battery]->setCurrentCapacity(Battery[battery].LastRemainingCapacity);
 					}
-					BatteryPowerSource[battery]->setInstantAmperage((SInt32) Battery[battery].PresentRate);
-					BatteryPowerSource[battery]->setAmperage((SInt32) Battery[battery].AverageRate);
+					if(((SInt32) Battery[battery].PresentRate) & 0x8000) BatteryPowerSource[battery]->setInstantAmperage(((SInt32) (0xFFFF - Battery[battery].PresentRate)));
+					else BatteryPowerSource[battery]->setInstantAmperage((SInt32) Battery[battery].PresentRate);
+					if(((SInt32) Battery[battery].AverageRate) & 0x8000) BatteryPowerSource[battery]->setAmperage(((SInt32) (0xFFFF - Battery[battery].AverageRate)));
+					else BatteryPowerSource[battery]->setAmperage((SInt32) Battery[battery].AverageRate);
 					break;
 				case BatteryDischarging:
 					DebugLog("Battery %u Discharging", battery);
+					ExternalPower(false);
 					CalculatedAcAdapterConnected[battery] = false;
 					BatteriesAreFull = false;
 					BatteryPowerSource[battery]->setIsCharging(false);
@@ -379,14 +421,17 @@ VoodooBattery::BatteryStatus(UInt8 battery) {
 					else BatteryPowerSource[battery]->setAmperage((SInt32) (0x0000));
 					break;
 				case BatteryCharging:
+					ExternalPower(true);
 					DebugLog("Battery %u Charging", battery);
 					CalculatedAcAdapterConnected[battery] = true;
 					BatteriesAreFull = false;
 					BatteryPowerSource[battery]->setIsCharging(true);
 					BatteryPowerSource[battery]->setFullyCharged(false);
 					BatteryPowerSource[battery]->setCurrentCapacity(Battery[battery].RemainingCapacity);
-					BatteryPowerSource[battery]->setInstantAmperage((SInt32) Battery[battery].PresentRate);
-					BatteryPowerSource[battery]->setAmperage((SInt32) Battery[battery].AverageRate);
+					if(((SInt32) Battery[battery].PresentRate) & 0x8000) BatteryPowerSource[battery]->setInstantAmperage(((SInt32) (0xFFFF - Battery[battery].PresentRate)));
+					else BatteryPowerSource[battery]->setInstantAmperage((SInt32) Battery[battery].PresentRate);
+					if(((SInt32) Battery[battery].AverageRate) & 0x8000) BatteryPowerSource[battery]->setAmperage(((SInt32) (0xFFFF - Battery[battery].AverageRate)));
+					else BatteryPowerSource[battery]->setAmperage((SInt32) Battery[battery].AverageRate);
 					break;
 				default:
 					WarningLog("Bogus status data from battery %u (%x)", battery, Battery[battery].State);
@@ -397,6 +442,21 @@ VoodooBattery::BatteryStatus(UInt8 battery) {
 					bogus = true;
 					break;
 			}
+			
+			// Remaining capacity
+			if (!Battery[battery].RemainingCapacity || (Battery[battery].RemainingCapacity == AcpiUnknown)) {
+				WarningLog("Battery %u has no remaining capacity reported", battery);
+			} else {
+				TimeRemaining = (Battery[battery].AverageRate ?
+								 60 * Battery[battery].RemainingCapacity / Battery[battery].AverageRate :
+								 0xffff);
+				BatteryPowerSource[battery]->setTimeRemaining(TimeRemaining);
+				TimeRemaining = (Battery[battery].PresentRate ?
+								 60 * Battery[battery].RemainingCapacity / Battery[battery].PresentRate :
+								 0xffff);
+				BatteryPowerSource[battery]->setInstantaneousTimeToEmpty(TimeRemaining);
+			}
+			
 			warning		= Battery[battery].RemainingCapacity <= Battery[battery].DesignCapacityWarning;
 			critical	= Battery[battery].RemainingCapacity <= Battery[battery].DesignCapacityLow;
 			if (Battery[battery].State & BatteryCritical) {
