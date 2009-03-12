@@ -1,0 +1,34 @@
+#summary Meklort's Ideas and TODO List, in no particular order...
+
+==hutdown / Restart Hang==
+This is probably due to a bug in one of the drivers. An easy fix may be modifying the DSDT's KILL method so that it will force a shutdown after an elapsed time (say 5 seconds).
+
+==Brightness Control==
+The bios currenlt yhandels brightness control. I have found a way to get teh dsdt fiel to pass the keypresses to the os, however OS X doesn't know how to change the brightness.
+
+== Touchpad Scrolling support==
+The current driver uses the touchpad in relative mode. If we put the touchpad in absolute mode we can then allow for side scrolling and some other features (hot corners, etc).
+
+== Network Drivers ==
+The Realtek1000 driver curently does not report the network speed and duplex mode to the OS.
+
+== Startup Chime ==
+Just beacause some people have requested it, A kext could be made that loads initialy to play a startup sound (after the audio driver of course).
+
+==Fn + Ctrl key swap==
+On macbooks, the fn key is teh leftmost key, where as on teh min, the ctrl key is. It may be possible to swap these keys in the dsdt to keep the keymap of the macbook. I have been looking at the code, and have not found an easy way to do this as it looks to be even lower than the dsdt (aka the bios).
+
+== Temperature reporting ==
+The dsdt maps out the embedded controller's memory locations. Some of the variable look to be associated with temperature. It is possible to create a new kext that reads those values from teh EC and reports it to the os.
+
+== Fn-2: Wireless ==
+I believe I have located the method that handles the wireless button and may be able to modify it to enable or disable the wireless hardware. Another alternative is that the OS can handle the keypress (as it is getting one currently) to enable and disable the wireless network.
+
+==Fn-3: Battery==
+This button currently send an unhandeled keypress to the os. Any ideas on waht to use it for?
+
+==Fn-8: Display==
+This button has been disabled due to display corruption when pressed. It can be remanned to something else (pass keycode to os, turn off display, etc) Please post any ideas on what it should do.
+
+== USB disconnected after sleep ==
+Currently (at least on my mini) the usb hub / controller is reset after each sleep. This is probably due to the dsdt file cutting power to these devices. It is possible to make it so the usb devices never go to sleep (or only sleep when on battery) so that they are not reset when the computer is woken up. An alternative is to modify the USB kext (say one form superhai) to wait for the device to reappear after sleep.
