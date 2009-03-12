@@ -30,7 +30,7 @@
 
                     Method (_BIF, 0, NotSerialized)
                     {
-                        Name (STAT, Package (0x0D)
+                        Name (STAT, Package (0x0E)
                         {
                             One, 		// Power UNit (0 = mWh, 1 = mAh)			Not read anywhere, we decide which to do (os x wants mAh)
                             Zero,	 	// Design Capacity				   			EC0.BDC0 (batt provides in mWh)
@@ -40,11 +40,12 @@
                             0x01A4, 	// Design capacity of warning	UNKNOWN, these are from before I edited (aka, whatever the bios people had it at)
                             0x9C, 		// Design capacity of low		UNKNOWN
                             0x0108, 	// Granuility 1					UNKNOWN
-                            0x0EC4, 	// â€˜		â€˜ 2					UNKNOWN	
+                            0x0EC4, 	// Ô		Ô 2					UNKNOWN	
                             "W953G", 	// Model Number					UNKNOWN
                             "", 		// Serial Number							EC0.BSN0
                             "Lion", 	// Battery Type					UNKNOWN		(Mini 9 uses Lion batteries, so default works)
-                            "Unknown"	// OEM, read from 							EC0.BMF0
+                            "Unknown",	// OEM, read from 							EC0.BMF0
+                            Zero		// Cycle Count
                         })
                         if(ECOK())
                         {
@@ -52,7 +53,9 @@
 							// We decide the power unit, in our case (OS X) we shall use mAh
                         	//Sleep (0x14)
                         	//Store (One, Index (STAT, 0x00))	// Power Unit = BFC1
-                      
+                      		Sleep (0x14)
+                      		Store (^^EC0.CYC0, Index (STAT, 0x0D))	// Power Unit = BFC1
+                      		
                       		// The Design capacity goes here
                         	Sleep (0x14)
                         	Store (^^EC0.BDC0, Local1)	// Batter design capacity = BDC0 in mWh
@@ -177,53 +180,38 @@
                         Return (STAT)
                     }
 
+                                       
                     Method (_BST, 0, NotSerialized)
                     {
-                        Name (PBST, Package (0x04)
+                    	Name (PSTS, Package (0x04)
+                    	{
+                    		Zero,	// Batery State
+                    		Zero,	// Discharge / Charge Rate
+                    		Zero,	// Int Charge (aka Remaining)
+                    		Zero, 	// Inst Voltage
+                    		
+                    	})
+                    	
+                    	If(ECOK())
                         {
-                            Zero, 	// State, EC.BST0
-                            Zero, 	// Discharge Rate
-                            Zero, 	// Current Capacity (remaining)
-                            Zero	// Current Voltage
-                        })
-                        
-                        
-                        if(ECOK())
-                        {
                         
                         	Sleep (0x14)
-                        	Store (^^EC0.BST0, Index (PBST, 0x00))	// Battery State
+                        	Store (^^EC0.BST0, Index (PSTS, 0x00))	// Battery State
                         	Sleep (0x14)
                         
-                        	//Store (^^EC0.BAC0, Local1)	// Present Rate, Average
-                        	Store (^^EC0.BPC0, Local1)					// Instant
+                        	Store (^^EC0.BAC0, Index (PSTS, 0x01))					// Instant
+                        	Sleep (0x14)
+                        	
+                        	Store (^^EC0.BPV0, Index (PSTS, 0x03))	// Present Voltage
                         	Sleep (0x14)
                         
-                        	If (And (Local1, 0x8000, Local1))
-                        	{
-                      	    	Sleep (0x14)
-                            	Store (^^EC0.BPC0, Local1)
-                            	Sleep (0x14)
-                            	Subtract (0xFFFF, Local1, Local1)
-                        	}
-                        	Else // do nothing (testing...) we may want to check if charging before we set to zero though
-                        	{
-                            	Store (Zero, Local1)
-                        	}
-                        	Store (Local1, Index (PBST, 0x01))
-                        
-                                                                      
+                        	Store (^^EC0.BRC0, Local2) //Index (PSTS, 0x02))	// Remaining Capacity
                         	Sleep (0x14)
-                        	Store (^^EC0.BRC0, Local2) //Index (PBST, 0x02))	// Remaining Capacity
-                        	Sleep (0x14)
-                        	Store (^^EC0.BPV0, Local3) //Index (PBST, 0x03))	// Present Voltage
-                        	Sleep (0x14)
-							Store (^^EC0.BDV0, Local4) 	// Design Voltage, used to convert mWh to mAh
+  							Store (^^EC0.BDV0, Local4) 	// Design Voltage, used to convert mWh to mAh
 							Sleep (0x14)
                         
                         	// Convert to mAh
-                        	Store (Divide(Multiply(Local2, 0x2710), Local4), Index (PBST, 0x02))
-							Store (Local3, Index (PBST, 0x03))
+                        	Store (Divide(Multiply(Local2, 0x2710), Local4), Index (PSTS, 0x02))
                         }
 						
                         If (LGreater (ECDY, Zero))
@@ -235,10 +223,12 @@
                             }
                         }
 
-                        Return (PBST)
+                    	
+                    	Return (PSTS)
                     }
                     
-                    Method (EBIF, 0, NotSerialized)
+                      
+                    Method (BRAW, 0, NotSerialized)
                     {
                         Name (EBIF, Package (0x10)
                         {
