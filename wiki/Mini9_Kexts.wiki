@@ -8,19 +8,20 @@
 || AppleIntelGMA950.kext || Driver for the GMA950 display || Only change is that it has been patched (read: hex edited) so that it recognizes 0x27AE as a supported device || Will be created on the fly in v1.1 ||
 || AppleIntelIntegratedFramebuffer.kext || framebuffer stuff for the intel cards || Only change is that it has been patched (read: hex edited) so that it recognizes 0x27AE as a supported device || Will be created on the fly in v1.1 ||
 || AppleIntelPIIXATA.kext || PATA driver || This driver allows sleep / resume to work correctly on STEC SSD || ||
-|| ApplePS2Controller.kext || Driver for PS2 Devices, includes keyboard and trackpad kexts || *<font color="red">Required</font>* for PS/2 support (Apple does not include ps2 drivers in os x) || New version from meklort in v1.1 ||
-|| AppleRTL8169Ethernet.kext || || Will be replaced by RealtekR1000 in v1.1 unless some major issues are found with replacement kext || Alternative: RealtekR1000 (I have modified psystar's sorce so it reports almost all needed information to the os. (Doesn't report duplex / speed correctly)||
+|| ApplePS2Controller.kext || Driver for PS2 Devices, includes keyboard and trackpad kexts || *<font color="red">Required</font>* for PS/2 support (Apple does not include ps2 drivers in os x) || New version from meklort in v1.1. A new touchpad driver is in planning to include side scrolling support ||
+|| AppleRTL8169Ethernet.kext || || Will be replaced by RealtekR1000 in v1.1 unless some major issues are found with replacement kext || This has been replaced with Realtek1000.kext||
+|| Realtek1000.kext  || Enables network card || || Update kext to notify OS of duplex mode and network speed ||
 || IO80211Family.kext || Enable WiFi || || Will be created on the fly in v1.1 ||
 || IOGraphicsFamily.kext || || Driver needed so that IONDRVSupport will load || v1.1 will use local copy from 10.5.6 into /Extra ||
 || IONDRVSupport.kext || Framebuffer stuff... || || v1.1 will use local copy from 10.5.6 into /Extra ||
 || IONetworkingFamily.kext || || Needed to load Ethernet card kext || v1.1 will use local copy from 10.5.6 into /Extra ||
 || IOSDHCIBlockDevice.kext || Jmicron SDHC driver || Min 9 includes a card reader, this driver enables it || ||
-|| Natit.kext || Injects the display info into the ioregister || Used to enable GMA950 driver usage ||  Can be replaced with an efi string (also boots a second ot two faster w/ the string) ||
+|| Natit.kext || Injects the display info into the ioregister || Used to enable GMA950 driver usage ||  This has been replaced with an EFI String in v1.1 ||
 || SMBIOSResolver.kext || || || ||
 
 = Dell Mini 9 Custom LocalExtensions kexts and their uses =
 Quick qestions... Why are these not in the /Extra/Extensions1 folder?
 || AppleHDA.kext || HD Audio kext || || Why is this a "LocalExtensions" and not installed in the Extra/ directory? Currently won't load if in /Extra... maybe could be fixed with custom compile of code?  There is apparently a way to patch the source to make it load from /Extra||
-|| ClamshellDisplay.kext || Enables sleep when display is closed || Add glue so that sleep works properly || This should probably be moved to the /Extra folder instead of /S/L/E/ (I have moved it on my mini and it works fine) Should mo in next release of DellEFI||
-|| HDAEnabler.kext || This kext `injects` the soundcard into the device tree so that it can be used by the AppleHDa driver|| Enables the sound by allowing AppleHDA associate with it. || This can (read: should) be replaced with an efi string. Also, using an efi string may negate the need for the IOAudioFamily kext (I have replaced it with an efi string) ||
+|| ClamshellDisplay.kext || Enables sleep when display is closed || Add glue so that sleep works properly || This will be replaced with a DSDT patch in v1.1||
+|| HDAEnabler.kext || This kext `injects` the soundcard into the device tree so that it can be used by the AppleHDa driver|| Enables the sound by allowing AppleHDA associate with it. || This has been replaced with an EFI string in v1.1||
 || IOAudioFamily.kext || Provides an interface for audio drivers || The kext has been patched so that audio works on resume. || Why is this a "LocalExtensions" and not installed in the Extra/ director? ||
