@@ -23,6 +23,17 @@
 #ifndef _APPLEPS2SYNAPTICSTOUCHPAD_H
 #define _APPLEPS2SYNAPTICSTOUCHPAD_H
 
+#define RElATIVE_PACKET_SIZE	3
+#define ABSOLUTE_PACKET_SIZE	6
+
+//TODO set thit bit
+#define ABSOULTE_MODE_BITMAP		0
+#define REALTIVE_MODE_BITMAP		0
+
+#define ABSULUTE_MODE			(_touchPadModeByte & ABSOULTE_MODE_BITMAP)
+#define RELATIVE_MODE			(_touchPadModeByte & REALTIVE_MODE_BITMAP)
+#define W_MODE					0
+
 #include "ApplePS2MouseDevice.h"
 #include <IOKit/hidsystem/IOHIPointing.h>
 
@@ -38,17 +49,18 @@ private:
     ApplePS2MouseDevice * _device;
     UInt32                _interruptHandlerInstalled:1;
     UInt32                _powerControlHandlerInstalled:1;
-    UInt8                 _packetBuffer[3];
+    UInt8                 _packetBuffer[ABSOLUTE_PACKET_SIZE];
     UInt32                _packetByteCount;
     IOFixed               _resolution;
     UInt16                _touchPadVersion;
     UInt8                 _touchPadModeByte;
 
-	virtual void   dispatchRelativePointerEventWithPacket( UInt8 * packet,
-                                                           UInt32  packetSize );
-
+	virtual void   dispatchRelativePointerEventWithPacket( UInt8 * packet, UInt32  packetSize );
+	virtual void   dispatchAbsolutePointerEventWithPacket( UInt8 * packet, UInt32  packetSize );
+	
     virtual void   setCommandByte( UInt8 setBits, UInt8 clearBits );
 
+	//bvirtual void   setRelativeMode( boot enable );
     virtual void   setTouchPadEnable( bool enable );
     virtual UInt32 getTouchPadData( UInt8 dataSelector );
     virtual bool   setTouchPadModeByte( UInt8 modeByteValue,

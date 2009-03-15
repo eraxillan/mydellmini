@@ -306,11 +306,72 @@ void ApplePS2SynapticsTouchPad::interruptOccurred( UInt8 data )
 
     _packetBuffer[_packetByteCount++] = data;
     
-    if (_packetByteCount == 3)
+	
+    if (RELATIVE_MODE && (_packetByteCount == RElATIVE_PACKET_SIZE))
     {
-        dispatchRelativePointerEventWithPacket(_packetBuffer, 3);
+        dispatchRelativePointerEventWithPacket(_packetBuffer, RElATIVE_PACKET_SIZE);
         _packetByteCount = 0;
-    }
+	} else if (ABSULUTE_MODE && (_packetByteCount == ABSOLUTE_PACKET_SIZE)) {
+		dispatchRelativePointerEventWithPacket(_packetBuffer, ABSOLUTE_PACKET_SIZE);
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+void ApplePS2SynapticsTouchPad::
+dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
+									   UInt32  packetSize )
+{
+	// Packet without W mode dissabled	(twice as long as relativ mode, first two bits specify which packer (10 = 1, 11 = 2)
+	//	7		6		5			4			3		2		1		0
+	//	{1}		{0}		Finger		Reserved	{0}		Gesture Right	Left
+	//	Y11		Y10		Y9			Y8			X11		X10		X9		X8			(Y 11..8) (X 11..8)
+	//	Z7		Z6		Z5			Z4			Z3		Z2		Z1		Z0			(Z  7..0)
+	//	{1}		{1}		Y12			X12			{0}		Gesture	Right	Left		(Y12) (X12)
+	//	X7		X6		X5			X4			X3		X2		X1		X0			(X 7..0)
+	//	Y7		Y6		Y5			Y4			Y3		Y2		Y1		Y0			(Y 7..0)
+	
+	// With W mode enabes
+	//	7		6		5			4			3		2		1		0
+	//	{1}		{0}		W3			W2			{0}		W1		Right	Left		(W 3..2) (W1)
+	//	Y11		Y10		Y9			Y8			X11		X10		X9		X8			(Y 11..8) (X 11..8)
+	//	Z7		Z6		Z5			Z4			Z3		Z2		Z1		Z0			(Z  7..0)
+	//	{1}		{1}		Y12			X12			{0}		W0		R/D		R/L			(W0) (Y12) (X12)
+	//	X7		X6		X5			X4			X3		X2		X1		X0			(X 7..0)
+	//	Y7		Y6		Y5			Y4			Y3		Y2		Y1		Y0			(Y 7..0)
+	
+	
+	UInt8 Wvalue = 0xFF;
+	UInt32	absX, absY;		// Acual size is 8 * 12 or 96, we only use 8*8 or 64
+	UInt32	pressureZ;
+	bool rightButton;
+	bool leftButton;
+	
+	// Read the packets and put teh info into usable variables...
+	rightButton = ((packet[0] & 0x2) >> 1);
+	leftButton = (packet[0] & 0x1);
+	pressureZ = packet[2];												//	  (max value is 255)
+	//			0 000 1111 1111	 0 1111 0000 0000			 1 0000 0000 0000 (max value is 6143)
+	absX = ((0XFF & packet[4]) | ((packet[2] & 0x0F) << 8) | ((packet[3] & 0x10) << 12 - 4));		// TODO verify this (aka its wrong)
+	absY = ((0xFF & packet[4]) | ((packet[2] & 0x0F) << 4) | ((packet[3] & 0x20) << 12 - 5));				// VERIFY this too
+	if(W_MODE) {
+		Wvalue = ((packet[3] & 0x4) >> 2) | ((packet[0] & 0x8) >> 2);	// (max value = 15)
+	} else {
+		if(((packet[0] & 0x10) >> 4))	Wvalue = -1;		// No finger
+		else							Wvalue = 6;	// finger (4 through 7 = finger)
+	}
+	
+	// Absolute pointer event may not be needed?? (Look in IOHIDFamily -> IOHIDPointer.cpp
+	/*dispatchAbsolutePointerEvent(IOGPoint *  newLoc,
+								 IOGBounds *	bounds,
+								 UInt32		buttonState,
+								 bool		proximity,
+								 int		pressure,
+								 int		pressureMin,
+								 int		pressureMax,
+								 int		stylusAngle,
+								 AbsoluteTime	ts);*/
+	
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
