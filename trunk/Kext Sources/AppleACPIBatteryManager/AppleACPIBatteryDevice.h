@@ -30,10 +30,40 @@
 
 #include "AppleACPIBatteryManager.h"
 
-#define kBatteryPollingDebugKey     "BatteryPollingPeriodOverride"
 
-#define POWER_WATT_UNIT		0
-#define POWER_AMP_UNIT		1
+#define WATTS				0
+#define AMPS				1
+#define ACPI_MAX			0x7FFFFFFF
+#define ACPI_UNKNOWN		0xFFFFFFFF
+
+#define BATTERY_CHARGED		0
+#define BATTERY_DISCHARGING	1
+#define BATTERY_CHARGING	2
+#define	BATTERY_CRITICAL	4
+
+#define BIF_POWER_UNIT			0
+#define BIF_DESIGN_CAPACITY		1
+#define BIF_LAST_FULL_CAPACITY	2
+#define BIF_TECHNOLOGY			3
+#define	BIF_DESIGN_VOLTAGE		4
+#define BIF_CAPACITY_WARNING	5
+#define BIF_LOW_WARNING			6
+#define BIF_GRANULARITY_1		7
+#define BIF_GRANULARITY_2		8
+#define BIF_MODEL_NUMBER		9
+#define BIF_SERIAL_NUMBER		10
+#define BIF_BATTERY_TYPE		11
+#define BIF_OEM					12
+#define BIF_CYCLE_COUNT			13
+
+#define BST_STATUS				0
+#define	BST_RATE				1
+#define	BST_CAPACITY			2
+#define	BST_VOLTAGE				3
+
+#define NUM_BITS				32
+
+#define kBatteryPollingDebugKey     "BatteryPollingPeriodOverride"
 
 class AppleACPIBatteryManager;
 
@@ -140,14 +170,13 @@ private:
 	UInt32   fCurrentRate;
 	UInt32   fAverageRate;
 	UInt32   fStatus;
+	UInt32	 fCycleCount;
 
 	OSSymbol *fDeviceName;
 	OSSymbol *fSerial;
 	OSSymbol *fType;
 	OSSymbol *fManufacturer;
 	OSData   *fManufacturerData;
-	
-	UInt32 fPrevCapacity;
 
 	UInt8    fMaxErr;
 	UInt16   fManufactureDate;
@@ -165,16 +194,11 @@ public:
     void    setType(OSSymbol *sym);
     OSSymbol *Type(void);
 
-	IOReturn setBatteryRAW(OSArray *acpibat_raw);
-
 	IOReturn setBatterySTA(UInt32 acpibat_bif);
 
 	IOReturn setBatteryBIF(OSArray *acpibat_bif);
-	IOReturn setBatteryEBIF(OSArray *acpibat_ebif);
 
 	IOReturn setBatteryBST(OSArray *acpibat_bst);
-	IOReturn setBatteryEBST(OSArray *acpibat_bst);
-
 
 };
 
