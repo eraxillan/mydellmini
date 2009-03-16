@@ -29,6 +29,7 @@
 
 #include "AppleACPIBatteryDevice.h"
 
+
 #if 0
 #define DEBUG_LOG(args...)  IOLog(args)
 #else
@@ -63,11 +64,8 @@ public:
 	IOReturn getBatterySTA(void);
 
 	IOReturn getBatteryBIF(void);
-	IOReturn getBatteryEBIF(void);
 
 	IOReturn getBatteryBST(void);
-	IOReturn getBatteryEBST(void);
-
 
 };
 
