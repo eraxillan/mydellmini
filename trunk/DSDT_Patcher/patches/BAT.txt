@@ -102,8 +102,8 @@
                         	
                         	Store (^^EC0.BSN0, Index (STAT, 0x0A))	// Serial number
                         	Sleep (0x14)
-                        	Store (^^EC0.BTY0, Index (STAT, 0x0B))	// Battery Type
-                        	Sleep (0x14)
+                        	//Store (^^EC0.BTY0, Index (STAT, 0x0B))	// Battery Type
+                        	//Sleep (0x14)
                         	Store (^^EC0.BMF0, Local1)				// oem
                         	Sleep (0x14)
                         	
