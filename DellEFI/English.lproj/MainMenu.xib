@@ -191,7 +191,7 @@
 											<reference key="NSSuperview" ref="864630997"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSButtonCell" key="NSCell" id="936490358">
-												<int key="NSCellFlags">-1543373312</int>
+												<int key="NSCellFlags">604110336</int>
 												<int key="NSCellFlags2">131072</int>
 												<string key="NSContents">Hide DellEFI files</string>
 												<reference key="NSSupport" ref="26"/>
@@ -740,10 +740,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 								<string key="NSContents">v1.1</string>
 								<reference key="NSSupport" ref="842560193"/>
 								<reference key="NSControlView" ref="466965771"/>
-								<object class="NSColor" key="NSBackgroundColor">
-									<int key="NSColorSpace">4</int>
-									<bytes key="NSWhite">MQA</bytes>
-								</object>
+								<reference key="NSBackgroundColor" ref="348748884"/>
 								<object class="NSColor" key="NSTextColor">
 									<int key="NSColorSpace">6</int>
 									<string key="NSCatalogName">System</string>

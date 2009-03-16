@@ -9,10 +9,10 @@ property RemoteCDP : false
 property HibernationP : false
 property FingerP : false
 property dsdtP : false
-property dellefiver : "1.1b2"
+property dellefiver : "1.1b4"
 property needUpdate : false
 property needreboot : false
-property workingDir : "/"
+property workingDir : ""
 
 on awake from nib theObject
 	
@@ -28,16 +28,16 @@ on awake from nib theObject
 	
 	set contents of text field "verlb" of window "DellEFI Installer" to "v" & dellefiver
 	
-	try
-		set OSVer to do shell script "sw_vers | grep 'ProductVersion:' | awk '{print $2}'"
-		
-		if OSVer is not equal to "10.5.6" then
-			display dialog "DellEFI is only meant for 10.5.6 system. Please upgrade to 10.5.6 before running again." buttons ["Quit"] default button "Quit" with icon caution
-		end if
-	on error errMsg number errorNumber
-		display dialog "Could not detect OSX version. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
-		quit
-	end try
+	-- try
+	-- 	set OSVer to do shell script "sw_vers | grep 'ProductVersion:' | awk '{print $2}'"
+	
+	-- 	if OSVer is not equal to "10.5.6" then
+	-- display dialog "DellEFI is only meant for 10.5.6 system. Please upgrade to 10.5.6 before running again." buttons ["Quit"] default button "Quit" with icon caution
+	-- 	end if
+	-- on error errMsg number errorNumber
+	-- 	display dialog "Could not detect OSX version. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
+	-- 	quit
+	-- end try
 	
 	try
 		-- check if we are running on a Dell Mini 9... we check the mac address of the nic to be one of Dell's
@@ -385,10 +385,11 @@ on clicked theObject
 			do shell script "kextcache -a i386 -m /Extra/Extensions.mkext /Extra/Mini9Ext" with administrator privileges
 			
 			--clean up old audio installs just in case there are some bits left over
-			set contents of text field "currentop" of window "DellEFI Installer" to "Remove old audio files"
+			set contents of text field "currentop" of window "DellEFI Installer" to "Remove old audio/sleep files"
 			delay 1
 			do shell script "rm -r /System/Library/Extensions/ALCinject.kext > /dev/null &" with administrator privileges
 			do shell script "rm -r /System/Library/Extensions/HDAEnabler.kext > /dev/null &" with administrator privileges
+			do shell script "rm -r /System/Library/Extensions/ClamshellDisplay.kext > /dev/null &" with administrator privileges
 			
 			set contents of text field "currentop" of window "DellEFI Installer" to "Installing local files"
 			delay 1
@@ -396,8 +397,6 @@ on clicked theObject
 			do shell script "cp -R " & workingDir & "/LocalExtensions/*.kext /System/Library/Extensions > /dev/null &" with administrator privileges
 			do shell script "chown -R 0:0 /System/Library/Extensions/AppleHDA.kext" with administrator privileges
 			do shell script "chmod -R 755 /System/Library/Extensions/AppleHDA.kext" with administrator privileges
-			do shell script "chown -R 0:0 /System/Library/Extensions/ClamshellDisplay.kext" with administrator privileges
-			do shell script "chmod -R 755 /System/Library/Extensions/ClamshellDisplay.kext" with administrator privileges
 			do shell script "chown -R 0:0 /System/Library/Extensions/IOAudioFamily.kext" with administrator privileges
 			do shell script "chmod -R 755 /System/Library/Extensions/IOAudioFamily.kext" with administrator privileges
 			-- remove mkext so it is rebuilt
