@@ -158,6 +158,40 @@
 			667575270F6DD1890010C52C /* PBXTextBookmark */ = 667575270F6DD1890010C52C /* PBXTextBookmark */;
 			667575280F6DD1890010C52C /* PBXTextBookmark */ = 667575280F6DD1890010C52C /* PBXTextBookmark */;
 			6675752A0F6DEECE0010C52C /* PBXTextBookmark */ = 6675752A0F6DEECE0010C52C /* PBXTextBookmark */;
+			667575350F6E07290010C52C /* PBXTextBookmark */ = 667575350F6E07290010C52C /* PBXTextBookmark */;
+			667575360F6E07290010C52C /* PlistBookmark */ = 667575360F6E07290010C52C /* PlistBookmark */;
+			667575380F6E07290010C52C /* PBXTextBookmark */ = 667575380F6E07290010C52C /* PBXTextBookmark */;
+			667575390F6E07290010C52C /* PlistBookmark */ = 667575390F6E07290010C52C /* PlistBookmark */;
+			6675753B0F6E07290010C52C /* PlistBookmark */ = 6675753B0F6E07290010C52C /* PlistBookmark */;
+			667575430F6E0AEA0010C52C /* PlistBookmark */ = 667575430F6E0AEA0010C52C /* PlistBookmark */;
+			667575440F6E0AEA0010C52C /* PBXTextBookmark */ = 667575440F6E0AEA0010C52C /* PBXTextBookmark */;
+			667575450F6E0AEA0010C52C /* PBXTextBookmark */ = 667575450F6E0AEA0010C52C /* PBXTextBookmark */;
+			667575460F6E0AEA0010C52C /* PBXTextBookmark */ = 667575460F6E0AEA0010C52C /* PBXTextBookmark */;
+			667575470F6E0AEA0010C52C /* PBXTextBookmark */ = 667575470F6E0AEA0010C52C /* PBXTextBookmark */;
+			667575480F6E0AEA0010C52C /* PlistBookmark */ = 667575480F6E0AEA0010C52C /* PlistBookmark */;
+			667575490F6E0AEA0010C52C /* PBXTextBookmark */ = 667575490F6E0AEA0010C52C /* PBXTextBookmark */;
+			6675754A0F6E0AEA0010C52C /* PBXTextBookmark */ = 6675754A0F6E0AEA0010C52C /* PBXTextBookmark */;
+			6675754B0F6E0AEA0010C52C /* PBXTextBookmark */ = 6675754B0F6E0AEA0010C52C /* PBXTextBookmark */;
+			6675754C0F6E0AEA0010C52C /* PBXTextBookmark */ = 6675754C0F6E0AEA0010C52C /* PBXTextBookmark */;
+			6675754D0F6E0AEA0010C52C /* PBXTextBookmark */ = 6675754D0F6E0AEA0010C52C /* PBXTextBookmark */;
+			6675754E0F6E0AEA0010C52C /* PBXTextBookmark */ = 6675754E0F6E0AEA0010C52C /* PBXTextBookmark */;
+			6675754F0F6E0AEA0010C52C /* PBXTextBookmark */ = 6675754F0F6E0AEA0010C52C /* PBXTextBookmark */;
+			6675755C0F6E0C9F0010C52C /* PBXTextBookmark */ = 6675755C0F6E0C9F0010C52C /* PBXTextBookmark */;
+			667575600F6E0E0C0010C52C /* PBXTextBookmark */ = 667575600F6E0E0C0010C52C /* PBXTextBookmark */;
+			667575670F6E0E9C0010C52C /* PBXTextBookmark */ = 667575670F6E0E9C0010C52C /* PBXTextBookmark */;
+			667575680F6E0E9C0010C52C /* PBXTextBookmark */ = 667575680F6E0E9C0010C52C /* PBXTextBookmark */;
+			667575690F6E0E9C0010C52C /* PBXTextBookmark */ = 667575690F6E0E9C0010C52C /* PBXTextBookmark */;
+			6675756A0F6E0E9C0010C52C /* PBXTextBookmark */ = 6675756A0F6E0E9C0010C52C /* PBXTextBookmark */;
+			6675756B0F6E0E9C0010C52C /* PBXTextBookmark */ = 6675756B0F6E0E9C0010C52C /* PBXTextBookmark */;
+			6675756C0F6E0E9C0010C52C /* PBXTextBookmark */ = 6675756C0F6E0E9C0010C52C /* PBXTextBookmark */;
+			6675756D0F6E0EA10010C52C /* PBXTextBookmark */ = 6675756D0F6E0EA10010C52C /* PBXTextBookmark */;
+			6675756E0F6E0EA10010C52C /* PBXTextBookmark */ = 6675756E0F6E0EA10010C52C /* PBXTextBookmark */;
+			6675756F0F6E0EA10010C52C /* PBXTextBookmark */ = 6675756F0F6E0EA10010C52C /* PBXTextBookmark */;
+			667575700F6E0EA10010C52C /* PBXTextBookmark */ = 667575700F6E0EA10010C52C /* PBXTextBookmark */;
+			667575710F6E0EA50010C52C /* PBXTextBookmark */ = 667575710F6E0EA50010C52C /* PBXTextBookmark */;
+			667575720F6E0EA50010C52C /* PBXTextBookmark */ = 667575720F6E0EA50010C52C /* PBXTextBookmark */;
+			667575730F6E0EA50010C52C /* PBXTextBookmark */ = 667575730F6E0EA50010C52C /* PBXTextBookmark */;
+			667575750F6E0FD30010C52C /* PBXTextBookmark */ = 667575750F6E0FD30010C52C /* PBXTextBookmark */;
 			6682A2B50F6AFA2E00106E00 = 6682A2B50F6AFA2E00106E00 /* PBXTextBookmark */;
 			6682A2B60F6AFA2E00106E00 = 6682A2B60F6AFA2E00106E00 /* PBXBookmark */;
 			6682A2B70F6AFA2E00106E00 = 6682A2B70F6AFA2E00106E00 /* PBXTextBookmark */;
@@ -173,16 +207,16 @@
 	};
 	1A224C3EFF42367911CA2CB7 /* AppleACPIBatteryManager.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {957, 924}}";
+			sepNavIntBoundsRect = "{{0, 0}, {957, 910}}";
 			sepNavSelRange = "{1164, 0}";
 			sepNavVisRange = "{1016, 827}";
 		};
 	};
 	1A224C3FFF42367911CA2CB7 /* AppleACPIBatteryManager.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {957, 3234}}";
-			sepNavSelRange = "{6619, 11}";
-			sepNavVisRange = "{6450, 1018}";
+			sepNavIntBoundsRect = "{{0, 0}, {957, 3388}}";
+			sepNavSelRange = "{2544, 536}";
+			sepNavVisRange = "{2513, 628}";
 			sepNavWindowFrame = "{{15, -5}, {1095, 778}}";
 		};
 	};
@@ -222,7 +256,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = UdateStatus;
 		rLen = 0;
-		rLoc = 31235;
+		rLoc = 31639;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 32903;
@@ -546,7 +580,7 @@
 		comments = "error: 'fUnitFactor' was not declared in this scope";
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		rLen = 1;
-		rLoc = 727;
+		rLoc = 732;
 		rType = 1;
 	};
 	667574B00F6DBF250010C52C /* PBXTextBookmark */ = {
@@ -554,7 +588,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 736";
 		rLen = 0;
-		rLoc = 24218;
+		rLoc = 24587;
 		rType = 0;
 		vrLen = 566;
 		vrLoc = 22848;
@@ -564,7 +598,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 736";
 		rLen = 0;
-		rLoc = 24218;
+		rLoc = 24587;
 		rType = 0;
 		vrLen = 566;
 		vrLoc = 22848;
@@ -684,7 +718,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 843";
 		rLen = 0;
-		rLoc = 25948;
+		rLoc = 26352;
 		rType = 0;
 		vrLen = 1319;
 		vrLoc = 22496;
@@ -714,7 +748,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 741";
 		rLen = 0;
-		rLoc = 24218;
+		rLoc = 24587;
 		rType = 0;
 		vrLen = 1254;
 		vrLoc = 22530;
@@ -724,7 +758,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 741";
 		rLen = 0;
-		rLoc = 24218;
+		rLoc = 24587;
 		rType = 0;
 		vrLen = 1288;
 		vrLoc = 22496;
@@ -754,7 +788,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 745";
 		rLen = 0;
-		rLoc = 24432;
+		rLoc = 24801;
 		rType = 0;
 		vrLen = 1390;
 		vrLoc = 23237;
@@ -764,7 +798,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 844";
 		rLen = 0;
-		rLoc = 25948;
+		rLoc = 26352;
 		rType = 0;
 		vrLen = 858;
 		vrLoc = 22848;
@@ -782,7 +816,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 844";
 		rLen = 0;
-		rLoc = 25948;
+		rLoc = 26352;
 		rType = 0;
 		vrLen = 858;
 		vrLoc = 22848;
@@ -822,7 +856,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 796";
 		rLen = 0;
-		rLoc = 24631;
+		rLoc = 25035;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 24230;
@@ -832,7 +866,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 737";
 		rLen = 0;
-		rLoc = 23489;
+		rLoc = 23748;
 		rType = 0;
 		vrLen = 1391;
 		vrLoc = 22530;
@@ -872,7 +906,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 737";
 		rLen = 0;
-		rLoc = 23489;
+		rLoc = 23748;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 22222;
@@ -892,7 +926,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 737";
 		rLen = 0;
-		rLoc = 23489;
+		rLoc = 23748;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 22222;
@@ -912,7 +946,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 737";
 		rLen = 0;
-		rLoc = 23489;
+		rLoc = 23748;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 22222;
@@ -932,7 +966,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 737";
 		rLen = 0;
-		rLoc = 23489;
+		rLoc = 23748;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 22222;
@@ -952,7 +986,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 723";
 		rLen = 11;
-		rLoc = 22728;
+		rLoc = 22987;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 22222;
@@ -972,7 +1006,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 723";
 		rLen = 11;
-		rLoc = 22728;
+		rLoc = 22987;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 22222;
@@ -992,7 +1026,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 723";
 		rLen = 11;
-		rLoc = 22728;
+		rLoc = 22987;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 22222;
@@ -1012,7 +1046,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 723";
 		rLen = 11;
-		rLoc = 22728;
+		rLoc = 22987;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 22222;
@@ -1032,7 +1066,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 723";
 		rLen = 11;
-		rLoc = 22728;
+		rLoc = 22987;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 22222;
@@ -1052,7 +1086,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 796";
 		rLen = 0;
-		rLoc = 24631;
+		rLoc = 25035;
 		rType = 0;
 		vrLen = 1486;
 		vrLoc = 24734;
@@ -1072,7 +1106,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 796";
 		rLen = 0;
-		rLoc = 24631;
+		rLoc = 25035;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 24230;
@@ -1092,7 +1126,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 802";
 		rLen = 0;
-		rLoc = 24631;
+		rLoc = 25035;
 		rType = 0;
 		vrLen = 1353;
 		vrLoc = 25198;
@@ -1112,7 +1146,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 770";
 		rLen = 0;
-		rLoc = 24631;
+		rLoc = 25035;
 		rType = 0;
 		vrLen = 1430;
 		vrLoc = 23706;
@@ -1122,7 +1156,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 760";
 		rLen = 0;
-		rLoc = 24631;
+		rLoc = 25035;
 		rType = 0;
 		vrLen = 1452;
 		vrLoc = 23706;
@@ -1132,7 +1166,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 759";
 		rLen = 0;
-		rLoc = 24631;
+		rLoc = 25035;
 		rType = 0;
 		vrLen = 917;
 		vrLoc = 23910;
@@ -1162,7 +1196,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 744";
 		rLen = 11;
-		rLoc = 24075;
+		rLoc = 24444;
 		rType = 0;
 		vrLen = 1788;
 		vrLoc = 22457;
@@ -1172,7 +1206,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 786";
 		rLen = 11;
-		rLoc = 25656;
+		rLoc = 26060;
 		rType = 0;
 		vrLen = 1097;
 		vrLoc = 24533;
@@ -1192,7 +1226,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 786";
 		rLen = 11;
-		rLoc = 25656;
+		rLoc = 26060;
 		rType = 0;
 		vrLen = 1095;
 		vrLoc = 24535;
@@ -1212,7 +1246,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 786";
 		rLen = 11;
-		rLoc = 25656;
+		rLoc = 26060;
 		rType = 0;
 		vrLen = 1095;
 		vrLoc = 24535;
@@ -1232,7 +1266,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 744";
 		rLen = 11;
-		rLoc = 24075;
+		rLoc = 24444;
 		rType = 0;
 		vrLen = 1820;
 		vrLoc = 22425;
@@ -1262,7 +1296,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 744";
 		rLen = 11;
-		rLoc = 24075;
+		rLoc = 24444;
 		rType = 0;
 		vrLen = 1788;
 		vrLoc = 22457;
@@ -1282,7 +1316,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 759";
 		rLen = 0;
-		rLoc = 24626;
+		rLoc = 25030;
 		rType = 0;
 		vrLen = 1711;
 		vrLoc = 22929;
@@ -1292,7 +1326,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 744";
 		rLen = 0;
-		rLoc = 24213;
+		rLoc = 24582;
 		rType = 0;
 		vrLen = 1728;
 		vrLoc = 22754;
@@ -1302,7 +1336,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 792";
 		rLen = 0;
-		rLoc = 25796;
+		rLoc = 26200;
 		rType = 0;
 		vrLen = 1108;
 		vrLoc = 25316;
@@ -1312,7 +1346,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 592";
 		rLen = 2;
-		rLoc = 19268;
+		rLoc = 19527;
 		rType = 0;
 		vrLen = 825;
 		vrLoc = 18865;
@@ -1332,7 +1366,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 816";
 		rLen = 0;
-		rLoc = 26336;
+		rLoc = 26740;
 		rType = 0;
 		vrLen = 947;
 		vrLoc = 26020;
@@ -1352,7 +1386,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 899";
 		rLen = 0;
-		rLoc = 28941;
+		rLoc = 29345;
 		rType = 0;
 		vrLen = 1015;
 		vrLoc = 28359;
@@ -1372,7 +1406,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 899";
 		rLen = 0;
-		rLoc = 28941;
+		rLoc = 29345;
 		rType = 0;
 		vrLen = 1013;
 		vrLoc = 28359;
@@ -1392,7 +1426,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 592";
 		rLen = 2;
-		rLoc = 19268;
+		rLoc = 19527;
 		rType = 0;
 		vrLen = 825;
 		vrLoc = 18865;
@@ -1422,7 +1456,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 592";
 		rLen = 2;
-		rLoc = 19268;
+		rLoc = 19527;
 		rType = 0;
 		vrLen = 740;
 		vrLoc = 18865;
@@ -1442,7 +1476,7 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 563";
 		rLen = 18;
-		rLoc = 19033;
+		rLoc = 19292;
 		rType = 0;
 		vrLen = 1311;
 		vrLoc = 29518;
@@ -1452,10 +1486,365 @@
 		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
 		name = "AppleACPIBatteryDevice.cpp: 780";
 		rLen = 0;
-		rLoc = 25947;
+		rLoc = 26351;
 		rType = 0;
 		vrLen = 1243;
 		vrLoc = 25304;
+	};
+	667575350F6E07290010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
+		name = "AppleACPIBatteryDevice.cpp: 725";
+		rLen = 0;
+		rLoc = 24488;
+		rType = 0;
+		vrLen = 1768;
+		vrLoc = 22926;
+	};
+	667575360F6E07290010C52C /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 667575370F6E07290010C52C /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/moomeklort/mydellmini/Kext Sources/AppleACPIBatteryManager/build/Release/AppleACPIBatteryManager.kext/Contents/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	667575370F6E07290010C52C /* Info.plist */ = {
+		isa = PBXFileReference;
+		name = Info.plist;
+		path = "/Users/moomeklort/mydellmini/Kext Sources/AppleACPIBatteryManager/build/Release/AppleACPIBatteryManager.kext/Contents/Info.plist";
+		sourceTree = "<absolute>";
+	};
+	667575380F6E07290010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
+		name = "AppleACPIBatteryDevice.cpp: 725";
+		rLen = 0;
+		rLoc = 24488;
+		rType = 0;
+		vrLen = 1768;
+		vrLoc = 22926;
+	};
+	667575390F6E07290010C52C /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 6675753A0F6E07290010C52C /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/moomeklort/mydellmini/Kext Sources/AppleACPIBatteryManager/build/Release/AppleACPIBatteryManager.kext/Contents/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	6675753A0F6E07290010C52C /* Info.plist */ = {
+		isa = PBXFileReference;
+		name = Info.plist;
+		path = "/Users/moomeklort/mydellmini/Kext Sources/AppleACPIBatteryManager/build/Release/AppleACPIBatteryManager.kext/Contents/Info.plist";
+		sourceTree = "<absolute>";
+	};
+	6675753B0F6E07290010C52C /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/moomeklort/mydellmini/Kext Sources/AppleACPIBatteryManager/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	667575430F6E0AEA0010C52C /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/moomeklort/mydellmini/Kext Sources/AppleACPIBatteryManager/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	667575440F6E0AEA0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* AppleACPIBatteryManager.h */;
+		name = "AppleACPIBatteryManager.h: 31";
+		rLen = 0;
+		rLoc = 1164;
+		rType = 0;
+		vrLen = 827;
+		vrLoc = 1016;
+	};
+	667575450F6E0AEA0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */;
+		name = "AppleACPIBatteryDevice.h: 64";
+		rLen = 0;
+		rLoc = 1945;
+		rType = 0;
+		vrLen = 962;
+		vrLoc = 1539;
+	};
+	667575460F6E0AEA0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* AppleACPIBatteryManager.cpp */;
+		name = "AppleACPIBatteryManager.cpp: 125";
+		rLen = 0;
+		rLoc = 4033;
+		rType = 0;
+		vrLen = 1307;
+		vrLoc = 3348;
+	};
+	667575470F6E0AEA0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
+		name = "AppleACPIBatteryDevice.cpp: 725";
+		rLen = 0;
+		rLoc = 24488;
+		rType = 0;
+		vrLen = 1767;
+		vrLoc = 22927;
+	};
+	667575480F6E0AEA0010C52C /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 32D94FCF0562CBF700B6AF17 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/moomeklort/mydellmini/Kext Sources/AppleACPIBatteryManager/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	667575490F6E0AEA0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* AppleACPIBatteryManager.h */;
+		name = "AppleACPIBatteryManager.h: 31";
+		rLen = 0;
+		rLoc = 1164;
+		rType = 0;
+		vrLen = 827;
+		vrLoc = 1016;
+	};
+	6675754A0F6E0AEA0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* AppleACPIBatteryManager.cpp */;
+		name = "AppleACPIBatteryManager.cpp: 212";
+		rLen = 11;
+		rLoc = 6619;
+		rType = 0;
+		vrLen = 731;
+		vrLoc = 2543;
+	};
+	6675754B0F6E0AEA0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* AppleACPIBatteryManager.h */;
+		name = "AppleACPIBatteryManager.h: 31";
+		rLen = 0;
+		rLoc = 1164;
+		rType = 0;
+		vrLen = 827;
+		vrLoc = 1016;
+	};
+	6675754C0F6E0AEA0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* AppleACPIBatteryManager.cpp */;
+		name = "AppleACPIBatteryManager.cpp: 181";
+		rLen = 13;
+		rLoc = 6175;
+		rType = 0;
+		vrLen = 965;
+		vrLoc = 6408;
+	};
+	6675754D0F6E0AEA0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */;
+		name = "AppleACPIBatteryDevice.h: 64";
+		rLen = 0;
+		rLoc = 1945;
+		rType = 0;
+		vrLen = 962;
+		vrLoc = 1539;
+	};
+	6675754E0F6E0AEA0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* AppleACPIBatteryManager.cpp */;
+		name = "AppleACPIBatteryManager.cpp: 125";
+		rLen = 0;
+		rLoc = 4033;
+		rType = 0;
+		vrLen = 1307;
+		vrLoc = 3348;
+	};
+	6675754F0F6E0AEA0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
+		name = "AppleACPIBatteryDevice.cpp: 738";
+		rLen = 0;
+		rLoc = 24901;
+		rType = 0;
+		vrLen = 1890;
+		vrLoc = 22926;
+	};
+	6675755C0F6E0C9F0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
+		name = "AppleACPIBatteryDevice.cpp: 467";
+		rLen = 0;
+		rLoc = 16537;
+		rType = 0;
+		vrLen = 1155;
+		vrLoc = 15927;
+	};
+	667575600F6E0E0C0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
+		name = "AppleACPIBatteryDevice.cpp: 470";
+		rLen = 0;
+		rLoc = 16665;
+		rType = 0;
+		vrLen = 1172;
+		vrLoc = 15950;
+	};
+	667575670F6E0E9C0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
+		name = "AppleACPIBatteryDevice.cpp: 470";
+		rLen = 0;
+		rLoc = 16665;
+		rType = 0;
+		vrLen = 1172;
+		vrLoc = 15950;
+	};
+	667575680F6E0E9C0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* AppleACPIBatteryManager.cpp */;
+		name = "AppleACPIBatteryManager.cpp: 83";
+		rLen = 536;
+		rLoc = 2544;
+		rType = 0;
+		vrLen = 628;
+		vrLoc = 2513;
+	};
+	667575690F6E0E9C0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */;
+		name = "AppleACPIBatteryDevice.h: 64";
+		rLen = 0;
+		rLoc = 1945;
+		rType = 0;
+		vrLen = 962;
+		vrLoc = 1539;
+	};
+	6675756A0F6E0E9C0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
+		name = "AppleACPIBatteryDevice.cpp: 470";
+		rLen = 0;
+		rLoc = 16665;
+		rType = 0;
+		vrLen = 1172;
+		vrLoc = 15950;
+	};
+	6675756B0F6E0E9C0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* AppleACPIBatteryManager.cpp */;
+		name = "AppleACPIBatteryManager.cpp: 83";
+		rLen = 536;
+		rLoc = 2544;
+		rType = 0;
+		vrLen = 628;
+		vrLoc = 2513;
+	};
+	6675756C0F6E0E9C0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */;
+		name = "AppleACPIBatteryDevice.h: 64";
+		rLen = 0;
+		rLoc = 1945;
+		rType = 0;
+		vrLen = 962;
+		vrLoc = 1539;
+	};
+	6675756D0F6E0EA10010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */;
+		name = "AppleACPIBatteryDevice.h: 56";
+		rLen = 0;
+		rLoc = 1778;
+		rType = 0;
+		vrLen = 378;
+		vrLoc = 1448;
+	};
+	6675756E0F6E0EA10010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "warning: unused variable 'serial_number'";
+		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
+		rLen = 1;
+		rLoc = 441;
+		rType = 1;
+	};
+	6675756F0F6E0EA10010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */;
+		name = "AppleACPIBatteryDevice.h: 56";
+		rLen = 0;
+		rLoc = 1778;
+		rType = 0;
+		vrLen = 378;
+		vrLoc = 1448;
+	};
+	667575700F6E0EA10010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
+		name = "AppleACPIBatteryDevice.cpp: 442";
+		rLen = 48;
+		rLoc = 15774;
+		rType = 0;
+		vrLen = 499;
+		vrLoc = 15568;
+	};
+	667575710F6E0EA50010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */;
+		name = "AppleACPIBatteryDevice.h: 64";
+		rLen = 0;
+		rLoc = 1945;
+		rType = 0;
+		vrLen = 962;
+		vrLoc = 1539;
+	};
+	667575720F6E0EA50010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */;
+		name = "AppleACPIBatteryDevice.h: 64";
+		rLen = 0;
+		rLoc = 1945;
+		rType = 0;
+		vrLen = 962;
+		vrLoc = 1539;
+	};
+	667575730F6E0EA50010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
+		name = "AppleACPIBatteryDevice.cpp: 442";
+		rLen = 48;
+		rLoc = 15774;
+		rType = 0;
+		vrLen = 1256;
+		vrLoc = 14961;
+	};
+	667575750F6E0FD30010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */;
+		name = "AppleACPIBatteryDevice.cpp: 470";
+		rLen = 0;
+		rLoc = 16665;
+		rType = 0;
+		vrLen = 1014;
+		vrLoc = 15822;
 	};
 	6682A2B50F6AFA2E00106E00 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1525,17 +1914,17 @@
 	};
 	A769C2790E24996700A5D7D4 /* AppleACPIBatteryDevice.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1014, 13384}}";
-			sepNavSelRange = "{25934, 0}";
-			sepNavVisRange = "{25304, 1243}";
+			sepNavIntBoundsRect = "{{0, 0}, {957, 13188}}";
+			sepNavSelRange = "{16665, 0}";
+			sepNavVisRange = "{15822, 1014}";
 			sepNavWindowFrame = "{{15, -5}, {1095, 778}}";
 		};
 	};
 	A769C27A0E24996700A5D7D4 /* AppleACPIBatteryDevice.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {444, 2996}}";
-			sepNavSelRange = "{1778, 0}";
-			sepNavVisRange = "{1448, 378}";
+			sepNavIntBoundsRect = "{{0, 0}, {957, 2758}}";
+			sepNavSelRange = "{1945, 0}";
+			sepNavVisRange = "{1539, 962}";
 		};
 	};
 }
