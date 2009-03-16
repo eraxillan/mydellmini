@@ -439,6 +439,7 @@ void AppleACPIBatteryDevice::constructAppleSerialNumber(void)
     const char *    type_cstring_ptr;
     OSSymbol        *serial_string = fSerial;
     const char *    serial_cstring_ptr;
+	char			serial_number[kMaxGeneratedSerialSize];
 	
     const OSSymbol  *printableSerial = NULL;
     char            serialBuf[kMaxGeneratedSerialSize];
@@ -463,7 +464,10 @@ void AppleACPIBatteryDevice::constructAppleSerialNumber(void)
 	
     if (serial_string) {
         serial_cstring_ptr = serial_string->getCStringNoCopy();
-    } else {
+    } else if (fSerialNumber) {		// Lets use the serial number if we dont have a string
+		snprintf(serial_number, kMaxGeneratedSerialSize, "%d", fSerialNumber);
+		serial_cstring_ptr = (const char*) &serial_number;
+	} else {
         serial_cstring_ptr = "Unknown";
     }
 	
@@ -719,7 +723,8 @@ IOReturn AppleACPIBatteryDevice::setBatteryBIF(OSArray *acpibat_bif)
 	fDesignVoltage =	OSDynamicCast(OSNumber, acpibat_bif->getObject(BIF_DESIGN_VOLTAGE))->unsigned32BitValue();
 	// These are OEM Specific, hopefuly assuming OSString doesnt cause a problem in the future (or for diff OEM's)
 	fDeviceName =	(OSSymbol *)OSDynamicCast(OSString, acpibat_bif->getObject(BIF_MODEL_NUMBER));
-	fSerial =		(OSSymbol *)OSDynamicCast(OSString, acpibat_bif->getObject(BIF_SERIAL_NUMBER));
+	//fSerial =		(OSSymbol *)OSDynamicCast(OSString, acpibat_bif->getObject(BIF_SERIAL_NUMBER));
+	fSerialNumber =		OSDynamicCast(OSNumber, acpibat_bif->getObject(BIF_SERIAL_NUMBER))->unsigned32BitValue();
 	fType =			(OSSymbol *)OSDynamicCast(OSString, acpibat_bif->getObject(BIF_BATTERY_TYPE));
 	fManufacturer = (OSSymbol *)OSDynamicCast(OSString, acpibat_bif->getObject(BIF_OEM));
 	fCycleCount	= 	(acpibat_bif->getCount() > 13) ? OSDynamicCast(OSNumber, acpibat_bif->getObject(BIF_CYCLE_COUNT))->unsigned32BitValue() : 0;
@@ -734,7 +739,8 @@ IOReturn AppleACPIBatteryDevice::setBatteryBIF(OSArray *acpibat_bif)
 	setDesignCapacity(fDesignCapacity);
 	setMaxCapacity(fMaxCapacity);
 	setDeviceName(fDeviceName);
-	setSerial(fSerial);
+	//setSerial(fSerial);
+	setSerialNumber(fSerialNumber);
 	setType(fType);
 	setManufacturer(fManufacturer);
 	setCycleCount(fCycleCount);
