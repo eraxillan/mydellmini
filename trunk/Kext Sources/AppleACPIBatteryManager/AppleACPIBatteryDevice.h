@@ -65,6 +65,11 @@
 
 #define kBatteryPollingDebugKey     "BatteryPollingPeriodOverride"
 
+static const OSSymbol * unknownObjectKey		= OSSymbol::withCString("Unknown");
+UInt32 GetValueFromArray(OSArray * array, UInt8 index);
+OSSymbol *GetSymbolFromArray(OSArray * array, UInt8 index);
+
+
 class AppleACPIBatteryManager;
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -165,7 +170,7 @@ private:
 	UInt32   fDesignVoltage;
 	UInt32   fCurrentVoltage;
 	UInt32   fDesignCapacity;
-	UInt32   fCurentCapacity;
+	UInt32   fCurrentCapacity;
 	UInt32   fMaxCapacity;
 	UInt32   fCurrentRate;
 	UInt32   fAverageRate;
@@ -201,5 +206,6 @@ public:
 	IOReturn setBatteryBST(OSArray *acpibat_bst);
 
 };
+
 
 #endif
