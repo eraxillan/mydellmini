@@ -13,5 +13,3 @@
 // The following is handeled via a path file
 BAT:Device (BAT1):
 FN8:Method (_Q1C,:
-LID:Device (LID0):
-L1D:Method (_L1D,:
