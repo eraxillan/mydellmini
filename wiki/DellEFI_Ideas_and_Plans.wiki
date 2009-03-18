@@ -1,6 +1,9 @@
 #summary Meklort's Ideas and TODO List, in no particular order...
 
-==hutdown / Restart Hang==
+==Networking (Realtek1000) kext==
+The Realtek1000 kext does not report the network speed or duplex mode to the os. This should be a somewhat easy fix.
+
+==Shutdown / Restart Hang==
 This is probably due to a bug in one of the drivers. An easy fix may be modifying the DSDT's KILL method so that it will force a shutdown after an elapsed time (say 5 seconds).
 
 ==Brightness Control==
