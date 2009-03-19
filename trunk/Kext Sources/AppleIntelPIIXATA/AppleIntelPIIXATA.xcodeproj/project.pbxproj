@@ -9,6 +9,19 @@
 /* Begin PBXBuildFile section */
 		1A224C40FF42367911CA2CB7 /* AppleIntelPIIXPATA.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A224C3EFF42367911CA2CB7 /* AppleIntelPIIXPATA.h */; };
 		1A224C41FF42367911CA2CB7 /* AppleIntelPIIXPATA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A224C3FFF42367911CA2CB7 /* AppleIntelPIIXPATA.cpp */; settings = {ATTRIBUTES = (); }; };
+		667576770F728E810010C52C /* AppleIntelPIIXPATA.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A224C3EFF42367911CA2CB7 /* AppleIntelPIIXPATA.h */; };
+		667576780F728E810010C52C /* AppleIntelPIIXATAKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = B935358201760C1B08CA29FD /* AppleIntelPIIXATAKeys.h */; };
+		667576790F728E810010C52C /* AppleIntelPIIXATATiming.h in Headers */ = {isa = PBXBuildFile; fileRef = B936801201763F1C08CA29FD /* AppleIntelPIIXATATiming.h */; };
+		6675767A0F728E810010C52C /* AppleIntelPIIXATAHW.h in Headers */ = {isa = PBXBuildFile; fileRef = B9368010017637EC08CA29FD /* AppleIntelPIIXATAHW.h */; };
+		6675767B0F728E810010C52C /* AppleIntelPIIXATARoot.h in Headers */ = {isa = PBXBuildFile; fileRef = B948085704853CC508D5663B /* AppleIntelPIIXATARoot.h */; };
+		6675767C0F728E810010C52C /* AppleIntelPIIXATAChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = B948085B048540DC08D5663B /* AppleIntelPIIXATAChannel.h */; };
+		6675767D0F728E810010C52C /* AppleIntelICHxSATA.h in Headers */ = {isa = PBXBuildFile; fileRef = B948085F048679CF08D5663B /* AppleIntelICHxSATA.h */; };
+		667576800F728E810010C52C /* AppleIntelPIIXPATA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A224C3FFF42367911CA2CB7 /* AppleIntelPIIXPATA.cpp */; settings = {ATTRIBUTES = (); }; };
+		667576810F728E810010C52C /* AppleIntelPIIXATARoot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B948085604853CC508D5663B /* AppleIntelPIIXATARoot.cpp */; };
+		667576820F728E810010C52C /* AppleIntelPIIXATAChannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B948085A048540DC08D5663B /* AppleIntelPIIXATAChannel.cpp */; };
+		667576830F728E810010C52C /* AppleIntelICHxSATA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9480860048679CF08D5663B /* AppleIntelICHxSATA.cpp */; };
+		6675777E0F7290000010C52C /* IOPollingInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 6675777D0F7290000010C52C /* IOPollingInterface.h */; };
+		6675778A0F7291210010C52C /* IOLocksPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 667577890F7291210010C52C /* IOLocksPrivate.h */; };
 		B935358401760C1B08CA29FD /* AppleIntelPIIXATAKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = B935358201760C1B08CA29FD /* AppleIntelPIIXATAKeys.h */; };
 		B9368011017637EC08CA29FD /* AppleIntelPIIXATAHW.h in Headers */ = {isa = PBXBuildFile; fileRef = B9368010017637EC08CA29FD /* AppleIntelPIIXATAHW.h */; };
 		B936801301763F1C08CA29FD /* AppleIntelPIIXATATiming.h in Headers */ = {isa = PBXBuildFile; fileRef = B936801201763F1C08CA29FD /* AppleIntelPIIXATATiming.h */; };
@@ -40,7 +53,7 @@
 			productName = AppleIntelPIIXATA;
 			productReference = 0B81C263FFB7832611CA28AA /* AppleIntelPIIXATA.kext */;
 			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
 <plist version=\"1.0\">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
@@ -252,6 +265,10 @@
 		0B81C263FFB7832611CA28AA /* AppleIntelPIIXATA.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = AppleIntelPIIXATA.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A224C3EFF42367911CA2CB7 /* AppleIntelPIIXPATA.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AppleIntelPIIXPATA.h; sourceTree = "<group>"; };
 		1A224C3FFF42367911CA2CB7 /* AppleIntelPIIXPATA.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AppleIntelPIIXPATA.cpp; sourceTree = "<group>"; };
+		6675768B0F728E810010C52C /* Info-AppleIntelPIIXATA__Upgraded_.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-AppleIntelPIIXATA__Upgraded_.plist"; sourceTree = "<group>"; };
+		6675768C0F728E810010C52C /* AppleIntelPIIXATA.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppleIntelPIIXATA.kext; sourceTree = BUILT_PRODUCTS_DIR; };
+		6675777D0F7290000010C52C /* IOPollingInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOPollingInterface.h; sourceTree = "<group>"; };
+		667577890F7291210010C52C /* IOLocksPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOLocksPrivate.h; sourceTree = "<group>"; };
 		B935358201760C1B08CA29FD /* AppleIntelPIIXATAKeys.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AppleIntelPIIXATAKeys.h; sourceTree = "<group>"; };
 		B9368010017637EC08CA29FD /* AppleIntelPIIXATAHW.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AppleIntelPIIXATAHW.h; sourceTree = "<group>"; };
 		B936801201763F1C08CA29FD /* AppleIntelPIIXATATiming.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AppleIntelPIIXATATiming.h; sourceTree = "<group>"; };
@@ -271,6 +288,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		667576840F728E810010C52C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -280,6 +304,7 @@
 				247142CAFF3F8F9811CA285C /* Source */,
 				089C167CFE841241C02AAC07 /* Resources */,
 				19C28FB6FE9D52B211CA2CBB /* Products */,
+				6675768B0F728E810010C52C /* Info-AppleIntelPIIXATA__Upgraded_.plist */,
 			);
 			name = AppleIntelPIIXATA;
 			sourceTree = "<group>";
@@ -295,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				0B81C263FFB7832611CA28AA /* AppleIntelPIIXATA.kext */,
+				6675768C0F728E810010C52C /* AppleIntelPIIXATA.kext */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -302,6 +328,7 @@
 		247142CAFF3F8F9811CA285C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				667577890F7291210010C52C /* IOLocksPrivate.h */,
 				1A224C3EFF42367911CA2CB7 /* AppleIntelPIIXPATA.h */,
 				1A224C3FFF42367911CA2CB7 /* AppleIntelPIIXPATA.cpp */,
 				B948085F048679CF08D5663B /* AppleIntelICHxSATA.h */,
@@ -313,6 +340,7 @@
 				B935358201760C1B08CA29FD /* AppleIntelPIIXATAKeys.h */,
 				B9368010017637EC08CA29FD /* AppleIntelPIIXATAHW.h */,
 				B936801201763F1C08CA29FD /* AppleIntelPIIXATATiming.h */,
+				6675777D0F7290000010C52C /* IOPollingInterface.h */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -334,17 +362,60 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		667576760F728E810010C52C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				667576770F728E810010C52C /* AppleIntelPIIXPATA.h in Headers */,
+				667576780F728E810010C52C /* AppleIntelPIIXATAKeys.h in Headers */,
+				667576790F728E810010C52C /* AppleIntelPIIXATATiming.h in Headers */,
+				6675767A0F728E810010C52C /* AppleIntelPIIXATAHW.h in Headers */,
+				6675767B0F728E810010C52C /* AppleIntelPIIXATARoot.h in Headers */,
+				6675767C0F728E810010C52C /* AppleIntelPIIXATAChannel.h in Headers */,
+				6675767D0F728E810010C52C /* AppleIntelICHxSATA.h in Headers */,
+				6675777E0F7290000010C52C /* IOPollingInterface.h in Headers */,
+				6675778A0F7291210010C52C /* IOLocksPrivate.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		667576740F728E810010C52C /* AppleIntelPIIXATA (Upgraded) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 667576870F728E810010C52C /* Build configuration list for PBXNativeTarget "AppleIntelPIIXATA (Upgraded)" */;
+			buildPhases = (
+				667576750F728E810010C52C /* ShellScript */,
+				667576760F728E810010C52C /* Headers */,
+				6675767E0F728E810010C52C /* Resources */,
+				6675767F0F728E810010C52C /* Sources */,
+				667576840F728E810010C52C /* Frameworks */,
+				667576850F728E810010C52C /* Rez */,
+				667576860F728E810010C52C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AppleIntelPIIXATA (Upgraded)";
+			productInstallPath = "$(SYSTEM_LIBRARY_DIR)/Extensions/IOATAFamily.kext/Contents/PlugIns";
+			productName = AppleIntelPIIXATA;
+			productReference = 6675768C0F728E810010C52C /* AppleIntelPIIXATA.kext */;
+			productType = "com.apple.product-type.kernel-extension.iokit";
+		};
+/* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 424EEE1309871760007E6FBC /* Build configuration list for PBXProject "AppleIntelPIIXATA" */;
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 089C166AFE841209C02AAC07 /* AppleIntelPIIXATA */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				667576740F728E810010C52C /* AppleIntelPIIXATA (Upgraded) */,
 				089C1673FE841209C02AAC07 /* AppleIntelPIIXATA */,
 			);
 		};
@@ -358,10 +429,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6675767E0F728E810010C52C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXRezBuildPhase section */
 		089C1679FE841209C02AAC07 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		667576850F728E810010C52C /* Rez */ = {
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -389,6 +474,24 @@
 			shellPath = /bin/sh;
 			shellScript = "script=\"${SYSTEM_DEVELOPER_DIR}/ProjectBuilder Extras/Kernel Extension Support/KEXTPreprocess\";\nif [ -x \"$script\" ]; then\n    . \"$script\"\nfi";
 		};
+		667576750F728E810010C52C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "script=\"${SYSTEM_DEVELOPER_DIR}/ProjectBuilder Extras/Kernel Extension Support/KEXTPreprocess\";\nif [ -x \"$script\" ]; then\n    . \"$script\"\nfi";
+		};
+		667576860F728E810010C52C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "script=\"${SYSTEM_DEVELOPER_DIR}/ProjectBuilder Extras/Kernel Extension Support/KEXTPostprocess\";\nif [ -x \"$script\" ]; then\n    . \"$script\"\nfi";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -400,6 +503,17 @@
 				B948085804853CC508D5663B /* AppleIntelPIIXATARoot.cpp in Sources */,
 				B948085C048540DC08D5663B /* AppleIntelPIIXATAChannel.cpp in Sources */,
 				B9480862048679CF08D5663B /* AppleIntelICHxSATA.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6675767F0F728E810010C52C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				667576800F728E810010C52C /* AppleIntelPIIXPATA.cpp in Sources */,
+				667576810F728E810010C52C /* AppleIntelPIIXATARoot.cpp in Sources */,
+				667576820F728E810010C52C /* AppleIntelPIIXATAChannel.cpp in Sources */,
+				667576830F728E810010C52C /* AppleIntelICHxSATA.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,18 +610,129 @@
 		424EEE1409871760007E6FBC /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ONLY_ACTIVE_ARCH_PRE_XCODE_3_1)";
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
+				ONLY_ACTIVE_ARCH_PRE_XCODE_3_1 = "$(NATIVE_ARCH)";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				VALID_ARCHS = i386;
 			};
 			name = Development;
 		};
 		424EEE1509871760007E6FBC /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ONLY_ACTIVE_ARCH_PRE_XCODE_3_1)";
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
+				ONLY_ACTIVE_ARCH_PRE_XCODE_3_1 = "$(NATIVE_ARCH)";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				VALID_ARCHS = i386;
 			};
 			name = Deployment;
 		};
 		424EEE1609871760007E6FBC /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ONLY_ACTIVE_ARCH_PRE_XCODE_3_1)";
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
+				ONLY_ACTIVE_ARCH_PRE_XCODE_3_1 = "$(NATIVE_ARCH)";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				VALID_ARCHS = i386;
+			};
+			name = Default;
+		};
+		667576880F728E810010C52C /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-AppleIntelPIIXATA__Upgraded_.plist";
+				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions/IOATAFamily.kext/Contents/PlugIns";
+				KERNEL_MODULE = YES;
+				LIBRARY_SEARCH_PATHS = "";
+				MODULE_IOKIT = YES;
+				MODULE_NAME = com.apple.driver.AppleIntelPIIXATA;
+				MODULE_VERSION = 2.0.0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = AppleIntelPIIXATA;
+				SECTORDER_FLAGS = "";
+				VALID_ARCHS = i386;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = kext;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		667576890F728E810010C52C /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-AppleIntelPIIXATA__Upgraded_.plist";
+				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions/IOATAFamily.kext/Contents/PlugIns";
+				KERNEL_MODULE = YES;
+				LIBRARY_SEARCH_PATHS = "";
+				MODULE_IOKIT = YES;
+				MODULE_NAME = com.apple.driver.AppleIntelPIIXATA;
+				MODULE_VERSION = 2.0.0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = AppleIntelPIIXATA;
+				SECTORDER_FLAGS = "";
+				VALID_ARCHS = i386;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = kext;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		6675768A0F728E810010C52C /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-AppleIntelPIIXATA__Upgraded_.plist";
+				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions/IOATAFamily.kext/Contents/PlugIns";
+				KERNEL_MODULE = YES;
+				LIBRARY_SEARCH_PATHS = "";
+				MODULE_IOKIT = YES;
+				MODULE_NAME = com.apple.driver.AppleIntelPIIXATA;
+				MODULE_VERSION = 2.0.0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = AppleIntelPIIXATA;
+				SECTORDER_FLAGS = "";
+				VALID_ARCHS = i386;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = kext;
 			};
 			name = Default;
 		};
@@ -530,6 +755,16 @@
 				424EEE1409871760007E6FBC /* Development */,
 				424EEE1509871760007E6FBC /* Deployment */,
 				424EEE1609871760007E6FBC /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		667576870F728E810010C52C /* Build configuration list for PBXNativeTarget "AppleIntelPIIXATA (Upgraded)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				667576880F728E810010C52C /* Development */,
+				667576890F728E810010C52C /* Deployment */,
+				6675768A0F728E810010C52C /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
