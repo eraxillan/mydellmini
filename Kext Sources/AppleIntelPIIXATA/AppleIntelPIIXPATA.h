@@ -29,10 +29,11 @@
 #include <IOKit/ata/IOPCIATA.h>
 #include <IOKit/ata/IOATAController.h>
 #include <IOKit/ata/ATADeviceNub.h>
-#include <IOKit/IOPolledInterface.h>
+
 #include "AppleIntelPIIXATATiming.h"
 #include "AppleIntelPIIXATAHW.h"
 #include "AppleIntelPIIXATAKeys.h"
+#include "IOPollingInterface.h"
 #include "AppleIntelPIIXATAChannel.h"
 #include <IOKit/acpi/IOACPIPlatformDevice.h>
 

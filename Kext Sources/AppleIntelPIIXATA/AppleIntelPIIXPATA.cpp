@@ -25,7 +25,7 @@
 #include <IOKit/IOMessage.h>
 #include <IOKit/IOKitKeys.h>
 #include "AppleIntelPIIXPATA.h"
-#include <IOKit/IOLocksPrivate.h>
+#include "IOLocksPrivate.h"
 
 #define super IOPCIATA
 OSDefineMetaClassAndStructors( AppleIntelPIIXPATA, IOPCIATA )
@@ -1525,12 +1525,18 @@ void AppleIntelPIIXPATA::initForPM( IOService * provider )
 IOReturn AppleIntelPIIXPATA::setPowerState( unsigned long stateIndex,
                                             IOService *   whatDevice )
 {
-    if ( stateIndex == kPIIXPowerStateOff )
+	IOLog("PIIXPATA: Setting power state\n");
+
+    if ( stateIndex == kPIIXPowerStateOff)
     {
+		IOLog("PIIXPATA: Setting state to off\n");
+
         _initTimingRegisters = true;
     }
     else if ( _initTimingRegisters )
     {
+		IOLog("PIIXPATA: Setting state codefix running\n");
+
 		for (int i = 0; i < 100000; i++) {
 			::IODelay(10);
 			if (!(*_tfStatusCmdReg & (mATABusy | mATADataRequest))) {
