@@ -329,19 +329,18 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>6682A2DB0F6B159C00106E00</string>
+										<string>6675781E0F7359D20010C52C</string>
 										<key>history</key>
 										<array>
 											<string>663520820F4B15A4003F1AF7</string>
 											<string>6682A2D70F6B159C00106E00</string>
-											<string>6682A2D80F6B159C00106E00</string>
+											<string>6682A2DB0F6B159C00106E00</string>
 										</array>
 										<key>prevStack</key>
 										<array>
 											<string>663520710F4B1536003F1AF7</string>
 											<string>663520840F4B15A4003F1AF7</string>
 											<string>6682A2D90F6B159C00106E00</string>
-											<string>6682A2DA0F6B159C00106E00</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -401,9 +400,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>6682A2DC0F6B159C00106E00</string>
+				<string>6675781F0F7359D20010C52C</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>6682A2DD0F6B159C00106E00</string>
+				<string>667578200F7359D20010C52C</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -536,7 +535,10 @@
 	<key>WindowJustification</key>
 	<integer>5</integer>
 	<key>WindowOrderList</key>
-	<array/>
+	<array>
+		<string>6613727A0F4A9AA200415899</string>
+		<string>/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/ApplePS2Keyboard.xcodeproj</string>
+	</array>
 	<key>WindowString</key>
 	<string>0 55 1224 723 0 0 1280 778 </string>
 	<key>WindowToolsV3</key>
@@ -559,7 +561,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ApplePS2Keyboard.h</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -576,8 +578,6 @@
 							<string>176pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -592,14 +592,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 181}, {722, 410}}</string>
+								<string>{{0, 181}, {722, 409}}</string>
 								<key>RubberWindowFrame</key>
 								<string>359 85 722 631 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXBuildResultsModule</string>
 							<key>Proportion</key>
-							<string>410pt</string>
+							<string>409pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -617,7 +617,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>6613727A0F4A9AA200415899</string>
-				<string>663520630F4B150D003F1AF7</string>
+				<string>667578210F7359D20010C52C</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

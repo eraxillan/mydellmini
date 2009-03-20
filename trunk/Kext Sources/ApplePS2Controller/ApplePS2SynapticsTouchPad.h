@@ -23,19 +23,67 @@
 #ifndef _APPLEPS2SYNAPTICSTOUCHPAD_H
 #define _APPLEPS2SYNAPTICSTOUCHPAD_H
 
-#define RElATIVE_PACKET_SIZE	3
+#include "ApplePS2MouseDevice.h"
+#include <IOKit/hidsystem/IOHIPointing.h>
+
+
+#define RELATIVE_PACKET_SIZE	3
 #define ABSOLUTE_PACKET_SIZE	6
 
 //TODO set thit bit
 #define ABSOULTE_MODE_BITMAP		0
 #define REALTIVE_MODE_BITMAP		0
 
-#define ABSULUTE_MODE			(_touchPadModeByte & ABSOULTE_MODE_BITMAP)
-#define RELATIVE_MODE			(_touchPadModeByte & REALTIVE_MODE_BITMAP)
+//#define ABSULUTE_MODE			(_touchPadModeByte & ABSOULTE_MODE_BITMAP)
+#define ABSULUTE_MODE			0
+//#define RELATIVE_MODE			(_touchPadModeByte & REALTIVE_MODE_BITMAP)
+#define RELATIVE_MODE			1
 #define W_MODE					0
 
-#include "ApplePS2MouseDevice.h"
-#include <IOKit/hidsystem/IOHIPointing.h>
+// Boundaries for sidescrolling
+#define HORIZ_SCROLLING_BOUNDARY
+#define VERT_SCROLLING_BOUNDARY
+
+
+// Possible touchpad events
+#define SCROLLING				1 << 1
+#define HORIZONTAL_SCROLLING	1 << 2
+#define VERTICAL_SCROLLING		1 << 3
+#define ZOOMIN					1 << 4
+#define MOVEMENT				1 << 5
+
+// kST_** = Synaptics Commands (Information queries)
+#define kST_IdentifyTouchpad		0x00
+#define kST_getTouchpadModeByte		0x01
+#define kST_getCapabilities			0x02
+#define kST_getModelID				0x03
+#define kST_unknown1				0x04
+#define kST_unknown2				0x05
+#define kST_getSerialNumberPrefix	0x06
+#define kST_getSerialNumberSuffix	0x07
+#define kST_getResolution			0x08
+
+
+static char *model_names [] = {
+	"Unknown",
+	"Standard TouchPad (TM41xx134)",
+	"Mini Module (TM41xx156)",
+	"Super Module (TM41xx180)",	
+	"Romulan Module",					// Specification does not list (reserved)
+	"Apple Module",						// Specification does not list (reserved)
+	"Single Chip",						// Specification does not list (reserved)
+	"Flexible pad (discontinued)",
+	"Ultra-thin Module (TM41xx220)",
+	"Wide pad Module (TW41xx230)",
+	"Twin Pad module",					// Specification does not list (reserved)
+	"Stamp Pad Module (TM41xx240)",
+	"SubMini Module (TM41xx140)",
+	"MultiSwitch module (TBD)",
+	"Standard Thin",					// Specification does not list (reserved)
+	"Advanced Technology Pad (TM41xx301)",
+	"Ultra-thin Module, connector reversed (TM41xx221)"
+};
+
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // ApplePS2SynapticsTouchPad Class Declaration
@@ -54,13 +102,27 @@ private:
     IOFixed               _resolution;
     UInt16                _touchPadVersion;
     UInt8                 _touchPadModeByte;
+	UInt32				  _touchpadIntormation;
+	UInt32				  _capabilties;
+	UInt8				  _modelId;
+	
+	bool				  _horizScroll;
+	bool				  _vertScroll;
+	
+	UInt32				  _prevX;
+	UInt32				  _prevY;
+	UInt32				  _prevButtons;
 
 	virtual void   dispatchRelativePointerEventWithPacket( UInt8 * packet, UInt32  packetSize );
 	virtual void   dispatchAbsolutePointerEventWithPacket( UInt8 * packet, UInt32  packetSize );
 	
     virtual void   setCommandByte( UInt8 setBits, UInt8 clearBits );
 
-	//bvirtual void   setRelativeMode( boot enable );
+	//virtual void   setRelativeMode( boot enable );
+	//virtual void   setAbsoluteMode( boot enable );
+	virtual bool   getCapabilities();
+	virtual bool   getModelID();
+
     virtual void   setTouchPadEnable( bool enable );
     virtual UInt32 getTouchPadData( UInt8 dataSelector );
     virtual bool   setTouchPadModeByte( UInt8 modeByteValue,
