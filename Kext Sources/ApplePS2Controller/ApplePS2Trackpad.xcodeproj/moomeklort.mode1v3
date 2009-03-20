@@ -295,7 +295,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>0 55 1224 723 0 0 1280 778 </string>
+						<string>0 55 1235 723 0 0 1280 778 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -313,7 +313,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ApplePS2SynapticsTouchPad.cpp</string>
+								<string>ApplePS2SynapticsTouchPad.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -321,14 +321,97 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ApplePS2SynapticsTouchPad.cpp</string>
+										<string>ApplePS2SynapticsTouchPad.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>66C3CE300F6367FB00C13CC9</string>
+										<string>6675789C0F7373790010C52C</string>
 										<key>history</key>
 										<array>
-											<string>66C3CE2F0F6367FB00C13CC9</string>
+											<string>667577AB0F7348AF0010C52C</string>
+											<string>667577AC0F7348AF0010C52C</string>
+											<string>6675789A0F7373790010C52C</string>
+											<string>6675788F0F7371770010C52C</string>
+										</array>
+										<key>prevStack</key>
+										<array>
+											<string>667577AF0F7348AF0010C52C</string>
+											<string>667577B00F7348AF0010C52C</string>
+											<string>667577B10F7348AF0010C52C</string>
+											<string>667577B20F7348AF0010C52C</string>
+											<string>667577B30F7348AF0010C52C</string>
+											<string>667577B40F7348AF0010C52C</string>
+											<string>667577B50F7348AF0010C52C</string>
+											<string>667577B60F7348AF0010C52C</string>
+											<string>667577B70F7348AF0010C52C</string>
+											<string>667577B80F7348AF0010C52C</string>
+											<string>667577B90F7348AF0010C52C</string>
+											<string>667577BA0F7348AF0010C52C</string>
+											<string>667577BB0F7348AF0010C52C</string>
+											<string>667577BC0F7348AF0010C52C</string>
+											<string>667577BD0F7348AF0010C52C</string>
+											<string>667577BE0F7348AF0010C52C</string>
+											<string>667577BF0F7348AF0010C52C</string>
+											<string>667577C00F7348AF0010C52C</string>
+											<string>667577C10F7348AF0010C52C</string>
+											<string>667577C20F7348AF0010C52C</string>
+											<string>667577C30F7348AF0010C52C</string>
+											<string>667577C40F7348AF0010C52C</string>
+											<string>667577C50F7348AF0010C52C</string>
+											<string>667577C60F7348AF0010C52C</string>
+											<string>667577C70F7348AF0010C52C</string>
+											<string>667577C80F7348AF0010C52C</string>
+											<string>667577C90F7348AF0010C52C</string>
+											<string>667577CA0F7348AF0010C52C</string>
+											<string>667577CB0F7348AF0010C52C</string>
+											<string>667577CC0F7348AF0010C52C</string>
+											<string>667577CD0F7348AF0010C52C</string>
+											<string>667577CE0F7348AF0010C52C</string>
+											<string>667577CF0F7348AF0010C52C</string>
+											<string>667577D00F7348AF0010C52C</string>
+											<string>667577D10F7348AF0010C52C</string>
+											<string>667577D20F7348AF0010C52C</string>
+											<string>667577D30F7348AF0010C52C</string>
+											<string>667577D40F7348AF0010C52C</string>
+											<string>667577D50F7348AF0010C52C</string>
+											<string>667577D60F7348AF0010C52C</string>
+											<string>667577D70F7348AF0010C52C</string>
+											<string>667577D80F7348AF0010C52C</string>
+											<string>667577D90F7348AF0010C52C</string>
+											<string>667577DA0F7348AF0010C52C</string>
+											<string>667577DB0F7348AF0010C52C</string>
+											<string>667577DC0F7348AF0010C52C</string>
+											<string>667577DD0F7348AF0010C52C</string>
+											<string>667577DE0F7348AF0010C52C</string>
+											<string>667577DF0F7348AF0010C52C</string>
+											<string>667577E00F7348AF0010C52C</string>
+											<string>667577F40F734ACD0010C52C</string>
+											<string>667577F50F734ACD0010C52C</string>
+											<string>667577F60F734ACD0010C52C</string>
+											<string>667577F70F734ACD0010C52C</string>
+											<string>667578050F7351D20010C52C</string>
+											<string>667578060F7351D20010C52C</string>
+											<string>667578070F7351D20010C52C</string>
+											<string>667578080F7351D20010C52C</string>
+											<string>667578090F7351D20010C52C</string>
+											<string>6675780A0F7351D20010C52C</string>
+											<string>667578670F7369110010C52C</string>
+											<string>667578680F7369110010C52C</string>
+											<string>667578690F7369110010C52C</string>
+											<string>6675786A0F7369110010C52C</string>
+											<string>667578740F736C450010C52C</string>
+											<string>667578750F736C450010C52C</string>
+											<string>667578760F736C450010C52C</string>
+											<string>667578770F736C450010C52C</string>
+											<string>667578780F736C450010C52C</string>
+											<string>667578790F736C450010C52C</string>
+											<string>6675787A0F736C450010C52C</string>
+											<string>6675787B0F736C450010C52C</string>
+											<string>667578910F7371770010C52C</string>
+											<string>667578920F7371770010C52C</string>
+											<string>667578930F7371770010C52C</string>
+											<string>667578940F7371770010C52C</string>
+											<string>6675789B0F7373790010C52C</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -340,9 +423,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1016, 504}}</string>
+								<string>{{0, 0}, {1027, 504}}</string>
 								<key>RubberWindowFrame</key>
-								<string>0 55 1224 723 0 0 1280 778 </string>
+								<string>0 55 1235 723 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -360,9 +443,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 509}, {1016, 173}}</string>
+								<string>{{0, 509}, {1027, 173}}</string>
 								<key>RubberWindowFrame</key>
-								<string>0 55 1224 723 0 0 1280 778 </string>
+								<string>0 55 1235 723 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -371,7 +454,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>1016pt</string>
+					<string>1027pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -386,9 +469,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>66C3CE310F6367FB00C13CC9</string>
+				<string>667577E20F7348AF0010C52C</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>66C3CE320F6367FB00C13CC9</string>
+				<string>667577E30F7348AF0010C52C</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -522,10 +605,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>661372370F4A9A4E00415899</string>
 		<string>/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/ApplePS2Trackpad.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>0 55 1224 723 0 0 1280 778 </string>
+	<string>0 55 1235 723 0 0 1280 778 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -541,12 +625,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>ApplePS2SynapticsTouchPad.cpp</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -602,7 +688,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>661372370F4A9A4E00415899</string>
-				<string>66351FED0F4B1229003F1AF7</string>
+				<string>667574740F6C7CB60010C52C</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
