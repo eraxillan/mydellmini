@@ -9,6 +9,7 @@
  * Replace patched AppleRTL8196 driver with modified Realtek1000 driver, impreved throughput and better support for the 8139 based card.
  * Updated mirroring mode drivers to only replace the Framebuffer kext
  * Updated ApplePS2Controler to include the new ApplePS2Keyboard kext instead of installing separately.
+ * Updated IntelPIIXATA kext (recompiled with optimizations, latest codebase from apple)
  * Moved /Extra/Extensions1 to /Extra/Mini9Ext/ 
  * Logic changes to force dsdt regeneration and efi string placement
 
