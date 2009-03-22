@@ -9,9 +9,10 @@ property RemoteCDP : false
 property HibernationP : false
 property FingerP : false
 property dsdtP : false
-property dellefiver : "1.1b4"
+property dellefiver : "1.1"
 property needUpdate : false
 property needreboot : false
+property needtoremovedsdt : false
 property workingDir : ""
 
 on awake from nib theObject
@@ -87,7 +88,20 @@ on awake from nib theObject
 				set enabled to false
 			end tell
 		else
-			set needUpdate to true
+			if dsdt_exists is "file exists" then
+				tell button "dsdtcb" of box "optionspanel" of window "DellEFI Installer"
+					set integer value to 1
+					set title to "Remove custom dsdt.aml file"
+					-- set enabled to false
+				end tell
+				tell button "extensionscb" of box "optionspanel" of window "DellEFI Installer"
+					set integer value to 0
+					set enabled to false
+				end tell
+				set needtoremovedsdt to true
+			else
+				set needUpdate to true
+			end if
 		end if
 	end if
 	
@@ -167,6 +181,17 @@ on awake from nib theObject
 	tell window "DellEFI Installer"
 		set visible to true
 	end tell
+	
+	-- Need to remove old dsdt before upgrading.  Ensure a clean upgrade of the dsdt from a virgin one.
+	if needtoremovedsdt is true then
+		display dialog "DellEFI need to remove the existing dsdt file and then reboot before upgrading!" buttons ["Remove", "Keep it"] default button "Quit" with icon caution
+		if button returned of result is "Remove" then
+			do shell script "rm -f /dsdt.aml" with administrator privileges
+			tell application "System Events"
+				restart
+			end tell
+		end if
+	end if
 end awake from nib
 
 on clicked theObject
@@ -251,7 +276,7 @@ on clicked theObject
 			do shell script "cp " & workingDir & "/Boot/com.apple.Boot.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
 		end if
 	on error errMsg number errorNumber
-		display dialog "Could not install the Bootloader. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
+		display dialog "Could not install the Bootloader. Error " & errorNumber as text buttons ["Continue"] default button "Continue" with icon caution
 	end try
 	
 	try
@@ -389,7 +414,6 @@ on clicked theObject
 			delay 1
 			do shell script "rm -r /System/Library/Extensions/ALCinject.kext > /dev/null &" with administrator privileges
 			do shell script "rm -r /System/Library/Extensions/HDAEnabler.kext > /dev/null &" with administrator privileges
-			do shell script "rm -r /System/Library/Extensions/ClamshellDisplay.kext > /dev/null &" with administrator privileges
 			
 			set contents of text field "currentop" of window "DellEFI Installer" to "Installing local files"
 			delay 1
@@ -397,6 +421,8 @@ on clicked theObject
 			do shell script "cp -R " & workingDir & "/LocalExtensions/*.kext /System/Library/Extensions > /dev/null &" with administrator privileges
 			do shell script "chown -R 0:0 /System/Library/Extensions/AppleHDA.kext" with administrator privileges
 			do shell script "chmod -R 755 /System/Library/Extensions/AppleHDA.kext" with administrator privileges
+			do shell script "chown -R 0:0 /System/Library/Extensions/ClamshellDisplay.kext" with administrator privileges
+			do shell script "chmod -R 755 /System/Library/Extensions/ClamshellDisplay.kext" with administrator privileges
 			do shell script "chown -R 0:0 /System/Library/Extensions/IOAudioFamily.kext" with administrator privileges
 			do shell script "chmod -R 755 /System/Library/Extensions/IOAudioFamily.kext" with administrator privileges
 			-- remove mkext so it is rebuilt
@@ -437,7 +463,8 @@ on clicked theObject
 				set contents of text field "currentop" of window "DellEFI Installer" to "Deleting dsdt.aml file"
 				delay 1
 				try
-					do shell script "rm /dsdt.aml" with administrator privileges
+					do shell script "rm -f /dsdt.aml" with administrator privileges
+					set needreboot to true
 				end try
 			else
 				set contents of text field "currentop" of window "DellEFI Installer" to "Creating dsdt.aml file"
@@ -662,7 +689,7 @@ on makeDSDT()
 	end try
 	
 	do shell script "cd /.dellefi/DSDTPatcher; ./DSDTPatcher > /dev/null 2>&1 &" with administrator privileges
-	delay 6
+	delay 10
 	
 	do shell script "cp /.dellefi/DSDTPatcher/dsdt.aml /dsdt.aml" with administrator privileges
 	
