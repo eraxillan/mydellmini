@@ -2,7 +2,7 @@
 {
 	01ABC0ED00973EA311CA2928 /* ApplePS2Controller.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {955, 21266}}";
+			sepNavIntBoundsRect = "{{0, 0}, {955, 21434}}";
 			sepNavSelRange = "{1222, 69}";
 			sepNavVisRange = "{901, 743}";
 		};
@@ -46,20 +46,22 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 259217877;
-			PBXWorkspaceStateSaveDate = 259217877;
+			PBXPerProjectTemplateStateSaveDate = 259456114;
+			PBXWorkspaceStateSaveDate = 259456114;
 		};
 		perUserProjectItems = {
-			663520530F4B14F8003F1AF7 = 663520530F4B14F8003F1AF7 /* PBXTextBookmark */;
-			663520540F4B14F8003F1AF7 = 663520540F4B14F8003F1AF7 /* PBXBookmark */;
 			663520550F4B14F8003F1AF7 = 663520550F4B14F8003F1AF7 /* PBXTextBookmark */;
-			663520560F4B14F8003F1AF7 = 663520560F4B14F8003F1AF7 /* PBXTextBookmark */;
-			663520950F4B15EF003F1AF7 = 663520950F4B15EF003F1AF7 /* PBXTextBookmark */;
-			6675782B0F7359E70010C52C /* PBXTextBookmark */ = 6675782B0F7359E70010C52C /* PBXTextBookmark */;
-			6675782C0F7359E70010C52C /* PBXTextBookmark */ = 6675782C0F7359E70010C52C /* PBXTextBookmark */;
-			6675782E0F7359EB0010C52C /* PBXTextBookmark */ = 6675782E0F7359EB0010C52C /* PBXTextBookmark */;
-			6675782F0F7359EB0010C52C /* PBXTextBookmark */ = 6675782F0F7359EB0010C52C /* PBXTextBookmark */;
-			667578300F7359EB0010C52C /* PBXTextBookmark */ = 667578300F7359EB0010C52C /* PBXTextBookmark */;
+			6675782B0F7359E70010C52C = 6675782B0F7359E70010C52C /* PBXTextBookmark */;
+			6675782E0F7359EB0010C52C = 6675782E0F7359EB0010C52C /* PBXTextBookmark */;
+			6675782F0F7359EB0010C52C = 6675782F0F7359EB0010C52C /* PBXTextBookmark */;
+			6675792F0F76F67F0010C52C = 6675792F0F76F67F0010C52C /* PBXTextBookmark */;
+			6699B2560F76FC7C00BCE3CC /* PBXTextBookmark */ = 6699B2560F76FC7C00BCE3CC /* PBXTextBookmark */;
+			6699B2600F77002D00BCE3CC /* PBXTextBookmark */ = 6699B2600F77002D00BCE3CC /* PBXTextBookmark */;
+			6699B2610F77002D00BCE3CC /* PBXTextBookmark */ = 6699B2610F77002D00BCE3CC /* PBXTextBookmark */;
+			6699B2640F77003600BCE3CC /* PlistBookmark */ = 6699B2640F77003600BCE3CC /* PlistBookmark */;
+			6699B2650F77003600BCE3CC /* PBXTextBookmark */ = 6699B2650F77003600BCE3CC /* PBXTextBookmark */;
+			6699B2660F77003600BCE3CC /* PlistBookmark */ = 6699B2660F77003600BCE3CC /* PlistBookmark */;
+			6699B2670F77003600BCE3CC /* PBXTextBookmark */ = 6699B2670F77003600BCE3CC /* PBXTextBookmark */;
 		};
 		sourceControlManager = 66245B920F4A98AF00BA2A61 /* Source Control */;
 		userBuildSettings = {
@@ -140,20 +142,6 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	663520530F4B14F8003F1AF7 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 01ABC0ED00973EA311CA2928 /* ApplePS2Controller.cpp */;
-		name = "ApplePS2Controller.cpp: 36";
-		rLen = 69;
-		rLoc = 1222;
-		rType = 0;
-		vrLen = 1203;
-		vrLoc = 2937;
-	};
-	663520540F4B14F8003F1AF7 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = 01ABC0EF00973EA311CA2928 /* ApplePS2KeyboardDevice.cpp */;
-	};
 	663520550F4B14F8003F1AF7 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 01ABC0ED00973EA311CA2928 /* ApplePS2Controller.cpp */;
@@ -164,26 +152,6 @@
 		vrLen = 1203;
 		vrLoc = 2937;
 	};
-	663520560F4B14F8003F1AF7 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 01ABC0EF00973EA311CA2928 /* ApplePS2KeyboardDevice.cpp */;
-		name = "ApplePS2KeyboardDevice.cpp: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1117;
-		vrLoc = 1713;
-	};
-	663520950F4B15EF003F1AF7 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 01ABC0EF00973EA311CA2928 /* ApplePS2KeyboardDevice.cpp */;
-		name = "ApplePS2KeyboardDevice.cpp: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1117;
-		vrLoc = 1713;
-	};
 	6675782B0F7359E70010C52C /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		comments = "warning: #warning FIXME: use inb and outb from the kernel framework (2688371)";
@@ -191,16 +159,6 @@
 		rLen = 1;
 		rLoc = 35;
 		rType = 1;
-	};
-	6675782C0F7359E70010C52C /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 01ABC0ED00973EA311CA2928 /* ApplePS2Controller.cpp */;
-		name = "ApplePS2Controller.cpp: 36";
-		rLen = 69;
-		rLoc = 1222;
-		rType = 0;
-		vrLen = 337;
-		vrLoc = 1124;
 	};
 	6675782E0F7359EB0010C52C /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -222,7 +180,79 @@
 		vrLen = 1117;
 		vrLoc = 1713;
 	};
-	667578300F7359EB0010C52C /* PBXTextBookmark */ = {
+	6675792F0F76F67F0010C52C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 01ABC0ED00973EA311CA2928 /* ApplePS2Controller.cpp */;
+		name = "ApplePS2Controller.cpp: 36";
+		rLen = 69;
+		rLoc = 1222;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 0;
+	};
+	6699B2560F76FC7C00BCE3CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 01ABC0ED00973EA311CA2928 /* ApplePS2Controller.cpp */;
+		name = "ApplePS2Controller.cpp: 36";
+		rLen = 69;
+		rLoc = 1222;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 0;
+	};
+	6699B2600F77002D00BCE3CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "warning: #warning FIXME: use inb and outb from the kernel framework (2688371)";
+		fRef = 01ABC0ED00973EA311CA2928 /* ApplePS2Controller.cpp */;
+		rLen = 1;
+		rLoc = 35;
+		rType = 1;
+	};
+	6699B2610F77002D00BCE3CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 01ABC0ED00973EA311CA2928 /* ApplePS2Controller.cpp */;
+		name = "ApplePS2Controller.cpp: 36";
+		rLen = 69;
+		rLoc = 1222;
+		rType = 0;
+		vrLen = 337;
+		vrLoc = 1124;
+	};
+	6699B2640F77003600BCE3CC /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 661371ED0F4A996500415899 /* Info-ApplePS2Controller__Upgraded_-1.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleIdentifier,
+		);
+		name = "/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/Info-ApplePS2Controller__Upgraded_-1.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	6699B2650F77003600BCE3CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 01ABC0ED00973EA311CA2928 /* ApplePS2Controller.cpp */;
+		name = "ApplePS2Controller.cpp: 36";
+		rLen = 69;
+		rLoc = 1222;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 0;
+	};
+	6699B2660F77003600BCE3CC /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 661371ED0F4A996500415899 /* Info-ApplePS2Controller__Upgraded_-1.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleIdentifier,
+		);
+		name = "/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/Info-ApplePS2Controller__Upgraded_-1.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	6699B2670F77003600BCE3CC /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 01ABC0ED00973EA311CA2928 /* ApplePS2Controller.cpp */;
 		name = "ApplePS2Controller.cpp: 36";

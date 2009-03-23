@@ -306,8 +306,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -325,16 +323,19 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>667578300F7359EB0010C52C</string>
+										<string>6699B2670F77003600BCE3CC</string>
 										<key>history</key>
 										<array>
 											<string>6675782E0F7359EB0010C52C</string>
-											<string>6675782B0F7359E70010C52C</string>
+											<string>6699B2640F77003600BCE3CC</string>
+											<string>6699B2600F77002D00BCE3CC</string>
 										</array>
 										<key>prevStack</key>
 										<array>
 											<string>663520550F4B14F8003F1AF7</string>
 											<string>6675782F0F7359EB0010C52C</string>
+											<string>6699B2650F77003600BCE3CC</string>
+											<string>6699B2660F77003600BCE3CC</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -392,9 +393,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>667578310F7359EB0010C52C</string>
+				<string>6699B2570F76FC7C00BCE3CC</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>667578320F7359EB0010C52C</string>
+				<string>6699B2580F76FC7C00BCE3CC</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -611,7 +612,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>66245B8B0F4A989C00BA2A61</string>
-				<string>6675782D0F7359E70010C52C</string>
+				<string>6699B2590F76FC7C00BCE3CC</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
