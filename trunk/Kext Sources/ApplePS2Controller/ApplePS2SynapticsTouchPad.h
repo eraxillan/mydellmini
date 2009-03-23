@@ -30,17 +30,50 @@
 #define RELATIVE_PACKET_SIZE	3
 #define ABSOLUTE_PACKET_SIZE	6
 
-//TODO set thit bit
-#define ABSOULTE_MODE_BITMAP		0
-#define REALTIVE_MODE_BITMAP		0
 
-//#define ABSULUTE_MODE			(_touchPadModeByte & ABSOULTE_MODE_BITMAP)
-#define ABSULUTE_MODE			0
-//#define RELATIVE_MODE			(_touchPadModeByte & REALTIVE_MODE_BITMAP)
-#define RELATIVE_MODE			1
-#define W_MODE					0
+// _touchPadModeByte bitmap
+#define ABSOLUTE_MODE_BIT			0x80
+#define RATE_MODE_BIT				0x40
+#define SLEEP_MODE_BIT				0x08
+#define GESTURES_MODE_BIT			0x04
+#define W_MODE_BIT					0x01
 
-// Boundaries for sidescrolling
+// The following is for reading _touchPadModeByte bitmap
+#define ABSULUTE_MODE			(_touchPadModeByte & ABSOLUTE_MODE_BIT)
+#define RELATIVE_MODE		   ((_touchPadModeByte & ABSOLUTE_MODE_BIT) ^ ABSOLUTE_MODE_BIT)
+#define RATE_80_PPS				(_touchPadModeByte & RATE_MODE_BIT)
+#define SLEEPING				(_touchPadModeByte & SLEEP_MODE_BIT)
+#define W_MODE					(_touchPadModeByte & W_MODE_BIT)
+
+// Read the _capabilties (16 bit number) (These are ONLY true if W_MODE is also true)
+#define CAP_PALM_DETECT				(_capabilties & 0x0001)
+#define CAP_MULTIFINGER				(_capabilties & 0x0002)
+// #define CAP_RESERVER_CAP1		(_capabilties & 0x0004)
+#define CAP_FOUR_BUTTONS			(_capabilties & 0x0008)
+// #define CAP_RESERVER_CAP2		(_capabilties & 0x0010)
+// #define CAP_RESERVER_CAP3		(_capabilties & 0x0020)
+// #define CAP_RESERVER_CAP4		(_capabilties & 0x0040)
+// #define CAP_RESERVER_CAP5		(_capabilties & 0x0080)
+// #define CAP_RESERVER_CAP6		(_capabilties & 0x0100)
+// #define CAP_RESERVER_CAP7		(_capabilties & 0x0200)
+// #define CAP_RESERVER_CAP8		(_capabilties & 0x0400)
+// #define CAP_RESERVER_CAP9		(_capabilties & 0x0800)
+// #define CAP_RESERVER_CAP10		(_capabilties & 0x1000)
+// #define CAP_RESERVER_CAP11		(_capabilties & 0x2000)
+// #define CAP_RESERVER_CAP12		(_capabilties & 0x4000)
+#define CAP_W_MODE					(_capabilties & 0x8000) 
+
+
+// ModelID (info about hardware)
+#define INFO_SENSOR					((_modelId & 0x3F0000) >> 16)
+#define INFO_180					((_modelId & 0x800000) >> 23)
+#define INFO_PORTRAIT				((_modelId & 0x400000) >> 22)
+#define INFO_HARDWARE				((_modelId & 0x00FE00) >> 9)
+#define INFO_NEWABS					((_modelId & 0x000080) >> 7)
+#define INFO_SIMPLECMD				((_modelId & 0x000010) >> 5)
+#define INTO_PEN					((_modelId & 0x000020) >> 6)
+
+// Boundaries for sidescrolling (curently undefined
 #define HORIZ_SCROLLING_BOUNDARY
 #define VERT_SCROLLING_BOUNDARY
 
@@ -64,6 +97,8 @@
 #define kST_getResolution			0x08
 
 
+
+
 static char *model_names [] = {
 	"Unknown",
 	"Standard TouchPad (TM41xx134)",
@@ -82,6 +117,31 @@ static char *model_names [] = {
 	"Standard Thin",					// Specification does not list (reserved)
 	"Advanced Technology Pad (TM41xx301)",
 	"Ultra-thin Module, connector reversed (TM41xx221)"
+};
+
+
+// Sensor reslutions (yes, I COULD use a struct, but I dont feal like it
+#define UNKNOWN_RESOLUTION_X	85
+#define UNKNOWN_RESOLUTION_Y	94	
+
+// Resolutions of the sensor (in X x Y)
+static UInt32 model_resolution [][2] = {
+	{85, 94},
+	{91, 124},
+	{57, 58},
+	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
+	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
+	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
+	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
+	{85, 94},
+	{73, 96},
+	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
+	{187, 170},
+	{122, 76},
+	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
+	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
+	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
+	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y}
 };
 
 
@@ -104,7 +164,7 @@ private:
     UInt8                 _touchPadModeByte;
 	UInt32				  _touchpadIntormation;
 	UInt32				  _capabilties;
-	UInt8				  _modelId;
+	UInt32				  _modelId;
 	
 	bool				  _horizScroll;
 	bool				  _vertScroll;
@@ -118,11 +178,21 @@ private:
 	
     virtual void   setCommandByte( UInt8 setBits, UInt8 clearBits );
 
-	//virtual void   setRelativeMode( boot enable );
-	//virtual void   setAbsoluteMode( boot enable );
+	
+	// Synaptic specific stuff... (added by meklort)
+	virtual bool   setRelativeMode();
+	virtual bool   setAbsoluteMode();
+	virtual bool   setStreamMode( bool enable );
+
 	virtual bool   getCapabilities();
 	virtual bool   getModelID();
+	virtual bool   identifyTouchpad();
+	virtual bool   getTouchpadModes();
+	virtual bool   getSerialNumber();
+	virtual bool   getResolutions();
+	
 
+	
     virtual void   setTouchPadEnable( bool enable );
     virtual UInt32 getTouchPadData( UInt8 dataSelector );
     virtual bool   setTouchPadModeByte( UInt8 modeByteValue,
