@@ -26,23 +26,33 @@
 #include "ApplePS2MouseDevice.h"
 #include <IOKit/hidsystem/IOHIPointing.h>
 
+//#define BUTTONS_SWAPED
+
 
 #define RELATIVE_PACKET_SIZE	3
 #define ABSOLUTE_PACKET_SIZE	6
 
+#define ABSOLUTE_X_MIN			1472
+#define ABSOLUTE_X_MAX			5312
+#define ABSOLUTE_Y_MIN			1568
+#define ABSOLUTE_Y_MAX			4288
 
 // _touchPadModeByte bitmap
 #define ABSOLUTE_MODE_BIT			0x80
 #define RATE_MODE_BIT				0x40
+// bit 5 undefined
+// bit 4 undefined
 #define SLEEP_MODE_BIT				0x08
 #define GESTURES_MODE_BIT			0x04
+//	#define PACKET_SIZE				0x02		// Only used for serial touchpads, not ps2
 #define W_MODE_BIT					0x01
 
 // The following is for reading _touchPadModeByte bitmap
-#define ABSULUTE_MODE			(_touchPadModeByte & ABSOLUTE_MODE_BIT)
-#define RELATIVE_MODE		   ((_touchPadModeByte & ABSOLUTE_MODE_BIT) ^ ABSOLUTE_MODE_BIT)
-#define RATE_80_PPS				(_touchPadModeByte & RATE_MODE_BIT)
-#define SLEEPING				(_touchPadModeByte & SLEEP_MODE_BIT)
+#define ABSOLUTE_MODE			((_touchPadModeByte & ABSOLUTE_MODE_BIT) >> 7)
+#define RELATIVE_MODE		    !(ABSOLUTE_MODE)
+#define RATE_80_PPS				((_touchPadModeByte & RATE_MODE_BIT) >> 6)
+#define SLEEPING				((_touchPadModeByte & SLEEP_MODE_BIT) >> 3)
+#define GESTURES				((_touchPadModeByte & GESTURES_MODE_BIT) >> 2)
 #define W_MODE					(_touchPadModeByte & W_MODE_BIT)
 
 // Read the _capabilties (16 bit number) (These are ONLY true if W_MODE is also true)
@@ -63,6 +73,29 @@
 // #define CAP_RESERVER_CAP12		(_capabilties & 0x4000)
 #define CAP_W_MODE					(_capabilties & 0x8000) 
 
+// The folowing are available W Modes values
+// Rquires CAP_MULTIFINGER (values 0 to 2)
+#define W_TWOFINGERS				0
+#define W_THREEPLUS					1
+// Requires INFO_PEN (values 3)
+#define W_PEN						2
+// #define W_RESERVED					3
+// Requires CAP_PALM_DETECT (values 4 to 15)
+#define W_FINGER_MIN				4
+#define W_FINGER_MAX				7
+#define W_FAT_FINGER_MIN			8
+#define W_FAT_FINGER_MAX			14
+#define W_MAX_CONTACT				15
+
+// The flowing are available Z values (if we want to use them, W should be sufficient)
+#define Z_NO_FINGER					0
+#define Z_FINGER_NEAR				10
+#define Z_LIGHT_FINGER				30
+#define Z_NORMAL_FINGER				80
+#define Z_HEAVY_FINGER				110
+#define Z_FULL_FINGER				200
+#define Z_MAX						255
+
 
 // ModelID (info about hardware)
 #define INFO_SENSOR					((_modelId & 0x3F0000) >> 16)
@@ -79,6 +112,7 @@
 
 
 // Possible touchpad events
+#define DEFAULT_EVENT				0
 #define SCROLLING				1 << 1
 #define HORIZONTAL_SCROLLING	1 << 2
 #define VERTICAL_SCROLLING		1 << 3
@@ -99,7 +133,7 @@
 
 
 
-static char *model_names [] = {
+static char *model_names [] = {	// 16 models currenlty in this list
 	"Unknown",
 	"Standard TouchPad (TM41xx134)",
 	"Mini Module (TM41xx156)",
@@ -165,6 +199,9 @@ private:
 	UInt32				  _touchpadIntormation;
 	UInt32				  _capabilties;
 	UInt32				  _modelId;
+	UInt8				  _event;
+	UInt8				  _prevEvent;
+	long long			  _serialNumber;
 	
 	bool				  _horizScroll;
 	bool				  _vertScroll;
@@ -172,6 +209,8 @@ private:
 	UInt32				  _prevX;
 	UInt32				  _prevY;
 	UInt32				  _prevButtons;
+	AbsoluteTime		  _prevPacketTime;
+	bool				  _newStream;
 
 	virtual void   dispatchRelativePointerEventWithPacket( UInt8 * packet, UInt32  packetSize );
 	virtual void   dispatchAbsolutePointerEventWithPacket( UInt8 * packet, UInt32  packetSize );
@@ -190,6 +229,7 @@ private:
 	virtual bool   getTouchpadModes();
 	virtual bool   getSerialNumber();
 	virtual bool   getResolutions();
+
 	
 
 	

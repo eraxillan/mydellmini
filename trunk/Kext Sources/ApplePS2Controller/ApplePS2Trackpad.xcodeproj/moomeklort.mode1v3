@@ -313,7 +313,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ApplePS2SynapticsTouchPad.h</string>
+								<string>ApplePS2SynapticsTouchPad.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -321,18 +321,18 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ApplePS2SynapticsTouchPad.h</string>
+										<string>ApplePS2SynapticsTouchPad.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>6699B2E40F772C6B00BCE3CC</string>
+										<string>66EA91D90F7ADFF400792995</string>
 										<key>history</key>
 										<array>
-											<string>667578FD0F75D22C0010C52C</string>
-											<string>6699B2890F770A6C00BCE3CC</string>
-											<string>6699B28A0F770A6C00BCE3CC</string>
-											<string>6699B2DF0F772C6B00BCE3CC</string>
-											<string>6699B2DA0F772BE400BCE3CC</string>
+											<string>6699B43D0F784D2200BCE3CC</string>
+											<string>66EA913B0F7856EC00792995</string>
+											<string>66EA91AB0F7A864C00792995</string>
+											<string>66EA91D50F7ADFF400792995</string>
+											<string>66EA91D60F7ADFF400792995</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -340,39 +340,41 @@
 											<string>667577B00F7348AF0010C52C</string>
 											<string>667577C20F7348AF0010C52C</string>
 											<string>667577C60F7348AF0010C52C</string>
-											<string>6699B28D0F770A6C00BCE3CC</string>
-											<string>6699B28E0F770A6C00BCE3CC</string>
-											<string>6699B28F0F770A6C00BCE3CC</string>
-											<string>6699B2900F770A6C00BCE3CC</string>
-											<string>6699B2910F770A6C00BCE3CC</string>
-											<string>6699B2920F770A6C00BCE3CC</string>
-											<string>6699B2930F770A6C00BCE3CC</string>
-											<string>6699B2940F770A6C00BCE3CC</string>
 											<string>6699B2950F770A6C00BCE3CC</string>
-											<string>6699B2960F770A6C00BCE3CC</string>
-											<string>6699B2970F770A6C00BCE3CC</string>
-											<string>6699B2980F770A6C00BCE3CC</string>
-											<string>6699B2990F770A6C00BCE3CC</string>
-											<string>6699B29A0F770A6C00BCE3CC</string>
-											<string>6699B29B0F770A6C00BCE3CC</string>
-											<string>6699B29C0F770A6C00BCE3CC</string>
-											<string>6699B29D0F770A6C00BCE3CC</string>
-											<string>6699B29E0F770A6C00BCE3CC</string>
-											<string>6699B29F0F770A6C00BCE3CC</string>
-											<string>6699B2A00F770A6C00BCE3CC</string>
-											<string>6699B2A10F770A6C00BCE3CC</string>
-											<string>6699B2A20F770A6C00BCE3CC</string>
-											<string>6699B2A30F770A6C00BCE3CC</string>
-											<string>6699B2A40F770A6C00BCE3CC</string>
-											<string>6699B2C20F7726C000BCE3CC</string>
-											<string>6699B2C30F7726C000BCE3CC</string>
-											<string>6699B2C40F7726C000BCE3CC</string>
-											<string>6699B2C50F7726C000BCE3CC</string>
-											<string>6699B2CF0F77292600BCE3CC</string>
-											<string>6699B2E00F772C6B00BCE3CC</string>
-											<string>6699B2E10F772C6B00BCE3CC</string>
-											<string>6699B2E20F772C6B00BCE3CC</string>
-											<string>6699B2E30F772C6B00BCE3CC</string>
+											<string>66EA913E0F7856EC00792995</string>
+											<string>66EA913F0F7856EC00792995</string>
+											<string>66EA91400F7856EC00792995</string>
+											<string>66EA914B0F7859BA00792995</string>
+											<string>66EA914C0F7859BA00792995</string>
+											<string>66EA914D0F7859BA00792995</string>
+											<string>66EA914E0F7859BA00792995</string>
+											<string>66EA91620F79A41300792995</string>
+											<string>66EA91630F79A41300792995</string>
+											<string>66EA91640F79A41300792995</string>
+											<string>66EA91650F79A41300792995</string>
+											<string>66EA91710F79AA8300792995</string>
+											<string>66EA91720F79AA8300792995</string>
+											<string>66EA918E0F7A854300792995</string>
+											<string>66EA918F0F7A854300792995</string>
+											<string>66EA91900F7A854300792995</string>
+											<string>66EA91910F7A854300792995</string>
+											<string>66EA91920F7A854300792995</string>
+											<string>66EA91930F7A854300792995</string>
+											<string>66EA91940F7A854300792995</string>
+											<string>66EA91950F7A854300792995</string>
+											<string>66EA91960F7A854300792995</string>
+											<string>66EA91970F7A854300792995</string>
+											<string>66EA91980F7A854300792995</string>
+											<string>66EA91990F7A854300792995</string>
+											<string>66EA919A0F7A854300792995</string>
+											<string>66EA91AE0F7A864C00792995</string>
+											<string>66EA91AF0F7A864C00792995</string>
+											<string>66EA91B00F7A864C00792995</string>
+											<string>66EA91B10F7A864C00792995</string>
+											<string>66EA91B20F7A864C00792995</string>
+											<string>66EA91B30F7A864C00792995</string>
+											<string>66EA91D70F7ADFF400792995</string>
+											<string>66EA91D80F7ADFF400792995</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -430,9 +432,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>6699B2A60F770A6C00BCE3CC</string>
+				<string>66EA91320F78555600792995</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>6699B2A70F770A6C00BCE3CC</string>
+				<string>66EA91330F78555600792995</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -566,7 +568,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>6699B2AA0F770A6C00BCE3CC</string>
 		<string>661372370F4A9A4E00415899</string>
 		<string>/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/ApplePS2Trackpad.xcodeproj</string>
 	</array>
@@ -587,14 +588,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ApplePS2SynapticsTouchPad.h</string>
+								<string>ApplePS2SynapticsTouchPad.cpp</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -611,6 +610,8 @@
 							<string>218pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -650,7 +651,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>661372370F4A9A4E00415899</string>
-				<string>6699B2A80F770A6C00BCE3CC</string>
+				<string>66EA91380F7855AA00792995</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
