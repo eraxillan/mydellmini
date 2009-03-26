@@ -267,6 +267,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>089C166AFE841209C02AAC07</string>
+								<string>19C28FB6FE9D52B211CA2CBB</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
@@ -306,12 +307,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ApplePS2Controller.cpp</string>
+								<string>ApplePS2Device.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -319,16 +322,17 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ApplePS2Controller.cpp</string>
+										<string>ApplePS2Device.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>6699B2670F77003600BCE3CC</string>
+										<string>6699B4DF0F78551F00BCE3CC</string>
 										<key>history</key>
 										<array>
 											<string>6675782E0F7359EB0010C52C</string>
 											<string>6699B2640F77003600BCE3CC</string>
-											<string>6699B2600F77002D00BCE3CC</string>
+											<string>6699B4DC0F78551F00BCE3CC</string>
+											<string>6699B4DD0F78551F00BCE3CC</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -336,6 +340,7 @@
 											<string>6675782F0F7359EB0010C52C</string>
 											<string>6699B2650F77003600BCE3CC</string>
 											<string>6699B2660F77003600BCE3CC</string>
+											<string>6699B4DE0F78551F00BCE3CC</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
