@@ -364,18 +364,15 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	//	Y7		Y6		Y5			Y4			Y3		Y2		Y1		Y0			(Y 7..0)
 	
 	UInt32 buttons = 0;
-	UInt8 event = 0;
-	UInt8 Wvalue = 0xFFFFFFFF;
+	//UInt8 Wvalue = 0xFFFFFFFF;
 	UInt32	absX, absY;
 	UInt32	pressureZ;
 	AbsoluteTime now;
 
 	clock_get_uptime((uint64_t *)&now);
-	IOLog("Prev Time: %d \tCur Time: %d \t", _prevPacketTime, now);
-	
+	//IOLog("Prev Time: %d \tCur Time: %d \t", _prevPacketTime, now);
 	// Reset the _prevX / _prevY to the curent IF the delta time is > 20ms (aka the finger was removed and now is
 	
-	//buttons = (packet[0] & 0x3);	// buttons =  last two bits of byte one of packet
 	
 	
 	// Swap buttons as requested by a user
@@ -383,10 +380,10 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
     if ( (packet[0] & 0x1) ) buttons |= 0x2;  // left button   (bit 0 in packet)
     if ( (packet[0] & 0x2) ) buttons |= 0x1;  // right button  (bit 1 in packet)	
 #else 
-	if ( (packet[0] & 0x1) ) buttons |= 0x1;  // left button   (bit 0 in packet)
-    if ( (packet[0] & 0x2) ) buttons |= 0x2;  // right button  (bit 1 in packet)
+	buttons = (packet[0] & 0x3);	// buttons =  last two bits of byte one of packet
 #endif
 	
+	//IOLog("Button value: 0x%X\n", buttons);
 	pressureZ = packet[2];												//	  (max value is 255)
 	absX = (packet[4] | ((packet[1] & 0x0F) << 8) | ((packet[3] & 0x10) << (12 - 4)));
 	absY = (packet[5] | ((packet[1] & 0xF0) << 4) | ((packet[3] & 0x20) << (12 - 5)));
@@ -396,65 +393,64 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	
 
 	
-	if(W_MODE) {
+	/*if(W_MODE) {
 		Wvalue = ((packet[3] & 0x4) >> 2) | ((packet[0] & 0x8) >> 2);	// (max value = 15)
 	} else {
 		if(((packet[0] & 0x10) >> 4))	Wvalue = -1;		// No finger
 		else							Wvalue = 6;	// finger (4 through 7 = finger)
-	}
+	}*/
 	
 	
 	// Emulate a middle button
 	// TODO: add a short (a few ms pause) to each button press so that if they both are pressed within a timeframe, we get the middle button
-	if ( (buttons & 0x3)  == 0x03)   {
+	/*if ( (buttons & 0x3)  == 0x3)   {
 		buttons = 0x4;		// Middle button
-		_prevButtons = 0x4;
-	} else if (_prevButtons & 0x4 == 0x4) {
-		// Wait for the button states to sableize since we dont want to send unwanted button presses.
+	} else if (_prevButtons == 0x4) {
+		// Wait for the button states to stableize since we dont want to send unwanted button presses.
 		if(buttons == 0) _prevButtons = 0;
 		buttons = 0;
-	} else {
-		_prevButtons = buttons;
-	}
-
+	}*/
 	
-	
+	// Scale dx and dy so that they are within +/- 127
+	dx /= ((ABSOLUTE_X_MAX - ABSOLUTE_X_MIN) / 127);
+	dy /= ((ABSOLUTE_Y_MAX - ABSOLUTE_Y_MIN) / 127);
 	
 	// Lets calculate what event we want to handel
 	
 	// && pressureZ < (Z_FULL_FINGER)) 
 	// Ignore when Z is small. According to teh specifications, X and Y are inacurate at Z < 25 (light finger contact)
-	if((pressureZ > Z_LIGHT_FINGER)) event = MOVEMENT;
-	else event = DEFAULT_EVENT;
+	
+	if(_newStream) {
+		// Rest the dx and dy values since prevX and prevY are both 0
+		_newStream = false;
+		dx = 0;		
+		dy = 0;
+		
+		if(absX > (ABSOLUTE_X_MAX * .9)) _event = VERTICAL_SCROLLING;
+		else if((pressureZ < Z_LIGHT_FINGER)) _event = DEFAULT_EVENT;	// We reset dx and dy untill it is a reliable number
+		else _event = MOVEMENT;
+	} else if(pressureZ < Z_LIGHT_FINGER) {
+		_event = DEFAULT_EVENT;
+	} else if(_event == VERTICAL_SCROLLING) {
+		//_event = VERTICAL_SCROLLING;	// no need to set it to somethign it already is... (although optimization may take care of it)
+	} else if((pressureZ > Z_LIGHT_FINGER)) {
+		_event = MOVEMENT;
+	}
+	
+	
+	//IOLog("Button switch 0x%X\n", buttons);
 
-	switch(event) {
+	switch(_event) {
 		case HORIZONTAL_SCROLLING:
-			//  virtual void dispatchScrollWheelEvent(
-			//short deltaAxis1, // dy
-			//short deltaAxis2, // dx
-			//short deltaAxis3, // dz?
-			//AbsoluteTime ts); // now
-			
-			// Calculate the HorixontalDelta based on dx
-			dispatchScrollWheelEvent(dy, 0, 0, now);
+			dispatchScrollWheelEvent(0		, .2 * dx, 0, now);
 			break;
 		case VERTICAL_SCROLLING:
-			dispatchScrollWheelEvent(0, dx, 0, now);
+			dispatchScrollWheelEvent(.2 * dy, 0		 , 0, now);
 			break;
 		case SCROLLING:
-			dispatchScrollWheelEvent(dy, dx, 0, now);
+			dispatchScrollWheelEvent(.2 * dy, .2 * dx, 0, now);
 			break;
 		case MOVEMENT:
-			if(_newStream) {
-				_newStream = false;
-				dx = 0;
-				dy = 0;
-			}
-			
-			// Scale dx and dy so that they are within +/- 127
-			dx /= ((ABSOLUTE_X_MAX - ABSOLUTE_X_MIN) / 127);
-			dy /= ((ABSOLUTE_Y_MAX - ABSOLUTE_Y_MIN) / 127);
-			
 			dy *= -1;	// PS2 spec has the direction bacwards from what the os wants
 						
 			dispatchRelativePointerEvent((int) dx, (int) dy, buttons, now);
@@ -467,10 +463,12 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 			break;
 			
 	}
-	   
+	//IOLog("Buttons sent: 0x%X\n", buttons);
+
+
 	_prevX = absX;
 	_prevY = absY;
-	//_prevButtons = buttons;
+	_prevButtons = buttons;
 	_prevPacketTime = now;
 }
 
@@ -515,11 +513,7 @@ void ApplePS2SynapticsTouchPad::
 	if ( (buttons & 0x3)  == 0x03)   {
 		//buttons = 0x4;		// Middle button
 		buttons = 0;	// This is for scrolling
-		if(_prevEvent != SCROLLING) {
-			_event = SCROLLING;
-			dispatchRelativePointerEvent(0, 0, 0, now);
-
-		} else _event = MOVEMENT;
+		_event = MOVEMENT;
 		_prevButtons = 0x4;
 	} else if ((_prevButtons & 0x4) == 0x4) {
 		// Wait for the button states to clean
