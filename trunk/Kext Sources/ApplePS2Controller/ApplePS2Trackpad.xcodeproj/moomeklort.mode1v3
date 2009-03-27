@@ -325,14 +325,14 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>66EA91D90F7ADFF400792995</string>
+										<string>665DDE470F7C5BF600D7ADCF</string>
 										<key>history</key>
 										<array>
 											<string>6699B43D0F784D2200BCE3CC</string>
 											<string>66EA913B0F7856EC00792995</string>
 											<string>66EA91AB0F7A864C00792995</string>
-											<string>66EA91D50F7ADFF400792995</string>
-											<string>66EA91D60F7ADFF400792995</string>
+											<string>665DDE290F7C3C3400D7ADCF</string>
+											<string>665DDE2A0F7C3C3400D7ADCF</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -341,40 +341,14 @@
 											<string>667577C20F7348AF0010C52C</string>
 											<string>667577C60F7348AF0010C52C</string>
 											<string>6699B2950F770A6C00BCE3CC</string>
-											<string>66EA913E0F7856EC00792995</string>
-											<string>66EA913F0F7856EC00792995</string>
-											<string>66EA91400F7856EC00792995</string>
-											<string>66EA914B0F7859BA00792995</string>
-											<string>66EA914C0F7859BA00792995</string>
-											<string>66EA914D0F7859BA00792995</string>
-											<string>66EA914E0F7859BA00792995</string>
-											<string>66EA91620F79A41300792995</string>
-											<string>66EA91630F79A41300792995</string>
-											<string>66EA91640F79A41300792995</string>
-											<string>66EA91650F79A41300792995</string>
-											<string>66EA91710F79AA8300792995</string>
-											<string>66EA91720F79AA8300792995</string>
-											<string>66EA918E0F7A854300792995</string>
-											<string>66EA918F0F7A854300792995</string>
-											<string>66EA91900F7A854300792995</string>
-											<string>66EA91910F7A854300792995</string>
-											<string>66EA91920F7A854300792995</string>
-											<string>66EA91930F7A854300792995</string>
-											<string>66EA91940F7A854300792995</string>
-											<string>66EA91950F7A854300792995</string>
-											<string>66EA91960F7A854300792995</string>
-											<string>66EA91970F7A854300792995</string>
-											<string>66EA91980F7A854300792995</string>
-											<string>66EA91990F7A854300792995</string>
-											<string>66EA919A0F7A854300792995</string>
-											<string>66EA91AE0F7A864C00792995</string>
-											<string>66EA91AF0F7A864C00792995</string>
-											<string>66EA91B00F7A864C00792995</string>
-											<string>66EA91B10F7A864C00792995</string>
-											<string>66EA91B20F7A864C00792995</string>
-											<string>66EA91B30F7A864C00792995</string>
-											<string>66EA91D70F7ADFF400792995</string>
-											<string>66EA91D80F7ADFF400792995</string>
+											<string>665DDDE40F7C0CE700D7ADCF</string>
+											<string>665DDDE50F7C0CE700D7ADCF</string>
+											<string>665DDDF00F7C0FB500D7ADCF</string>
+											<string>665DDDF10F7C0FB500D7ADCF</string>
+											<string>665DDE2B0F7C3C3400D7ADCF</string>
+											<string>665DDE2C0F7C3C3400D7ADCF</string>
+											<string>665DDE2D0F7C3C3400D7ADCF</string>
+											<string>665DDE2E0F7C3C3400D7ADCF</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -432,9 +406,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>66EA91320F78555600792995</string>
+				<string>665DDDCE0F7B344A00D7ADCF</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>66EA91330F78555600792995</string>
+				<string>665DDDCF0F7B344A00D7ADCF</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -588,12 +562,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ApplePS2SynapticsTouchPad.cpp</string>
+								<string>ApplePS2SynapticsTouchPad.h</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -610,8 +586,6 @@
 							<string>218pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -651,7 +625,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>661372370F4A9A4E00415899</string>
-				<string>66EA91380F7855AA00792995</string>
+				<string>665DDDD00F7B344A00D7ADCF</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

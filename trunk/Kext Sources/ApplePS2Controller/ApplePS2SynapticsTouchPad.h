@@ -159,7 +159,7 @@ static char *model_names [] = {	// 16 models currenlty in this list
 #define UNKNOWN_RESOLUTION_Y	94	
 
 // Resolutions of the sensor (in X x Y)
-static UInt32 model_resolution [][2] = {
+/*static UInt32 model_resolution [][2] = {
 	{85, 94},
 	{91, 124},
 	{57, 58},
@@ -176,7 +176,7 @@ static UInt32 model_resolution [][2] = {
 	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
 	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
 	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y}
-};
+};*/
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
