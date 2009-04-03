@@ -8,14 +8,32 @@
 
 #import <PreferencePanes/PreferencePanes.h>
 
+#define APP_ID				"com.meklort.ps2.prefrences"
+
+#define	kTPEdgeScrolling 	"kTPEdgeScrolling"
+#define kTPScrollArea 		"kTPScrollArea"
+#define kTPHorizScroll		"kTPHorizScroll"
+#define kTPScrollSpeed		"kTPScrollSpeed"
+#define kTPTrackSpeed 		"kTPTrackSpeed"
+#define	kTPSensitivity		"kTPSensitivity"
+#define kTPAccelRate 		"kTPAccelRate"
+#define kTPTapToClick 		"kTPTapToClick"
+#define kTPDraggin			"kTPDraggin"
+#define kTPDragLock 		"kTPDragLock"
+
+#define kKBSwapKeys 		"kKBSwapKeys"
+#define kKeyScroll			"kKBKeyScroll"
+
+	
 
 @interface PS2PrefrencePanePref : NSPreferencePane 
 {
-	IBOutlet NSSlider* _trackpadSlider;
+	IBOutlet NSSlider* _trackingSpeedSlider;
+	IBOutlet NSSlider* _trackpadSensitivitySlider;
+	IBOutlet NSSlider* _accelerationRateSlider;
+	
 	IBOutlet NSSlider* _scrollSpeedSlider;
 	IBOutlet NSSlider* _scrollAreaSlider;
-
-	IBOutlet NSSlider* _trackpadSensitivitySlider;
 
 	
 	IBOutlet NSButton* _tapToClickCheckbox;
@@ -25,30 +43,17 @@
 	IBOutlet NSButton* _edgescrollChecbox;
 	IBOutlet NSButton* _horizontalScrolling;
 	
+	
 	IBOutlet NSTextField* _scrollSpeedText;
 	IBOutlet NSTextField* _scrollAreaText;
-	
-	IBOutlet bool _scrollEnabled;
-	
-	// Touchpad prefrences
-	bool _tapToClick;
-	bool _dragable;
-	bool _dragLock;
-	bool _scrolling;
-	int _trackpadSpeed;
-	int _scrollSpeed;
-	int _accelerationRate;
-	
-	// Keyboard prefrences
-	bool _swapWindows;
-	bool _enableScrollKey;
-	
-	//int buttonEnabled;
-	
-	
 }
 
-- (void) mainViewDidLoad;
+//- (id)initWithBundle:(NSBundle *)bundle;
+//- (void) mainViewDidLoad;
+
+- (void) awakeFromNib;
+
+
 
 - (bool) setPrefrences;
 
@@ -60,6 +65,7 @@
 - (IBAction) setTrackpadSpeed: (id) sender;
 - (IBAction) setScrollSpeed: (id) sender;
 - (IBAction) setScrollArea: (id) sender;
+- (IBAction) setSensitivity: (id) sender;
 - (IBAction) setAcceleration: (id) sender;
 
 
