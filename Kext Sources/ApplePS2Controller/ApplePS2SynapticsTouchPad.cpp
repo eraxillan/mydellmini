@@ -25,6 +25,10 @@
 #include <IOKit/hidsystem/IOHIDParameter.h>
 #include "ApplePS2SynapticsTouchPad.h"
 
+
+#define ABS(a)	   (((a) < 0) ? -(a) : (a))
+
+
 // =============================================================================
 // ApplePS2SynapticsTouchPad Class Implementation
 //
@@ -59,7 +63,23 @@ bool ApplePS2SynapticsTouchPad::init( OSDictionary * properties )
 	_newStream				   = true;
     _packetByteCount           = 0;
     _resolution                = (100) << 16; // (100 dpi, 4 counts/mm) (this will be read later on from the device
-    _touchPadModeByte          = GESTURES_MODE_BIT; //| ABSOLUTE_MODE_BIT;	// We like absolute mode
+    _touchPadModeByte          = 0; //GESTURES_MODE_BIT; //| ABSOLUTE_MODE_BIT;	// We like absolute mode
+	
+	// Defaults...
+	_prefEdgeScroll			= true;
+	_prefHorizScroll		= false;
+	_prefClicking			= false;
+	_prefDragging			= false;
+	_prefDragLock			= false;
+	
+	_prefSensitivity		= 1;
+	
+	_prefScrollArea			= .05;
+	_prefScrollSpeed		= 1;
+	_prefTrackSpeed			= .2;
+	
+	_prefAccelRate			= 1;
+	
 
     return true;
 }
@@ -177,14 +197,18 @@ bool ApplePS2SynapticsTouchPad::start( IOService * provider )
 		IOLog("ApplePS2Trackpad: W Mode Supported :D\n");
 		if(CAP_PALM_DETECT)	IOLog("ApplePS2Trackpad: Palm detection Supported :D\n");
 		if(CAP_MULTIFINGER)	IOLog("ApplePS2Trackpad: Multiple finger detection Supported :D\n");
+		else	IOLog("ApplePS2Trackpad: Multiple finger detection NOT Supported :(\n");
+
 	} else {
 		IOLog("ApplePS2Trackpad: W Mode not available, defaulting to Z mode :(\n");
 		_touchPadModeByte |= ABSOLUTE_MODE_BIT | RATE_MODE_BIT;
 
 	}
 	
-	//IOLog("ApplePS2Touchpad: Sratchthat, I'm using relative mode (for all you no developers who dont want bugs...)");
+	// Forcing absolute ONLY mode
+	//_touchPadModeByte |= ABSOLUTE_MODE_BIT | RATE_MODE_BIT;
 
+	
 
 	getModelID();
 	IOLog("ApplePS2Trackpad: Detected toucpad controller \"%s\" (ModelID: 0x%X)\n", model_names[INFO_SENSOR & 0x0f], (unsigned int)_modelId);	// anding with 0x0f because we only have 16 versions stored in the char array
@@ -313,12 +337,16 @@ void ApplePS2SynapticsTouchPad::interruptOccurred( UInt8 data )
     //
 	
 	// In relative mode, 0x08 should be 1. In absolute mode, 0x08 should be 0
-    if (_packetByteCount == 0){
+	// FIXME: If ABSOLUTE)MODE && (data & 0x08) is not 0, we need to reset the touchpad (brownout detections)
+	if (_packetByteCount == 0){
 		if(data == kSC_Acknowledge) return;
 		else if(RELATIVE_MODE && !(data & 0x08)) return;
 		else if(ABSOLUTE_MODE && (data & 0x08)) return;
     }
 
+	
+	
+	
     //
     // Add this byte to the packet buffer. If the packet is complete, that is,
     // we have the three bytes, dispatch this packet for processing.
@@ -368,10 +396,13 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	UInt32	absX, absY;
 	UInt32	pressureZ;
 	AbsoluteTime now;
+	uint32_t currentTime, second;
 
 	clock_get_uptime((uint64_t *)&now);
-	//IOLog("Prev Time: %d \tCur Time: %d \t", _prevPacketTime, now);
-	// Reset the _prevX / _prevY to the curent IF the delta time is > 20ms (aka the finger was removed and now is
+	clock_get_system_microtime(&second, &currentTime);
+	
+	
+	// TODO: pssibly Reset the _prevX / _prevY to the curent IF the delta time is > 20ms (aka the finger was removed and now is
 	
 	
 	
@@ -383,13 +414,16 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	buttons = (packet[0] & 0x3);	// buttons =  last two bits of byte one of packet
 #endif
 	
-	//IOLog("Button value: 0x%X\n", buttons);
 	pressureZ = packet[2];												//	  (max value is 255)
 	absX = (packet[4] | ((packet[1] & 0x0F) << 8) | ((packet[3] & 0x10) << (12 - 4)));
 	absY = (packet[5] | ((packet[1] & 0xF0) << 4) | ((packet[3] & 0x20) << (12 - 5)));
 	
 	long dx = absX - _prevX;
 	long dy = absY - _prevY;	// Y is negative for ps2 (according to synaptics)
+	
+	if(_prevPacketSecond != second) _prevPacketTime += 1000000;	// Take into account when the microseconds wrap around
+	long dt = currentTime - _prevPacketTime;
+	
 	
 
 	
@@ -400,20 +434,30 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 		else							Wvalue = 6;	// finger (4 through 7 = finger)
 	}*/
 	
-	
 	// Emulate a middle button
 	// TODO: add a short (a few ms pause) to each button press so that if they both are pressed within a timeframe, we get the middle button
 	/*if ( (buttons & 0x3)  == 0x3)   {
-		buttons = 0x4;		// Middle button
-	} else if (_prevButtons == 0x4) {
-		// Wait for the button states to stableize since we dont want to send unwanted button presses.
-		if(buttons == 0) _prevButtons = 0;
-		buttons = 0;
-	}*/
+	 buttons = 0x4;		// Middle button
+	 } else if (_prevButtons == 0x4) {
+	 // Wait for the button states to stableize since we dont want to send unwanted button presses.
+	 if(buttons == 0) _prevButtons = 0;
+	 buttons = 0;
+	 }*/
 	
 	// Scale dx and dy so that they are within +/- 127
+	if(_event != VERTICAL_SCROLLING) {
+		dx *= _prefTrackSpeed;
+		dy *= _prefTrackSpeed;
+	} else {
+		dx *= _prefScrollSpeed;
+		dy *= _prefScrollSpeed;
+	}
 	dx /= ((ABSOLUTE_X_MAX - ABSOLUTE_X_MIN) / 127);
-	dy /= ((ABSOLUTE_Y_MAX - ABSOLUTE_Y_MIN) / 127);
+	dy /= ((ABSOLUTE_X_MAX - ABSOLUTE_X_MIN) / 127);
+
+	//dy /= ((ABSOLUTE_Y_MAX - ABSOLUTE_Y_MIN) / 127);
+	_streamdx += dx;
+	_streamdy += dy;
 	
 	// Lets calculate what event we want to handel
 	
@@ -425,51 +469,103 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 		_newStream = false;
 		dx = 0;		
 		dy = 0;
+		dt = 0;
+		_streamdx = 0;
+		_streamdy = 0;
+		_streamStartSecond = second;
+		_streamStartMicro = currentTime;
+
 		
-		if(absX > (ABSOLUTE_X_MAX * .9)) _event = VERTICAL_SCROLLING;
+		// TODO: Only do this IF tapping is enabled
+		if(_prefClicking &&
+		   _prefDragging &&
+		   _tapped &&
+		   ((_streamStartSecond == _prevPacketSecond) && 
+			//((_streamStartMicro + TAP_LENGTH_MIN) < _prevPacketTime) &&				// Above MIN and
+			((_streamStartMicro + TAP_LENGTH_MAX) > _prevPacketTime)					// Less than MAX
+			) ||
+		   ((_streamStartSecond == _prevPacketSecond + 1) && // else If the second rolled over
+			//((_streamStartMicro + TAP_LENGTH_MIN + 10000000) < _prevPacketTime) &&		// Between MIN
+			((_streamStartMicro + TAP_LENGTH_MAX + 10000000) > _prevPacketTime)		// and MAX
+			)
+		   ) {
+			_dragging = true;
+		} else _dragging = false;
+		
+		_tapped = false;
+		
+		
+		
+		if(_prefEdgeScroll && (absX > (ABSOLUTE_X_MAX * (1 - _prefScrollArea)))) _event = VERTICAL_SCROLLING;
 		else if((pressureZ < Z_LIGHT_FINGER)) _event = DEFAULT_EVENT;	// We reset dx and dy untill it is a reliable number
 		else _event = MOVEMENT;
 	} else if(pressureZ < Z_LIGHT_FINGER) {
 		_event = DEFAULT_EVENT;
 	} else if(_event == VERTICAL_SCROLLING) {
-		//_event = VERTICAL_SCROLLING;	// no need to set it to somethign it already is... (although optimization may take care of it)
+		//_event = VERTICAL_SCROLLING;	// no need to set it to somethign that already is... (although optimization may take care of it)
 	} else if((pressureZ > Z_LIGHT_FINGER)) {
 		_event = MOVEMENT;
 	}
 	
-	
+	// Shouldn't be needed.... the if that is
+	if(_prefDragging) buttons |= _dragging;
+
 	//IOLog("Button switch 0x%X\n", buttons);
 
 	switch(_event) {
 		case HORIZONTAL_SCROLLING:
-			dispatchScrollWheelEvent(0		, .2 * dx, 0, now);
+			dispatchScrollWheelEvent(0, dx, 0, now);
 			break;
 		case VERTICAL_SCROLLING:
-			dispatchScrollWheelEvent(.2 * dy, 0		 , 0, now);
+			dispatchScrollWheelEvent(dy, 0, 0, now);
 			break;
 		case SCROLLING:
-			dispatchScrollWheelEvent(.2 * dy, .2 * dx, 0, now);
+			dispatchScrollWheelEvent(dy, dx, 0, now);
 			break;
+			
 		case MOVEMENT:
-			dy *= -1;	// PS2 spec has the direction bacwards from what the os wants
-						
+			dy *= -1;	// PS2 spec has the direction backwards from what the os wants (lower left corner is the orign, verses upper left)
 			dispatchRelativePointerEvent((int) dx, (int) dy, buttons, now);
 			break;
+			
+		// No mevement, just send button presses
 		case DEFAULT_EVENT:
 		default:
-			// No mevement, just send button presses
+
 			if(!_newStream) _newStream = true;
+			
+			if(_prefClicking &&
+			   !_dragging &&
+			   !_tapped &&
+			   (ABS(_streamdx) <= 4) && (ABS(_streamdy) <= 4) &&	// If very little movement, absX and absY would be better (more precision)
+			   ((_streamStartSecond == second) && 
+				  ((_streamStartMicro + TAP_LENGTH_MIN) < currentTime) &&				// Between MIN
+				  ((_streamStartMicro + TAP_LENGTH_MAX) > currentTime)					// And MAX
+			   ) ||
+			   ((_streamStartSecond == second + 1) && // else If the second rolled over
+				  ((_streamStartMicro + TAP_LENGTH_MIN + 10000000) < currentTime) &&		// Between MIN
+			      ((_streamStartMicro + TAP_LENGTH_MAX + 10000000) > currentTime)		// and MAX
+				)
+			   ) {
+				// TODO: Set a "I just tapped variable" so that if a new steram happens withinn say, 50ms, it make it a drag gesture.
+				_tapped = true;
+				buttons = 0x01;
+			} 
 			dispatchRelativePointerEvent(0, 0, buttons, now);
+
 			break;
 			
 	}
 	//IOLog("Buttons sent: 0x%X\n", buttons);
 
+	//IOLog("Prev Time: %d \tCur Time: %d \t dt: %d\t Tap: %d\n", _prevPacketTime, currentTime, dt, _tapping);
+
 
 	_prevX = absX;
 	_prevY = absY;
 	_prevButtons = buttons;
-	_prevPacketTime = now;
+	_prevPacketSecond = second;
+	_prevPacketTime = currentTime;
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -492,21 +588,21 @@ void ApplePS2SynapticsTouchPad::
     UInt32       buttons = 0;
     SInt32       dx, dy;
     AbsoluteTime now;
+	uint32_t	 currentTime, second;
 
 
 	clock_get_uptime((uint64_t *)&now);
-
+	clock_get_system_microtime(&second, &currentTime);
     
 	// Swap buttons as requested by a user
 #ifdef BUTTONS_SWAPED
     if ( (packet[0] & 0x1) ) buttons |= 0x2;  // left button   (bit 0 in packet)
     if ( (packet[0] & 0x2) ) buttons |= 0x1;  // right button  (bit 1 in packet)	
+	if ( (packet[0] & 0x4) ) buttons |= 0x4;  // middle button (bit 2 in packet)
 #else 
-	if ( (packet[0] & 0x1) ) buttons |= 0x1;  // left button   (bit 0 in packet)
-    if ( (packet[0] & 0x2) ) buttons |= 0x2;  // right button  (bit 1 in packet)
+	buttons = (packet[0] & 0x7);	// buttons =  last three bits of byte one of packet = middle, right, left
 #endif
 
-	if ( (packet[0] & 0x4) ) buttons |= 0x4;  // middle button (bit 2 in packet)
 	
 	// Emulate a middle button
 	// TODO: add a short (a few ms pause) to each button press so that if they both are pressed within a timeframe, we get the middle button
@@ -543,7 +639,8 @@ void ApplePS2SynapticsTouchPad::
 			dispatchRelativePointerEvent(dx, dy, buttons, now);
 			break;
 	}
-	_prevPacketTime = now;
+	_prevPacketSecond = second;
+	_prevPacketTime = currentTime;
 
 }
 
@@ -741,16 +838,20 @@ void ApplePS2SynapticsTouchPad::setCommandByte( UInt8 setBits, UInt8 clearBits )
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// This method is used by the prefrences pane to communicate with the driver (currently only supports clicking)
+// This method is used by the prefrences pane to communicate with the driver (currently only supports clicking) called when IORegistryEntrySetCFProperties
 IOReturn ApplePS2SynapticsTouchPad::setParamProperties( OSDictionary * dict )
 {
-    OSNumber * clicking = OSDynamicCast( OSNumber, dict->getObject("Clicking") );
+    OSNumber *   clicking = OSDynamicCast( OSNumber, dict->getObject("Clicking") );
+	
+
+	
 
     if ( clicking )
     {    
-		// This now only resets the gesture bit, not everything else (yay, bug is fixed)
-		UInt8  newModeByteValue = _touchPadModeByte & ~GESTURES_MODE_BIT;
-        clicking->unsigned32BitValue() & 0x1 ? newModeByteValue |= GESTURES_MODE_BIT : 0;
+	/*	// This now only resets the gesture bit, not everything else (yay, bug is fixed)
+		UInt8  newModeByteValue = _touchPadModeByte & ~ GESTURES_MODE_BIT; // Clear out the gesture bit
+		
+        if(RELATIVE_MODE) clicking->unsigned32BitValue() & 0x1 ? newModeByteValue |= GESTURES_MODE_BIT : 0;	// set it if the user wants us to
 
         if (_touchPadModeByte != newModeByteValue)
         {
@@ -767,8 +868,23 @@ IOReturn ApplePS2SynapticsTouchPad::setParamProperties( OSDictionary * dict )
             //
 
             setProperty("Clicking", clicking);
-        }
-    }
+        }*/
+    } 
+	else if(OSDynamicCast(OSBoolean, dict->getObject(kTPEdgeScrolling)))
+	{
+		_prefEdgeScroll		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPEdgeScrolling)))->getValue();
+		_prefHorizScroll	= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPHorizScroll)))->getValue();
+		_prefClicking		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPTapToClick)))->getValue();
+		_prefDragging		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPDraggin)))->getValue();
+		_prefDragLock		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPDragLock)))->getValue();
+	
+		_prefSensitivity	= (		 ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPSensitivity)))->unsigned32BitValue());
+		_prefScrollArea		= (.01 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollArea)))->unsigned32BitValue());
+		_prefScrollSpeed	= .15 + (.025 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollSpeed)))->unsigned32BitValue());
+		_prefTrackSpeed		= (.25 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPTrackSpeed)))->unsigned32BitValue());
+		_prefAccelRate		= (.01 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPAccelRate)))->unsigned32BitValue());
+	}
+
 
     return super::setParamProperties(dict);
 }
@@ -780,30 +896,20 @@ void ApplePS2SynapticsTouchPad::setDevicePowerState( UInt32 whatToDo )
     switch ( whatToDo )
     {
         case kPS2C_DisableDevice:
-            
-            //
-            // Disable touchpad (synchronous).
-            //
-
             setTouchPadEnable( false );
             break;
 
         case kPS2C_EnableDevice:
-
             //
             // Must not issue any commands before the device has
             // completed its power-on self-test and calibration.
             //
-
             IOSleep(1000);
-
             setTouchPadModeByte( _touchPadModeByte );
-
             //
             // Enable the mouse clock (should already be so) and the
             // mouse IRQ line.
             //
-
             setCommandByte( kCB_EnableMouseIRQ, kCB_DisableMouseClock );
 
             //
@@ -907,7 +1013,9 @@ bool   ApplePS2SynapticsTouchPad::getSerialNumber() {
 	serialNumber = getTouchPadData(kST_getSerialNumberSuffix);
 	
 	_serialNumber = (serialNumber | ((prefix & 0xFFF) << 24));
-	return false;
+	
+	setProperty("Serial Number", _serialNumber, sizeof(_serialNumber));
+	return true;
 }
 bool   ApplePS2SynapticsTouchPad::getResolutions() {
 	return false;

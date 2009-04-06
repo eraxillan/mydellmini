@@ -33,7 +33,7 @@ extern "C"
     #include <machine/machine_routines.h>
 }
 
-#warning FIXME: use inb and outb from the kernel framework (2688371)
+//#warning FIXME: use inb and outb from the kernel framework (2688371)
 typedef unsigned short i386_ioport_t;
 inline unsigned char inb(i386_ioport_t port)
 {
