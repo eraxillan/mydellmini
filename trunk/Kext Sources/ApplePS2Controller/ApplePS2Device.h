@@ -27,6 +27,24 @@
 #include <IOKit/IOService.h>
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Prefrence definition
+// Trackpad
+#define	kTPEdgeScrolling 	"kTPEdgeScrolling"
+#define kTPScrollArea 		"kTPScrollArea"
+#define kTPHorizScroll		"kTPHorizScroll"
+#define kTPScrollSpeed		"kTPScrollSpeed"
+#define kTPTrackSpeed 		"kTPTrackSpeed"
+#define	kTPSensitivity		"kTPSensitivity"
+#define kTPAccelRate 		"kTPAccelRate"
+#define kTPTapToClick 		"kTPTapToClick"
+#define kTPDraggin			"kTPDraggin"
+#define kTPDragLock 		"kTPDragLock"
+
+// Keyboard
+#define kKBSwapKeys 		"kKBSwapKeys"
+#define kKeyScroll			"kKeyScroll"
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Definitions
 //
 // Data Port (0x60) Commands.  These commands are all transmitted directly to

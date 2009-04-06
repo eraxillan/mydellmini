@@ -28,6 +28,9 @@
 
 //#define BUTTONS_SWAPED
 
+// 50 to 500ms = a tap
+#define TAP_LENGTH_MAX		500000
+#define TAP_LENGTH_MIN		 20000
 
 #define RELATIVE_PACKET_SIZE	3
 #define ABSOLUTE_PACKET_SIZE	6
@@ -107,8 +110,8 @@
 #define INTO_PEN					((_modelId & 0x000020) >> 6)
 
 // Boundaries for sidescrolling (curently undefined
-#define HORIZ_SCROLLING_BOUNDARY
-#define VERT_SCROLLING_BOUNDARY
+//#define HORIZ_SCROLLING_BOUNDARY
+//#define VERT_SCROLLING_BOUNDARY
 
 
 // Possible touchpad events
@@ -159,7 +162,7 @@ static char *model_names [] = {	// 16 models currenlty in this list
 #define UNKNOWN_RESOLUTION_Y	94	
 
 // Resolutions of the sensor (in X x Y)
-/*static UInt32 model_resolution [][2] = {
+static UInt32 model_resolution [][2] = {
 	{85, 94},
 	{91, 124},
 	{57, 58},
@@ -176,7 +179,26 @@ static char *model_names [] = {	// 16 models currenlty in this list
 	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
 	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
 	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y}
-};*/
+};
+ 
+ 
+
+
+#define APP_ID				"com.meklort.ps2.prefrences"
+
+#define	kTPEdgeScrolling 	"kTPEdgeScrolling"
+#define kTPScrollArea 		"kTPScrollArea"
+#define kTPHorizScroll		"kTPHorizScroll"
+#define kTPScrollSpeed		"kTPScrollSpeed"
+#define kTPTrackSpeed 		"kTPTrackSpeed"
+#define	kTPSensitivity		"kTPSensitivity"
+#define kTPAccelRate 		"kTPAccelRate"
+#define kTPTapToClick 		"kTPTapToClick"
+#define kTPDraggin			"kTPDraggin"
+#define kTPDragLock 		"kTPDragLock"
+
+#define kKBSwapKeys			"kKBSwapKeys"
+#define kKBKeyScroll		"kKBKeyScroll"
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -203,14 +225,37 @@ private:
 	UInt8				  _prevEvent;
 	long long			  _serialNumber;
 	
+	bool				  _tapped;
+	bool				  _dragging;
+	UInt32				  _streamdx;
+	UInt32				  _streamdy;
+	
+	
 	bool				  _horizScroll;
 	bool				  _vertScroll;
 	
 	UInt32				  _prevX;
 	UInt32				  _prevY;
 	UInt32				  _prevButtons;
-	AbsoluteTime		  _prevPacketTime;
+	
+	uint32_t			  _prevPacketTime;
+	uint32_t			  _prevPacketSecond;
+	uint32_t			  _streamStartSecond;
+	uint32_t			  _streamStartMicro;
 	bool				  _newStream;
+	
+	// Prefrences from the pref pane...
+	bool _prefEdgeScroll;
+	bool _prefHorizScroll;
+	bool _prefClicking;
+	bool _prefDragging;
+	bool _prefDragLock;
+	
+	double _prefSensitivity;
+	double _prefScrollArea;
+	double _prefScrollSpeed;
+	double _prefTrackSpeed;
+	double _prefAccelRate;
 
 	virtual void   dispatchRelativePointerEventWithPacket( UInt8 * packet, UInt32  packetSize );
 	virtual void   dispatchAbsolutePointerEventWithPacket( UInt8 * packet, UInt32  packetSize );
@@ -252,12 +297,13 @@ public:
                                                SInt32 *    score );
     
     virtual bool start( IOService * provider );
-    virtual void stop( IOService * provider );
+    virtual void stop ( IOService * provider );
     
     virtual UInt32 deviceType();
     virtual UInt32 interfaceID();
 
 	virtual IOReturn setParamProperties( OSDictionary * dict );
+
 };
 
 #endif /* _APPLEPS2SYNAPTICSTOUCHPAD_H */

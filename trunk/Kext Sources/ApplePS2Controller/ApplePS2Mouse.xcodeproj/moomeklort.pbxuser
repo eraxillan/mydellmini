@@ -9,9 +9,9 @@
 	};
 	0107A3BE008BB6FE7F000001 /* ApplePS2Mouse.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {859, 1274}}";
+			sepNavIntBoundsRect = "{{0, 0}, {859, 1344}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{1296, 1239}";
+			sepNavVisRange = "{1598, 1314}";
 		};
 	};
 	089C1669FE841209C02AAC07 /* Project object */ = {
@@ -117,18 +117,16 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 259217865;
-			PBXWorkspaceStateSaveDate = 259217865;
+			PBXPerProjectTemplateStateSaveDate = 260485171;
+			PBXWorkspaceStateSaveDate = 260485171;
 		};
 		perUserProjectItems = {
 			6641CBE60F4B11A400546D6A /* PlistBookmark */ = 6641CBE60F4B11A400546D6A /* PlistBookmark */;
 			6641CBE90F4B11A400546D6A /* PlistBookmark */ = 6641CBE90F4B11A400546D6A /* PlistBookmark */;
-			6641CBEA0F4B11A400546D6A /* PlistBookmark */ = 6641CBEA0F4B11A400546D6A /* PlistBookmark */;
+			666DD19F0F86B03C00059227 /* PBXTextBookmark */ = 666DD19F0F86B03C00059227 /* PBXTextBookmark */;
 			667578140F7359CB0010C52C /* PBXTextBookmark */ = 667578140F7359CB0010C52C /* PBXTextBookmark */;
-			66C3CE270F631E5800C13CC9 /* PlistBookmark */ = 66C3CE270F631E5800C13CC9 /* PlistBookmark */;
 			66C3CE280F631E5800C13CC9 /* PBXTextBookmark */ = 66C3CE280F631E5800C13CC9 /* PBXTextBookmark */;
 			66C3CE2B0F631E5800C13CC9 /* PBXTextBookmark */ = 66C3CE2B0F631E5800C13CC9 /* PBXTextBookmark */;
-			66C3CE330F6367FC00C13CC9 /* PBXTextBookmark */ = 66C3CE330F6367FC00C13CC9 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 661372520F4A9A5A00415899 /* Source Control */;
 		userBuildSettings = {
@@ -150,13 +148,6 @@
 	661372530F4A9A5A00415899 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
-	};
-	663520A40F4B1998003F1AF7 /* Info.plist */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = text.plist.xml;
-		name = Info.plist;
-		path = "/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/build/Deployment/ApplePS2Controller.kext/Contents/PlugIns/ApplePS2Mouse.kext/Contents/Info.plist";
-		sourceTree = "<absolute>";
 	};
 	6641CBE60F4B11A400546D6A /* PlistBookmark */ = {
 		isa = PlistBookmark;
@@ -180,23 +171,15 @@
 		rLen = 0;
 		rLoc = 2147483647;
 	};
-	6641CBEA0F4B11A400546D6A /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 6641CBEB0F4B11A400546D6A /* Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = "/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/build/Deployment/ApplePS2Controller.kext/Contents/PlugIns/ApplePS2Mouse.kext/Contents/Info.plist";
+	666DD19F0F86B03C00059227 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 0107A3BE008BB6FE7F000001 /* ApplePS2Mouse.h */;
+		name = "ApplePS2Mouse.h: 1";
 		rLen = 0;
-		rLoc = 2147483647;
-	};
-	6641CBEB0F4B11A400546D6A /* Info.plist */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = text.plist.xml;
-		name = Info.plist;
-		path = "/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/build/Deployment/ApplePS2Controller.kext/Contents/PlugIns/ApplePS2Mouse.kext/Contents/Info.plist";
-		sourceTree = "<absolute>";
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1314;
+		vrLoc = 1598;
 	};
 	667578140F7359CB0010C52C /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -207,17 +190,6 @@
 		rType = 0;
 		vrLen = 1239;
 		vrLoc = 1296;
-	};
-	66C3CE270F631E5800C13CC9 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 663520A40F4B1998003F1AF7 /* Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = "/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/build/Deployment/ApplePS2Controller.kext/Contents/PlugIns/ApplePS2Mouse.kext/Contents/Info.plist";
-		rLen = 0;
-		rLoc = 2147483647;
 	};
 	66C3CE280F631E5800C13CC9 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -238,15 +210,5 @@
 		rType = 0;
 		vrLen = 948;
 		vrLoc = 12354;
-	};
-	66C3CE330F6367FC00C13CC9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 0107A3BE008BB6FE7F000001 /* ApplePS2Mouse.h */;
-		name = "ApplePS2Mouse.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1294;
-		vrLoc = 1296;
 	};
 }
