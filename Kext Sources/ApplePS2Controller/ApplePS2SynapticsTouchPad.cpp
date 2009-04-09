@@ -188,7 +188,7 @@ bool ApplePS2SynapticsTouchPad::start( IOService * provider )
 
     IOLog("ApplePS2Trackpad: Synaptics TouchPad v%d.%d\n",
           (UInt8)(_touchPadVersion >> 8), (UInt8)(_touchPadVersion));
-	setProperty("TouchpadInfo", _touchpadIntormation, sizeof(_touchpadIntormation));
+	setProperty("TouchpadInfo"	, _touchpadIntormation, sizeof(_touchpadIntormation));
 
 
 	getCapabilities();
@@ -211,7 +211,13 @@ bool ApplePS2SynapticsTouchPad::start( IOService * provider )
 	IOLog("ApplePS2Trackpad: Initializing resolution to %d dpi\n", (int)(model_resolution[(INFO_SENSOR & 0x0f)][0] * 25.4));
 	_resolution = (int)(model_resolution[(INFO_SENSOR & 0x0f)][0] * 25.4) << 16;
 	
+	
+    setProperty(kIOHIDScrollResolutionKey, _resolution, 32);
+	setProperty(kIOHIDPointerResolutionKey, _resolution, 32);
 
+	
+	
+	
 	getModelID();
 	IOLog("ApplePS2Trackpad: Detected toucpad controller \"%s\" (ModelID: 0x%X)\n", model_names[INFO_SENSOR & 0x0f], (unsigned int)_modelId);	// anding with 0x0f because we only have 16 versions stored in the char array
 
@@ -922,7 +928,7 @@ IOReturn ApplePS2SynapticsTouchPad::setParamProperties( OSDictionary * dict )
 	
 		_prefSensitivity	= (300 + 25 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPSensitivity)))->unsigned32BitValue());
 		_prefScrollArea		= (.01 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollArea)))->unsigned32BitValue());
-		_prefScrollSpeed	= .15 + (.025 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollSpeed)))->unsigned32BitValue());
+		_prefScrollSpeed	= .5 + (.2 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollSpeed)))->unsigned32BitValue());
 		_prefTrackSpeed		= (.2 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPTrackSpeed)))->unsigned32BitValue());
 		_prefAccelRate		= (.01 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPAccelRate)))->unsigned32BitValue());
 	}
