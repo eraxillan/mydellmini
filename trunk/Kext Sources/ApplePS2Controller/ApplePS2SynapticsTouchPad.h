@@ -82,7 +82,7 @@
 #define W_THREEPLUS					1
 // Requires INFO_PEN (values 3)
 #define W_PEN						2
-// #define W_RESERVED					3
+#define W_RESERVED					3
 // Requires CAP_PALM_DETECT (values 4 to 15)
 #define W_FINGER_MIN				4
 #define W_FINGER_MAX				7
@@ -163,6 +163,7 @@ static char *model_names [] = {	// 16 models currenlty in this list
 
 // Resolutions of the sensor (in X x Y)
 static UInt32 model_resolution [][2] = {
+	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
 	{85, 94},
 	{91, 124},
 	{57, 58},
@@ -290,6 +291,8 @@ private:
 protected:
 	virtual IOItemCount buttonCount();
 	virtual IOFixed     resolution();
+	virtual IOFixed		scrollResolution();
+
 
 public:
     virtual bool init( OSDictionary * properties );

@@ -44,6 +44,8 @@ UInt32 ApplePS2SynapticsTouchPad::interfaceID()
 
 IOItemCount ApplePS2SynapticsTouchPad::buttonCount() { return 2; };
 IOFixed     ApplePS2SynapticsTouchPad::resolution()  { return _resolution; };
+IOFixed     ApplePS2SynapticsTouchPad::scrollResolution()  { return _resolution; };
+
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -58,24 +60,25 @@ bool ApplePS2SynapticsTouchPad::init( OSDictionary * properties )
 
     _device                    = 0;
 	_prevButtons			   = 0;
-	//_prevPacketTime			   = 0;
     _interruptHandlerInstalled = false;
 	_newStream				   = true;
     _packetByteCount           = 0;
-    _resolution                = (100) << 16; // (100 dpi, 4 counts/mm) (this will be read later on from the device
+	// FIXME: I really need to look into _resolution and stuff (synaptics says the dpi is 2159 x 2388)
+    //_resolution                = ((int)(UNKNOWN_RESOLUTION_X * 25.4)) << 16; // (100 dpi, 4 counts/mm) (this will be read later on from the device
+	_resolution				   = (100) << 16; 
     _touchPadModeByte          = 0; //GESTURES_MODE_BIT; //| ABSOLUTE_MODE_BIT;	// We like absolute mode
 	
 	// Defaults...
-	_prefEdgeScroll			= true;
+	_prefEdgeScroll			= false;
 	_prefHorizScroll		= false;
 	_prefClicking			= false;
 	_prefDragging			= false;
 	_prefDragLock			= false;
 	
-	_prefSensitivity		= 1;
 	
+	_prefSensitivity		= 350;
 	_prefScrollArea			= .05;
-	_prefScrollSpeed		= 1;
+	_prefScrollSpeed		= .5;
 	_prefTrackSpeed			= .2;
 	
 	_prefAccelRate			= 1;
@@ -186,7 +189,7 @@ bool ApplePS2SynapticsTouchPad::start( IOService * provider )
     IOLog("ApplePS2Trackpad: Synaptics TouchPad v%d.%d\n",
           (UInt8)(_touchPadVersion >> 8), (UInt8)(_touchPadVersion));
 	setProperty("TouchpadInfo", _touchpadIntormation, sizeof(_touchpadIntormation));
-	//IOLog("ApplePS2Trackpad: Mouse Information: 0x%X\n",  _touchpadIntormation);
+
 
 	getCapabilities();
 	IOLog("ApplePS2Trackpad: Capabilities 0x%X\n", (unsigned int) (_capabilties));
@@ -205,9 +208,8 @@ bool ApplePS2SynapticsTouchPad::start( IOService * provider )
 
 	}
 	
-	// Forcing absolute ONLY mode
-	//_touchPadModeByte |= ABSOLUTE_MODE_BIT | RATE_MODE_BIT;
-
+	IOLog("ApplePS2Trackpad: Initializing resolution to %d dpi\n", (int)(model_resolution[(INFO_SENSOR & 0x0f)][0] * 25.4));
+	_resolution = (int)(model_resolution[(INFO_SENSOR & 0x0f)][0] * 25.4) << 16;
 	
 
 	getModelID();
@@ -341,7 +343,10 @@ void ApplePS2SynapticsTouchPad::interruptOccurred( UInt8 data )
 	if (_packetByteCount == 0){
 		if(data == kSC_Acknowledge) return;
 		else if(RELATIVE_MODE && !(data & 0x08)) return;
-		else if(ABSOLUTE_MODE && (data & 0x08)) return;
+		else if(ABSOLUTE_MODE && (data & 0x08)) {
+			setDevicePowerState(kPS2C_EnableDevice);	// The device had a brown out, reset it to absolute mode
+			return;
+		}
     }
 
 	
@@ -390,11 +395,12 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	//	{1}		{1}		Y12			X12			{0}		W0		R/D		R/L			(W0) (Y12) (X12)
 	//	X7		X6		X5			X4			X3		X2		X1		X0			(X 7..0)
 	//	Y7		Y6		Y5			Y4			Y3		Y2		Y1		Y0			(Y 7..0)
-	
+		
 	UInt32 buttons = 0;
-	//UInt8 Wvalue = 0xFFFFFFFF;
 	UInt32	absX, absY;
 	UInt32	pressureZ;
+	UInt8	Wvalue;
+	UInt8	prevEvent = _event;
 	AbsoluteTime now;
 	uint32_t currentTime, second;
 
@@ -425,14 +431,8 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	long dt = currentTime - _prevPacketTime;
 	
 	
-
-	
-	/*if(W_MODE) {
-		Wvalue = ((packet[3] & 0x4) >> 2) | ((packet[0] & 0x8) >> 2);	// (max value = 15)
-	} else {
-		if(((packet[0] & 0x10) >> 4))	Wvalue = -1;		// No finger
-		else							Wvalue = 6;	// finger (4 through 7 = finger)
-	}*/
+	if(W_MODE) Wvalue = ((packet[3] & 0x4) >> 2) | ((packet[0] & 0x30) >> 2) | ((packet[0] & 0x4) >> 1);	// (max value = 15)
+	else Wvalue = W_FINGER_MIN;
 	
 	// Emulate a middle button
 	// TODO: add a short (a few ms pause) to each button press so that if they both are pressed within a timeframe, we get the middle button
@@ -445,24 +445,35 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	 }*/
 	
 	// Scale dx and dy so that they are within +/- 127
-	if(_event != VERTICAL_SCROLLING) {
+	if((_event & (SCROLLING | VERTICAL_SCROLLING | HORIZONTAL_SCROLLING)) == 0) {
 		dx *= _prefTrackSpeed;
 		dy *= _prefTrackSpeed;
 	} else {
 		dx *= _prefScrollSpeed;
 		dy *= _prefScrollSpeed;
 	}
-	dx /= ((ABSOLUTE_X_MAX - ABSOLUTE_X_MIN) / 127);
-	dy /= ((ABSOLUTE_X_MAX - ABSOLUTE_X_MIN) / 127);
 
-	//dy /= ((ABSOLUTE_Y_MAX - ABSOLUTE_Y_MIN) / 127);
+	
+	dy *= ((double) (model_resolution[(INFO_SENSOR & 0x0f)][0])) / (model_resolution[(INFO_SENSOR & 0x0f)][0]);
+
+	
 	_streamdx += dx;
 	_streamdy += dy;
+
+	// TODO: calculate a drift so that we only add 1 when the DRIFT is over .5, not when dx is
+	dx += (dx > 0) ? 0.5 : -0.5;
+	dy += (dy > 0) ? 0.5 : -0.5;
+
+	//	if(dx > 0) dx += .5;
+//	else dx -= .5;
+	
+//	if(dy > 0) dy += .5;
+//	else dy -= .5;
+	
+	
 	
 	// Lets calculate what event we want to handel
 	
-	// && pressureZ < (Z_FULL_FINGER)) 
-	// Ignore when Z is small. According to teh specifications, X and Y are inacurate at Z < 25 (light finger contact)
 	
 	if(_newStream) {
 		// Rest the dx and dy values since prevX and prevY are both 0
@@ -496,31 +507,63 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 		
 		
 		
-		if(_prefEdgeScroll && (absX > (ABSOLUTE_X_MAX * (1 - _prefScrollArea)))) _event = VERTICAL_SCROLLING;
-		else if((pressureZ < Z_LIGHT_FINGER)) _event = DEFAULT_EVENT;	// We reset dx and dy untill it is a reliable number
-		else _event = MOVEMENT;
-	} else if(pressureZ < Z_LIGHT_FINGER) {
-		_event = DEFAULT_EVENT;
-	} else if(_event == VERTICAL_SCROLLING) {
-		//_event = VERTICAL_SCROLLING;	// no need to set it to somethign that already is... (although optimization may take care of it)
-	} else if((pressureZ > Z_LIGHT_FINGER)) {
-		_event = MOVEMENT;
-	}
+		if(_prefEdgeScroll &&
+		   (absX > (ABSOLUTE_X_MAX * (1 - _prefScrollArea)))) _event = VERTICAL_SCROLLING;
+		else if(_prefEdgeScroll && _prefHorizScroll&&
+		   (absY < (ABSOLUTE_Y_MIN * (1 + _prefScrollArea)))) _event = HORIZONTAL_SCROLLING;
+
+		
+		else if(_event == SCROLLING &&
+				((_streamStartSecond == _prevPacketSecond) && ((_streamStartMicro + TAP_LENGTH_MAX) > _prevPacketTime)) ||
+				((_streamStartSecond == _prevPacketSecond + 1) && ((_streamStartMicro + TAP_LENGTH_MAX + 10000000) > _prevPacketTime)		// and MAX
+				 )
+				) {
+			_event =SCROLLING;
+				
+			
+		}
+		else if((W_MODE) && ((Wvalue * pressureZ) > _prefSensitivity))							 _event = SCROLLING;
+		//else if((W_MODE) && (Wvalue >= W_FINGER_MAX))	_event = SCROLLING;
+
+		else if((pressureZ < Z_LIGHT_FINGER))									 _event = DEFAULT_EVENT;	// We reset dx and dy untill it is a reliable number
+		else																	 _event = MOVEMENT;
+	} 
+	else if(pressureZ < Z_LIGHT_FINGER)				_event = DEFAULT_EVENT;
+	else if(_event & (VERTICAL_SCROLLING | HORIZONTAL_SCROLLING));	// This is jsut here so it is not reset MOVEMENT or SCROLLING (wouldnt matter as much)
+	else if((_event == SCROLLING) && (Wvalue < W_RESERVED));	// our touchpad doesnt support anything below W_RESERVED so keep on scrolling
 	
-	// Shouldn't be needed.... the if that is
+	else if((W_MODE) && ((Wvalue * pressureZ) > _prefSensitivity))							 _event = SCROLLING;
+	//else if((W_MODE) && (Wvalue >= W_FINGER_MAX))	_event = SCROLLING;
+	
+	else if((pressureZ > Z_LIGHT_FINGER))			_event = MOVEMENT;
+	
+	
+	if(prevEvent ^ _event) {
+		dx = 0;		
+		dy = 0;
+		dt = 0;
+		_streamdx = 0;
+		_streamdy = 0;
+	//	_streamStartSecond = second;
+	//	_streamStartMicro = currentTime;
+	}
+		
+	
+	
+	// Shouldn't be needed.... but hey, why not
 	if(_prefDragging) buttons |= _dragging;
 
-	//IOLog("Button switch 0x%X\n", buttons);
-
+	
+	
 	switch(_event) {
 		case HORIZONTAL_SCROLLING:
-			dispatchScrollWheelEvent(0, dx, 0, now);
+			dispatchScrollWheelEvent(0,  -1 * dx, 0, now);
 			break;
 		case VERTICAL_SCROLLING:
-			dispatchScrollWheelEvent(dy, 0, 0, now);
+			dispatchScrollWheelEvent(dy, 0,		  0, now);
 			break;
 		case SCROLLING:
-			dispatchScrollWheelEvent(dy, dx, 0, now);
+			dispatchScrollWheelEvent(dy, -1 * dx, 0, now);
 			break;
 			
 		case MOVEMENT:
@@ -547,7 +590,6 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 			      ((_streamStartMicro + TAP_LENGTH_MAX + 10000000) > currentTime)		// and MAX
 				)
 			   ) {
-				// TODO: Set a "I just tapped variable" so that if a new steram happens withinn say, 50ms, it make it a drag gesture.
 				_tapped = true;
 				buttons = 0x01;
 			} 
@@ -878,10 +920,10 @@ IOReturn ApplePS2SynapticsTouchPad::setParamProperties( OSDictionary * dict )
 		_prefDragging		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPDraggin)))->getValue();
 		_prefDragLock		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPDragLock)))->getValue();
 	
-		_prefSensitivity	= (		 ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPSensitivity)))->unsigned32BitValue());
+		_prefSensitivity	= (300 + 25 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPSensitivity)))->unsigned32BitValue());
 		_prefScrollArea		= (.01 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollArea)))->unsigned32BitValue());
 		_prefScrollSpeed	= .15 + (.025 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollSpeed)))->unsigned32BitValue());
-		_prefTrackSpeed		= (.25 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPTrackSpeed)))->unsigned32BitValue());
+		_prefTrackSpeed		= (.2 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPTrackSpeed)))->unsigned32BitValue());
 		_prefAccelRate		= (.01 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPAccelRate)))->unsigned32BitValue());
 	}
 
@@ -900,7 +942,14 @@ void ApplePS2SynapticsTouchPad::setDevicePowerState( UInt32 whatToDo )
             break;
 
         case kPS2C_EnableDevice:
-            //
+			// Reset vars for the absolute mode handler.
+			_streamdx = 0;
+			_streamdy = 0;
+			_newStream = true;
+			//_streamStartSecond = second;
+			//_streamStartMicro = currentTime;
+            
+			//
             // Must not issue any commands before the device has
             // completed its power-on self-test and calibration.
             //
