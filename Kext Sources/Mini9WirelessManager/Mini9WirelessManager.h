@@ -39,6 +39,8 @@ class Mini9WirelessManager : public IOService
 	
 		UInt8		   _portStatus;
 		UInt8		   _status;
+		IOACPIPlatformDevice   *fProvider;
+
 	
 	//virtual bool   portSetup ();
 

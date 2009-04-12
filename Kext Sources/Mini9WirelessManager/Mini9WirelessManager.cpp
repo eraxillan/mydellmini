@@ -2,24 +2,8 @@
 
 #include <IOKit/assert.h>
 #include <IOKit/IOService.h>
-#include <IOKit/IOLib.h>
-#include <sys/types.h>
-#include <machine/sysarch.h>
+#include <IOKit/acpi/IOACPIPlatformDevice.h>
 #include "Mini9WirelessManager.h"
-
-/*
-typedef unsigned short i386_ioport_t;
-
-inline unsigned char inb(i386_ioport_t port) {
-	unsigned char datum;
-	asm volatile("inb %1, %0" : "=a" (datum) : "d" (port));
-	return datum;
-}
-
-inline void outb(i386_ioport_t port, unsigned char datum) {
-	asm volatile("outb %0, %1" : : "a" (datum), "d" (port));
-}
-*/
 
 // =============================================================================
 // ApplePS2SynapticsTouchPad Class Implementation
@@ -32,14 +16,8 @@ OSDefineMetaClassAndStructors(Mini9WirelessManager, IOService);
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 bool Mini9WirelessManager::init(OSDictionary *dict)
 {
+
     bool res = super::init(dict);
-    IOLog("Initializing\n");
-	IOLog("WirelessManager: init\n");
-	IOLog("WirelessManager: getting stat\n");
-	i386_iopl(kWMCommandPort);
-	i386_iopl(kWMStatusPort);
-	getStatus();
-	IOLog("WirelessManager: init done\n");
     return res;
 }
 
@@ -58,8 +36,16 @@ IOService* Mini9WirelessManager::probe(IOService *provider, SInt32 *score)
 
 bool Mini9WirelessManager::start(IOService *provider)
 {
+	fProvider = OSDynamicCast(IOACPIPlatformDevice, provider);
+
     bool res = super::start(provider);
-    IOLog("Starting\n");
+    IOLog("Startions\n");
+	IOLog("WirelessManager: start\n");
+	IOLog("WirelessManager: getting stat\n");
+	//i386_iopl(kWMCommandPort);
+	//i386_iopl(kWMStatusPort);
+	getStatus();
+	IOLog("WirelessManager: done\n");
     return res;
 }
 
@@ -75,14 +61,14 @@ void Mini9WirelessManager::stop(IOService *provider)
 void Mini9WirelessManager::portInit () {
 		
 	//while((inb(kWMCommandPort) & kWMOK) != 0);
-	while((inb(kWMCommandPort) & kInputBusy) != 0);
-	outb(kWMCommandPort, 0xb0);
+	while((fProvider->ioRead8(kWMCommandPort) & kInputBusy) != 0);
+	fProvider->ioWrite8(kWMCommandPort, 0xb0);
 	
-	while((inb(kWMCommandPort) & kInputBusy) != 0);
-	outb(kWMStatusPort, 0xbb);
+	while((fProvider->ioRead8(kWMCommandPort) & kInputBusy) != 0);
+	fProvider->ioWrite8(kWMStatusPort, 0xbb);
 	
-	while((inb(kWMCommandPort) & kOutputReady) != 0);
-	_status = inb(kWMStatusPort);
+	while((fProvider->ioRead8(kWMCommandPort) & kOutputReady) != 0);
+	_status = fProvider->ioRead8(kWMStatusPort);
 }
 
 void Mini9WirelessManager::getStatus () {
@@ -99,8 +85,8 @@ void Mini9WirelessManager::getStatus () {
 		IOLog("Mini9WirelessManager: Bluetooth is off.\n");
 	
 	
-	while((inb(kWMCommandPort) & kInputBusy) != 0);
-	outb(kWMCommandPort, 0xff);
+	while((fProvider->ioRead8(kWMCommandPort) & kInputBusy) != 0);
+	fProvider->ioWrite8(kWMCommandPort, 0xff);
 }
 
 
@@ -114,16 +100,16 @@ bool Mini9WirelessManager::powerControl (UInt8 bitmap) {
 	UInt8 newStatus = _status;
 	portInit();
 
-	while((inb(kWMCommandPort) & kInputBusy) != 0);
-	outb(kWMCommandPort, 0xff);
+	while((fProvider->ioRead8(kWMCommandPort) & kInputBusy) != 0);
+	fProvider->ioWrite8(kWMCommandPort, 0xff);
 	
-	while((inb(kWMCommandPort) & kWMOK) != 0);
-	while((inb(kWMCommandPort) & kInputBusy) != 0);
-	outb(kWMCommandPort, 0xb1);
+	while((fProvider->ioRead8(kWMCommandPort) & kWMOK) != 0);
+	while((fProvider->ioRead8(kWMCommandPort) & kInputBusy) != 0);
+	fProvider->ioWrite8(kWMCommandPort, 0xb1);
 	
-	while((inb(kWMCommandPort) & kInputBusy) != 0);
+	while((fProvider->ioRead8(kWMCommandPort) & kInputBusy) != 0);
 	
-	outb(kWMStatusPort, 0xbb);
+	fProvider->ioWrite8(kWMStatusPort, 0xbb);
 	
 	if((_status & WIRELESS_BITMAP) && !(bitmap & WIRELESS_BITMAP))
 		newStatus &= 0xfe; // Turn off wireless	(unset bit 1_
@@ -139,10 +125,10 @@ bool Mini9WirelessManager::powerControl (UInt8 bitmap) {
 	
 
 	
-	while((inb(kWMCommandPort) & kInputBusy) != 0);
-	outb(kWMStatusPort, newStatus);
-	while((inb(kWMCommandPort) & kInputBusy) != 0);
-	outb(kWMCommandPort, 0xff);
+	while((fProvider->ioRead8(kWMCommandPort) & kInputBusy) != 0);
+	fProvider->ioWrite8(kWMStatusPort, newStatus);
+	while((fProvider->ioRead8(kWMCommandPort) & kInputBusy) != 0);
+	fProvider->ioWrite8(kWMCommandPort, 0xff);
 	return true;
 }
 	
