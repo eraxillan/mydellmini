@@ -36,12 +36,14 @@
 	</dict>
 	<key>OSBundleLibraries</key>
 	<dict>
-		<key>com.apple.kernel.iokit</key>
-		<string>1.1</string>
-		<key>com.apple.kernel.libkern</key>
-		<string>1.1</string>
-		<key>com.apple.kernel.mach</key>
-		<string>1.1</string>
+		<key>com.apple.kpi.iokit</key>
+		<string>8.3.1</string>
+		<key>com.apple.kpi.libkern</key>
+		<string>8.3.1</string>
+		<key>com.apple.kpi.mach</key>
+		<string>8.3.1</string>
+		<key>com.apple.iokit.IOACPIFamily</key>
+		<string>1.2.0</string>
 	</dict>
 </dict>
 </plist>

@@ -326,13 +326,13 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>662C3CEA0F896D2800A1D16C</string>
+										<string>661F4F120F92B28F00E46E11</string>
 										<key>history</key>
 										<array>
 											<string>66E2627A0F880B6C005A3EC3</string>
 											<string>669FB6000F8850D1003C6902</string>
-											<string>669FB6090F886331003C6902</string>
-											<string>662C3CD30F89374900A1D16C</string>
+											<string>661F4EFB0F92B18C00E46E11</string>
+											<string>661F4EFC0F92B18C00E46E11</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -340,6 +340,12 @@
 											<string>66DCD3B60F84A77800902DA0</string>
 											<string>66E262530F880565005A3EC3</string>
 											<string>669FB5E90F884FD1003C6902</string>
+											<string>661F4EF10F92B11800E46E11</string>
+											<string>661F4EF20F92B11800E46E11</string>
+											<string>661F4EFD0F92B18C00E46E11</string>
+											<string>661F4EFE0F92B18C00E46E11</string>
+											<string>661F4EFF0F92B18C00E46E11</string>
+											<string>661F4F000F92B18C00E46E11</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -397,9 +403,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>662C3CD70F89374C00A1D16C</string>
+				<string>661F4EE90F92B09000E46E11</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>662C3CD80F89374C00A1D16C</string>
+				<string>661F4EEA0F92B09000E46E11</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -553,14 +559,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Mini9WirelessManager.cpp</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -577,6 +581,8 @@
 							<string>218pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -616,7 +622,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>66E2615E0F87D1C9005A3EC3</string>
-				<string>662C3CD50F89374900A1D16C</string>
+				<string>661F4EED0F92B0E200E46E11</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
