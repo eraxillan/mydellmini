@@ -29,12 +29,13 @@
 //#define BUTTONS_SWAPED
 
 // 50 to 500ms = a tap
-#define TAP_LENGTH_MAX		500000
-#define TAP_LENGTH_MIN		 20000
+#define TAP_LENGTH_MAX		250000
+#define TAP_LENGTH_MIN		 10000
 
 #define RELATIVE_PACKET_SIZE	3
 #define ABSOLUTE_PACKET_SIZE	6
 
+// These values are coppied from the spec sheet, however they can cahnge per device
 #define ABSOLUTE_X_MIN			1472
 #define ABSOLUTE_X_MAX			5312
 #define ABSOLUTE_Y_MIN			1568
@@ -43,8 +44,8 @@
 // _touchPadModeByte bitmap
 #define ABSOLUTE_MODE_BIT			0x80
 #define RATE_MODE_BIT				0x40
-// bit 5 undefined
-// bit 4 undefined
+// bit 5 undefined					0x20
+// bit 4 undefined					0x10
 #define SLEEP_MODE_BIT				0x08
 #define GESTURES_MODE_BIT			0x04
 //	#define PACKET_SIZE				0x02		// Only used for serial touchpads, not ps2
@@ -77,11 +78,12 @@
 #define CAP_W_MODE					(_capabilties & 0x8000) 
 
 // The folowing are available W Modes values
-// Rquires CAP_MULTIFINGER (values 0 to 2)
+// Rquires CAP_MULTIFINGER (values 0 to 1)
 #define W_TWOFINGERS				0
 #define W_THREEPLUS					1
-// Requires INFO_PEN (values 3)
+// Requires INFO_PEN (values 2)
 #define W_PEN						2
+// Unused, should never be set
 #define W_RESERVED					3
 // Requires CAP_PALM_DETECT (values 4 to 15)
 #define W_FINGER_MIN				4
@@ -119,7 +121,7 @@
 #define SCROLLING				1 << 1
 #define HORIZONTAL_SCROLLING	1 << 2
 #define VERTICAL_SCROLLING		1 << 3
-#define ZOOMIN					1 << 4
+#define ZOOMING					1 << 4
 #define MOVEMENT				1 << 5
 
 // kST_** = Synaptics Commands (Information queries)
@@ -161,7 +163,7 @@ static char *model_names [] = {	// 16 models currenlty in this list
 #define UNKNOWN_RESOLUTION_X	85
 #define UNKNOWN_RESOLUTION_Y	94	
 
-// Resolutions of the sensor (in X x Y)
+// Resolutions of the sensor (in X x Y) to convert to dpi multiply by 25.4
 static UInt32 model_resolution [][2] = {
 	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
 	{85, 94},
@@ -184,7 +186,7 @@ static UInt32 model_resolution [][2] = {
  
  
 
-
+// Preference Pane Stuff
 #define APP_ID				"com.meklort.ps2.prefrences"
 
 #define	kTPEdgeScrolling 	"kTPEdgeScrolling"
@@ -198,6 +200,7 @@ static UInt32 model_resolution [][2] = {
 #define kTPDraggin			"kTPDraggin"
 #define kTPDragLock 		"kTPDragLock"
 
+// Unused, these are for the keyboard
 #define kKBSwapKeys			"kKBSwapKeys"
 #define kKBKeyScroll		"kKBKeyScroll"
 
@@ -228,8 +231,8 @@ private:
 	
 	bool				  _tapped;
 	bool				  _dragging;
-	UInt32				  _streamdx;
-	UInt32				  _streamdy;
+	SInt32				  _streamdx;
+	SInt32				  _streamdy;
 	
 	
 	bool				  _horizScroll;
@@ -243,6 +246,7 @@ private:
 	uint32_t			  _prevPacketSecond;
 	uint32_t			  _streamStartSecond;
 	uint32_t			  _streamStartMicro;
+	uint32_t			  _settleTime;
 	bool				  _newStream;
 	
 	// Prefrences from the pref pane...

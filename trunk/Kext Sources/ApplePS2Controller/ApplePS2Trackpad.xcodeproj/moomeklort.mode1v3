@@ -325,7 +325,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>661F4CE20F8E62D200E46E11</string>
+										<string>661F4ECD0F9197E300E46E11</string>
 										<key>history</key>
 										<array>
 											<string>661FF2B20F7ED11E00535397</string>
@@ -337,8 +337,13 @@
 											<string>661F4C6A0F8E4F2C00E46E11</string>
 											<string>661F4CCA0F8E61DF00E46E11</string>
 											<string>661F4CD80F8E620600E46E11</string>
-											<string>661F4CD90F8E620600E46E11</string>
-											<string>661F4CDA0F8E620600E46E11</string>
+											<string>661F4E0F0F90E54A00E46E11</string>
+											<string>661F4E110F90E54A00E46E11</string>
+											<string>661F4E130F90E54A00E46E11</string>
+											<string>661F4E150F90E54A00E46E11</string>
+											<string>661F4E370F9127F200E46E11</string>
+											<string>661F4EC70F9192B200E46E11</string>
+											<string>661F4EC80F9192B200E46E11</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -416,6 +421,37 @@
 											<string>661F4CDB0F8E620600E46E11</string>
 											<string>661F4CDC0F8E620600E46E11</string>
 											<string>661F4CDD0F8E620600E46E11</string>
+											<string>661F4D630F9028B100E46E11</string>
+											<string>661F4D640F9028B100E46E11</string>
+											<string>661F4D7D0F90359800E46E11</string>
+											<string>661F4D820F9035AA00E46E11</string>
+											<string>661F4D970F90408100E46E11</string>
+											<string>661F4D980F90408100E46E11</string>
+											<string>661F4D990F90408100E46E11</string>
+											<string>661F4D9A0F90408100E46E11</string>
+											<string>661F4DAF0F90603600E46E11</string>
+											<string>661F4DB90F9062A900E46E11</string>
+											<string>661F4DE40F9071C700E46E11</string>
+											<string>661F4DE50F9071C700E46E11</string>
+											<string>661F4E1B0F90E54A00E46E11</string>
+											<string>661F4E1C0F90E54A00E46E11</string>
+											<string>661F4E1E0F90E54A00E46E11</string>
+											<string>661F4E200F90E54A00E46E11</string>
+											<string>661F4E220F90E54A00E46E11</string>
+											<string>661F4E240F90E54A00E46E11</string>
+											<string>661F4E260F90E54A00E46E11</string>
+											<string>661F4E280F90E54A00E46E11</string>
+											<string>661F4E3A0F9127F200E46E11</string>
+											<string>661F4E3B0F9127F200E46E11</string>
+											<string>661F4E3C0F9127F200E46E11</string>
+											<string>661F4E3D0F9127F200E46E11</string>
+											<string>661F4E3E0F9127F200E46E11</string>
+											<string>661F4E7E0F91565D00E46E11</string>
+											<string>661F4E7F0F91565D00E46E11</string>
+											<string>661F4EAF0F918D3C00E46E11</string>
+											<string>661F4EB60F918DCC00E46E11</string>
+											<string>661F4EC40F9190B800E46E11</string>
+											<string>661F4EC90F9192B200E46E11</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -629,12 +665,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>ApplePS2SynapticsTouchPad.cpp</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>

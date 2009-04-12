@@ -402,7 +402,7 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	//	X7		X6		X5			X4			X3		X2		X1		X0			(X 7..0)
 	//	Y7		Y6		Y5			Y4			Y3		Y2		Y1		Y0			(Y 7..0)
 		
-	UInt32 buttons = 0;
+	UInt32 buttons;
 	UInt32	absX, absY;
 	UInt32	pressureZ;
 	UInt8	Wvalue;
@@ -413,32 +413,49 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	clock_get_uptime((uint64_t *)&now);
 	clock_get_system_microtime(&second, &currentTime);
 	
+	if(_prevPacketSecond != second) _prevPacketTime += 1000000;	// Take into account when the microseconds wrap around
+
+	
 	
 	// TODO: pssibly Reset the _prevX / _prevY to the curent IF the delta time is > 20ms (aka the finger was removed and now is
 	
 	
 	
-	// Swap buttons as requested by a user
-#ifdef BUTTONS_SWAPED
-    if ( (packet[0] & 0x1) ) buttons |= 0x2;  // left button   (bit 0 in packet)
-    if ( (packet[0] & 0x2) ) buttons |= 0x1;  // right button  (bit 1 in packet)	
-#else 
+	
 	buttons = (packet[0] & 0x3);	// buttons =  last two bits of byte one of packet
-#endif
-	
 	pressureZ = packet[2];												//	  (max value is 255)
-	absX = (packet[4] | ((packet[1] & 0x0F) << 8) | ((packet[3] & 0x10) << (12 - 4)));
-	absY = (packet[5] | ((packet[1] & 0xF0) << 4) | ((packet[3] & 0x20) << (12 - 5)));
-	
-	long dx = absX - _prevX;
-	long dy = absY - _prevY;	// Y is negative for ps2 (according to synaptics)
-	
-	if(_prevPacketSecond != second) _prevPacketTime += 1000000;	// Take into account when the microseconds wrap around
-	long dt = currentTime - _prevPacketTime;
-	
-	
+	absX = (packet[4] | ((packet[1] & 0x0F) << 8) | ((packet[3] & 0x10) << 8));
+	absY = (packet[5] | ((packet[1] & 0xF0) << 4) | ((packet[3] & 0x20) << 7));
 	if(W_MODE) Wvalue = ((packet[3] & 0x4) >> 2) | ((packet[0] & 0x30) >> 2) | ((packet[0] & 0x4) >> 1);	// (max value = 15)
 	else Wvalue = W_FINGER_MIN;
+
+	
+	SInt32 dx = absX - _prevX;
+	SInt32 dy = absY - _prevY;	// Y is negative for ps2 (according to synaptics)
+	
+	
+	// Scale dx and dy bassed on the type of movement. This does not need to happen after event calculation because IF the event changes, dx and dy are reset to 0
+	if((_event & (SCROLLING | VERTICAL_SCROLLING | HORIZONTAL_SCROLLING)) == 0) {
+		dx *= _prefTrackSpeed;
+		dy *= _prefTrackSpeed;
+	} else {
+		dx *= _prefScrollSpeed;
+		dy *= _prefScrollSpeed;
+	}
+
+	// TODO: Instead of calculating this every loop, jsut read it form a variable
+	dy *= ((double) (model_resolution[(INFO_SENSOR & 0x0f)][0])) / (model_resolution[(INFO_SENSOR & 0x0f)][0]);
+
+	
+	_streamdx += dx;
+	_streamdy += dy;
+
+	// TODO: calculate a drift so that we only add 1 when the DRIFT is over .5, not when dx is
+	// This is nolonger needed since the sesolution has been changed from 100 to 2189
+	// This wont help, using an int now, plus it really isnt needed with the resolution change
+	//dx += (dx > 0) ? 0.5 : -0.5;
+	//dy += (dy > 0) ? 0.5 : -0.5;
+
 	
 	// Emulate a middle button
 	// TODO: add a short (a few ms pause) to each button press so that if they both are pressed within a timeframe, we get the middle button
@@ -450,109 +467,72 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	 buttons = 0;
 	 }*/
 	
-	// Scale dx and dy so that they are within +/- 127
-	if((_event & (SCROLLING | VERTICAL_SCROLLING | HORIZONTAL_SCROLLING)) == 0) {
-		dx *= _prefTrackSpeed;
-		dy *= _prefTrackSpeed;
-	} else {
-		dx *= _prefScrollSpeed;
-		dy *= _prefScrollSpeed;
-	}
-
-	
-	dy *= ((double) (model_resolution[(INFO_SENSOR & 0x0f)][0])) / (model_resolution[(INFO_SENSOR & 0x0f)][0]);
-
-	
-	_streamdx += dx;
-	_streamdy += dy;
-
-	// TODO: calculate a drift so that we only add 1 when the DRIFT is over .5, not when dx is
-	dx += (dx > 0) ? 0.5 : -0.5;
-	dy += (dy > 0) ? 0.5 : -0.5;
-
-	//	if(dx > 0) dx += .5;
-//	else dx -= .5;
-	
-//	if(dy > 0) dy += .5;
-//	else dy -= .5;
 	
 	
-	
-	// Lets calculate what event we want to handel
-	
-	
+	// Lets calculate what events we want to handel
 	if(_newStream) {
-		// Rest the dx and dy values since prevX and prevY are both 0
+		// New stream, reset teh values
 		_newStream = false;
 		dx = 0;		
 		dy = 0;
-		dt = 0;
 		_streamdx = 0;
 		_streamdy = 0;
+		_settleTime = 0;
 		_streamStartSecond = second;
 		_streamStartMicro = currentTime;
 
 		
-		// TODO: Only do this IF tapping is enabled
+		// If we tapped, turn tragging on for this stream
 		if(_prefClicking &&
 		   _prefDragging &&
 		   _tapped &&
 		   ((_streamStartSecond == _prevPacketSecond) && 
 			//((_streamStartMicro + TAP_LENGTH_MIN) < _prevPacketTime) &&				// Above MIN and
 			((_streamStartMicro + TAP_LENGTH_MAX) > _prevPacketTime)					// Less than MAX
-			) ||
-		   ((_streamStartSecond == _prevPacketSecond + 1) && // else If the second rolled over
-			//((_streamStartMicro + TAP_LENGTH_MIN + 10000000) < _prevPacketTime) &&		// Between MIN
-			((_streamStartMicro + TAP_LENGTH_MAX + 10000000) > _prevPacketTime)		// and MAX
-			)
-		   ) {
+		   )) {
 			_dragging = true;
 		} else _dragging = false;
 		
 		_tapped = false;
 		
 		
-		
+		// If we are within the scrolling area
 		if(_prefEdgeScroll &&
 		   (absX > (ABSOLUTE_X_MAX * (1 - _prefScrollArea)))) _event = VERTICAL_SCROLLING;
 		else if(_prefEdgeScroll && _prefHorizScroll&&
 		   (absY < (ABSOLUTE_Y_MIN * (1 + _prefScrollArea)))) _event = HORIZONTAL_SCROLLING;
 
 		
-		else if(_event == SCROLLING &&
-				((_streamStartSecond == _prevPacketSecond) && ((_streamStartMicro + TAP_LENGTH_MAX) > _prevPacketTime)) ||
-				((_streamStartSecond == _prevPacketSecond + 1) && ((_streamStartMicro + TAP_LENGTH_MAX + 10000000) > _prevPacketTime)		// and MAX
-				 )
-				) {
-			_event =SCROLLING;
-				
-			
-		}
-		else if((W_MODE) && ((Wvalue * pressureZ) > _prefSensitivity))							 _event = SCROLLING;
+		// TODO: Figure out a better algorithm to determine if scrolling (such as Wvalue * (pressureZ >> 1)), makes W value twice as important as Z
+		else if((W_MODE) && ((Wvalue * pressureZ) > _prefSensitivity))			_event = SCROLLING;
 		//else if((W_MODE) && (Wvalue >= W_FINGER_MAX))	_event = SCROLLING;
 
-		else if((pressureZ < Z_LIGHT_FINGER))									 _event = DEFAULT_EVENT;	// We reset dx and dy untill it is a reliable number
-		else																	 _event = MOVEMENT;
+		else if((pressureZ < Z_LIGHT_FINGER))									_event = DEFAULT_EVENT;	// We reset dx and dy untill it is a reliable number (Z MUST be larger than 8 for it to be reliable)
+		else																	_event = MOVEMENT;
 	} 
-	else if(pressureZ < Z_LIGHT_FINGER)				_event = DEFAULT_EVENT;
-	else if(_event & (VERTICAL_SCROLLING | HORIZONTAL_SCROLLING));	// This is jsut here so it is not reset MOVEMENT or SCROLLING (wouldnt matter as much)
-	else if((_event == SCROLLING) && (Wvalue < W_RESERVED));	// our touchpad doesnt support anything below W_RESERVED so keep on scrolling
+	else if(pressureZ < Z_LIGHT_FINGER)											_event = DEFAULT_EVENT;
+	else if(_event & (VERTICAL_SCROLLING | HORIZONTAL_SCROLLING));	// This is jsut here so the event is not reset to MOVEMENT 
+	else if((_event == SCROLLING) && (Wvalue < W_RESERVED))						_event = SCROLLING;	// our touchpad doesnt support anything below W_RESERVED so keep on scrolling, actual it should be scroling anyway...
 	
-	else if((W_MODE) && ((Wvalue * pressureZ) > _prefSensitivity))							 _event = SCROLLING;
+	else if((W_MODE) && ((Wvalue * pressureZ) > _prefSensitivity))				_event = SCROLLING;
 	//else if((W_MODE) && (Wvalue >= W_FINGER_MAX))	_event = SCROLLING;
 	
-	else if((pressureZ > Z_LIGHT_FINGER))			_event = MOVEMENT;
+	else																		_event = MOVEMENT;
 	
 	
-	if(prevEvent ^ _event) {
-		dx = 0;		
-		dy = 0;
-		dt = 0;
-		_streamdx = 0;
-		_streamdy = 0;
-	//	_streamStartSecond = second;
-	//	_streamStartMicro = currentTime;
-	}
+	// If the event has just changed, OR if it has recently changed, let the touchpad settle
+	if((prevEvent ^ _event) || _settleTime) {
+		// se if !(prevEvent ^ _event) would be better, that way it resets the counter
+		if(!_settleTime) {
+			// TODO: Make this configurable
+			if(prevEvent == DEFAULT_EVENT) _settleTime = 3; // we SHOULD have already settle, but just in case (and to t
+			else _settleTime = 5;		// Lets wait 5 packets for it to settle
+		} else _settleTime--;
+		if(prevEvent != SCROLLING || _event != SCROLLING) {
+			dx = 0;		
+			dy = 0;
+		} else _event = SCROLLING;
+	} else if(_settleTime) _settleTime = 0;
 		
 	
 	
@@ -564,54 +544,68 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	switch(_event) {
 		case HORIZONTAL_SCROLLING:
 			dispatchScrollWheelEvent(0,  -1 * dx, 0, now);
+			//dispatchRelativePointerEvent(0, 0, buttons, now);
 			break;
 		case VERTICAL_SCROLLING:
 			dispatchScrollWheelEvent(dy, 0,		  0, now);
+			//dispatchRelativePointerEvent(0, 0, buttons, now);
 			break;
 		case SCROLLING:
 			dispatchScrollWheelEvent(dy, -1 * dx, 0, now);
+			//dispatchRelativePointerEvent(0, 0, buttons, now);
 			break;
+			
 			
 		case MOVEMENT:
 			dy *= -1;	// PS2 spec has the direction backwards from what the os wants (lower left corner is the orign, verses upper left)
-			dispatchRelativePointerEvent((int) dx, (int) dy, buttons, now);
+			dispatchRelativePointerEvent((SInt32) dx, (SInt32) dy, buttons, now);
 			break;
 			
 		// No mevement, just send button presses
 		case DEFAULT_EVENT:
 		default:
-
-			if(!_newStream) _newStream = true;
 			
-			if(_prefClicking &&
-			   !_dragging &&
-			   !_tapped &&
-			   (ABS(_streamdx) <= 4) && (ABS(_streamdy) <= 4) &&	// If very little movement, absX and absY would be better (more precision)
-			   ((_streamStartSecond == second) && 
-				  ((_streamStartMicro + TAP_LENGTH_MIN) < currentTime) &&				// Between MIN
-				  ((_streamStartMicro + TAP_LENGTH_MAX) > currentTime)					// And MAX
-			   ) ||
-			   ((_streamStartSecond == second + 1) && // else If the second rolled over
-				  ((_streamStartMicro + TAP_LENGTH_MIN + 10000000) < currentTime) &&		// Between MIN
-			      ((_streamStartMicro + TAP_LENGTH_MAX + 10000000) > currentTime)		// and MAX
-				)
-			   ) {
-				_tapped = true;
-				buttons = 0x01;
-			} 
+			// TODO: Make this configureable (or get a good value, bassed ont he model_resolution)
+			if(prevEvent ^ _event) {
+				
+				if(_prefClicking  && 
+				   //(ABS(_streamdx) <= 500) && 
+				   // I really didnt need to cahnge it from ABS, but it was for debuggin. The next version may have it fixed
+				   (((_streamdx > 0) && (_streamdx <= 100)) || ((_streamdx <= 0) && (_streamdx >= -100))) &&
+				   (((_streamdy > 0) && (_streamdy <= 100)) || ((_streamdy <= 0) && (_streamdy >= -100))) &&
+
+				   (ABS(_streamdy) <= 500) && //)		// 200 ~ 2 mm of movement on the trackpad
+				   (
+						(_streamStartSecond == _prevPacketSecond) && 
+						((_streamStartMicro + TAP_LENGTH_MIN) < _prevPacketTime) &&				// Above MIN and
+						((_streamStartMicro + TAP_LENGTH_MAX) > _prevPacketTime)					// Less than MAX
+					) ||
+				    (
+						(_streamStartSecond + 1 == _prevPacketSecond) && 
+						((_streamStartMicro + TAP_LENGTH_MIN + 1000000) < _prevPacketTime) &&				// Above MIN and
+						((_streamStartMicro + TAP_LENGTH_MAX + 1000000) > _prevPacketTime)					// Less than MAX
+				    )
+				   )
+				{
+					if(prevEvent == MOVEMENT)
+					{
+						_tapped = true;
+						buttons = 0x01;
+					}
+					else if(prevEvent == SCROLLING) buttons = 0x02;
+				}
+			} else if(prevEvent == SCROLLING) buttons = 0;
+			if(!_newStream) _newStream = true;
+
 			dispatchRelativePointerEvent(0, 0, buttons, now);
 
 			break;
 			
 	}
-	//IOLog("Buttons sent: 0x%X\n", buttons);
-
-	//IOLog("Prev Time: %d \tCur Time: %d \t dt: %d\t Tap: %d\n", _prevPacketTime, currentTime, dt, _tapping);
-
 
 	_prevX = absX;
 	_prevY = absY;
-	_prevButtons = buttons;
+	//_prevButtons = buttons;		// Used for third button emulation
 	_prevPacketSecond = second;
 	_prevPacketTime = currentTime;
 }
@@ -633,7 +627,7 @@ void ApplePS2SynapticsTouchPad::
     // Y7 Y6 Y5 Y4 Y3 Y2 Y1 Y0  (Y delta)
     //
 
-    UInt32       buttons = 0;
+    UInt32       buttons;
     SInt32       dx, dy;
     AbsoluteTime now;
 	uint32_t	 currentTime, second;
@@ -644,6 +638,7 @@ void ApplePS2SynapticsTouchPad::
     
 	// Swap buttons as requested by a user
 #ifdef BUTTONS_SWAPED
+	buttons = 0;
     if ( (packet[0] & 0x1) ) buttons |= 0x2;  // left button   (bit 0 in packet)
     if ( (packet[0] & 0x2) ) buttons |= 0x1;  // right button  (bit 1 in packet)	
 	if ( (packet[0] & 0x4) ) buttons |= 0x4;  // middle button (bit 2 in packet)
