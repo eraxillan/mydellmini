@@ -29,8 +29,8 @@
 //#define BUTTONS_SWAPED
 
 // 50 to 500ms = a tap
-#define TAP_LENGTH_MAX		250000
-#define TAP_LENGTH_MIN		 10000
+#define TAP_LENGTH_MAX		 500000
+#define TAP_LENGTH_MIN		  10000
 
 #define RELATIVE_PACKET_SIZE	3
 #define ABSOLUTE_PACKET_SIZE	6
@@ -118,11 +118,14 @@
 
 // Possible touchpad events
 #define DEFAULT_EVENT				0
+#define DRAGGING				1 << 0
 #define SCROLLING				1 << 1
 #define HORIZONTAL_SCROLLING	1 << 2
 #define VERTICAL_SCROLLING		1 << 3
 #define ZOOMING					1 << 4
 #define MOVEMENT				1 << 5
+
+
 
 // kST_** = Synaptics Commands (Information queries)
 #define kST_IdentifyTouchpad		0x00
@@ -163,6 +166,12 @@ static char *model_names [] = {	// 16 models currenlty in this list
 #define UNKNOWN_RESOLUTION_X	85
 #define UNKNOWN_RESOLUTION_Y	94	
 
+#define UNKNOWN_DIMENSIONS_X	47.1
+#define UNKNOWN_DIMENSIONS_Y	32.3
+
+#define UNKNOWN_FACTOR			1.31858903
+
+
 // Resolutions of the sensor (in X x Y) to convert to dpi multiply by 25.4
 static UInt32 model_resolution [][2] = {
 	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
@@ -183,7 +192,48 @@ static UInt32 model_resolution [][2] = {
 	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
 	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y}
 };
- 
+
+static float model_dimensions [][2] = {
+	{UNKNOWN_DIMENSIONS_X, UNKNOWN_DIMENSIONS_Y},
+	{47.1, 32.3},
+	{44.0, 24.5},
+	{70.2, 52.4},
+	{UNKNOWN_DIMENSIONS_X, UNKNOWN_DIMENSIONS_Y},
+	{UNKNOWN_DIMENSIONS_X, UNKNOWN_DIMENSIONS_Y},
+	{UNKNOWN_DIMENSIONS_X, UNKNOWN_DIMENSIONS_Y},
+	{UNKNOWN_DIMENSIONS_X, UNKNOWN_DIMENSIONS_Y},
+	{47.1, 32.3},
+	{54.8, 31.7},
+	{UNKNOWN_DIMENSIONS_X, UNKNOWN_DIMENSIONS_Y},
+	{21.4, 17.9},
+	{32.8, 18.2},
+	{UNKNOWN_DIMENSIONS_X, UNKNOWN_DIMENSIONS_Y},
+	{UNKNOWN_DIMENSIONS_X, UNKNOWN_DIMENSIONS_Y},
+	{UNKNOWN_DIMENSIONS_X, UNKNOWN_DIMENSIONS_Y},
+	{UNKNOWN_DIMENSIONS_X, UNKNOWN_DIMENSIONS_Y},
+};
+
+/*
+static float model_factor [] = {
+	UNKNOWN_FACTOR,
+	1.31858903,
+	1.31797235,
+	1.31659647,
+	UNKNOWN_FACTOR,
+	UNKNOWN_FACTOR,
+	UNKNOWN_FACTOR,
+	UNKNOWN_FACTOR,
+	1.31858903,
+	1.31453733,
+	UNKNOWN_FACTOR,
+	1.3150838,
+	2.89300174,
+	UNKNOWN_FACTOR,
+	UNKNOWN_FACTOR,
+	UNKNOWN_FACTOR,
+	UNKNOWN_FACTOR,
+};
+*/
  
 
 // Preference Pane Stuff
@@ -244,17 +294,17 @@ private:
 	
 	uint32_t			  _prevPacketTime;
 	uint32_t			  _prevPacketSecond;
-	uint32_t			  _streamStartSecond;
-	uint32_t			  _streamStartMicro;
+	uint64_t			  _streamdt;
 	uint32_t			  _settleTime;
-	bool				  _newStream;
 	
 	// Prefrences from the pref pane...
+	bool _prefTwoFingerScroll;
 	bool _prefEdgeScroll;
 	bool _prefHorizScroll;
 	bool _prefClicking;
 	bool _prefDragging;
 	bool _prefDragLock;
+	
 	
 	double _prefSensitivity;
 	double _prefScrollArea;

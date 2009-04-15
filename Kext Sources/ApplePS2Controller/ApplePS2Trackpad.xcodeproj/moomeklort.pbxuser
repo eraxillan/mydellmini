@@ -4,7 +4,7 @@
 		activeBuildConfigurationName = Deployment;
 		activeTarget = 6613721C0F4A9A0F00415899 /* ApplePS2Trackpad (Upgraded) */;
 		breakpoints = (
-			6699B2840F77099E00BCE3CC /* ApplePS2SynapticsTouchPad.cpp:1031 */,
+			6699B2840F77099E00BCE3CC /* ApplePS2SynapticsTouchPad.cpp:1003 */,
 		);
 		codeSenseManager = 6613722F0F4A9A1000415899 /* Code sense */;
 		perUserDictionary = {
@@ -13,7 +13,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					777,
+					840,
 					20,
 					48,
 					43,
@@ -312,6 +312,207 @@
 			661F4ECA0F9192B200E46E11 /* PBXTextBookmark */ = 661F4ECA0F9192B200E46E11 /* PBXTextBookmark */;
 			661F4ECC0F9195DF00E46E11 /* PBXTextBookmark */ = 661F4ECC0F9195DF00E46E11 /* PBXTextBookmark */;
 			661F4ECD0F9197E300E46E11 /* PBXTextBookmark */ = 661F4ECD0F9197E300E46E11 /* PBXTextBookmark */;
+			661F4F460F92B9C400E46E11 /* PBXTextBookmark */ = 661F4F460F92B9C400E46E11 /* PBXTextBookmark */;
+			661F4F470F92B9C400E46E11 /* PBXTextBookmark */ = 661F4F470F92B9C400E46E11 /* PBXTextBookmark */;
+			661F4F480F92B9C400E46E11 /* PBXTextBookmark */ = 661F4F480F92B9C400E46E11 /* PBXTextBookmark */;
+			661F4F490F92B9C400E46E11 /* PBXTextBookmark */ = 661F4F490F92B9C400E46E11 /* PBXTextBookmark */;
+			661F4F4A0F92B9C400E46E11 /* PBXTextBookmark */ = 661F4F4A0F92B9C400E46E11 /* PBXTextBookmark */;
+			661F4F4C0F92B9E200E46E11 /* PBXTextBookmark */ = 661F4F4C0F92B9E200E46E11 /* PBXTextBookmark */;
+			661F4F4F0F92BAE400E46E11 /* PBXTextBookmark */ = 661F4F4F0F92BAE400E46E11 /* PBXTextBookmark */;
+			661F4F550F92CCA400E46E11 /* PBXTextBookmark */ = 661F4F550F92CCA400E46E11 /* PBXTextBookmark */;
+			661F4F560F92CCA400E46E11 /* PBXTextBookmark */ = 661F4F560F92CCA400E46E11 /* PBXTextBookmark */;
+			661F4F570F92CCA400E46E11 /* PBXTextBookmark */ = 661F4F570F92CCA400E46E11 /* PBXTextBookmark */;
+			661F4F580F92CCA400E46E11 /* PBXTextBookmark */ = 661F4F580F92CCA400E46E11 /* PBXTextBookmark */;
+			661F4F590F92CCA400E46E11 /* PBXTextBookmark */ = 661F4F590F92CCA400E46E11 /* PBXTextBookmark */;
+			661F4F5D0F92E60200E46E11 /* PBXTextBookmark */ = 661F4F5D0F92E60200E46E11 /* PBXTextBookmark */;
+			661F4F620F92E7A300E46E11 /* PBXTextBookmark */ = 661F4F620F92E7A300E46E11 /* PBXTextBookmark */;
+			661F4F630F92E7A300E46E11 /* PBXTextBookmark */ = 661F4F630F92E7A300E46E11 /* PBXTextBookmark */;
+			661F4F640F92E7A300E46E11 /* PBXTextBookmark */ = 661F4F640F92E7A300E46E11 /* PBXTextBookmark */;
+			661F4F650F92E7A300E46E11 /* PBXTextBookmark */ = 661F4F650F92E7A300E46E11 /* PBXTextBookmark */;
+			661F4F660F92E7A300E46E11 /* PBXTextBookmark */ = 661F4F660F92E7A300E46E11 /* PBXTextBookmark */;
+			661F4F6C0F92E9B500E46E11 /* PBXTextBookmark */ = 661F4F6C0F92E9B500E46E11 /* PBXTextBookmark */;
+			661F4F6D0F92E9B500E46E11 /* PBXTextBookmark */ = 661F4F6D0F92E9B500E46E11 /* PBXTextBookmark */;
+			661F4F6E0F92E9B500E46E11 /* PBXTextBookmark */ = 661F4F6E0F92E9B500E46E11 /* PBXTextBookmark */;
+			661F4F6F0F92E9B500E46E11 /* PBXTextBookmark */ = 661F4F6F0F92E9B500E46E11 /* PBXTextBookmark */;
+			661F4F700F92E9B500E46E11 /* PBXTextBookmark */ = 661F4F700F92E9B500E46E11 /* PBXTextBookmark */;
+			661F4F790F92EBD100E46E11 /* PBXTextBookmark */ = 661F4F790F92EBD100E46E11 /* PBXTextBookmark */;
+			661F4F7C0F92ED3200E46E11 /* PBXTextBookmark */ = 661F4F7C0F92ED3200E46E11 /* PBXTextBookmark */;
+			661F4F7D0F92ED3200E46E11 /* PBXTextBookmark */ = 661F4F7D0F92ED3200E46E11 /* PBXTextBookmark */;
+			661F4F7E0F92ED3200E46E11 /* PBXTextBookmark */ = 661F4F7E0F92ED3200E46E11 /* PBXTextBookmark */;
+			661F4F7F0F92ED3200E46E11 /* PBXTextBookmark */ = 661F4F7F0F92ED3200E46E11 /* PBXTextBookmark */;
+			661F4F800F92ED3200E46E11 /* PBXTextBookmark */ = 661F4F800F92ED3200E46E11 /* PBXTextBookmark */;
+			661F4F810F92ED3200E46E11 /* PBXTextBookmark */ = 661F4F810F92ED3200E46E11 /* PBXTextBookmark */;
+			661F4F830F92ED5000E46E11 /* PBXTextBookmark */ = 661F4F830F92ED5000E46E11 /* PBXTextBookmark */;
+			661F4F840F92ED5000E46E11 /* PBXTextBookmark */ = 661F4F840F92ED5000E46E11 /* PBXTextBookmark */;
+			661F4F850F92ED5000E46E11 /* PBXTextBookmark */ = 661F4F850F92ED5000E46E11 /* PBXTextBookmark */;
+			661F4F860F92ED5000E46E11 /* PBXTextBookmark */ = 661F4F860F92ED5000E46E11 /* PBXTextBookmark */;
+			661F4F880F92ED6500E46E11 /* PBXTextBookmark */ = 661F4F880F92ED6500E46E11 /* PBXTextBookmark */;
+			661F4F930F92EF1300E46E11 /* PBXTextBookmark */ = 661F4F930F92EF1300E46E11 /* PBXTextBookmark */;
+			661F4F940F92EF1300E46E11 /* PBXTextBookmark */ = 661F4F940F92EF1300E46E11 /* PBXTextBookmark */;
+			661F4F950F92EF1300E46E11 /* PBXTextBookmark */ = 661F4F950F92EF1300E46E11 /* PBXTextBookmark */;
+			661F4F960F92EF1300E46E11 /* PBXTextBookmark */ = 661F4F960F92EF1300E46E11 /* PBXTextBookmark */;
+			661F4F970F92EF1300E46E11 /* PBXTextBookmark */ = 661F4F970F92EF1300E46E11 /* PBXTextBookmark */;
+			661F4FA30F92F3D400E46E11 /* PBXTextBookmark */ = 661F4FA30F92F3D400E46E11 /* PBXTextBookmark */;
+			661F4FA40F92F3D400E46E11 /* PBXTextBookmark */ = 661F4FA40F92F3D400E46E11 /* PBXTextBookmark */;
+			661F4FA50F92F3D400E46E11 /* PBXTextBookmark */ = 661F4FA50F92F3D400E46E11 /* PBXTextBookmark */;
+			661F4FA60F92F3D400E46E11 /* PBXTextBookmark */ = 661F4FA60F92F3D400E46E11 /* PBXTextBookmark */;
+			661F4FA70F92F3D400E46E11 /* PBXTextBookmark */ = 661F4FA70F92F3D400E46E11 /* PBXTextBookmark */;
+			661F4FAA0F92FFEE00E46E11 /* PBXTextBookmark */ = 661F4FAA0F92FFEE00E46E11 /* PBXTextBookmark */;
+			661F4FAD0F93013500E46E11 /* PBXTextBookmark */ = 661F4FAD0F93013500E46E11 /* PBXTextBookmark */;
+			661F4FAE0F93013500E46E11 /* PBXTextBookmark */ = 661F4FAE0F93013500E46E11 /* PBXTextBookmark */;
+			661F4FAF0F93013500E46E11 /* PBXTextBookmark */ = 661F4FAF0F93013500E46E11 /* PBXTextBookmark */;
+			661F4FB00F93013500E46E11 /* PBXTextBookmark */ = 661F4FB00F93013500E46E11 /* PBXTextBookmark */;
+			661F4FB10F93013500E46E11 /* PBXTextBookmark */ = 661F4FB10F93013500E46E11 /* PBXTextBookmark */;
+			661F4FB20F93013500E46E11 /* PBXTextBookmark */ = 661F4FB20F93013500E46E11 /* PBXTextBookmark */;
+			661F4FB30F93013500E46E11 /* PBXTextBookmark */ = 661F4FB30F93013500E46E11 /* PBXTextBookmark */;
+			661F4FB80F93033B00E46E11 /* PBXTextBookmark */ = 661F4FB80F93033B00E46E11 /* PBXTextBookmark */;
+			661F4FBB0F93046D00E46E11 /* PBXTextBookmark */ = 661F4FBB0F93046D00E46E11 /* PBXTextBookmark */;
+			661F4FBE0F93C4B600E46E11 /* PBXTextBookmark */ = 661F4FBE0F93C4B600E46E11 /* PBXTextBookmark */;
+			661F4FC00F93C6C400E46E11 /* PBXTextBookmark */ = 661F4FC00F93C6C400E46E11 /* PBXTextBookmark */;
+			661F4FC20F93C7BD00E46E11 /* PBXTextBookmark */ = 661F4FC20F93C7BD00E46E11 /* PBXTextBookmark */;
+			661F4FC60F93C90100E46E11 /* PBXTextBookmark */ = 661F4FC60F93C90100E46E11 /* PBXTextBookmark */;
+			661F4FC80F93C98900E46E11 /* PBXTextBookmark */ = 661F4FC80F93C98900E46E11 /* PBXTextBookmark */;
+			661F4FCB0F93CA0900E46E11 /* PBXTextBookmark */ = 661F4FCB0F93CA0900E46E11 /* PBXTextBookmark */;
+			661F4FCE0F941B1D00E46E11 /* PBXTextBookmark */ = 661F4FCE0F941B1D00E46E11 /* PBXTextBookmark */;
+			661F4FD60F9431EB00E46E11 /* PBXTextBookmark */ = 661F4FD60F9431EB00E46E11 /* PBXTextBookmark */;
+			661F4FE40F94348700E46E11 /* PBXTextBookmark */ = 661F4FE40F94348700E46E11 /* PBXTextBookmark */;
+			661F4FE50F94348700E46E11 /* PBXTextBookmark */ = 661F4FE50F94348700E46E11 /* PBXTextBookmark */;
+			661F4FE60F94348700E46E11 /* PBXTextBookmark */ = 661F4FE60F94348700E46E11 /* PBXTextBookmark */;
+			661F4FE70F94348700E46E11 /* PBXTextBookmark */ = 661F4FE70F94348700E46E11 /* PBXTextBookmark */;
+			661F4FE80F94348700E46E11 /* PBXTextBookmark */ = 661F4FE80F94348700E46E11 /* PBXTextBookmark */;
+			661F4FE90F94348700E46E11 /* PBXTextBookmark */ = 661F4FE90F94348700E46E11 /* PBXTextBookmark */;
+			661F4FEA0F94348700E46E11 /* PBXTextBookmark */ = 661F4FEA0F94348700E46E11 /* PBXTextBookmark */;
+			661F4FEB0F94348700E46E11 /* PBXTextBookmark */ = 661F4FEB0F94348700E46E11 /* PBXTextBookmark */;
+			661F4FEC0F94348700E46E11 /* PBXTextBookmark */ = 661F4FEC0F94348700E46E11 /* PBXTextBookmark */;
+			661F4FED0F94348700E46E11 /* PBXTextBookmark */ = 661F4FED0F94348700E46E11 /* PBXTextBookmark */;
+			661F4FEE0F94348700E46E11 /* PBXTextBookmark */ = 661F4FEE0F94348700E46E11 /* PBXTextBookmark */;
+			661F4FEF0F94348700E46E11 /* PBXTextBookmark */ = 661F4FEF0F94348700E46E11 /* PBXTextBookmark */;
+			661F4FF00F94348700E46E11 /* PBXTextBookmark */ = 661F4FF00F94348700E46E11 /* PBXTextBookmark */;
+			661F4FF10F94348700E46E11 /* PBXTextBookmark */ = 661F4FF10F94348700E46E11 /* PBXTextBookmark */;
+			661F4FF20F94348700E46E11 /* PBXTextBookmark */ = 661F4FF20F94348700E46E11 /* PBXTextBookmark */;
+			661F4FF30F94348700E46E11 /* PBXTextBookmark */ = 661F4FF30F94348700E46E11 /* PBXTextBookmark */;
+			661F4FF40F94348700E46E11 /* PBXTextBookmark */ = 661F4FF40F94348700E46E11 /* PBXTextBookmark */;
+			661F4FF50F94348700E46E11 /* PBXTextBookmark */ = 661F4FF50F94348700E46E11 /* PBXTextBookmark */;
+			661F4FF60F94348700E46E11 /* PBXTextBookmark */ = 661F4FF60F94348700E46E11 /* PBXTextBookmark */;
+			661F4FF70F94348700E46E11 /* PBXTextBookmark */ = 661F4FF70F94348700E46E11 /* PBXTextBookmark */;
+			661F4FF80F94348700E46E11 /* PBXTextBookmark */ = 661F4FF80F94348700E46E11 /* PBXTextBookmark */;
+			661F4FFC0F9434F300E46E11 /* PBXTextBookmark */ = 661F4FFC0F9434F300E46E11 /* PBXTextBookmark */;
+			661F4FFE0F9435B100E46E11 /* PBXTextBookmark */ = 661F4FFE0F9435B100E46E11 /* PBXTextBookmark */;
+			661F50030F9436F600E46E11 /* PBXTextBookmark */ = 661F50030F9436F600E46E11 /* PBXTextBookmark */;
+			661F50060F9437CE00E46E11 /* PBXTextBookmark */ = 661F50060F9437CE00E46E11 /* PBXTextBookmark */;
+			661F50080F9438E300E46E11 /* PBXTextBookmark */ = 661F50080F9438E300E46E11 /* PBXTextBookmark */;
+			661F50090F9438E300E46E11 /* PBXTextBookmark */ = 661F50090F9438E300E46E11 /* PBXTextBookmark */;
+			661F500A0F9438E300E46E11 /* PBXTextBookmark */ = 661F500A0F9438E300E46E11 /* PBXTextBookmark */;
+			661F500B0F9438E300E46E11 /* PBXTextBookmark */ = 661F500B0F9438E300E46E11 /* PBXTextBookmark */;
+			661F500C0F9438E300E46E11 /* PBXTextBookmark */ = 661F500C0F9438E300E46E11 /* PBXTextBookmark */;
+			661F500F0F943AD500E46E11 /* PBXTextBookmark */ = 661F500F0F943AD500E46E11 /* PBXTextBookmark */;
+			661F50120F94E26B00E46E11 /* PBXTextBookmark */ = 661F50120F94E26B00E46E11 /* PBXTextBookmark */;
+			661F50150F94E35300E46E11 /* PBXTextBookmark */ = 661F50150F94E35300E46E11 /* PBXTextBookmark */;
+			661F50190F94EF0400E46E11 /* PBXTextBookmark */ = 661F50190F94EF0400E46E11 /* PBXTextBookmark */;
+			661F501A0F94EF0400E46E11 /* PBXTextBookmark */ = 661F501A0F94EF0400E46E11 /* PBXTextBookmark */;
+			661F501B0F94EF0400E46E11 /* PBXTextBookmark */ = 661F501B0F94EF0400E46E11 /* PBXTextBookmark */;
+			661F501C0F94EF0400E46E11 /* PBXTextBookmark */ = 661F501C0F94EF0400E46E11 /* PBXTextBookmark */;
+			661F501E0F94F2FF00E46E11 /* PBXTextBookmark */ = 661F501E0F94F2FF00E46E11 /* PBXTextBookmark */;
+			661F501F0F94F2FF00E46E11 /* PBXTextBookmark */ = 661F501F0F94F2FF00E46E11 /* PBXTextBookmark */;
+			661F50200F94F2FF00E46E11 /* PBXTextBookmark */ = 661F50200F94F2FF00E46E11 /* PBXTextBookmark */;
+			661F50210F94F2FF00E46E11 /* PBXTextBookmark */ = 661F50210F94F2FF00E46E11 /* PBXTextBookmark */;
+			661F50260F94F4CA00E46E11 /* PBXTextBookmark */ = 661F50260F94F4CA00E46E11 /* PBXTextBookmark */;
+			661F502A0F94F59300E46E11 /* PBXTextBookmark */ = 661F502A0F94F59300E46E11 /* PBXTextBookmark */;
+			661F502E0F94F77600E46E11 /* PBXTextBookmark */ = 661F502E0F94F77600E46E11 /* PBXTextBookmark */;
+			661F502F0F94F77600E46E11 /* PBXTextBookmark */ = 661F502F0F94F77600E46E11 /* PBXTextBookmark */;
+			661F50300F94F77600E46E11 /* PBXTextBookmark */ = 661F50300F94F77600E46E11 /* PBXTextBookmark */;
+			661F50310F94F77600E46E11 /* PBXTextBookmark */ = 661F50310F94F77600E46E11 /* PBXTextBookmark */;
+			661F50320F94F77600E46E11 /* PBXTextBookmark */ = 661F50320F94F77600E46E11 /* PBXTextBookmark */;
+			661F50350F94F8F000E46E11 /* PBXTextBookmark */ = 661F50350F94F8F000E46E11 /* PBXTextBookmark */;
+			661F50390F94FD8900E46E11 /* PBXTextBookmark */ = 661F50390F94FD8900E46E11 /* PBXTextBookmark */;
+			661F503C0F94FFF600E46E11 /* PBXTextBookmark */ = 661F503C0F94FFF600E46E11 /* PBXTextBookmark */;
+			661F503F0F9500C700E46E11 /* PBXTextBookmark */ = 661F503F0F9500C700E46E11 /* PBXTextBookmark */;
+			661F50420F95015D00E46E11 /* PBXTextBookmark */ = 661F50420F95015D00E46E11 /* PBXTextBookmark */;
+			661F50490F9502E100E46E11 /* PBXTextBookmark */ = 661F50490F9502E100E46E11 /* PBXTextBookmark */;
+			661F504E0F95089D00E46E11 /* PBXTextBookmark */ = 661F504E0F95089D00E46E11 /* PBXTextBookmark */;
+			661F504F0F95089D00E46E11 /* PBXTextBookmark */ = 661F504F0F95089D00E46E11 /* PBXTextBookmark */;
+			661F50500F95089D00E46E11 /* PBXTextBookmark */ = 661F50500F95089D00E46E11 /* PBXTextBookmark */;
+			661F50510F95089D00E46E11 /* PBXTextBookmark */ = 661F50510F95089D00E46E11 /* PBXTextBookmark */;
+			661F50520F95089D00E46E11 /* PBXTextBookmark */ = 661F50520F95089D00E46E11 /* PBXTextBookmark */;
+			661F50530F95089D00E46E11 /* PBXTextBookmark */ = 661F50530F95089D00E46E11 /* PBXTextBookmark */;
+			661F50590F950B7F00E46E11 /* PBXTextBookmark */ = 661F50590F950B7F00E46E11 /* PBXTextBookmark */;
+			661F505A0F950B7F00E46E11 /* PBXTextBookmark */ = 661F505A0F950B7F00E46E11 /* PBXTextBookmark */;
+			661F505B0F950B7F00E46E11 /* PBXTextBookmark */ = 661F505B0F950B7F00E46E11 /* PBXTextBookmark */;
+			661F505C0F950B7F00E46E11 /* PBXTextBookmark */ = 661F505C0F950B7F00E46E11 /* PBXTextBookmark */;
+			661F505F0F950C9A00E46E11 /* PBXTextBookmark */ = 661F505F0F950C9A00E46E11 /* PBXTextBookmark */;
+			661F50620F950D1600E46E11 /* PBXTextBookmark */ = 661F50620F950D1600E46E11 /* PBXTextBookmark */;
+			661F50670F950F7F00E46E11 /* PBXTextBookmark */ = 661F50670F950F7F00E46E11 /* PBXTextBookmark */;
+			661F50690F95117B00E46E11 /* PBXTextBookmark */ = 661F50690F95117B00E46E11 /* PBXTextBookmark */;
+			661F506C0F95124300E46E11 /* PBXTextBookmark */ = 661F506C0F95124300E46E11 /* PBXTextBookmark */;
+			661F506E0F9512BD00E46E11 /* PBXTextBookmark */ = 661F506E0F9512BD00E46E11 /* PBXTextBookmark */;
+			661F50720F95137300E46E11 /* PBXTextBookmark */ = 661F50720F95137300E46E11 /* PBXTextBookmark */;
+			661F50740F9513FE00E46E11 /* PBXTextBookmark */ = 661F50740F9513FE00E46E11 /* PBXTextBookmark */;
+			661F50760F9514EA00E46E11 /* PBXTextBookmark */ = 661F50760F9514EA00E46E11 /* PBXTextBookmark */;
+			661F507B0F95169400E46E11 /* PBXTextBookmark */ = 661F507B0F95169400E46E11 /* PBXTextBookmark */;
+			661F507E0F95176300E46E11 /* PBXTextBookmark */ = 661F507E0F95176300E46E11 /* PBXTextBookmark */;
+			661F50850F951A0B00E46E11 /* PBXTextBookmark */ = 661F50850F951A0B00E46E11 /* PBXTextBookmark */;
+			661F50880F951B0700E46E11 /* PBXTextBookmark */ = 661F50880F951B0700E46E11 /* PBXTextBookmark */;
+			661F50920F951C9200E46E11 /* PBXTextBookmark */ = 661F50920F951C9200E46E11 /* PBXTextBookmark */;
+			661F50960F951EE900E46E11 /* PBXTextBookmark */ = 661F50960F951EE900E46E11 /* PBXTextBookmark */;
+			661F509A0F951F7F00E46E11 /* PBXTextBookmark */ = 661F509A0F951F7F00E46E11 /* PBXTextBookmark */;
+			661F509D0F954C7600E46E11 /* PBXTextBookmark */ = 661F509D0F954C7600E46E11 /* PBXTextBookmark */;
+			661F50A00F954DAF00E46E11 /* PBXTextBookmark */ = 661F50A00F954DAF00E46E11 /* PBXTextBookmark */;
+			661F50A10F954F1B00E46E11 /* PBXTextBookmark */ = 661F50A10F954F1B00E46E11 /* PBXTextBookmark */;
+			661F50A20F954F1B00E46E11 /* PBXTextBookmark */ = 661F50A20F954F1B00E46E11 /* PBXTextBookmark */;
+			661F50A30F954F1B00E46E11 /* PBXTextBookmark */ = 661F50A30F954F1B00E46E11 /* PBXTextBookmark */;
+			661F50A40F954F1B00E46E11 /* PBXTextBookmark */ = 661F50A40F954F1B00E46E11 /* PBXTextBookmark */;
+			661F50A60F954FDC00E46E11 /* PBXTextBookmark */ = 661F50A60F954FDC00E46E11 /* PBXTextBookmark */;
+			661F50A90F95506400E46E11 /* PBXTextBookmark */ = 661F50A90F95506400E46E11 /* PBXTextBookmark */;
+			661F50AD0F95583C00E46E11 /* PBXTextBookmark */ = 661F50AD0F95583C00E46E11 /* PBXTextBookmark */;
+			661F50AE0F95583C00E46E11 /* PBXTextBookmark */ = 661F50AE0F95583C00E46E11 /* PBXTextBookmark */;
+			661F50AF0F95583C00E46E11 /* PBXTextBookmark */ = 661F50AF0F95583C00E46E11 /* PBXTextBookmark */;
+			661F50B00F95583C00E46E11 /* PBXTextBookmark */ = 661F50B00F95583C00E46E11 /* PBXTextBookmark */;
+			661F50B20F95687C00E46E11 /* PBXTextBookmark */ = 661F50B20F95687C00E46E11 /* PBXTextBookmark */;
+			661F50B30F95695300E46E11 /* PBXTextBookmark */ = 661F50B30F95695300E46E11 /* PBXTextBookmark */;
+			661F50B40F95695300E46E11 /* PBXTextBookmark */ = 661F50B40F95695300E46E11 /* PBXTextBookmark */;
+			661F50B50F95695300E46E11 /* PBXTextBookmark */ = 661F50B50F95695300E46E11 /* PBXTextBookmark */;
+			661F50B60F95695300E46E11 /* PBXTextBookmark */ = 661F50B60F95695300E46E11 /* PBXTextBookmark */;
+			661F50B70F95695300E46E11 /* PBXTextBookmark */ = 661F50B70F95695300E46E11 /* PBXTextBookmark */;
+			661F50B80F95695300E46E11 /* PBXTextBookmark */ = 661F50B80F95695300E46E11 /* PBXTextBookmark */;
+			661F50B90F95695300E46E11 /* PBXTextBookmark */ = 661F50B90F95695300E46E11 /* PBXTextBookmark */;
+			661F50BC0F956B5000E46E11 /* PBXTextBookmark */ = 661F50BC0F956B5000E46E11 /* PBXTextBookmark */;
+			661F50BD0F956B5000E46E11 /* PBXTextBookmark */ = 661F50BD0F956B5000E46E11 /* PBXTextBookmark */;
+			661F50BE0F956B5000E46E11 /* PBXTextBookmark */ = 661F50BE0F956B5000E46E11 /* PBXTextBookmark */;
+			661F50BF0F956BD600E46E11 /* PBXTextBookmark */ = 661F50BF0F956BD600E46E11 /* PBXTextBookmark */;
+			661F50C00F956BD600E46E11 /* PBXTextBookmark */ = 661F50C00F956BD600E46E11 /* PBXTextBookmark */;
+			661F50C10F956BD600E46E11 /* PBXTextBookmark */ = 661F50C10F956BD600E46E11 /* PBXTextBookmark */;
+			661F50C20F956BD600E46E11 /* PBXTextBookmark */ = 661F50C20F956BD600E46E11 /* PBXTextBookmark */;
+			661F50C30F956BD600E46E11 /* PBXTextBookmark */ = 661F50C30F956BD600E46E11 /* PBXTextBookmark */;
+			661F50C40F956C2900E46E11 /* PBXTextBookmark */ = 661F50C40F956C2900E46E11 /* PBXTextBookmark */;
+			661F50C50F956C4D00E46E11 /* PBXTextBookmark */ = 661F50C50F956C4D00E46E11 /* PBXTextBookmark */;
+			661F50C60F956C8200E46E11 /* PBXTextBookmark */ = 661F50C60F956C8200E46E11 /* PBXTextBookmark */;
+			661F50C70F956CD900E46E11 /* PBXTextBookmark */ = 661F50C70F956CD900E46E11 /* PBXTextBookmark */;
+			661F50C90F956D9B00E46E11 /* PBXTextBookmark */ = 661F50C90F956D9B00E46E11 /* PBXTextBookmark */;
+			661F50CA0F956D9B00E46E11 /* PBXTextBookmark */ = 661F50CA0F956D9B00E46E11 /* PBXTextBookmark */;
+			661F50CB0F956D9B00E46E11 /* PBXTextBookmark */ = 661F50CB0F956D9B00E46E11 /* PBXTextBookmark */;
+			661F50CC0F956D9B00E46E11 /* PBXTextBookmark */ = 661F50CC0F956D9B00E46E11 /* PBXTextBookmark */;
+			661F50CD0F956DC700E46E11 /* PBXTextBookmark */ = 661F50CD0F956DC700E46E11 /* PBXTextBookmark */;
+			661F50D00F956E9500E46E11 /* PBXTextBookmark */ = 661F50D00F956E9500E46E11 /* PBXTextBookmark */;
+			661F50D10F956E9500E46E11 /* PBXTextBookmark */ = 661F50D10F956E9500E46E11 /* PBXTextBookmark */;
+			661F50D20F956E9500E46E11 /* PBXTextBookmark */ = 661F50D20F956E9500E46E11 /* PBXTextBookmark */;
+			661F50D30F956E9500E46E11 /* PBXTextBookmark */ = 661F50D30F956E9500E46E11 /* PBXTextBookmark */;
+			661F50D40F956E9500E46E11 /* PBXTextBookmark */ = 661F50D40F956E9500E46E11 /* PBXTextBookmark */;
+			661F50D70F956F1F00E46E11 /* PBXTextBookmark */ = 661F50D70F956F1F00E46E11 /* PBXTextBookmark */;
+			661F50D90F956FA400E46E11 /* PBXTextBookmark */ = 661F50D90F956FA400E46E11 /* PBXTextBookmark */;
+			661F50DB0F957C4B00E46E11 /* PBXTextBookmark */ = 661F50DB0F957C4B00E46E11 /* PBXTextBookmark */;
+			661F50DD0F957D8700E46E11 /* PBXTextBookmark */ = 661F50DD0F957D8700E46E11 /* PBXTextBookmark */;
+			661F50DE0F957D8700E46E11 /* PBXTextBookmark */ = 661F50DE0F957D8700E46E11 /* PBXTextBookmark */;
+			661F50DF0F957D8700E46E11 /* PBXTextBookmark */ = 661F50DF0F957D8700E46E11 /* PBXTextBookmark */;
+			661F50E00F957D8700E46E11 /* PBXTextBookmark */ = 661F50E00F957D8700E46E11 /* PBXTextBookmark */;
+			661F50E10F957D8700E46E11 /* PBXTextBookmark */ = 661F50E10F957D8700E46E11 /* PBXTextBookmark */;
+			661F50E20F957EE400E46E11 /* PBXTextBookmark */ = 661F50E20F957EE400E46E11 /* PBXTextBookmark */;
+			661F50E90F9580EF00E46E11 /* PBXTextBookmark */ = 661F50E90F9580EF00E46E11 /* PBXTextBookmark */;
+			661F50EA0F9580EF00E46E11 /* PBXTextBookmark */ = 661F50EA0F9580EF00E46E11 /* PBXTextBookmark */;
+			661F50EB0F9580EF00E46E11 /* PBXTextBookmark */ = 661F50EB0F9580EF00E46E11 /* PBXTextBookmark */;
+			661F50EC0F9580EF00E46E11 /* PBXTextBookmark */ = 661F50EC0F9580EF00E46E11 /* PBXTextBookmark */;
+			661F50ED0F9580EF00E46E11 /* PBXTextBookmark */ = 661F50ED0F9580EF00E46E11 /* PBXTextBookmark */;
+			661F50FB0F95840700E46E11 /* PBXTextBookmark */ = 661F50FB0F95840700E46E11 /* PBXTextBookmark */;
+			661F50FF0F9584F900E46E11 /* PBXTextBookmark */ = 661F50FF0F9584F900E46E11 /* PBXTextBookmark */;
 			661FF2B20F7ED11E00535397 = 661FF2B20F7ED11E00535397 /* PBXTextBookmark */;
 			661FF2B70F7ED11E00535397 = 661FF2B70F7ED11E00535397 /* PBXTextBookmark */;
 			662C3CF30F896E0900A1D16C = 662C3CF30F896E0900A1D16C /* PlistBookmark */;
@@ -363,31 +564,31 @@
 	};
 	1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {955, 4620}}";
-			sepNavSelRange = "{8012, 0}";
-			sepNavVisRange = "{8878, 1011}";
+			sepNavIntBoundsRect = "{{0, 0}, {456, 5180}}";
+			sepNavSelRange = "{4627, 0}";
+			sepNavVisRange = "{4446, 404}";
 		};
 	};
 	1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1314, 15036}}";
-			sepNavSelRange = "{20141, 0}";
-			sepNavVisRange = "{14368, 1474}";
+			sepNavIntBoundsRect = "{{0, 0}, {1338, 14812}}";
+			sepNavSelRange = "{20143, 0}";
+			sepNavVisRange = "{19336, 1046}";
 			sepNavWindowFrame = "{{15, -5}, {1095, 778}}";
 		};
 	};
 	219BA5C905EE680D00AA3E64 /* ApplePS2ALPSGlidePoint.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {955, 8498}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1018, 8526}}";
 			sepNavSelRange = "{12972, 23}";
-			sepNavVisRange = "{2993, 1509}";
+			sepNavVisRange = "{2860, 1776}";
 		};
 	};
 	219BA5CA05EE680D00AA3E64 /* ApplePS2ALPSGlidePoint.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {955, 1134}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1018, 1148}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{663, 1190}";
+			sepNavVisRange = "{446, 1477}";
 		};
 	};
 	6613721C0F4A9A0F00415899 /* ApplePS2Trackpad (Upgraded) */ = {
@@ -414,7 +615,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 165";
 		rLen = 16;
-		rLoc = 5974;
+		rLoc = 6112;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 1135;
@@ -424,7 +625,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 457";
 		rLen = 0;
-		rLoc = 15468;
+		rLoc = 15571;
 		rType = 0;
 		vrLen = 1263;
 		vrLoc = 14793;
@@ -434,7 +635,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 457";
 		rLen = 0;
-		rLoc = 15468;
+		rLoc = 15571;
 		rType = 0;
 		vrLen = 1263;
 		vrLoc = 14793;
@@ -444,7 +645,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 165";
 		rLen = 16;
-		rLoc = 5974;
+		rLoc = 6112;
 		rType = 0;
 		vrLen = 787;
 		vrLoc = 7377;
@@ -454,7 +655,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 457";
 		rLen = 0;
-		rLoc = 15468;
+		rLoc = 15571;
 		rType = 0;
 		vrLen = 1263;
 		vrLoc = 14793;
@@ -464,7 +665,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 165";
 		rLen = 16;
-		rLoc = 5974;
+		rLoc = 6112;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 1135;
@@ -474,7 +675,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 525";
 		rLen = 0;
-		rLoc = 17455;
+		rLoc = 15949;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 17888;
@@ -506,7 +707,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 165";
 		rLen = 16;
-		rLoc = 5974;
+		rLoc = 6112;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 1135;
@@ -516,7 +717,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 525";
 		rLen = 0;
-		rLoc = 17455;
+		rLoc = 15949;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 17888;
@@ -526,7 +727,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 525";
 		rLen = 0;
-		rLoc = 17455;
+		rLoc = 15949;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 17888;
@@ -552,7 +753,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 165";
 		rLen = 16;
-		rLoc = 5974;
+		rLoc = 6112;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 1135;
@@ -562,7 +763,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 398";
 		rLen = 0;
-		rLoc = 13891;
+		rLoc = 13773;
 		rType = 0;
 		vrLen = 1404;
 		vrLoc = 13930;
@@ -592,7 +793,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 208";
 		rLen = 0;
-		rLoc = 8026;
+		rLoc = 8014;
 		rType = 0;
 		vrLen = 1306;
 		vrLoc = 6994;
@@ -602,7 +803,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 165";
 		rLen = 16;
-		rLoc = 5974;
+		rLoc = 6112;
 		rType = 0;
 		vrLen = 941;
 		vrLoc = 5450;
@@ -612,7 +813,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 398";
 		rLen = 0;
-		rLoc = 13891;
+		rLoc = 13773;
 		rType = 0;
 		vrLen = 1404;
 		vrLoc = 13930;
@@ -632,7 +833,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 165";
 		rLen = 16;
-		rLoc = 5974;
+		rLoc = 6112;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 1135;
@@ -652,7 +853,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 922";
 		rLen = 0;
-		rLoc = 33373;
+		rLoc = 32379;
 		rType = 0;
 		vrLen = 1193;
 		vrLoc = 21039;
@@ -662,7 +863,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 165";
 		rLen = 16;
-		rLoc = 5974;
+		rLoc = 6112;
 		rType = 0;
 		vrLen = 923;
 		vrLoc = 5514;
@@ -672,7 +873,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 922";
 		rLen = 0;
-		rLoc = 33373;
+		rLoc = 32379;
 		rType = 0;
 		vrLen = 949;
 		vrLoc = 20259;
@@ -682,7 +883,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 165";
 		rLen = 16;
-		rLoc = 5974;
+		rLoc = 6112;
 		rType = 0;
 		vrLen = 878;
 		vrLoc = 5514;
@@ -692,7 +893,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 922";
 		rLen = 0;
-		rLoc = 33373;
+		rLoc = 32379;
 		rType = 0;
 		vrLen = 939;
 		vrLoc = 20269;
@@ -702,7 +903,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 165";
 		rLen = 16;
-		rLoc = 5974;
+		rLoc = 6112;
 		rType = 0;
 		vrLen = 942;
 		vrLoc = 5450;
@@ -712,7 +913,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 208";
 		rLen = 0;
-		rLoc = 8026;
+		rLoc = 8014;
 		rType = 0;
 		vrLen = 1307;
 		vrLoc = 6994;
@@ -722,7 +923,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 165";
 		rLen = 16;
-		rLoc = 5974;
+		rLoc = 6112;
 		rType = 0;
 		vrLen = 941;
 		vrLoc = 5450;
@@ -732,7 +933,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 208";
 		rLen = 0;
-		rLoc = 8026;
+		rLoc = 8014;
 		rType = 0;
 		vrLen = 1306;
 		vrLoc = 6994;
@@ -742,7 +943,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 182";
 		rLen = 0;
-		rLoc = 6506;
+		rLoc = 6644;
 		rType = 0;
 		vrLen = 1094;
 		vrLoc = 5291;
@@ -752,7 +953,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 166";
 		rLen = 20;
-		rLoc = 6003;
+		rLoc = 6141;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 5450;
@@ -762,7 +963,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 65";
 		rLen = 27;
-		rLoc = 2397;
+		rLoc = 2266;
 		rType = 0;
 		vrLen = 962;
 		vrLoc = 1915;
@@ -772,7 +973,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 182";
 		rLen = 0;
-		rLoc = 6506;
+		rLoc = 6644;
 		rType = 0;
 		vrLen = 1094;
 		vrLoc = 5291;
@@ -782,7 +983,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 458";
 		rLen = 0;
-		rLoc = 15279;
+		rLoc = 15481;
 		rType = 0;
 		vrLen = 1196;
 		vrLoc = 15113;
@@ -792,7 +993,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 182";
 		rLen = 0;
-		rLoc = 6506;
+		rLoc = 6644;
 		rType = 0;
 		vrLen = 1094;
 		vrLoc = 5291;
@@ -802,7 +1003,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 65";
 		rLen = 27;
-		rLoc = 2397;
+		rLoc = 2266;
 		rType = 0;
 		vrLen = 963;
 		vrLoc = 1915;
@@ -812,7 +1013,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 166";
 		rLen = 20;
-		rLoc = 6003;
+		rLoc = 6141;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 5450;
@@ -822,7 +1023,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 65";
 		rLen = 42;
-		rLoc = 2390;
+		rLoc = 2259;
 		rType = 0;
 		vrLen = 1038;
 		vrLoc = 8473;
@@ -842,7 +1043,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 166";
 		rLen = 20;
-		rLoc = 6003;
+		rLoc = 6141;
 		rType = 0;
 		vrLen = 969;
 		vrLoc = 5421;
@@ -862,7 +1063,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 65";
 		rLen = 42;
-		rLoc = 2390;
+		rLoc = 2259;
 		rType = 0;
 		vrLen = 1038;
 		vrLoc = 8473;
@@ -882,7 +1083,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 166";
 		rLen = 20;
-		rLoc = 6003;
+		rLoc = 6141;
 		rType = 0;
 		vrLen = 941;
 		vrLoc = 5450;
@@ -902,7 +1103,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 166";
 		rLen = 20;
-		rLoc = 6003;
+		rLoc = 6141;
 		rType = 0;
 		vrLen = 969;
 		vrLoc = 5421;
@@ -932,7 +1133,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 166";
 		rLen = 20;
-		rLoc = 6003;
+		rLoc = 6141;
 		rType = 0;
 		vrLen = 999;
 		vrLoc = 5390;
@@ -942,7 +1143,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 81";
 		rLen = 0;
-		rLoc = 2876;
+		rLoc = 2864;
 		rType = 0;
 		vrLen = 993;
 		vrLoc = 1914;
@@ -972,7 +1173,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 166";
 		rLen = 20;
-		rLoc = 6003;
+		rLoc = 6141;
 		rType = 0;
 		vrLen = 999;
 		vrLoc = 5390;
@@ -982,7 +1183,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 81";
 		rLen = 0;
-		rLoc = 2876;
+		rLoc = 2864;
 		rType = 0;
 		vrLen = 993;
 		vrLoc = 1914;
@@ -992,7 +1193,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 166";
 		rLen = 20;
-		rLoc = 6003;
+		rLoc = 6141;
 		rType = 0;
 		vrLen = 999;
 		vrLoc = 5390;
@@ -1002,7 +1203,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 81";
 		rLen = 0;
-		rLoc = 2876;
+		rLoc = 2864;
 		rType = 0;
 		vrLen = 993;
 		vrLoc = 1914;
@@ -1022,7 +1223,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 1008;
 		vrLoc = 8927;
@@ -1042,7 +1243,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 81";
 		rLen = 0;
-		rLoc = 2876;
+		rLoc = 2864;
 		rType = 0;
 		vrLen = 993;
 		vrLoc = 1914;
@@ -1062,7 +1263,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 166";
 		rLen = 20;
-		rLoc = 6003;
+		rLoc = 6141;
 		rType = 0;
 		vrLen = 1034;
 		vrLoc = 5612;
@@ -1082,7 +1283,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 1008;
 		vrLoc = 8927;
@@ -1102,7 +1303,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 8891;
@@ -1112,7 +1313,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 66";
 		rLen = 0;
-		rLoc = 2354;
+		rLoc = 2226;
 		rType = 0;
 		vrLen = 1234;
 		vrLoc = 1531;
@@ -1122,7 +1323,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 173";
 		rLen = 0;
-		rLoc = 6757;
+		rLoc = 6745;
 		rType = 0;
 		vrLen = 1234;
 		vrLoc = 1531;
@@ -1132,7 +1333,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 8891;
@@ -1142,7 +1343,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 66";
 		rLen = 0;
-		rLoc = 2354;
+		rLoc = 2226;
 		rType = 0;
 		vrLen = 1234;
 		vrLoc = 1531;
@@ -1152,7 +1353,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 8891;
@@ -1162,7 +1363,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 465";
 		rLen = 0;
-		rLoc = 15468;
+		rLoc = 15571;
 		rType = 0;
 		vrLen = 1005;
 		vrLoc = 15632;
@@ -1172,7 +1373,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 67";
 		rLen = 0;
-		rLoc = 2432;
+		rLoc = 2301;
 		rType = 0;
 		vrLen = 1080;
 		vrLoc = 1761;
@@ -1208,7 +1409,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 8891;
@@ -1218,7 +1419,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 67";
 		rLen = 0;
-		rLoc = 2432;
+		rLoc = 2301;
 		rType = 0;
 		vrLen = 1080;
 		vrLoc = 1761;
@@ -1228,7 +1429,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 67";
 		rLen = 0;
-		rLoc = 2432;
+		rLoc = 2301;
 		rType = 0;
 		vrLen = 1080;
 		vrLoc = 1761;
@@ -1264,7 +1465,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 8891;
@@ -1274,7 +1475,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 68";
 		rLen = 0;
-		rLoc = 2538;
+		rLoc = 2495;
 		rType = 0;
 		vrLen = 1114;
 		vrLoc = 1761;
@@ -1284,7 +1485,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 465";
 		rLen = 0;
-		rLoc = 15468;
+		rLoc = 15571;
 		rType = 0;
 		vrLen = 1176;
 		vrLoc = 15417;
@@ -1294,7 +1495,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 464";
 		rLen = 0;
-		rLoc = 15468;
+		rLoc = 15571;
 		rType = 0;
 		vrLen = 1159;
 		vrLoc = 15454;
@@ -1304,7 +1505,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 212";
 		rLen = 0;
-		rLoc = 8007;
+		rLoc = 7995;
 		rType = 0;
 		vrLen = 1064;
 		vrLoc = 7896;
@@ -1314,7 +1515,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 877;
 		vrLoc = 5607;
@@ -1324,7 +1525,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 212";
 		rLen = 0;
-		rLoc = 8007;
+		rLoc = 7995;
 		rType = 0;
 		vrLen = 1173;
 		vrLoc = 7504;
@@ -1334,7 +1535,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 212";
 		rLen = 0;
-		rLoc = 8007;
+		rLoc = 7995;
 		rType = 0;
 		vrLen = 1121;
 		vrLoc = 7556;
@@ -1344,7 +1545,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 877;
 		vrLoc = 5607;
@@ -1354,7 +1555,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 212";
 		rLen = 0;
-		rLoc = 8007;
+		rLoc = 7995;
 		rType = 0;
 		vrLen = 1173;
 		vrLoc = 7504;
@@ -1364,7 +1565,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 877;
 		vrLoc = 5607;
@@ -1374,7 +1575,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 211";
 		rLen = 0;
-		rLoc = 8003;
+		rLoc = 7991;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 7504;
@@ -1384,7 +1585,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 464";
 		rLen = 0;
-		rLoc = 15465;
+		rLoc = 15570;
 		rType = 0;
 		vrLen = 1361;
 		vrLoc = 15088;
@@ -1394,7 +1595,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 464";
 		rLen = 0;
-		rLoc = 15376;
+		rLoc = 15570;
 		rType = 0;
 		vrLen = 1021;
 		vrLoc = 15770;
@@ -1404,7 +1605,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 212";
 		rLen = 0;
-		rLoc = 8068;
+		rLoc = 8056;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 7329;
@@ -1414,7 +1615,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 211";
 		rLen = 0;
-		rLoc = 8004;
+		rLoc = 7992;
 		rType = 0;
 		vrLen = 1266;
 		vrLoc = 7431;
@@ -1424,7 +1625,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 211";
 		rLen = 0;
-		rLoc = 8003;
+		rLoc = 7991;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 7331;
@@ -1434,7 +1635,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 212";
 		rLen = 0;
-		rLoc = 8076;
+		rLoc = 8064;
 		rType = 0;
 		vrLen = 1322;
 		vrLoc = 7230;
@@ -1444,7 +1645,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 81";
 		rLen = 0;
-		rLoc = 2875;
+		rLoc = 2863;
 		rType = 0;
 		vrLen = 2135;
 		vrLoc = 4025;
@@ -1454,7 +1655,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 877;
 		vrLoc = 5607;
@@ -1484,7 +1685,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 214";
 		rLen = 0;
-		rLoc = 8087;
+		rLoc = 8075;
 		rType = 0;
 		vrLen = 1120;
 		vrLoc = 7742;
@@ -1514,7 +1715,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 877;
 		vrLoc = 5607;
@@ -1524,7 +1725,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 191";
 		rLen = 0;
-		rLoc = 7176;
+		rLoc = 7164;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 6763;
@@ -1544,7 +1745,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 191";
 		rLen = 0;
-		rLoc = 7176;
+		rLoc = 7164;
 		rType = 0;
 		vrLen = 1115;
 		vrLoc = 6763;
@@ -1554,7 +1755,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 877;
 		vrLoc = 5607;
@@ -1564,7 +1765,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 214";
 		rLen = 0;
-		rLoc = 8087;
+		rLoc = 8075;
 		rType = 0;
 		vrLen = 1120;
 		vrLoc = 7742;
@@ -1594,7 +1795,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 214";
 		rLen = 0;
-		rLoc = 8087;
+		rLoc = 8075;
 		rType = 0;
 		vrLen = 1120;
 		vrLoc = 7742;
@@ -1614,7 +1815,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 877;
 		vrLoc = 5607;
@@ -1624,7 +1825,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 214";
 		rLen = 0;
-		rLoc = 8087;
+		rLoc = 8075;
 		rType = 0;
 		vrLen = 1120;
 		vrLoc = 7742;
@@ -1634,7 +1835,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 214";
 		rLen = 0;
-		rLoc = 8087;
+		rLoc = 8075;
 		rType = 0;
 		vrLen = 1120;
 		vrLoc = 7742;
@@ -1654,7 +1855,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 877;
 		vrLoc = 5607;
@@ -1664,7 +1865,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 217";
 		rLen = 0;
-		rLoc = 8208;
+		rLoc = 8196;
 		rType = 0;
 		vrLen = 1120;
 		vrLoc = 7732;
@@ -1674,7 +1875,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 931";
 		rLen = 0;
-		rLoc = 33621;
+		rLoc = 32627;
 		rType = 0;
 		vrLen = 1639;
 		vrLoc = 31946;
@@ -1684,7 +1885,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 931";
 		rLen = 0;
-		rLoc = 33621;
+		rLoc = 32627;
 		rType = 0;
 		vrLen = 1720;
 		vrLoc = 31864;
@@ -1694,7 +1895,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 602";
 		rLen = 0;
-		rLoc = 21137;
+		rLoc = 20144;
 		rType = 0;
 		vrLen = 1177;
 		vrLoc = 19300;
@@ -1704,7 +1905,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 877;
 		vrLoc = 5607;
@@ -1714,7 +1915,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 602";
 		rLen = 0;
-		rLoc = 21137;
+		rLoc = 20144;
 		rType = 0;
 		vrLen = 1200;
 		vrLoc = 19321;
@@ -1724,7 +1925,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 602";
 		rLen = 0;
-		rLoc = 21137;
+		rLoc = 20144;
 		rType = 0;
 		vrLen = 1200;
 		vrLoc = 19321;
@@ -1734,7 +1935,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 877;
 		vrLoc = 5607;
@@ -1744,7 +1945,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 551";
 		rLen = 0;
-		rLoc = 18949;
+		rLoc = 18833;
 		rType = 0;
 		vrLen = 1153;
 		vrLoc = 18016;
@@ -1754,7 +1955,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 488";
 		rLen = 0;
-		rLoc = 16597;
+		rLoc = 15794;
 		rType = 0;
 		vrLen = 1061;
 		vrLoc = 16539;
@@ -1764,7 +1965,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 569";
 		rLen = 0;
-		rLoc = 19724;
+		rLoc = 19740;
 		rType = 0;
 		vrLen = 1239;
 		vrLoc = 19222;
@@ -1774,7 +1975,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 581";
 		rLen = 0;
-		rLoc = 21097;
+		rLoc = 20096;
 		rType = 0;
 		vrLen = 1079;
 		vrLoc = 19699;
@@ -1784,7 +1985,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 578";
 		rLen = 0;
-		rLoc = 21097;
+		rLoc = 20096;
 		rType = 0;
 		vrLen = 1153;
 		vrLoc = 19699;
@@ -1794,7 +1995,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 582";
 		rLen = 0;
-		rLoc = 21097;
+		rLoc = 20096;
 		rType = 0;
 		vrLen = 1108;
 		vrLoc = 19620;
@@ -1804,7 +2005,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 588";
 		rLen = 0;
-		rLoc = 21097;
+		rLoc = 20096;
 		rType = 0;
 		vrLen = 1112;
 		vrLoc = 19620;
@@ -1814,7 +2015,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 582";
 		rLen = 0;
-		rLoc = 21097;
+		rLoc = 20096;
 		rType = 0;
 		vrLen = 1110;
 		vrLoc = 19620;
@@ -1824,7 +2025,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 584";
 		rLen = 0;
-		rLoc = 21097;
+		rLoc = 20096;
 		rType = 0;
 		vrLen = 1260;
 		vrLoc = 19419;
@@ -1834,7 +2035,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 294";
 		rLen = 0;
-		rLoc = 9756;
+		rLoc = 10779;
 		rType = 0;
 		vrLen = 877;
 		vrLoc = 5607;
@@ -1844,7 +2045,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 584";
 		rLen = 0;
-		rLoc = 21097;
+		rLoc = 20096;
 		rType = 0;
 		vrLen = 1260;
 		vrLoc = 19419;
@@ -1854,7 +2055,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 33";
 		rLen = 0;
-		rLoc = 1192;
+		rLoc = 1194;
 		rType = 0;
 		vrLen = 907;
 		vrLoc = 900;
@@ -1864,7 +2065,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 32";
 		rLen = 0;
-		rLoc = 1161;
+		rLoc = 1160;
 		rType = 0;
 		vrLen = 907;
 		vrLoc = 900;
@@ -1874,7 +2075,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 584";
 		rLen = 0;
-		rLoc = 21097;
+		rLoc = 20096;
 		rType = 0;
 		vrLen = 1260;
 		vrLoc = 19419;
@@ -1884,7 +2085,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 32";
 		rLen = 0;
-		rLoc = 1161;
+		rLoc = 1160;
 		rType = 0;
 		vrLen = 907;
 		vrLoc = 900;
@@ -1894,7 +2095,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 584";
 		rLen = 0;
-		rLoc = 21097;
+		rLoc = 20096;
 		rType = 0;
 		vrLen = 1260;
 		vrLoc = 19419;
@@ -1904,7 +2105,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 514";
 		rLen = 0;
-		rLoc = 17250;
+		rLoc = 15949;
 		rType = 0;
 		vrLen = 1577;
 		vrLoc = 17564;
@@ -1914,7 +2115,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 535";
 		rLen = 0;
-		rLoc = 17767;
+		rLoc = 15950;
 		rType = 0;
 		vrLen = 1558;
 		vrLoc = 14631;
@@ -1924,7 +2125,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 535";
 		rLen = 0;
-		rLoc = 17767;
+		rLoc = 15950;
 		rType = 0;
 		vrLen = 1558;
 		vrLoc = 14631;
@@ -1934,7 +2135,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 546";
 		rLen = 0;
-		rLoc = 18949;
+		rLoc = 18833;
 		rType = 0;
 		vrLen = 1276;
 		vrLoc = 18012;
@@ -1944,7 +2145,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 523";
 		rLen = 0;
-		rLoc = 17392;
+		rLoc = 15949;
 		rType = 0;
 		vrLen = 1683;
 		vrLoc = 17291;
@@ -1954,7 +2155,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 246";
 		rLen = 0;
-		rLoc = 8317;
+		rLoc = 9333;
 		rType = 0;
 		vrLen = 914;
 		vrLoc = 7258;
@@ -1964,7 +2165,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 544";
 		rLen = 0;
-		rLoc = 18587;
+		rLoc = 18554;
 		rType = 0;
 		vrLen = 1292;
 		vrLoc = 18012;
@@ -1974,7 +2175,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 523";
 		rLen = 0;
-		rLoc = 17392;
+		rLoc = 15949;
 		rType = 0;
 		vrLen = 1200;
 		vrLoc = 19757;
@@ -1984,7 +2185,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 32";
 		rLen = 6;
-		rLoc = 1159;
+		rLoc = 1160;
 		rType = 0;
 		vrLen = 836;
 		vrLoc = 900;
@@ -1994,7 +2195,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 544";
 		rLen = 0;
-		rLoc = 18587;
+		rLoc = 18554;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 18015;
@@ -2004,7 +2205,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 246";
 		rLen = 0;
-		rLoc = 8317;
+		rLoc = 9333;
 		rType = 0;
 		vrLen = 914;
 		vrLoc = 7258;
@@ -2014,7 +2215,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 540";
 		rLen = 0;
-		rLoc = 18500;
+		rLoc = 16651;
 		rType = 0;
 		vrLen = 1297;
 		vrLoc = 18012;
@@ -2024,7 +2225,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 515";
 		rLen = 0;
-		rLoc = 17250;
+		rLoc = 15949;
 		rType = 0;
 		vrLen = 954;
 		vrLoc = 16381;
@@ -2034,7 +2235,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 543";
 		rLen = 0;
-		rLoc = 18587;
+		rLoc = 18554;
 		rType = 0;
 		vrLen = 1027;
 		vrLoc = 18470;
@@ -2044,7 +2245,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 542";
 		rLen = 0;
-		rLoc = 18466;
+		rLoc = 16617;
 		rType = 0;
 		vrLen = 1011;
 		vrLoc = 18470;
@@ -2054,7 +2255,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 548";
 		rLen = 0;
-		rLoc = 18897;
+		rLoc = 18688;
 		rType = 0;
 		vrLen = 1222;
 		vrLoc = 18253;
@@ -2064,7 +2265,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 544";
 		rLen = 0;
-		rLoc = 18587;
+		rLoc = 18554;
 		rType = 0;
 		vrLen = 1223;
 		vrLoc = 18253;
@@ -2074,7 +2275,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 519";
 		rLen = 0;
-		rLoc = 17250;
+		rLoc = 15949;
 		rType = 0;
 		vrLen = 888;
 		vrLoc = 15806;
@@ -2084,7 +2285,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 544";
 		rLen = 0;
-		rLoc = 18587;
+		rLoc = 18554;
 		rType = 0;
 		vrLen = 1236;
 		vrLoc = 18281;
@@ -2094,7 +2295,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 246";
 		rLen = 0;
-		rLoc = 8317;
+		rLoc = 9333;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 7317;
@@ -2104,7 +2305,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 544";
 		rLen = 0;
-		rLoc = 18587;
+		rLoc = 18554;
 		rType = 0;
 		vrLen = 1236;
 		vrLoc = 18281;
@@ -2114,7 +2315,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 222";
 		rLen = 7;
-		rLoc = 7659;
+		rLoc = 8717;
 		rType = 0;
 		vrLen = 929;
 		vrLoc = 7329;
@@ -2124,7 +2325,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 222";
 		rLen = 7;
-		rLoc = 7659;
+		rLoc = 8717;
 		rType = 0;
 		vrLen = 929;
 		vrLoc = 7329;
@@ -2134,7 +2335,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 544";
 		rLen = 0;
-		rLoc = 18587;
+		rLoc = 18554;
 		rType = 0;
 		vrLen = 1236;
 		vrLoc = 18281;
@@ -2144,7 +2345,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 222";
 		rLen = 7;
-		rLoc = 7659;
+		rLoc = 8717;
 		rType = 0;
 		vrLen = 929;
 		vrLoc = 7329;
@@ -2154,7 +2355,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 548";
 		rLen = 0;
-		rLoc = 18587;
+		rLoc = 18554;
 		rType = 0;
 		vrLen = 1273;
 		vrLoc = 18211;
@@ -2164,7 +2365,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 543";
 		rLen = 0;
-		rLoc = 18587;
+		rLoc = 18554;
 		rType = 0;
 		vrLen = 1277;
 		vrLoc = 18211;
@@ -2174,7 +2375,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 532";
 		rLen = 0;
-		rLoc = 17817;
+		rLoc = 15953;
 		rType = 0;
 		vrLen = 1315;
 		vrLoc = 18206;
@@ -2184,7 +2385,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 549";
 		rLen = 0;
-		rLoc = 18587;
+		rLoc = 18554;
 		rType = 0;
 		vrLen = 1165;
 		vrLoc = 18567;
@@ -2194,7 +2395,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 483";
 		rLen = 0;
-		rLoc = 16455;
+		rLoc = 15791;
 		rType = 0;
 		vrLen = 961;
 		vrLoc = 16382;
@@ -2204,7 +2405,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 547";
 		rLen = 0;
-		rLoc = 18839;
+		rLoc = 18554;
 		rType = 0;
 		vrLen = 1451;
 		vrLoc = 18116;
@@ -2214,7 +2415,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 542";
 		rLen = 0;
-		rLoc = 18489;
+		rLoc = 16640;
 		rType = 0;
 		vrLen = 1716;
 		vrLoc = 17711;
@@ -2224,7 +2425,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 557";
 		rLen = 0;
-		rLoc = 18990;
+		rLoc = 18902;
 		rType = 0;
 		vrLen = 1244;
 		vrLoc = 18492;
@@ -2234,7 +2435,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 545";
 		rLen = 0;
-		rLoc = 18821;
+		rLoc = 18554;
 		rType = 0;
 		vrLen = 1246;
 		vrLoc = 18492;
@@ -2244,7 +2445,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 621";
 		rLen = 0;
-		rLoc = 21281;
+		rLoc = 20290;
 		rType = 0;
 		vrLen = 857;
 		vrLoc = 21120;
@@ -2254,7 +2455,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 542";
 		rLen = 0;
-		rLoc = 18485;
+		rLoc = 16636;
 		rType = 0;
 		vrLen = 1018;
 		vrLoc = 18886;
@@ -2264,7 +2465,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 541";
 		rLen = 0;
-		rLoc = 18461;
+		rLoc = 16612;
 		rType = 0;
 		vrLen = 1137;
 		vrLoc = 18886;
@@ -2274,7 +2475,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 552";
 		rLen = 0;
-		rLoc = 18848;
+		rLoc = 18566;
 		rType = 0;
 		vrLen = 1131;
 		vrLoc = 18886;
@@ -2284,7 +2485,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 121";
 		rLen = 0;
-		rLoc = 4443;
+		rLoc = 4472;
 		rType = 0;
 		vrLen = 1103;
 		vrLoc = 3893;
@@ -2294,7 +2495,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 532";
 		rLen = 0;
-		rLoc = 17826;
+		rLoc = 15953;
 		rType = 0;
 		vrLen = 1659;
 		vrLoc = 18081;
@@ -2304,7 +2505,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 532";
 		rLen = 0;
-		rLoc = 17826;
+		rLoc = 15953;
 		rType = 0;
 		vrLen = 1670;
 		vrLoc = 18081;
@@ -2314,7 +2515,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 121";
 		rLen = 0;
-		rLoc = 4443;
+		rLoc = 4472;
 		rType = 0;
 		vrLen = 1103;
 		vrLoc = 3893;
@@ -2324,7 +2525,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 601";
 		rLen = 0;
-		rLoc = 19806;
+		rLoc = 19822;
 		rType = 0;
 		vrLen = 1022;
 		vrLoc = 20382;
@@ -2334,7 +2535,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 598";
 		rLen = 0;
-		rLoc = 19806;
+		rLoc = 19822;
 		rType = 0;
 		vrLen = 907;
 		vrLoc = 20610;
@@ -2344,7 +2545,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 548";
 		rLen = 0;
-		rLoc = 18501;
+		rLoc = 16652;
 		rType = 0;
 		vrLen = 1557;
 		vrLoc = 18454;
@@ -2354,7 +2555,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 589";
 		rLen = 0;
-		rLoc = 19806;
+		rLoc = 19822;
 		rType = 0;
 		vrLen = 1301;
 		vrLoc = 20297;
@@ -2364,7 +2565,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 543";
 		rLen = 0;
-		rLoc = 18500;
+		rLoc = 16651;
 		rType = 0;
 		vrLen = 1096;
 		vrLoc = 18888;
@@ -2374,7 +2575,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 552";
 		rLen = 0;
-		rLoc = 18842;
+		rLoc = 18560;
 		rType = 0;
 		vrLen = 1150;
 		vrLoc = 18888;
@@ -2384,7 +2585,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 545";
 		rLen = 0;
-		rLoc = 18697;
+		rLoc = 18554;
 		rType = 0;
 		vrLen = 1419;
 		vrLoc = 18496;
@@ -2394,7 +2595,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 542";
 		rLen = 0;
-		rLoc = 18500;
+		rLoc = 16651;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 18888;
@@ -2404,7 +2605,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 554";
 		rLen = 0;
-		rLoc = 18897;
+		rLoc = 18688;
 		rType = 0;
 		vrLen = 1166;
 		vrLoc = 18888;
@@ -2414,7 +2615,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 558";
 		rLen = 0;
-		rLoc = 18949;
+		rLoc = 18833;
 		rType = 0;
 		vrLen = 1171;
 		vrLoc = 18888;
@@ -2504,7 +2705,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 121";
 		rLen = 0;
-		rLoc = 4443;
+		rLoc = 4472;
 		rType = 0;
 		vrLen = 1134;
 		vrLoc = 3860;
@@ -2514,7 +2715,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 558";
 		rLen = 0;
-		rLoc = 18949;
+		rLoc = 18833;
 		rType = 0;
 		vrLen = 1446;
 		vrLoc = 18571;
@@ -2524,7 +2725,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 558";
 		rLen = 0;
-		rLoc = 18949;
+		rLoc = 18833;
 		rType = 0;
 		vrLen = 1446;
 		vrLoc = 18571;
@@ -2636,7 +2837,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 121";
 		rLen = 0;
-		rLoc = 4443;
+		rLoc = 4472;
 		rType = 0;
 		vrLen = 1134;
 		vrLoc = 3860;
@@ -2646,7 +2847,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 622";
 		rLen = 63;
-		rLoc = 21281;
+		rLoc = 20290;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 20566;
@@ -2656,7 +2857,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 571";
 		rLen = 0;
-		rLoc = 19463;
+		rLoc = 19341;
 		rType = 0;
 		vrLen = 1342;
 		vrLoc = 16686;
@@ -2676,7 +2877,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 128";
 		rLen = 0;
-		rLoc = 4596;
+		rLoc = 4627;
 		rType = 0;
 		vrLen = 981;
 		vrLoc = 4160;
@@ -2686,7 +2887,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 571";
 		rLen = 0;
-		rLoc = 19463;
+		rLoc = 19341;
 		rType = 0;
 		vrLen = 1776;
 		vrLoc = 17139;
@@ -2696,7 +2897,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 571";
 		rLen = 0;
-		rLoc = 19463;
+		rLoc = 19341;
 		rType = 0;
 		vrLen = 1857;
 		vrLoc = 17058;
@@ -2716,7 +2917,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 121";
 		rLen = 0;
-		rLoc = 4443;
+		rLoc = 4472;
 		rType = 0;
 		vrLen = 1134;
 		vrLoc = 3859;
@@ -2726,7 +2927,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 571";
 		rLen = 0;
-		rLoc = 19463;
+		rLoc = 19341;
 		rType = 0;
 		vrLen = 1776;
 		vrLoc = 17139;
@@ -2736,7 +2937,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 128";
 		rLen = 0;
-		rLoc = 4596;
+		rLoc = 4627;
 		rType = 0;
 		vrLen = 981;
 		vrLoc = 4160;
@@ -2746,7 +2947,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 603";
 		rLen = 0;
-		rLoc = 21343;
+		rLoc = 20352;
 		rType = 0;
 		vrLen = 935;
 		vrLoc = 20653;
@@ -2756,7 +2957,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 594";
 		rLen = 0;
-		rLoc = 21065;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1397;
 		vrLoc = 19929;
@@ -2766,7 +2967,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 589";
 		rLen = 0;
-		rLoc = 21042;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1414;
 		vrLoc = 19929;
@@ -2776,7 +2977,7 @@
 		comments = "error: expected identifier before '(' token";
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		rLen = 0;
-		rLoc = 570;
+		rLoc = 566;
 		rType = 1;
 	};
 	661F4E510F914AA500E46E11 /* PBXTextBookmark */ = {
@@ -2784,7 +2985,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 581";
 		rLen = 0;
-		rLoc = 20933;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 487;
 		vrLoc = 20209;
@@ -2794,7 +2995,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 601";
 		rLen = 0;
-		rLoc = 21081;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1068;
 		vrLoc = 20408;
@@ -2804,7 +3005,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 583";
 		rLen = 0;
-		rLoc = 20366;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1107;
 		vrLoc = 20209;
@@ -2814,7 +3015,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 582";
 		rLen = 0;
-		rLoc = 20020;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1109;
 		vrLoc = 20209;
@@ -2824,7 +3025,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 583";
 		rLen = 0;
-		rLoc = 20344;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1113;
 		vrLoc = 20209;
@@ -2834,7 +3035,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 580";
 		rLen = 0;
-		rLoc = 19965;
+		rLoc = 20082;
 		rType = 0;
 		vrLen = 1146;
 		vrLoc = 20209;
@@ -2844,7 +3045,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 580";
 		rLen = 0;
-		rLoc = 19965;
+		rLoc = 20082;
 		rType = 0;
 		vrLen = 1144;
 		vrLoc = 20209;
@@ -2854,7 +3055,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 583";
 		rLen = 0;
-		rLoc = 20366;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1274;
 		vrLoc = 19929;
@@ -2864,7 +3065,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 593";
 		rLen = 0;
-		rLoc = 20932;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1148;
 		vrLoc = 20209;
@@ -2874,7 +3075,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 582";
 		rLen = 0;
-		rLoc = 20023;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1148;
 		vrLoc = 20209;
@@ -2884,7 +3085,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 584";
 		rLen = 0;
-		rLoc = 20023;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1218;
 		vrLoc = 19894;
@@ -2894,7 +3095,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 581";
 		rLen = 0;
-		rLoc = 19965;
+		rLoc = 20082;
 		rType = 0;
 		vrLen = 1134;
 		vrLoc = 20130;
@@ -2904,7 +3105,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 238";
 		rLen = 0;
-		rLoc = 8012;
+		rLoc = 9070;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 7496;
@@ -2914,7 +3115,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 585";
 		rLen = 0;
-		rLoc = 20025;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1185;
 		vrLoc = 20130;
@@ -2924,7 +3125,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 585";
 		rLen = 0;
-		rLoc = 20025;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1163;
 		vrLoc = 20130;
@@ -2934,7 +3135,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 238";
 		rLen = 0;
-		rLoc = 8012;
+		rLoc = 9070;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 7496;
@@ -2944,7 +3145,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 583";
 		rLen = 0;
-		rLoc = 20366;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1082;
 		vrLoc = 20130;
@@ -2954,7 +3155,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 583";
 		rLen = 0;
-		rLoc = 20373;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1140;
 		vrLoc = 20209;
@@ -2964,7 +3165,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 440";
 		rLen = 0;
-		rLoc = 14816;
+		rLoc = 14659;
 		rType = 0;
 		vrLen = 1465;
 		vrLoc = 14245;
@@ -2974,7 +3175,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 418";
 		rLen = 0;
-		rLoc = 14365;
+		rLoc = 14198;
 		rType = 0;
 		vrLen = 1262;
 		vrLoc = 14480;
@@ -2984,7 +3185,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 385";
 		rLen = 0;
-		rLoc = 13127;
+		rLoc = 13008;
 		rType = 0;
 		vrLen = 1289;
 		vrLoc = 12798;
@@ -2993,8 +3194,8 @@
 		isa = PBXTextBookmark;
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 460";
-		rLen = 331;
-		rLoc = 15508;
+		rLen = 0;
+		rLoc = 15768;
 		rType = 0;
 		vrLen = 968;
 		vrLoc = 15494;
@@ -3003,8 +3204,8 @@
 		isa = PBXTextBookmark;
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 509";
-		rLen = 124;
-		rLoc = 17841;
+		rLen = 115;
+		rLoc = 15953;
 		rType = 0;
 		vrLen = 1793;
 		vrLoc = 16713;
@@ -3014,7 +3215,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 566";
 		rLen = 0;
-		rLoc = 19957;
+		rLoc = 19975;
 		rType = 0;
 		vrLen = 1407;
 		vrLoc = 19565;
@@ -3024,7 +3225,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 575";
 		rLen = 0;
-		rLoc = 20485;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1241;
 		vrLoc = 19971;
@@ -3034,7 +3235,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 575";
 		rLen = 0;
-		rLoc = 20485;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1407;
 		vrLoc = 19586;
@@ -3044,7 +3245,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 569";
 		rLen = 0;
-		rLoc = 20001;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 19586;
@@ -3054,7 +3255,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 569";
 		rLen = 0;
-		rLoc = 20001;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1232;
 		vrLoc = 19565;
@@ -3063,8 +3264,8 @@
 		isa = PBXTextBookmark;
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 591";
-		rLen = 38;
-		rLoc = 21138;
+		rLen = 0;
+		rLoc = 20144;
 		rType = 0;
 		vrLen = 1412;
 		vrLoc = 17762;
@@ -3073,8 +3274,8 @@
 		isa = PBXTextBookmark;
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 591";
-		rLen = 10;
-		rLoc = 21145;
+		rLen = 0;
+		rLoc = 20144;
 		rType = 0;
 		vrLen = 1011;
 		vrLoc = 20256;
@@ -3084,7 +3285,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 590";
 		rLen = 0;
-		rLoc = 21137;
+		rLoc = 20144;
 		rType = 0;
 		vrLen = 1178;
 		vrLoc = 19844;
@@ -3094,7 +3295,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 212";
 		rLen = 50;
-		rLoc = 8026;
+		rLoc = 8014;
 		rType = 0;
 		vrLen = 1126;
 		vrLoc = 7606;
@@ -3104,7 +3305,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 580";
 		rLen = 0;
-		rLoc = 20417;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 882;
 		vrLoc = 20187;
@@ -3114,7 +3315,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 238";
 		rLen = 0;
-		rLoc = 8012;
+		rLoc = 9070;
 		rType = 0;
 		vrLen = 910;
 		vrLoc = 7531;
@@ -3124,7 +3325,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 580";
 		rLen = 0;
-		rLoc = 20417;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 882;
 		vrLoc = 20187;
@@ -3134,7 +3335,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 203";
 		rLen = 0;
-		rLoc = 7066;
+		rLoc = 8124;
 		rType = 0;
 		vrLen = 1057;
 		vrLoc = 6554;
@@ -3144,7 +3345,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 203";
 		rLen = 0;
-		rLoc = 7066;
+		rLoc = 8124;
 		rType = 0;
 		vrLen = 1057;
 		vrLoc = 6554;
@@ -3154,7 +3355,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 580";
 		rLen = 0;
-		rLoc = 20417;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 866;
 		vrLoc = 20187;
@@ -3164,7 +3365,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 203";
 		rLen = 0;
-		rLoc = 7066;
+		rLoc = 8124;
 		rType = 0;
 		vrLen = 1057;
 		vrLoc = 6554;
@@ -3174,7 +3375,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 583";
 		rLen = 0;
-		rLoc = 20363;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1254;
 		vrLoc = 19839;
@@ -3184,7 +3385,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 441";
 		rLen = 0;
-		rLoc = 14850;
+		rLoc = 14693;
 		rType = 0;
 		vrLen = 1456;
 		vrLoc = 14243;
@@ -3194,7 +3395,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 427";
 		rLen = 0;
-		rLoc = 14365;
+		rLoc = 14198;
 		rType = 0;
 		vrLen = 1442;
 		vrLoc = 14243;
@@ -3203,8 +3404,8 @@
 		isa = PBXTextBookmark;
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 572";
-		rLen = 9;
-		rLoc = 20006;
+		rLen = 0;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1344;
 		vrLoc = 19458;
@@ -3213,8 +3414,8 @@
 		isa = PBXTextBookmark;
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 572";
-		rLen = 9;
-		rLoc = 20006;
+		rLen = 0;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1344;
 		vrLoc = 19458;
@@ -3224,7 +3425,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 235";
 		rLen = 0;
-		rLoc = 8012;
+		rLoc = 9070;
 		rType = 0;
 		vrLen = 952;
 		vrLoc = 7389;
@@ -3234,7 +3435,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 235";
 		rLen = 0;
-		rLoc = 8012;
+		rLoc = 9070;
 		rType = 0;
 		vrLen = 1011;
 		vrLoc = 8878;
@@ -3243,8 +3444,8 @@
 		isa = PBXTextBookmark;
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 572";
-		rLen = 9;
-		rLoc = 20006;
+		rLen = 0;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1419;
 		vrLoc = 19408;
@@ -3254,7 +3455,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 235";
 		rLen = 0;
-		rLoc = 8012;
+		rLoc = 9070;
 		rType = 0;
 		vrLen = 1011;
 		vrLoc = 8878;
@@ -3264,7 +3465,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 574";
 		rLen = 0;
-		rLoc = 20326;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1419;
 		vrLoc = 19408;
@@ -3274,7 +3475,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 574";
 		rLen = 0;
-		rLoc = 20328;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1279;
 		vrLoc = 19839;
@@ -3284,10 +3485,2020 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 573";
 		rLen = 0;
-		rLoc = 20141;
+		rLoc = 20086;
 		rType = 0;
 		vrLen = 1474;
 		vrLoc = 14368;
+	};
+	661F4F460F92B9C400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 121";
+		rLen = 0;
+		rLoc = 4472;
+		rType = 0;
+		vrLen = 1097;
+		vrLoc = 3689;
+	};
+	661F4F470F92B9C400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 493";
+		rLen = 0;
+		rLoc = 15794;
+		rType = 0;
+		vrLen = 1261;
+		vrLoc = 16506;
+	};
+	661F4F480F92B9C400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 493";
+		rLen = 0;
+		rLoc = 15794;
+		rType = 0;
+		vrLen = 1660;
+		vrLoc = 16506;
+	};
+	661F4F490F92B9C400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 121";
+		rLen = 0;
+		rLoc = 4472;
+		rType = 0;
+		vrLen = 1097;
+		vrLoc = 3689;
+	};
+	661F4F4A0F92B9C400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 559";
+		rLen = 0;
+		rLoc = 19513;
+		rType = 0;
+		vrLen = 1285;
+		vrLoc = 19339;
+	};
+	661F4F4C0F92B9E200E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 559";
+		rLen = 0;
+		rLoc = 19513;
+		rType = 0;
+		vrLen = 1285;
+		vrLoc = 19339;
+	};
+	661F4F4F0F92BAE400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 513";
+		rLen = 0;
+		rLoc = 16067;
+		rType = 0;
+		vrLen = 1533;
+		vrLoc = 17415;
+	};
+	661F4F550F92CCA400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 254";
+		rLen = 20;
+		rLoc = 9379;
+		rType = 0;
+		vrLen = 975;
+		vrLoc = 8013;
+	};
+	661F4F560F92CCA400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 72";
+		rLen = 0;
+		rLoc = 2648;
+		rType = 0;
+		vrLen = 1077;
+		vrLoc = 2092;
+	};
+	661F4F570F92CCA400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 72";
+		rLen = 0;
+		rLoc = 2648;
+		rType = 0;
+		vrLen = 1077;
+		vrLoc = 2092;
+	};
+	661F4F580F92CCA400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 254";
+		rLen = 20;
+		rLoc = 9379;
+		rType = 0;
+		vrLen = 975;
+		vrLoc = 8013;
+	};
+	661F4F590F92CCA400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 72";
+		rLen = 0;
+		rLoc = 2640;
+		rType = 0;
+		vrLen = 1403;
+		vrLoc = 2255;
+	};
+	661F4F5D0F92E60200E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 604";
+		rLen = 0;
+		rLoc = 20143;
+		rType = 0;
+		vrLen = 1446;
+		vrLoc = 19814;
+	};
+	661F4F620F92E7A300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 32";
+		rLen = 0;
+		rLoc = 1160;
+		rType = 0;
+		vrLen = 1300;
+		vrLoc = 4471;
+	};
+	661F4F630F92E7A300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 605";
+		rLen = 0;
+		rLoc = 20144;
+		rType = 0;
+		vrLen = 1472;
+		vrLoc = 19908;
+	};
+	661F4F640F92E7A300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 605";
+		rLen = 0;
+		rLoc = 20144;
+		rType = 0;
+		vrLen = 1382;
+		vrLoc = 19998;
+	};
+	661F4F650F92E7A300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 32";
+		rLen = 0;
+		rLoc = 1160;
+		rType = 0;
+		vrLen = 1300;
+		vrLoc = 4471;
+	};
+	661F4F660F92E7A300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 559";
+		rLen = 0;
+		rLoc = 19458;
+		rType = 0;
+		vrLen = 1028;
+		vrLoc = 18878;
+	};
+	661F4F6C0F92E9B500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 32";
+		rLen = 0;
+		rLoc = 1160;
+		rType = 0;
+		vrLen = 1233;
+		vrLoc = 519;
+	};
+	661F4F6D0F92E9B500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 559";
+		rLen = 0;
+		rLoc = 19458;
+		rType = 0;
+		vrLen = 1028;
+		vrLoc = 18878;
+	};
+	661F4F6E0F92E9B500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 559";
+		rLen = 0;
+		rLoc = 19458;
+		rType = 0;
+		vrLen = 1028;
+		vrLoc = 18878;
+	};
+	661F4F6F0F92E9B500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 32";
+		rLen = 0;
+		rLoc = 1160;
+		rType = 0;
+		vrLen = 1233;
+		vrLoc = 519;
+	};
+	661F4F700F92E9B500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 475";
+		rLen = 0;
+		rLoc = 15769;
+		rType = 0;
+		vrLen = 1075;
+		vrLoc = 15876;
+	};
+	661F4F790F92EBD100E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 592";
+		rLen = 0;
+		rLoc = 20086;
+		rType = 0;
+		vrLen = 1149;
+		vrLoc = 20474;
+	};
+	661F4F7C0F92ED3200E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 582";
+		rLen = 0;
+		rLoc = 20086;
+		rType = 0;
+		vrLen = 1292;
+		vrLoc = 19883;
+	};
+	661F4F7D0F92ED3200E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 32";
+		rLen = 0;
+		rLoc = 1160;
+		rType = 0;
+		vrLen = 1233;
+		vrLoc = 519;
+	};
+	661F4F7E0F92ED3200E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 582";
+		rLen = 0;
+		rLoc = 20086;
+		rType = 0;
+		vrLen = 1292;
+		vrLoc = 19883;
+	};
+	661F4F7F0F92ED3200E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 32";
+		rLen = 0;
+		rLoc = 1160;
+		rType = 0;
+		vrLen = 1233;
+		vrLoc = 519;
+	};
+	661F4F800F92ED3200E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 582";
+		rLen = 0;
+		rLoc = 20086;
+		rType = 0;
+		vrLen = 1292;
+		vrLoc = 19883;
+	};
+	661F4F810F92ED3200E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 32";
+		rLen = 6;
+		rLoc = 1160;
+		rType = 0;
+		vrLen = 1233;
+		vrLoc = 519;
+	};
+	661F4F830F92ED5000E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 33";
+		rLen = 0;
+		rLoc = 1195;
+		rType = 0;
+		vrLen = 1233;
+		vrLoc = 519;
+	};
+	661F4F840F92ED5000E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 582";
+		rLen = 0;
+		rLoc = 20086;
+		rType = 0;
+		vrLen = 1292;
+		vrLoc = 19883;
+	};
+	661F4F850F92ED5000E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 33";
+		rLen = 0;
+		rLoc = 1195;
+		rType = 0;
+		vrLen = 1233;
+		vrLoc = 519;
+	};
+	661F4F860F92ED5000E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 582";
+		rLen = 0;
+		rLoc = 20086;
+		rType = 0;
+		vrLen = 1350;
+		vrLoc = 20023;
+	};
+	661F4F880F92ED6500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 563";
+		rLen = 0;
+		rLoc = 19427;
+		rType = 0;
+		vrLen = 1103;
+		vrLoc = 19352;
+	};
+	661F4F930F92EF1300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 248";
+		rLen = 0;
+		rLoc = 9306;
+		rType = 0;
+		vrLen = 999;
+		vrLoc = 8063;
+	};
+	661F4F940F92EF1300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 420";
+		rLen = 0;
+		rLoc = 14180;
+		rType = 0;
+		vrLen = 1508;
+		vrLoc = 14053;
+	};
+	661F4F950F92EF1300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 420";
+		rLen = 0;
+		rLoc = 14180;
+		rType = 0;
+		vrLen = 1511;
+		vrLoc = 14053;
+	};
+	661F4F960F92EF1300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 248";
+		rLen = 0;
+		rLoc = 9306;
+		rType = 0;
+		vrLen = 999;
+		vrLoc = 8063;
+	};
+	661F4F970F92EF1300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 584";
+		rLen = 0;
+		rLoc = 20086;
+		rType = 0;
+		vrLen = 1295;
+		vrLoc = 19552;
+	};
+	661F4FA30F92F3D400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 250";
+		rLen = 0;
+		rLoc = 9334;
+		rType = 0;
+		vrLen = 1001;
+		vrLoc = 8063;
+	};
+	661F4FA40F92F3D400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 476";
+		rLen = 0;
+		rLoc = 15768;
+		rType = 0;
+		vrLen = 1317;
+		vrLoc = 15784;
+	};
+	661F4FA50F92F3D400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 476";
+		rLen = 0;
+		rLoc = 15768;
+		rType = 0;
+		vrLen = 1317;
+		vrLoc = 15784;
+	};
+	661F4FA60F92F3D400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 250";
+		rLen = 0;
+		rLoc = 9334;
+		rType = 0;
+		vrLen = 1001;
+		vrLoc = 8063;
+	};
+	661F4FA70F92F3D400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 531";
+		rLen = 0;
+		rLoc = 18554;
+		rType = 0;
+		vrLen = 1659;
+		vrLoc = 17734;
+	};
+	661F4FAA0F92FFEE00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 613";
+		rLen = 0;
+		rLoc = 20246;
+		rType = 0;
+		vrLen = 1040;
+		vrLoc = 21271;
+	};
+	661F4FAD0F93013500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 32";
+		rLen = 0;
+		rLoc = 1164;
+		rType = 0;
+		vrLen = 1269;
+		vrLoc = 317;
+	};
+	661F4FAE0F93013500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 489";
+		rLen = 0;
+		rLoc = 15794;
+		rType = 0;
+		vrLen = 922;
+		vrLoc = 16192;
+	};
+	661F4FAF0F93013500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 489";
+		rLen = 0;
+		rLoc = 15794;
+		rType = 0;
+		vrLen = 1447;
+		vrLoc = 16192;
+	};
+	661F4FB00F93013500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 32";
+		rLen = 0;
+		rLoc = 1162;
+		rType = 0;
+		vrLen = 1268;
+		vrLoc = 317;
+	};
+	661F4FB10F93013500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 489";
+		rLen = 0;
+		rLoc = 15794;
+		rType = 0;
+		vrLen = 1447;
+		vrLoc = 16192;
+	};
+	661F4FB20F93013500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 32";
+		rLen = 0;
+		rLoc = 1164;
+		rType = 0;
+		vrLen = 1269;
+		vrLoc = 317;
+	};
+	661F4FB30F93013500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 489";
+		rLen = 0;
+		rLoc = 15794;
+		rType = 0;
+		vrLen = 1449;
+		vrLoc = 16192;
+	};
+	661F4FB80F93033B00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 525";
+		rLen = 0;
+		rLoc = 18554;
+		rType = 0;
+		vrLen = 1651;
+		vrLoc = 17614;
+	};
+	661F4FBB0F93046D00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 519";
+		rLen = 0;
+		rLoc = 18487;
+		rType = 0;
+		vrLen = 1366;
+		vrLoc = 18206;
+	};
+	661F4FBE0F93C4B600E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 450";
+		rLen = 0;
+		rLoc = 15570;
+		rType = 0;
+		vrLen = 1463;
+		vrLoc = 14996;
+	};
+	661F4FC00F93C6C400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 454";
+		rLen = 0;
+		rLoc = 15614;
+		rType = 0;
+		vrLen = 1463;
+		vrLoc = 14996;
+	};
+	661F4FC20F93C7BD00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 442";
+		rLen = 0;
+		rLoc = 15380;
+		rType = 0;
+		vrLen = 1474;
+		vrLoc = 14996;
+	};
+	661F4FC60F93C90100E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 442";
+		rLen = 0;
+		rLoc = 15380;
+		rType = 0;
+		vrLen = 1617;
+		vrLoc = 14417;
+	};
+	661F4FC80F93C98900E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 445";
+		rLen = 0;
+		rLoc = 15451;
+		rType = 0;
+		vrLen = 1617;
+		vrLoc = 14417;
+	};
+	661F4FCB0F93CA0900E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 445";
+		rLen = 0;
+		rLoc = 15451;
+		rType = 0;
+		vrLen = 1617;
+		vrLoc = 14417;
+	};
+	661F4FCE0F941B1D00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 959";
+		rLen = 0;
+		rLoc = 33717;
+		rType = 0;
+		vrLen = 1095;
+		vrLoc = 34383;
+	};
+	661F4FD60F9431EB00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 490";
+		rLen = 0;
+		rLoc = 15949;
+		rType = 0;
+		vrLen = 1783;
+		vrLoc = 16466;
+	};
+	661F4FE40F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 219BA5CA05EE680D00AA3E64 /* ApplePS2ALPSGlidePoint.h */;
+		name = "ApplePS2ALPSGlidePoint.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1477;
+		vrLoc = 446;
+	};
+	661F4FE50F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 219BA5C905EE680D00AA3E64 /* ApplePS2ALPSGlidePoint.cpp */;
+		name = "ApplePS2ALPSGlidePoint.cpp: 417";
+		rLen = 23;
+		rLoc = 12972;
+		rType = 0;
+		vrLen = 1776;
+		vrLoc = 2860;
+	};
+	661F4FE60F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 128";
+		rLen = 0;
+		rLoc = 4627;
+		rType = 0;
+		vrLen = 899;
+		vrLoc = 4388;
+	};
+	661F4FE70F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 496";
+		rLen = 0;
+		rLoc = 16993;
+		rType = 0;
+		vrLen = 1757;
+		vrLoc = 16888;
+	};
+	661F4FE80F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 496";
+		rLen = 0;
+		rLoc = 16993;
+		rType = 0;
+		vrLen = 1990;
+		vrLoc = 16515;
+	};
+	661F4FE90F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 219BA5CA05EE680D00AA3E64 /* ApplePS2ALPSGlidePoint.h */;
+		name = "ApplePS2ALPSGlidePoint.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1529;
+		vrLoc = 446;
+	};
+	661F4FEA0F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 496";
+		rLen = 0;
+		rLoc = 16993;
+		rType = 0;
+		vrLen = 1990;
+		vrLoc = 16515;
+	};
+	661F4FEB0F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 128";
+		rLen = 0;
+		rLoc = 4627;
+		rType = 0;
+		vrLen = 940;
+		vrLoc = 4319;
+	};
+	661F4FEC0F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 496";
+		rLen = 0;
+		rLoc = 16993;
+		rType = 0;
+		vrLen = 1757;
+		vrLoc = 16888;
+	};
+	661F4FED0F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 128";
+		rLen = 0;
+		rLoc = 4627;
+		rType = 0;
+		vrLen = 906;
+		vrLoc = 4319;
+	};
+	661F4FEE0F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 219BA5CA05EE680D00AA3E64 /* ApplePS2ALPSGlidePoint.h */;
+		name = "ApplePS2ALPSGlidePoint.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1477;
+		vrLoc = 446;
+	};
+	661F4FEF0F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 219BA5C905EE680D00AA3E64 /* ApplePS2ALPSGlidePoint.cpp */;
+		name = "ApplePS2ALPSGlidePoint.cpp: 417";
+		rLen = 23;
+		rLoc = 12972;
+		rType = 0;
+		vrLen = 1776;
+		vrLoc = 2860;
+	};
+	661F4FF00F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 496";
+		rLen = 0;
+		rLoc = 16993;
+		rType = 0;
+		vrLen = 1757;
+		vrLoc = 16888;
+	};
+	661F4FF10F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 219BA5CA05EE680D00AA3E64 /* ApplePS2ALPSGlidePoint.h */;
+		name = "ApplePS2ALPSGlidePoint.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1477;
+		vrLoc = 446;
+	};
+	661F4FF20F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 219BA5C905EE680D00AA3E64 /* ApplePS2ALPSGlidePoint.cpp */;
+		name = "ApplePS2ALPSGlidePoint.cpp: 417";
+		rLen = 23;
+		rLoc = 12972;
+		rType = 0;
+		vrLen = 1776;
+		vrLoc = 2860;
+	};
+	661F4FF30F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 128";
+		rLen = 0;
+		rLoc = 4627;
+		rType = 0;
+		vrLen = 906;
+		vrLoc = 4319;
+	};
+	661F4FF40F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 496";
+		rLen = 0;
+		rLoc = 16993;
+		rType = 0;
+		vrLen = 1757;
+		vrLoc = 16888;
+	};
+	661F4FF50F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 128";
+		rLen = 0;
+		rLoc = 4627;
+		rType = 0;
+		vrLen = 929;
+		vrLoc = 4388;
+	};
+	661F4FF60F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 496";
+		rLen = 0;
+		rLoc = 16993;
+		rType = 0;
+		vrLen = 1757;
+		vrLoc = 16888;
+	};
+	661F4FF70F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 128";
+		rLen = 0;
+		rLoc = 4627;
+		rType = 0;
+		vrLen = 899;
+		vrLoc = 4388;
+	};
+	661F4FF80F94348700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 514";
+		rLen = 0;
+		rLoc = 18810;
+		rType = 0;
+		vrLen = 1710;
+		vrLoc = 16963;
+	};
+	661F4FFC0F9434F300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 496";
+		rLen = 0;
+		rLoc = 16993;
+		rType = 0;
+		vrLen = 1732;
+		vrLoc = 16963;
+	};
+	661F4FFE0F9435B100E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 496";
+		rLen = 0;
+		rLoc = 16993;
+		rType = 0;
+		vrLen = 1732;
+		vrLoc = 16963;
+	};
+	661F50030F9436F600E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 514";
+		rLen = 0;
+		rLoc = 18810;
+		rType = 0;
+		vrLen = 1755;
+		vrLoc = 16963;
+	};
+	661F50060F9437CE00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 498";
+		rLen = 0;
+		rLoc = 17438;
+		rType = 0;
+		vrLen = 1431;
+		vrLoc = 19259;
+	};
+	661F50080F9438E300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 122";
+		rLen = 28;
+		rLoc = 4473;
+		rType = 0;
+		vrLen = 899;
+		vrLoc = 4388;
+	};
+	661F50090F9438E300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 498";
+		rLen = 0;
+		rLoc = 17438;
+		rType = 0;
+		vrLen = 1430;
+		vrLoc = 19259;
+	};
+	661F500A0F9438E300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 498";
+		rLen = 0;
+		rLoc = 17438;
+		rType = 0;
+		vrLen = 1431;
+		vrLoc = 19259;
+	};
+	661F500B0F9438E300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 122";
+		rLen = 28;
+		rLoc = 4473;
+		rType = 0;
+		vrLen = 899;
+		vrLoc = 4388;
+	};
+	661F500C0F9438E300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 591";
+		rLen = 0;
+		rLoc = 20221;
+		rType = 0;
+		vrLen = 873;
+		vrLoc = 20325;
+	};
+	661F500F0F943AD500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 566";
+		rLen = 0;
+		rLoc = 20086;
+		rType = 0;
+		vrLen = 1975;
+		vrLoc = 16602;
+	};
+	661F50120F94E26B00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 490";
+		rLen = 0;
+		rLoc = 16475;
+		rType = 0;
+		vrLen = 1782;
+		vrLoc = 15664;
+	};
+	661F50150F94E35300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 511";
+		rLen = 0;
+		rLoc = 18687;
+		rType = 0;
+		vrLen = 1061;
+		vrLoc = 20086;
+	};
+	661F50190F94EF0400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 469";
+		rLen = 0;
+		rLoc = 15794;
+		rType = 0;
+		vrLen = 1603;
+		vrLoc = 13745;
+	};
+	661F501A0F94EF0400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 122";
+		rLen = 28;
+		rLoc = 4473;
+		rType = 0;
+		vrLen = 899;
+		vrLoc = 4388;
+	};
+	661F501B0F94EF0400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 469";
+		rLen = 0;
+		rLoc = 15794;
+		rType = 0;
+		vrLen = 1603;
+		vrLoc = 13745;
+	};
+	661F501C0F94EF0400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 258";
+		rLen = 0;
+		rLoc = 9289;
+		rType = 0;
+		vrLen = 821;
+		vrLoc = 7920;
+	};
+	661F501E0F94F2FF00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 258";
+		rLen = 0;
+		rLoc = 9289;
+		rType = 0;
+		vrLen = 1287;
+		vrLoc = 4780;
+	};
+	661F501F0F94F2FF00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 469";
+		rLen = 0;
+		rLoc = 15794;
+		rType = 0;
+		vrLen = 1540;
+		vrLoc = 13808;
+	};
+	661F50200F94F2FF00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 258";
+		rLen = 0;
+		rLoc = 9289;
+		rType = 0;
+		vrLen = 1287;
+		vrLoc = 4780;
+	};
+	661F50210F94F2FF00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 498";
+		rLen = 0;
+		rLoc = 17438;
+		rType = 0;
+		vrLen = 1835;
+		vrLoc = 15666;
+	};
+	661F50260F94F4CA00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 469";
+		rLen = 0;
+		rLoc = 15794;
+		rType = 0;
+		vrLen = 1780;
+		vrLoc = 16924;
+	};
+	661F502A0F94F59300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 474";
+		rLen = 0;
+		rLoc = 15949;
+		rType = 0;
+		vrLen = 1878;
+		vrLoc = 15704;
+	};
+	661F502E0F94F77600E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 33";
+		rLen = 0;
+		rLoc = 1192;
+		rType = 0;
+		vrLen = 1407;
+		vrLoc = 0;
+	};
+	661F502F0F94F77600E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 469";
+		rLen = 0;
+		rLoc = 15794;
+		rType = 0;
+		vrLen = 1782;
+		vrLoc = 15664;
+	};
+	661F50300F94F77600E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 469";
+		rLen = 0;
+		rLoc = 15794;
+		rType = 0;
+		vrLen = 1782;
+		vrLoc = 15664;
+	};
+	661F50310F94F77600E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 33";
+		rLen = 0;
+		rLoc = 1192;
+		rType = 0;
+		vrLen = 1407;
+		vrLoc = 0;
+	};
+	661F50320F94F77600E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 554";
+		rLen = 0;
+		rLoc = 19843;
+		rType = 0;
+		vrLen = 2130;
+		vrLoc = 16382;
+	};
+	661F50350F94F8F000E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 469";
+		rLen = 0;
+		rLoc = 15794;
+		rType = 0;
+		vrLen = 1734;
+		vrLoc = 15554;
+	};
+	661F50390F94FD8900E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 570";
+		rLen = 0;
+		rLoc = 20086;
+		rType = 0;
+		vrLen = 1337;
+		vrLoc = 19236;
+	};
+	661F503C0F94FFF600E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 505";
+		rLen = 0;
+		rLoc = 17588;
+		rType = 0;
+		vrLen = 1760;
+		vrLoc = 16984;
+	};
+	661F503F0F9500C700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 469";
+		rLen = 0;
+		rLoc = 15794;
+		rType = 0;
+		vrLen = 1442;
+		vrLoc = 15663;
+	};
+	661F50420F95015D00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 469";
+		rLen = 0;
+		rLoc = 15794;
+		rType = 0;
+		vrLen = 1436;
+		vrLoc = 15554;
+	};
+	661F50490F9502E100E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 517";
+		rLen = 0;
+		rLoc = 18554;
+		rType = 0;
+		vrLen = 1442;
+		vrLoc = 17392;
+	};
+	661F504E0F95089D00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 580";
+		rLen = 0;
+		rLoc = 20086;
+		rType = 0;
+		vrLen = 1306;
+		vrLoc = 19725;
+	};
+	661F504F0F95089D00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 33";
+		rLen = 0;
+		rLoc = 1192;
+		rType = 0;
+		vrLen = 1314;
+		vrLoc = 245;
+	};
+	661F50500F95089D00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 516";
+		rLen = 0;
+		rLoc = 18554;
+		rType = 0;
+		vrLen = 1381;
+		vrLoc = 17392;
+	};
+	661F50510F95089D00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 33";
+		rLen = 0;
+		rLoc = 1192;
+		rType = 0;
+		vrLen = 1314;
+		vrLoc = 245;
+	};
+	661F50520F95089D00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 580";
+		rLen = 0;
+		rLoc = 20086;
+		rType = 0;
+		vrLen = 1306;
+		vrLoc = 19725;
+	};
+	661F50530F95089D00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 33";
+		rLen = 0;
+		rLoc = 1195;
+		rType = 0;
+		vrLen = 1232;
+		vrLoc = 446;
+	};
+	661F50590F950B7F00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 32";
+		rLen = 0;
+		rLoc = 1160;
+		rType = 0;
+		vrLen = 1495;
+		vrLoc = 1111;
+	};
+	661F505A0F950B7F00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 580";
+		rLen = 0;
+		rLoc = 20086;
+		rType = 0;
+		vrLen = 1306;
+		vrLoc = 19725;
+	};
+	661F505B0F950B7F00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 32";
+		rLen = 0;
+		rLoc = 1160;
+		rType = 0;
+		vrLen = 1495;
+		vrLoc = 1111;
+	};
+	661F505C0F950B7F00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 516";
+		rLen = 0;
+		rLoc = 17493;
+		rType = 0;
+		vrLen = 1235;
+		vrLoc = 17503;
+	};
+	661F505F0F950C9A00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 582";
+		rLen = 0;
+		rLoc = 20086;
+		rType = 0;
+		vrLen = 1231;
+		vrLoc = 19812;
+	};
+	661F50620F950D1600E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 583";
+		rLen = 0;
+		rLoc = 20086;
+		rType = 0;
+		vrLen = 1228;
+		vrLoc = 19896;
+	};
+	661F50670F950F7F00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 593";
+		rLen = 0;
+		rLoc = 20086;
+		rType = 0;
+		vrLen = 1444;
+		vrLoc = 19616;
+	};
+	661F50690F95117B00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 563";
+		rLen = 0;
+		rLoc = 19479;
+		rType = 0;
+		vrLen = 1500;
+		vrLoc = 15408;
+	};
+	661F506C0F95124300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 518";
+		rLen = 0;
+		rLoc = 17632;
+		rType = 0;
+		vrLen = 1711;
+		vrLoc = 16911;
+	};
+	661F506E0F9512BD00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 518";
+		rLen = 0;
+		rLoc = 17632;
+		rType = 0;
+		vrLen = 1430;
+		vrLoc = 15408;
+	};
+	661F50720F95137300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 524";
+		rLen = 0;
+		rLoc = 18554;
+		rType = 0;
+		vrLen = 1226;
+		vrLoc = 17818;
+	};
+	661F50740F9513FE00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 518";
+		rLen = 0;
+		rLoc = 17632;
+		rType = 0;
+		vrLen = 1211;
+		vrLoc = 17760;
+	};
+	661F50760F9514EA00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 523";
+		rLen = 0;
+		rLoc = 18554;
+		rType = 0;
+		vrLen = 1202;
+		vrLoc = 17754;
+	};
+	661F507B0F95169400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 521";
+		rLen = 0;
+		rLoc = 18554;
+		rType = 0;
+		vrLen = 1313;
+		vrLoc = 17472;
+	};
+	661F507E0F95176300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 526";
+		rLen = 0;
+		rLoc = 18554;
+		rType = 0;
+		vrLen = 1194;
+		vrLoc = 17472;
+	};
+	661F50850F951A0B00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 519";
+		rLen = 0;
+		rLoc = 17646;
+		rType = 0;
+		vrLen = 1199;
+		vrLoc = 18201;
+	};
+	661F50880F951B0700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 524";
+		rLen = 0;
+		rLoc = 18028;
+		rType = 0;
+		vrLen = 1199;
+		vrLoc = 18201;
+	};
+	661F50920F951C9200E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 524";
+		rLen = 0;
+		rLoc = 18028;
+		rType = 0;
+		vrLen = 1199;
+		vrLoc = 18201;
+	};
+	661F50960F951EE900E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 527";
+		rLen = 14;
+		rLoc = 18147;
+		rType = 0;
+		vrLen = 1211;
+		vrLoc = 18176;
+	};
+	661F509A0F951F7F00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 517";
+		rLen = 0;
+		rLoc = 17583;
+		rType = 0;
+		vrLen = 1541;
+		vrLoc = 17607;
+	};
+	661F509D0F954C7600E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 518";
+		rLen = 0;
+		rLoc = 17473;
+		rType = 0;
+		vrLen = 1581;
+		vrLoc = 17729;
+	};
+	661F50A00F954DAF00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 512";
+		rLen = 0;
+		rLoc = 17133;
+		rType = 0;
+		vrLen = 1754;
+		vrLoc = 16911;
+	};
+	661F50A10F954F1B00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 512";
+		rLen = 0;
+		rLoc = 17133;
+		rType = 0;
+		vrLen = 1754;
+		vrLoc = 16911;
+	};
+	661F50A20F954F1B00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 32";
+		rLen = 0;
+		rLoc = 1160;
+		rType = 0;
+		vrLen = 1495;
+		vrLoc = 1111;
+	};
+	661F50A30F954F1B00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 512";
+		rLen = 0;
+		rLoc = 17133;
+		rType = 0;
+		vrLen = 1754;
+		vrLoc = 16911;
+	};
+	661F50A40F954F1B00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 198";
+		rLen = 16;
+		rLoc = 6706;
+		rType = 0;
+		vrLen = 1144;
+		vrLoc = 6535;
+	};
+	661F50A60F954FDC00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 201";
+		rLen = 0;
+		rLoc = 6700;
+		rType = 0;
+		vrLen = 1148;
+		vrLoc = 6544;
+	};
+	661F50A90F95506400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 203";
+		rLen = 0;
+		rLoc = 6781;
+		rType = 0;
+		vrLen = 1166;
+		vrLoc = 6544;
+	};
+	661F50AD0F95583C00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 201";
+		rLen = 16;
+		rLoc = 6706;
+		rType = 0;
+		vrLen = 1166;
+		vrLoc = 6544;
+	};
+	661F50AE0F95583C00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 512";
+		rLen = 0;
+		rLoc = 17133;
+		rType = 0;
+		vrLen = 1754;
+		vrLoc = 16911;
+	};
+	661F50AF0F95583C00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 201";
+		rLen = 16;
+		rLoc = 6706;
+		rType = 0;
+		vrLen = 1166;
+		vrLoc = 6544;
+	};
+	661F50B00F95583C00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 450";
+		rLen = 0;
+		rLoc = 15570;
+		rType = 0;
+		vrLen = 1426;
+		vrLoc = 14768;
+	};
+	661F50B20F95687C00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 451";
+		rLen = 0;
+		rLoc = 15570;
+		rType = 0;
+		vrLen = 1263;
+		vrLoc = 14997;
+	};
+	661F50B30F95695300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 201";
+		rLen = 16;
+		rLoc = 6706;
+		rType = 0;
+		vrLen = 1155;
+		vrLoc = 5831;
+	};
+	661F50B40F95695300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 449";
+		rLen = 0;
+		rLoc = 15535;
+		rType = 0;
+		vrLen = 1381;
+		vrLoc = 15107;
+	};
+	661F50B50F95695300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 449";
+		rLen = 37;
+		rLoc = 15532;
+		rType = 0;
+		vrLen = 1457;
+		vrLoc = 15107;
+	};
+	661F50B60F95695300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 201";
+		rLen = 16;
+		rLoc = 6706;
+		rType = 0;
+		vrLen = 1166;
+		vrLoc = 6544;
+	};
+	661F50B70F95695300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 449";
+		rLen = 0;
+		rLoc = 15535;
+		rType = 0;
+		vrLen = 1381;
+		vrLoc = 15107;
+	};
+	661F50B80F95695300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 201";
+		rLen = 16;
+		rLoc = 6706;
+		rType = 0;
+		vrLen = 1155;
+		vrLoc = 5831;
+	};
+	661F50B90F95695300E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 449";
+		rLen = 0;
+		rLoc = 15535;
+		rType = 0;
+		vrLen = 1381;
+		vrLoc = 15107;
+	};
+	661F50BC0F956B5000E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 449";
+		rLen = 0;
+		rLoc = 15535;
+		rType = 0;
+		vrLen = 1336;
+		vrLoc = 15373;
+	};
+	661F50BD0F956B5000E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 449";
+		rLen = 0;
+		rLoc = 15535;
+		rType = 0;
+		vrLen = 1336;
+		vrLoc = 15373;
+	};
+	661F50BE0F956B5000E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 227";
+		rLen = 0;
+		rLoc = 7379;
+		rType = 0;
+		vrLen = 1110;
+		vrLoc = 5831;
+	};
+	661F50BF0F956BD600E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 449";
+		rLen = 0;
+		rLoc = 15535;
+		rType = 0;
+		vrLen = 1360;
+		vrLoc = 15348;
+	};
+	661F50C00F956BD600E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 227";
+		rLen = 0;
+		rLoc = 7379;
+		rType = 0;
+		vrLen = 1110;
+		vrLoc = 5831;
+	};
+	661F50C10F956BD600E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 227";
+		rLen = 0;
+		rLoc = 7379;
+		rType = 0;
+		vrLen = 1110;
+		vrLoc = 5831;
+	};
+	661F50C20F956BD600E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 449";
+		rLen = 0;
+		rLoc = 15535;
+		rType = 0;
+		vrLen = 1360;
+		vrLoc = 15348;
+	};
+	661F50C30F956BD600E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 233";
+		rLen = 0;
+		rLoc = 7483;
+		rType = 0;
+		vrLen = 1213;
+		vrLoc = 6250;
+	};
+	661F50C40F956C2900E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 234";
+		rLen = 0;
+		rLoc = 7486;
+		rType = 0;
+		vrLen = 820;
+		vrLoc = 7460;
+	};
+	661F50C50F956C4D00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 234";
+		rLen = 0;
+		rLoc = 7496;
+		rType = 0;
+		vrLen = 1044;
+		vrLoc = 6560;
+	};
+	661F50C60F956C8200E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 236";
+		rLen = 0;
+		rLoc = 7525;
+		rType = 0;
+		vrLen = 1155;
+		vrLoc = 6102;
+	};
+	661F50C70F956CD900E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 165";
+		rLen = 0;
+		rLoc = 5566;
+		rType = 0;
+		vrLen = 834;
+		vrLoc = 7514;
+	};
+	661F50C90F956D9B00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 224";
+		rLen = 12;
+		rLoc = 7328;
+		rType = 0;
+		vrLen = 988;
+		vrLoc = 6701;
+	};
+	661F50CA0F956D9B00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 449";
+		rLen = 0;
+		rLoc = 15535;
+		rType = 0;
+		vrLen = 1360;
+		vrLoc = 15348;
+	};
+	661F50CB0F956D9B00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 224";
+		rLen = 12;
+		rLoc = 7328;
+		rType = 0;
+		vrLen = 988;
+		vrLoc = 6701;
+	};
+	661F50CC0F956D9B00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 451";
+		rLen = 0;
+		rLoc = 15570;
+		rType = 0;
+		vrLen = 1322;
+		vrLoc = 15348;
+	};
+	661F50CD0F956DC700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 452";
+		rLen = 0;
+		rLoc = 15570;
+		rType = 0;
+		vrLen = 1313;
+		vrLoc = 14967;
+	};
+	661F50D00F956E9500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 224";
+		rLen = 12;
+		rLoc = 7328;
+		rType = 0;
+		vrLen = 805;
+		vrLoc = 7118;
+	};
+	661F50D10F956E9500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 452";
+		rLen = 0;
+		rLoc = 15570;
+		rType = 0;
+		vrLen = 1428;
+		vrLoc = 15109;
+	};
+	661F50D20F956E9500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 452";
+		rLen = 0;
+		rLoc = 15570;
+		rType = 0;
+		vrLen = 1428;
+		vrLoc = 15109;
+	};
+	661F50D30F956E9500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 224";
+		rLen = 12;
+		rLoc = 7328;
+		rType = 0;
+		vrLen = 805;
+		vrLoc = 7118;
+	};
+	661F50D40F956E9500E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 453";
+		rLen = 0;
+		rLoc = 15571;
+		rType = 0;
+		vrLen = 1313;
+		vrLoc = 14967;
+	};
+	661F50D70F956F1F00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 453";
+		rLen = 0;
+		rLoc = 15571;
+		rType = 0;
+		vrLen = 1313;
+		vrLoc = 14967;
+	};
+	661F50D90F956FA400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 456";
+		rLen = 0;
+		rLoc = 15571;
+		rType = 0;
+		vrLen = 1256;
+		vrLoc = 14967;
+	};
+	661F50DB0F957C4B00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 478";
+		rLen = 0;
+		rLoc = 15822;
+		rType = 0;
+		vrLen = 1772;
+		vrLoc = 15829;
+	};
+	661F50DD0F957D8700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 306";
+		rLen = 0;
+		rLoc = 9334;
+		rType = 0;
+		vrLen = 840;
+		vrLoc = 8900;
+	};
+	661F50DE0F957D8700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 466";
+		rLen = 0;
+		rLoc = 15771;
+		rType = 0;
+		vrLen = 1814;
+		vrLoc = 15865;
+	};
+	661F50DF0F957D8700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 466";
+		rLen = 0;
+		rLoc = 15771;
+		rType = 0;
+		vrLen = 1814;
+		vrLoc = 15865;
+	};
+	661F50E00F957D8700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 306";
+		rLen = 0;
+		rLoc = 9334;
+		rType = 0;
+		vrLen = 840;
+		vrLoc = 8900;
+	};
+	661F50E10F957D8700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 466";
+		rLen = 0;
+		rLoc = 15771;
+		rType = 0;
+		vrLen = 1814;
+		vrLoc = 15865;
+	};
+	661F50E20F957EE400E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 539";
+		rLen = 0;
+		rLoc = 18902;
+		rType = 0;
+		vrLen = 1347;
+		vrLoc = 17701;
+	};
+	661F50E90F9580EF00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 236";
+		rLen = 0;
+		rLoc = 7611;
+		rType = 0;
+		vrLen = 872;
+		vrLoc = 7214;
+	};
+	661F50EA0F9580EF00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 486";
+		rLen = 0;
+		rLoc = 16833;
+		rType = 0;
+		vrLen = 1100;
+		vrLoc = 19094;
+	};
+	661F50EB0F9580EF00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 486";
+		rLen = 0;
+		rLoc = 16833;
+		rType = 0;
+		vrLen = 1110;
+		vrLoc = 19094;
+	};
+	661F50EC0F9580EF00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
+		name = "ApplePS2SynapticsTouchPad.h: 236";
+		rLen = 0;
+		rLoc = 7611;
+		rType = 0;
+		vrLen = 872;
+		vrLoc = 7214;
+	};
+	661F50ED0F9580EF00E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 504";
+		rLen = 0;
+		rLoc = 17632;
+		rType = 0;
+		vrLen = 1365;
+		vrLoc = 18026;
+	};
+	661F50FB0F95840700E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 635";
+		rLen = 0;
+		rLoc = 21707;
+		rType = 0;
+		vrLen = 1234;
+		vrLoc = 21498;
+	};
+	661F50FF0F9584F900E46E11 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
+		name = "ApplePS2SynapticsTouchPad.cpp: 570";
+		rLen = 0;
+		rLoc = 20143;
+		rType = 0;
+		vrLen = 1046;
+		vrLoc = 19336;
 	};
 	661FF2B20F7ED11E00535397 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -3378,7 +5589,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 883";
 		rLen = 0;
-		rLoc = 33613;
+		rLoc = 32619;
 		rType = 0;
 		vrLen = 1653;
 		vrLoc = 30477;
@@ -3398,7 +5609,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 452";
 		rLen = 0;
-		rLoc = 15100;
+		rLoc = 15291;
 		rType = 0;
 		vrLen = 1008;
 		vrLoc = 15124;
@@ -3408,7 +5619,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 119";
 		rLen = 98;
-		rLoc = 4444;
+		rLoc = 4473;
 		rType = 0;
 		vrLen = 1072;
 		vrLoc = 3616;
@@ -3418,7 +5629,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 512";
 		rLen = 0;
-		rLoc = 18997;
+		rLoc = 18907;
 		rType = 0;
 		vrLen = 1340;
 		vrLoc = 16881;
@@ -3428,7 +5639,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 88";
 		rLen = 26;
-		rLoc = 3462;
+		rLoc = 3464;
 		rType = 0;
 		vrLen = 1205;
 		vrLoc = 2772;
@@ -3438,7 +5649,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 513";
 		rLen = 0;
-		rLoc = 18461;
+		rLoc = 16612;
 		rType = 0;
 		vrLen = 1232;
 		vrLoc = 16902;
@@ -3448,7 +5659,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 82";
 		rLen = 26;
-		rLoc = 3256;
+		rLoc = 3258;
 		rType = 0;
 		vrLen = 1205;
 		vrLoc = 2772;
@@ -3458,7 +5669,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 513";
 		rLen = 0;
-		rLoc = 18997;
+		rLoc = 18907;
 		rType = 0;
 		vrLen = 1230;
 		vrLoc = 16903;
@@ -3468,7 +5679,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 88";
 		rLen = 26;
-		rLoc = 3462;
+		rLoc = 3464;
 		rType = 0;
 		vrLen = 1151;
 		vrLoc = 2772;
@@ -3478,7 +5689,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 512";
 		rLen = 0;
-		rLoc = 18325;
+		rLoc = 16476;
 		rType = 0;
 		vrLen = 1285;
 		vrLoc = 16693;
@@ -3488,7 +5699,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 85";
 		rLen = 10;
-		rLoc = 3374;
+		rLoc = 3376;
 		rType = 0;
 		vrLen = 1148;
 		vrLoc = 2772;
@@ -3498,7 +5709,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 511";
 		rLen = 0;
-		rLoc = 18254;
+		rLoc = 16355;
 		rType = 0;
 		vrLen = 1412;
 		vrLoc = 16785;
@@ -3508,7 +5719,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 85";
 		rLen = 10;
-		rLoc = 3374;
+		rLoc = 3376;
 		rType = 0;
 		vrLen = 1147;
 		vrLoc = 2718;
@@ -3518,7 +5729,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 459";
 		rLen = 0;
-		rLoc = 15279;
+		rLoc = 15481;
 		rType = 0;
 		vrLen = 897;
 		vrLoc = 15233;
@@ -3528,7 +5739,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 165";
 		rLen = 16;
-		rLoc = 5974;
+		rLoc = 6112;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 5611;
@@ -3538,7 +5749,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 459";
 		rLen = 0;
-		rLoc = 15279;
+		rLoc = 15481;
 		rType = 0;
 		vrLen = 938;
 		vrLoc = 15233;
@@ -3548,7 +5759,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 165";
 		rLen = 16;
-		rLoc = 5974;
+		rLoc = 6112;
 		rType = 0;
 		vrLen = 948;
 		vrLoc = 5611;
@@ -3558,7 +5769,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 434";
 		rLen = 0;
-		rLoc = 14924;
+		rLoc = 15114;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 13113;
@@ -3568,7 +5779,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 165";
 		rLen = 16;
-		rLoc = 5974;
+		rLoc = 6112;
 		rType = 0;
 		vrLen = 787;
 		vrLoc = 7377;
@@ -3578,7 +5789,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 165";
 		rLen = 16;
-		rLoc = 5974;
+		rLoc = 6112;
 		rType = 0;
 		vrLen = 787;
 		vrLoc = 7377;
@@ -3588,7 +5799,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 199";
 		rLen = 0;
-		rLoc = 7650;
+		rLoc = 7638;
 		rType = 0;
 		vrLen = 952;
 		vrLoc = 1953;
@@ -3598,7 +5809,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 199";
 		rLen = 0;
-		rLoc = 7650;
+		rLoc = 7638;
 		rType = 0;
 		vrLen = 952;
 		vrLoc = 1953;
@@ -3608,7 +5819,7 @@
 		fRef = 1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */;
 		name = "ApplePS2SynapticsTouchPad.h: 165";
 		rLen = 16;
-		rLoc = 5974;
+		rLoc = 6112;
 		rType = 0;
 		vrLen = 787;
 		vrLoc = 7377;
@@ -3618,7 +5829,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 457";
 		rLen = 0;
-		rLoc = 15468;
+		rLoc = 15571;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 14793;
@@ -3638,7 +5849,7 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = "ApplePS2SynapticsTouchPad.cpp: 319";
 		rLen = 38;
-		rLoc = 12916;
+		rLoc = 12797;
 		rType = 0;
 		vrLen = 871;
 		vrLoc = 9972;
@@ -3685,12 +5896,12 @@
 		fRef = 1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */;
 		name = dataCo;
 		rLen = 0;
-		rLoc = 36747;
+		rLoc = 35775;
 		rType = 0;
 		vrLen = 889;
 		vrLoc = 25471;
 	};
-	6699B2840F77099E00BCE3CC /* ApplePS2SynapticsTouchPad.cpp:1031 */ = {
+	6699B2840F77099E00BCE3CC /* ApplePS2SynapticsTouchPad.cpp:1003 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -3702,7 +5913,7 @@
 		functionName = "ApplePS2SynapticsTouchPad::getCapabilities()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1031;
+		lineNumber = 1003;
 		modificationTime = 259459486.783732;
 		state = 1;
 	};
