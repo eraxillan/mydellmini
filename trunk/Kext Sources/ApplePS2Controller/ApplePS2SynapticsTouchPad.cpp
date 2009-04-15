@@ -61,14 +61,13 @@ bool ApplePS2SynapticsTouchPad::init( OSDictionary * properties )
     _device                    = 0;
 	_prevButtons			   = 0;
     _interruptHandlerInstalled = false;
-	_newStream				   = true;
-    _packetByteCount           = 0;
-	// FIXME: I really need to look into _resolution and stuff (synaptics says the dpi is 2159 x 2388)
-    //_resolution                = ((int)(UNKNOWN_RESOLUTION_X * 25.4)) << 16; // (100 dpi, 4 counts/mm) (this will be read later on from the device
-	_resolution				   = (100) << 16; 
+	_packetByteCount           = 0;
+    _resolution                = ((int)(UNKNOWN_RESOLUTION_X * 25.4)) << 16; // This is read later from teh device, UNKNOWN is teh default value for unknown models
+	//_resolution				   = (100) << 16; // (100 dpi, 4 counts/mm) (this will be read later on from the device
     _touchPadModeByte          = 0; //GESTURES_MODE_BIT; //| ABSOLUTE_MODE_BIT;	// We like absolute mode
 	
 	// Defaults...
+	_prefTwoFingerScroll	= true;
 	_prefEdgeScroll			= false;
 	_prefHorizScroll		= false;
 	_prefClicking			= false;
@@ -76,10 +75,10 @@ bool ApplePS2SynapticsTouchPad::init( OSDictionary * properties )
 	_prefDragLock			= false;
 	
 	
-	_prefSensitivity		= 350;
+	_prefSensitivity		= 300;
 	_prefScrollArea			= .05;
-	_prefScrollSpeed		= .5;
-	_prefTrackSpeed			= .2;
+	_prefScrollSpeed		= 1.3;
+	_prefTrackSpeed			= .8;
 	
 	_prefAccelRate			= 1;
 	
@@ -345,7 +344,6 @@ void ApplePS2SynapticsTouchPad::interruptOccurred( UInt8 data )
     //
 	
 	// In relative mode, 0x08 should be 1. In absolute mode, 0x08 should be 0
-	// FIXME: If ABSOLUTE)MODE && (data & 0x08) is not 0, we need to reset the touchpad (brownout detections)
 	if (_packetByteCount == 0){
 		if(data == kSC_Acknowledge) return;
 		else if(RELATIVE_MODE && !(data & 0x08)) return;
@@ -402,7 +400,7 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	//	X7		X6		X5			X4			X3		X2		X1		X0			(X 7..0)
 	//	Y7		Y6		Y5			Y4			Y3		Y2		Y1		Y0			(Y 7..0)
 		
-	UInt32 buttons;
+	UInt32  buttons;
 	UInt32	absX, absY;
 	UInt32	pressureZ;
 	UInt8	Wvalue;
@@ -413,19 +411,16 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	clock_get_uptime((uint64_t *)&now);
 	clock_get_system_microtime(&second, &currentTime);
 	
-	if(_prevPacketSecond != second) _prevPacketTime += 1000000;	// Take into account when the microseconds wrap around
+	
+	uint64_t dt = ((second - _prevPacketSecond) * 1000000) + (currentTime - _prevPacketTime);	// There MIGHT be a problem when this wrapps around, we may want to add a check later on
+	_streamdt += dt;
 
 	
 	
-	// TODO: pssibly Reset the _prevX / _prevY to the curent IF the delta time is > 20ms (aka the finger was removed and now is
-	
-	
-	
-	
-	buttons = (packet[0] & 0x3);	// buttons =  last two bits of byte one of packet
-	pressureZ = packet[2];												//	  (max value is 255)
-	absX = (packet[4] | ((packet[1] & 0x0F) << 8) | ((packet[3] & 0x10) << 8));
-	absY = (packet[5] | ((packet[1] & 0xF0) << 4) | ((packet[3] & 0x20) << 7));
+	buttons =			(packet[0] & 0x3);	// buttons =  last two bits of byte one of packet
+	pressureZ =			packet[2];												//	  (max value is 255)
+	absX =				(packet[4] | ((packet[1] & 0x0F) << 8) | ((packet[3] & 0x10) << 8));
+	absY =				(packet[5] | ((packet[1] & 0xF0) << 4) | ((packet[3] & 0x20) << 7));
 	if(W_MODE) Wvalue = ((packet[3] & 0x4) >> 2) | ((packet[0] & 0x30) >> 2) | ((packet[0] & 0x4) >> 1);	// (max value = 15)
 	else Wvalue = W_FINGER_MIN;
 
@@ -433,114 +428,109 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	SInt32 dx = absX - _prevX;
 	SInt32 dy = absY - _prevY;	// Y is negative for ps2 (according to synaptics)
 	
-	
+	dy *= ( ((double)model_resolution[(INFO_SENSOR & 0x0f)][0] * model_dimensions[(INFO_SENSOR & 0x0f)][0]) ) / 
+					(model_resolution[(INFO_SENSOR & 0x0f)][1] * model_dimensions[(INFO_SENSOR & 0x0f)][1]);
+	// This one SHOULD work instead of the above, but it doesnt, I'll fix it before the next release
+	//dy *=  model_factor[(INFO_SENSOR & 0x0f)];
+
+
 	// Scale dx and dy bassed on the type of movement. This does not need to happen after event calculation because IF the event changes, dx and dy are reset to 0
 	if((_event & (SCROLLING | VERTICAL_SCROLLING | HORIZONTAL_SCROLLING)) == 0) {
 		dx *= _prefTrackSpeed;
 		dy *= _prefTrackSpeed;
 	} else {
-		dx *= _prefScrollSpeed;
+		dx = (dx << 2) * _prefScrollSpeed;
 		dy *= _prefScrollSpeed;
 	}
 
-	// TODO: Instead of calculating this every loop, jsut read it form a variable
-	dy *= ((double) (model_resolution[(INFO_SENSOR & 0x0f)][0])) / (model_resolution[(INFO_SENSOR & 0x0f)][0]);
+	// TODO: Instead of calculating this every loop, just read it form a (static) variable
 
 	
 	_streamdx += dx;
 	_streamdy += dy;
+	
+	
+	
 
-	// TODO: calculate a drift so that we only add 1 when the DRIFT is over .5, not when dx is
-	// This is nolonger needed since the sesolution has been changed from 100 to 2189
-	// This wont help, using an int now, plus it really isnt needed with the resolution change
-	//dx += (dx > 0) ? 0.5 : -0.5;
-	//dy += (dy > 0) ? 0.5 : -0.5;
-
-	
-	// Emulate a middle button
-	// TODO: add a short (a few ms pause) to each button press so that if they both are pressed within a timeframe, we get the middle button
-	/*if ( (buttons & 0x3)  == 0x3)   {
-	 buttons = 0x4;		// Middle button
-	 } else if (_prevButtons == 0x4) {
-	 // Wait for the button states to stableize since we dont want to send unwanted button presses.
-	 if(buttons == 0) _prevButtons = 0;
-	 buttons = 0;
-	 }*/
-	
-	
-	
-	// Lets calculate what events we want to handel
-	if(_newStream) {
-		// New stream, reset teh values
-		_newStream = false;
+	// Wait for the data to stabalize, if its below Z_LIGHT_FINGER, we treat it as a new stream
+	if(dt > 20000 || pressureZ < Z_LIGHT_FINGER)	{ //{return;}
 		dx = 0;		
 		dy = 0;
-		_streamdx = 0;
-		_streamdy = 0;
-		_settleTime = 0;
-		_streamStartSecond = second;
-		_streamStartMicro = currentTime;
 
-		
-		// If we tapped, turn tragging on for this stream
-		if(_prefClicking &&
-		   _prefDragging &&
-		   _tapped &&
-		   ((_streamStartSecond == _prevPacketSecond) && 
-			//((_streamStartMicro + TAP_LENGTH_MIN) < _prevPacketTime) &&				// Above MIN and
-			((_streamStartMicro + TAP_LENGTH_MAX) > _prevPacketTime)					// Less than MAX
-		   )) {
-			_dragging = true;
-		} else _dragging = false;
-		
-		_tapped = false;
-		
-		
-		// If we are within the scrolling area
-		if(_prefEdgeScroll &&
-		   (absX > (ABSOLUTE_X_MAX * (1 - _prefScrollArea)))) _event = VERTICAL_SCROLLING;
-		else if(_prefEdgeScroll && _prefHorizScroll&&
-		   (absY < (ABSOLUTE_Y_MIN * (1 + _prefScrollArea)))) _event = HORIZONTAL_SCROLLING;
-
-		
-		// TODO: Figure out a better algorithm to determine if scrolling (such as Wvalue * (pressureZ >> 1)), makes W value twice as important as Z
-		else if((W_MODE) && ((Wvalue * pressureZ) > _prefSensitivity))			_event = SCROLLING;
-		//else if((W_MODE) && (Wvalue >= W_FINGER_MAX))	_event = SCROLLING;
-
-		else if((pressureZ < Z_LIGHT_FINGER))									_event = DEFAULT_EVENT;	// We reset dx and dy untill it is a reliable number (Z MUST be larger than 8 for it to be reliable)
-		else																	_event = MOVEMENT;
+		//Ignore input untill valid
+		_event = DEFAULT_EVENT;	// We reset dx and dy untill it is a reliable number (Z MUST be larger than 8 for it to be reliable)
 	} 
-	else if(pressureZ < Z_LIGHT_FINGER)											_event = DEFAULT_EVENT;
-	else if(_event & (VERTICAL_SCROLLING | HORIZONTAL_SCROLLING));	// This is jsut here so the event is not reset to MOVEMENT 
+	else if(_event & (VERTICAL_SCROLLING | HORIZONTAL_SCROLLING | DRAGGING));	// These are events that are persistant
 	else if((_event == SCROLLING) && (Wvalue < W_RESERVED))						_event = SCROLLING;	// our touchpad doesnt support anything below W_RESERVED so keep on scrolling, actual it should be scroling anyway...
-	
 	else if((W_MODE) && ((Wvalue * pressureZ) > _prefSensitivity))				_event = SCROLLING;
-	//else if((W_MODE) && (Wvalue >= W_FINGER_MAX))	_event = SCROLLING;
-	
+	//else if((W_MODE) && (Wvalue >= W_FINGER_MAX))	_event = SCROLLING;	// This is an alternate method verses the one above
 	else																		_event = MOVEMENT;
 	
 	
 	// If the event has just changed, OR if it has recently changed, let the touchpad settle
 	if((prevEvent ^ _event) || _settleTime) {
-		// se if !(prevEvent ^ _event) would be better, that way it resets the counter
+		// TODO: Clena this up
+		
+		if(_prevEvent == DEFAULT_EVENT && _prefEdgeScroll &&
+		   (absX > (ABSOLUTE_X_MAX * (1 - _prefScrollArea)))) _event = VERTICAL_SCROLLING;
+		else if(_prevEvent == DEFAULT_EVENT && _prefEdgeScroll && _prefHorizScroll &&
+			(absY < (ABSOLUTE_Y_MIN * (1 + _prefScrollArea)))) _event = HORIZONTAL_SCROLLING;
+		
+		
+		// Determine if we want to drag here, or if we were dragging, add a small delay for the finger to make contact with the pad again
+		else if(_prefDragging && _tapped && _streamdt < TAP_LENGTH_MAX && _event == MOVEMENT) _event = DRAGGING;
+		else if(_prefDragging && _prevEvent == DRAGGING && _event == DEFAULT_EVENT) _event = DRAGGING;
+		else _tapped = false;
+		
+		
+		   
+		// We do this last so we can detect events first
 		if(!_settleTime) {
-			// TODO: Make this configurable
-			if(prevEvent == DEFAULT_EVENT) _settleTime = 3; // we SHOULD have already settle, but just in case (and to t
-			else _settleTime = 5;		// Lets wait 5 packets for it to settle
+			if(prevEvent == DEFAULT_EVENT) {
+				_settleTime = 2; // we SHOULD have already settle, but just in case
+				_streamdx = 0;
+				_streamdy = 0;
+				_streamdt = 0;
+				//buttons = _prevButtons;
+			} else if(_event == DEFAULT_EVENT &&
+			   _prefClicking  && 
+			   //(ABS(_streamdx) <= 200) && 
+			   // I really didnt need to cahnge it from ABS, but it was for debuggin. The next version may have it fixed
+			   (((_streamdx > 0) && (_streamdx <= 250)) || ((_streamdx <= 0) && (_streamdx >= -250))) &&
+			   (((_streamdy > 0) && (_streamdy <= 250)) || ((_streamdy <= 0) && (_streamdy >= -250))) &&
+			   
+			   //(ABS(_streamdy) <= 200) && //)		// 200 ~ 2 mm of movement on the trackpad
+			   ((_streamdt < TAP_LENGTH_MAX)  &&
+				(_streamdt > TAP_LENGTH_MIN))
+			   
+			   )
+			{
+				if(prevEvent == MOVEMENT)
+				{
+					//IOLog("Tapping: dx: %d\tdy: %d\t dt: %d", _streamdx, _streamdy, _streamdt);
+					_tapped = true;
+					buttons = 0x01; // _tapped;
+					
+				}
+				else if(prevEvent == SCROLLING) buttons = 0x02;
+			}
+			else _settleTime = 10;		// Lets wait 5 packets for it to settle
 		} else _settleTime--;
-		if(prevEvent != SCROLLING || _event != SCROLLING) {
+
+		   
+		if(prevEvent != SCROLLING || _event != SCROLLING) {	// Scrolling is special, we DONT reset it because we want it to be fluid
 			dx = 0;		
 			dy = 0;
-		} else _event = SCROLLING;
-	} else if(_settleTime) _settleTime = 0;
+		} else if(_event != SCROLLING){
+			//IOLog("Reseting event to SCROLLING (%d)\n", SCROLLING);
+			_event = SCROLLING;
+		}
+	} else if(_settleTime) _settleTime = 0;	// This should NEVER happen
 		
 	
 	
-	// Shouldn't be needed.... but hey, why not
-	if(_prefDragging) buttons |= _dragging;
-
 	
-	
+	// Lets send the button / movement / scrolling events
 	switch(_event) {
 		case HORIZONTAL_SCROLLING:
 			dispatchScrollWheelEvent(0,  -1 * dx, 0, now);
@@ -555,6 +545,13 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 			//dispatchRelativePointerEvent(0, 0, buttons, now);
 			break;
 			
+		case DRAGGING:
+			//IOLog("Event = Dragging :)\n");
+			if(buttons) {
+				_tapped = false;
+				buttons = 0;
+			}
+			else buttons = 0x01;
 			
 		case MOVEMENT:
 			dy *= -1;	// PS2 spec has the direction backwards from what the os wants (lower left corner is the orign, verses upper left)
@@ -566,42 +563,19 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 		default:
 			
 			// TODO: Make this configureable (or get a good value, bassed ont he model_resolution)
-			if(prevEvent ^ _event) {
+			/*if(prevEvent ^ _event) {	// This will NOT happen on a new stream since prevEvent was set to DEFAULT_EVENT on the prev stream...
 				
-				if(_prefClicking  && 
-				   //(ABS(_streamdx) <= 500) && 
-				   // I really didnt need to cahnge it from ABS, but it was for debuggin. The next version may have it fixed
-				   (((_streamdx > 0) && (_streamdx <= 100)) || ((_streamdx <= 0) && (_streamdx >= -100))) &&
-				   (((_streamdy > 0) && (_streamdy <= 100)) || ((_streamdy <= 0) && (_streamdy >= -100))) &&
+			} else */
+			if(prevEvent == SCROLLING) buttons = 0;
 
-				   (ABS(_streamdy) <= 500) && //)		// 200 ~ 2 mm of movement on the trackpad
-				   (
-						(_streamStartSecond == _prevPacketSecond) && 
-						((_streamStartMicro + TAP_LENGTH_MIN) < _prevPacketTime) &&				// Above MIN and
-						((_streamStartMicro + TAP_LENGTH_MAX) > _prevPacketTime)					// Less than MAX
-					) ||
-				    (
-						(_streamStartSecond + 1 == _prevPacketSecond) && 
-						((_streamStartMicro + TAP_LENGTH_MIN + 1000000) < _prevPacketTime) &&				// Above MIN and
-						((_streamStartMicro + TAP_LENGTH_MAX + 1000000) > _prevPacketTime)					// Less than MAX
-				    )
-				   )
-				{
-					if(prevEvent == MOVEMENT)
-					{
-						_tapped = true;
-						buttons = 0x01;
-					}
-					else if(prevEvent == SCROLLING) buttons = 0x02;
-				}
-			} else if(prevEvent == SCROLLING) buttons = 0;
-			if(!_newStream) _newStream = true;
 
 			dispatchRelativePointerEvent(0, 0, buttons, now);
 
 			break;
 			
 	}
+	
+	//IOLog("Streamdt: %d\n", _streamdt);
 
 	_prevX = absX;
 	_prevY = absY;
@@ -884,14 +858,11 @@ void ApplePS2SynapticsTouchPad::setCommandByte( UInt8 setBits, UInt8 clearBits )
 // This method is used by the prefrences pane to communicate with the driver (currently only supports clicking) called when IORegistryEntrySetCFProperties
 IOReturn ApplePS2SynapticsTouchPad::setParamProperties( OSDictionary * dict )
 {
-    OSNumber *   clicking = OSDynamicCast( OSNumber, dict->getObject("Clicking") );
+   /* OSNumber *   clicking = OSDynamicCast( OSNumber, dict->getObject("Clicking") );
 	
-
-	
-
     if ( clicking )
     {    
-	/*	// This now only resets the gesture bit, not everything else (yay, bug is fixed)
+		// This now only resets the gesture bit, not everything else (yay, bug is fixed)
 		UInt8  newModeByteValue = _touchPadModeByte & ~ GESTURES_MODE_BIT; // Clear out the gesture bit
 		
         if(RELATIVE_MODE) clicking->unsigned32BitValue() & 0x1 ? newModeByteValue |= GESTURES_MODE_BIT : 0;	// set it if the user wants us to
@@ -911,9 +882,9 @@ IOReturn ApplePS2SynapticsTouchPad::setParamProperties( OSDictionary * dict )
             //
 
             setProperty("Clicking", clicking);
-        }*/
-    } 
-	else if(OSDynamicCast(OSBoolean, dict->getObject(kTPEdgeScrolling)))
+        }
+    } else */ 
+	if(OSDynamicCast(OSBoolean, dict->getObject(kTPEdgeScrolling)))
 	{
 		_prefEdgeScroll		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPEdgeScrolling)))->getValue();
 		_prefHorizScroll	= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPHorizScroll)))->getValue();
@@ -946,7 +917,8 @@ void ApplePS2SynapticsTouchPad::setDevicePowerState( UInt32 whatToDo )
 			// Reset vars for the absolute mode handler.
 			_streamdx = 0;
 			_streamdy = 0;
-			_newStream = true;
+			_settleTime = 0;
+			//_newStream = true;
 			//_streamStartSecond = second;
 			//_streamStartMicro = currentTime;
             
