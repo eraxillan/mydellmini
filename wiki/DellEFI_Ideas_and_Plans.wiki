@@ -12,11 +12,13 @@ The Realtek1000 kext does not report the network speed or duplex mode to the os.
 
 ==Shutdown / Restart Hang==
 This is probably due to a bug in one of the drivers / dsdt patch. An easy fix may be modifying the DSDT's KILL method so that it will force a shutdown after an elapsed time (say 5 seconds).
+A fix has been found for this, albeit not a very good one.
+If you have USB Legacy support ENABLED and Bluetooth DISSABLED in the bios, the restart bug is not there.
 
 ==Brightness Control==
 The bios currently handles brightness control. I have found a way to get the dsdt file to pass the keypresses to the os, however OS X doesn't know how to change the brightness.
 
-== Touchpad Scrolling support==
+== Touchpad Scrolling support (In Progress / Working)==
 The current driver uses the touchpad in relative mode. If we put the touchpad in absolute mode we can then allow for side scrolling and some other features (hot corners, etc).
 
 == Network Drivers ==
@@ -26,7 +28,7 @@ The Realtek1000 driver curently does not report the network speed and duplex mod
 Just beacause some people have requested it, A kext could be made that loads initialy to play a startup sound (after the audio driver of course).
 
 ==Fn + Ctrl key swap==
-On macbooks, the fn key is the leftmost key, where as on the mini, the ctrl key is. It may be possible to swap these keys in the dsdt to have a similar layout as macbook. I have been looking at the code, and have not found an easy way to do this as it looks to be even lower than the dsdt (aka the bios).
+On macbooks, the fn key is the leftmost key, where as on the mini, the ctrl key is. It may be possible to swap these keys in the dsdt to have a similar layout as macbook. I have been looking at the code, and have not found an easy way to do this as it looks to be even lower than the dsdt (aka the bios). The dsdt does have a variable that reports the FN button state, however I do not know of anyway to specifically swap it with the ctrl key (but I do have an idea...)
 
 == Temperature reporting ==
 The dsdt maps out the embedded controller's memory locations. Some of the variable look to be associated with temperature. It is possible to create a new kext that reads those values from the EC and reports it to the os.
