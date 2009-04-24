@@ -1,4 +1,7 @@
 #summary Changelog for each revision of DellEFI
+= DellEFI 1.2 - Subject to change, currently in Alpha =
+ * Updated bootloader from PC EVI V9 to Chameleon 2.0 RC1.
+ * *PLANNED* Includes new touchpad driver with two finger scrolling support.
 
 = DellEFI 1.1 =
  * Updated AppleACPIBatteryManager which reads battery information correctly.
