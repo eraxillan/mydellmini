@@ -340,16 +340,16 @@ bool ApplePS2Keyboard::dispatchKeyboardEventWithScancode(UInt8 scanCode)
 			*/
 					
 			case 0x34: //  $ = F12 - press and hold to eject cd rom
-				//if(scanCode==0x34) // key is going down
 				if(goingDown)
 				{
-					dispatchKeyboardEventWithScancode(0x38);
-					dispatchKeyboardEventWithScancode(0x10);
+					dispatchKeyboardEvent( PS2ToADBMap[0x38], true, now);
+					dispatchKeyboardEvent( PS2ToADBMap[0x10], true, now);
 				}
 				else	// Release scancode
 				{
-					dispatchKeyboardEventWithScancode(0xb8);
-					dispatchKeyboardEventWithScancode(0x90);
+					
+					dispatchKeyboardEvent( PS2ToADBMap[0x38], false, now);
+					dispatchKeyboardEvent( PS2ToADBMap[0x10], false, now);
 				}
 				return true;
 				
@@ -357,44 +357,7 @@ bool ApplePS2Keyboard::dispatchKeyboardEventWithScancode(UInt8 scanCode)
 			case 0x30: keyCode = 0x7d; break;		   // E030 = volume up
 			case 0x2e: keyCode = 0x7e; break;		   // E02E = volume down
 			case 0x20: keyCode = 0x7f; break;		   // E020 = volume mute
-				
-				// The following code doesnt work, it causes the keyboard driver to not work (keyboard doesnt respond)
-				//it would be better to just intercept the keycode anyways...
-				/* case 0x04:							   // The wireless button
-				 if(goingDown) {
-				 struct kev_msg event_msg;
-				 bzero(&event_msg, sizeof(event_msg));
-				 
-				 
-				 event_msg.vendor_code = DELL_VEN_CODE;	// Lets identify us as being from dell
-				 event_msg.kev_class = KEV_SYSTEM_CLASS;	// And since we are a kext, lets sue the sys class
-				 event_msg.kev_subclass = PS2_KEYBOARD_SUBCLASS;	// random subclass
-				 event_msg.event_code = PS2_WIFI_EVENT;			// You pressed the wireless button
-				 bzero(&event_msg.dv, sizeof(event_msg.dv));		
-				 // Go forth and notify the world of the keypress...
-				 if(0 == kev_msg_post(&event_msg)) IOLog("PS2: WIFI button mesg press sent"); 
-				 else IOLog("PS2-Error: WIFI button mesg press failed");
-				 }
-				 break;		   // keycode x90 should have been rewind
-				 case 0x07:
-				 if(goingDown) {
-				 struct kev_msg event_msg;
-				 bzero(&event_msg, sizeof(event_msg));
-				 
-				 event_msg.vendor_code = DELL_VEN_CODE;	// Lets identify us as being from dell
-				 event_msg.kev_class = KEV_SYSTEM_CLASS;	// And since we are a kext, lets sue the sys class
-				 event_msg.kev_subclass = PS2_KEYBOARD_SUBCLASS;	// random subclass
-				 event_msg.event_code = PS2_BATT_EVENT;			// You pressed the battery button
-				 bzero(&event_msg.dv, sizeof(event_msg.dv));
-				 
-				 // Go forth and notify the world of the keypress...
-				 if(0 == kev_msg_post(&event_msg)) IOLog("PS2: BATT button mesg press sent"); 
-				 else  IOLog("PS2-Error: BATT button mesg press failed");
-				 
-				 }
-				 break; //*/
-				
-				//case 0x5e: keyCode = 0x7c; break;            // E05E = power
+			//case 0x5e: keyCode = 0x7c; break;            // E05E = power
 			case 0x5f:                                   // E05F = sleep
 				keyCode = 0;
 				if (goingDown)
