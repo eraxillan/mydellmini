@@ -9,7 +9,8 @@ property RemoteCDP : false
 property HibernationP : false
 property FingerP : false
 property dsdtP : false
-property dellefiver : "1.1"
+property dellefiver : "1.2"
+property dellefialphabeta : "a5"
 property needUpdate : false
 property needreboot : false
 property needtoremovedsdt : false
@@ -27,7 +28,7 @@ on awake from nib theObject
 		set visible to true
 	end tell
 	
-	set contents of text field "verlb" of window "DellEFI Installer" to "v" & dellefiver
+	set contents of text field "verlb" of window "DellEFI Installer" to "v" & dellefiver & dellefialphabeta
 	
 	-- try
 	-- 	set OSVer to do shell script "sw_vers | grep 'ProductVersion:' | awk '{print $2}'"
@@ -58,6 +59,14 @@ on awake from nib theObject
 		end if
 	end try
 	
+	set cache_ready to do shell script "test -e /System/Library/Extensions.mkext && echo 'file exists' || echo 'no file'"
+	if cache_ready is "no file" then
+		display dialog "Extension cache does not exist yet.  Run DellEFI again in a few minutes." buttons ["OK"] default button "OK" with icon caution
+		if button returned of result is "OK" then
+			quit
+		end if
+	end if
+	
 	set prefpane_status to do shell script "test -e /.dellefi/Keyboard.prefPane && echo 'file exists' || echo 'no file'"
 	if prefpane_status is "file exists" then
 		tell button "keyboardpanecb" of box "optionspanel" of window "DellEFI Installer"
@@ -66,6 +75,7 @@ on awake from nib theObject
 		end tell
 	end if
 	
+	-- check for dsdt in old location
 	set dsdt_exists to do shell script "test -e /dsdt.aml && echo 'file exists' || echo 'no file'"
 	if dsdt_exists is "file exists" then
 		set dsdtP to true
@@ -76,10 +86,25 @@ on awake from nib theObject
 		end tell
 	end if
 	
+	-- check for dsdt in new location
+	set dsdt_exists to do shell script "test -e /Extra/dsdt.aml && echo 'file exists' || echo 'no file'"
+	if dsdt_exists is "file exists" then
+		set dsdtP to true
+		tell button "dsdtcb" of box "optionspanel" of window "DellEFI Installer"
+			set integer value to 0
+			set title to "Remove custom dsdt.aml file"
+			-- set enabled to false
+		end tell
+	end if
+	
 	set extexist to do shell script "test -e /Extra/Extensions.mkext && echo 'file exists' || echo 'no file'"
-	set extver to do shell script "test -e /.dellefi/.extv" & dellefiver & " && echo 'file exists' || echo 'no file'"
+	set extver to do shell script "test -e /.dellefi/.extv* && echo 'file exists' || echo 'no file'"
+	if extver is "file exists" then
+		set extver to do shell script "ls /.dellefi/.extv* | awk -Fv '{print $2}'"
+		-- display dialog extver
+	end if
 	if extexist is "file exists" then
-		if extver is "file exists" then
+		if extver is "1.1" or extver is "1.2" or extver is "1.2a1" then
 			tell button "extensionscb" of box "optionspanel" of window "DellEFI Installer"
 				set integer value to 0
 				set title to "Reinstall Dell Mini 9 Extensions"
@@ -90,14 +115,11 @@ on awake from nib theObject
 		else
 			if dsdt_exists is "file exists" then
 				tell button "dsdtcb" of box "optionspanel" of window "DellEFI Installer"
-					set integer value to 1
+					set integer value to 0
 					set title to "Remove custom dsdt.aml file"
 					-- set enabled to false
 				end tell
-				tell button "extensionscb" of box "optionspanel" of window "DellEFI Installer"
-					set integer value to 0
-					set enabled to false
-				end tell
+				
 				set needtoremovedsdt to true
 			else
 				set needUpdate to true
@@ -107,11 +129,23 @@ on awake from nib theObject
 	
 	set bootexist to do shell script "test -e /boot && echo 'file exists' || echo 'no file'"
 	if bootexist is "file exists" then
-		tell button "eficb" of box "optionspanel" of window "DellEFI Installer"
-			set integer value to 0
-			set title to "Reinstall PCEFIV9 Bootloader"
-			-- set enabled to false
-		end tell
+		try
+			-- get hash of current bootloader
+			set efiver to do shell script "md5 /boot | awk '{print $4}'"
+		end try
+		
+		-- Check if Chameleon 2.0RC1-r431 is already installed
+		if efiver is equal to "d593439fcf1479a403054db491c0e928" then
+			tell button "eficb" of box "optionspanel" of window "DellEFI Installer"
+				set integer value to 0
+				set title to "Reinstall Chameleon 2.0RC1-r431 Bootloader"
+				-- set enabled to false
+			end tell
+		else
+			tell button "eficb" of box "optionspanel" of window "DellEFI Installer"
+				set integer value to 1
+			end tell
+		end if
 	end if
 	
 	set remotecd_exists to do shell script "defaults read com.apple.NetworkBrowser | grep EnableODiskBrowsing; exit 0"
@@ -124,7 +158,10 @@ on awake from nib theObject
 		end tell
 	end if
 	
-	set quietstate to do shell script "grep Quiet /Library/Preferences/SystemConfiguration/com.apple.Boot.plist; exit 0"
+	try
+		set quietstate to do shell script "grep Quiet /Extra/com.apple.Boot.plist; exit 0"
+	end try
+	
 	if quietstate is not "" then
 		set QuietBootP to true
 		tell button "quietbootcb" of box "optionspanel" of window "DellEFI Installer"
@@ -258,60 +295,16 @@ on clicked theObject
 	-- display dialog workingDir
 	
 	set disk to do shell script "df -k / | grep dev | awk -F\" \" '{print $1}' | awk -F\"/\" '{print $3}'"
+	-- set diskdst to contents of text field "disktb" of box "optionspanel" of window "DellEFI Installer"
 	set x to the length of the disk
 	set disk to characters 1 thru (x - 2) of disk as string
-	
-	try
-		if efi is true then
-			-- set currdisk to do shell script "ls -l /Volumes/ | grep \" /\" | grep root | awk '{print $9}'"
-			
-			set contents of text field "currentop" of window "DellEFI Installer" to "Installing bootloader"
-			delay 1
-			do shell script workingDir & "/bootpcefiv9/fdisk -f " & workingDir & "/bootpcefiv9/boot0 -u -y /dev/r" & disk & " > /dev/null &" with administrator privileges
-			do shell script "dd if=" & workingDir & "/bootpcefiv9/boot1h of=/dev/r" & disk & "s2 > /dev/null &" with administrator privileges
-			do shell script "cp " & workingDir & "/bootpcefiv9/boot /boot > /dev/null &" with administrator privileges
-			
-			set contents of text field "currentop" of window "DellEFI Installer" to "Installing com.apple.Boot"
-			delay 1
-			do shell script "cp " & workingDir & "/Boot/com.apple.Boot.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
-		end if
-	on error errMsg number errorNumber
-		display dialog "Could not install the Bootloader. Error " & errorNumber as text buttons ["Continue"] default button "Continue" with icon caution
-	end try
-	
-	try
-		if quietboot then
-			if QuietBootP then
-				set contents of text field "currentop" of window "DellEFI Installer" to "Disabling Quiet Boot"
-				delay 1
-				do shell script "cp " & workingDir & "/Boot/com.apple.Boot.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
-			else
-				set contents of text field "currentop" of window "DellEFI Installer" to "Configuring Quiet Boot"
-				delay 1
-				do shell script "cp " & workingDir & "/Boot/com.apple.Boot.Quiet.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
-			end if
-		else
-			if needUpdate then
-				if QuietBootP then
-					set contents of text field "currentop" of window "DellEFI Installer" to "Updating Quiet Boot"
-					delay 1
-					do shell script "cp " & workingDir & "/Boot/com.apple.Boot.Quiet.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
-				else
-					set contents of text field "currentop" of window "DellEFI Installer" to "Updating Boot"
-					delay 1
-					do shell script "cp " & workingDir & "/Boot/com.apple.Boot.plist  /Library/Preferences/SystemConfiguration/com.apple.Boot.plist" with administrator privileges
-				end if
-			end if
-		end if
-	on error errMsg number errorNumber
-		display dialog "Could not disable quiet boot. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
-	end try
+	-- set partition to characters (x - 2) thru x of diskdst
 	
 	try
 		if extensionsfiles is true then
 			try
-				do shell script "mkdir /.dellefi; touch" with administrator privileges
-				do shell script "/.dellefi/.donoterase" with administrator privileges
+				do shell script "mkdir /.dellefi" with administrator privileges
+				do shell script "touch /.dellefi/.donoterase" with administrator privileges
 			end try
 			
 			try
@@ -325,30 +318,41 @@ on clicked theObject
 			set contents of text field "currentop" of window "DellEFI Installer" to "Copy kexts to Extra folder"
 			delay 1
 			try
-				do shell script "rf -r /Extra.bak" with administrator privileges
+				do shell script "rm -rf /Extra.bak" with administrator privileges
 			end try
 			try
 				do shell script "mv /Extra /Extra.bak" with administrator privileges
 			end try
 			try
-				do shell script "mkdir /Extra > /dev/null &" with administrator privileges
-				do shell script "mkdir /Extra/Mini9Ext" with administrator privileges
+				do shell script "cp -R " & workingDir & "/Extra /" with administrator privileges
 			end try
-			do shell script "cp -R " & workingDir & "/UpdateExtra.app /Extra" with administrator privileges
 			
-			do shell script "cp " & workingDir & "/bin/binmay /usr/bin" with administrator privileges
-			do shell script "chmod -R 755 /usr/bin/binmay" with administrator privileges
+			-- Try to copy existing dsdt.aml if it exist
+			try
+				do shell script "cp /Extra.bak/dsdt.aml /Extra/dsdt.aml" with administrator privileges
+			end try
+			
+			-- Try to copy existing com.apple.Boot.plist if it exist
+			try
+				do shell script "cp /Extra.bak/com.apple.Boot.plist /Extra/com.apple.Boot.plist" with administrator privileges
+			end try
+			
+			try
+				-- Delete binmay from /usr/bin... we now run it from /Extra/bin
+				do shell script "rm /usr/bin/binmay" with administrator privileges
+			end try
+			do shell script "chmod -R 755 /Extra/bin/*" with administrator privileges
 			
 			-- Patch AppleIntelGMA950.kext
 			do shell script "cp -R /System/Library/Extensions/AppleIntelGMA950.kext /Extra/Mini9Ext/" with administrator privileges
-			do shell script "/usr/bin/binmay -i /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/MacOS/AppleIntelGMA950 -o /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/MacOS/AppleIntelGMA950.hex -s 8680A227 -r 8680AE27" with administrator privileges
+			do shell script "/Extra/bin/binmay -i /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/MacOS/AppleIntelGMA950 -o /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/MacOS/AppleIntelGMA950.hex -s 8680A227 -r 8680AE27" with administrator privileges
 			do shell script "mv /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/MacOS/AppleIntelGMA950.hex /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/MacOS/AppleIntelGMA950" with administrator privileges
 			do shell script "/usr/bin/perl -pe \"s/27A28086/27AE8086/g\" /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/Info.plist > /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/Info.plist.new" with administrator privileges
 			do shell script "mv /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/Info.plist.new /Extra/Mini9Ext/AppleIntelGMA950.kext/Contents/Info.plist" with administrator privileges
 			
 			-- Patch AppleIntelIntegratedFramebuffer.kext
 			do shell script "cp -R /System/Library/Extensions/AppleIntelIntegratedFramebuffer.kext /Extra/Mini9Ext/" with administrator privileges
-			do shell script "/usr/bin/binmay -i /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/AppleIntelIntegratedFramebuffer -o /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/AppleIntelIntegratedFramebuffer.hex -s 8680A227 -r 8680AE27" with administrator privileges
+			do shell script "/Extra/bin/binmay -i /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/AppleIntelIntegratedFramebuffer -o /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/AppleIntelIntegratedFramebuffer.hex -s 8680A227 -r 8680AE27" with administrator privileges
 			do shell script "mv /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/AppleIntelIntegratedFramebuffer.hex /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/AppleIntelIntegratedFramebuffer" with administrator privileges
 			do shell script "/usr/bin/perl -pe \"s/27A28086/27AE8086/g\" /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/Info.plist > /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/Info.plist.new" with administrator privileges
 			do shell script "mv /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/Info.plist.new /Extra/Mini9Ext/AppleIntelIntegratedFramebuffer.kext/Info.plist" with administrator privileges
@@ -383,11 +387,6 @@ on clicked theObject
 			do shell script "cat /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist|grep -A 100 \"</array>\" >> /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new" with administrator privileges
 			do shell script "mv /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist.new /Extra/Mini9Ext/IO80211Family.kext/Contents/PlugIns/AppleAirPortBrcm4311.kext/Contents/Info.plist" with administrator privileges
 			
-			-- Copy other required opensource kext
-			do shell script "cp -R " & workingDir & "/Extensions/*.kext /Extra/Mini9Ext" with administrator privileges
-			-- do shell script "cp " & workingDir & "/bin/rmdellefi /usr/bin" with administrator privileges
-			-- do shell script "chmod -R 755 /usr/bin/rmdellefi" with administrator privileges
-			
 			try
 				--restore old GMA drivers with functional mirror mode
 				if oldgma is true then
@@ -402,8 +401,8 @@ on clicked theObject
 				display dialog "Could not install old GMA kext. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
 			end try
 			
-			do shell script "chown -R 0:0 /Extra/" with administrator privileges
-			do shell script "chmod -R 755 /Extra/" with administrator privileges
+			do shell script "chown -R 0:0 /Extra" with administrator privileges
+			do shell script "chmod -R 755 /Extra" with administrator privileges
 			
 			set contents of text field "currentop" of window "DellEFI Installer" to "Update Extra kext cache"
 			delay 1
@@ -412,13 +411,14 @@ on clicked theObject
 			--clean up old audio installs just in case there are some bits left over
 			set contents of text field "currentop" of window "DellEFI Installer" to "Remove old audio/sleep files"
 			delay 1
-			do shell script "rm -r /System/Library/Extensions/ALCinject.kext > /dev/null &" with administrator privileges
-			do shell script "rm -r /System/Library/Extensions/HDAEnabler.kext > /dev/null &" with administrator privileges
+			do shell script "rm -r /System/Library/Extensions/ALCinject.kext > /dev/null" with administrator privileges
+			do shell script "rm -r /System/Library/Extensions/HDAEnabler.kext > /dev/null" with administrator privileges
 			
 			set contents of text field "currentop" of window "DellEFI Installer" to "Installing local files"
 			delay 1
 			-- move items that need to be local for audio and battery, hopefully this goes away someday
-			do shell script "cp -R " & workingDir & "/LocalExtensions/*.kext /System/Library/Extensions > /dev/null &" with administrator privileges
+			-- do shell script "cp -R " & workingDir & "/LocalExtensions/*.kext /System/Library/Extensions > /dev/null" with administrator privileges
+			do shell script "cp -R " & workingDir & "/1056kext/*.kext /System/Library/Extensions > /dev/null" with administrator privileges
 			do shell script "chown -R 0:0 /System/Library/Extensions/AppleHDA.kext" with administrator privileges
 			do shell script "chmod -R 755 /System/Library/Extensions/AppleHDA.kext" with administrator privileges
 			do shell script "chown -R 0:0 /System/Library/Extensions/ClamshellDisplay.kext" with administrator privileges
@@ -426,28 +426,15 @@ on clicked theObject
 			do shell script "chown -R 0:0 /System/Library/Extensions/IOAudioFamily.kext" with administrator privileges
 			do shell script "chmod -R 755 /System/Library/Extensions/IOAudioFamily.kext" with administrator privileges
 			-- remove mkext so it is rebuilt
-			do shell script "rm -r /System/Library/Extensions.mkext > /dev/null &" with administrator privileges
+			do shell script "rm -r /System/Library/Extensions.mkext > /dev/null" with administrator privileges
 			
-			do shell script "cp -R " & workingDir & "/SystemConfiguration/*.bundle /System/Library/SystemConfiguration > /dev/null &" with administrator privileges
-			
-			set contents of text field "currentop" of window "DellEFI Installer" to "Installing Mirroring application"
-			delay 1
-			try
-				do shell script "cp " & workingDir & "/bin/mirroring /usr/bin" with administrator privileges
-				do shell script "chmod -R 755 /usr/bin/mirroring" with administrator privileges
-			end try
+			do shell script "cp -R " & workingDir & "/SystemConfiguration/*.bundle /System/Library/SystemConfiguration > /dev/null" with administrator privileges
 			
 			-- Install color profile
 			set contents of text field "currentop" of window "DellEFI Installer" to "Installing Color Profile"
 			delay 1
 			try
 				do shell script "cp " & workingDir & "/colorsync/* /Library/ColorSync/Profiles/" with administrator privileges
-			end try
-			
-			-- Remove temporary binmay from system
-			
-			try
-				do shell script "rm /usr/bin/binmay" with administrator privileges
 			end try
 			
 			set needreboot to true
@@ -457,15 +444,56 @@ on clicked theObject
 	end try
 	
 	try
+		if efi is true then
+			-- set currdisk to do shell script "ls -l /Volumes/ | grep \" /\" | grep root | awk '{print $9}'"
+			
+			set contents of text field "currentop" of window "DellEFI Installer" to "Installing bootloader"
+			delay 1
+			do shell script workingDir & "/i386/fdisk -f " & workingDir & "/i386/boot0 -u -y /dev/r" & disk & " > /dev/null" with administrator privileges
+			do shell script "dd if=" & workingDir & "/i386/boot1h of=/dev/r" & disk & "s2 > /dev/null" with administrator privileges
+			do shell script "cp " & workingDir & "/i386/boot /boot > /dev/null" with administrator privileges
+			
+			set contents of text field "currentop" of window "DellEFI Installer" to "Installing com.apple.Boot"
+			delay 1
+			do shell script "cp " & workingDir & "/Boot/com.apple.Boot.plist  /Extra/com.apple.Boot.plist" with administrator privileges
+		end if
+	on error errMsg number errorNumber
+		display dialog "Could not install the Bootloader. Error " & errorNumber as text buttons ["Continue"] default button "Continue" with icon caution
+	end try
+	
+	try
+		if quietboot then
+			if QuietBootP then
+				set contents of text field "currentop" of window "DellEFI Installer" to "Disabling Quiet Boot"
+				delay 1
+				do shell script "cp " & workingDir & "/Boot/com.apple.Boot.plist  /Extra/com.apple.Boot.plist" with administrator privileges
+			else
+				set contents of text field "currentop" of window "DellEFI Installer" to "Configuring Quiet Boot"
+				delay 1
+				do shell script "cp " & workingDir & "/Boot/com.apple.Boot.Quiet.plist  /Extra/com.apple.Boot.plist" with administrator privileges
+			end if
+		end if
+	on error errMsg number errorNumber
+		display dialog "Could not disable quiet boot. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
+	end try
+	
+	try
 		--make custom aml file and copy to EFI part root
+		try
+			do shell script "mv /dsdt.aml /Extra/dsdt.aml" with administrator privileges
+		end try
+		
 		if dsdt is true then
 			if dsdtP then
 				set contents of text field "currentop" of window "DellEFI Installer" to "Deleting dsdt.aml file"
 				delay 1
 				try
 					do shell script "rm -f /dsdt.aml" with administrator privileges
-					set needreboot to true
 				end try
+				try
+					do shell script "rm -f /Extra/dsdt.aml" with administrator privileges
+				end try
+				set needreboot to true
 			else
 				set contents of text field "currentop" of window "DellEFI Installer" to "Creating dsdt.aml file"
 				delay 1
@@ -473,18 +501,6 @@ on clicked theObject
 				makeDSDT()
 				
 				set needreboot to true
-			end if
-		else
-			-- Check if we are doing an update and if an existing dsdt exist.
-			if dsdtP then
-				if needUpdate then
-					set contents of text field "currentop" of window "DellEFI Installer" to "Updating dsdt.aml file"
-					delay 1
-					
-					makeDSDT()
-					
-					set needreboot to true
-				end if
 			end if
 		end if
 	on error errMsg number errorNumber
@@ -500,10 +516,10 @@ on clicked theObject
 				do shell script "mkdir /.dellefi; touch /.dellefi/.donoterase" with administrator privileges
 			end try
 			
-			-- do shell script "mkdir /Backup > /dev/null &" with administrator privileges
-			do shell script "mv /System/Library/PreferencePanes/Keyboard.prefPane /.dellefi > /dev/null &" with administrator privileges
-			do shell script "cp -R " & workingDir & "/PrefPanes/Keyboard.prefPane /System/Library/PreferencePanes/ > /dev/null &" with administrator privileges
-			do shell script "chown -R root:wheel /System/Library/PreferencePanes/Keyboard.prefPane > /dev/null &" with administrator privileges
+			-- do shell script "mkdir /Backup > /dev/null" with administrator privileges
+			do shell script "mv /System/Library/PreferencePanes/Keyboard.prefPane /.dellefi > /dev/null" with administrator privileges
+			do shell script "cp -R " & workingDir & "/PrefPanes/Keyboard.prefPane /System/Library/PreferencePanes/ > /dev/null" with administrator privileges
+			do shell script "chown -R root:wheel /System/Library/PreferencePanes/Keyboard.prefPane > /dev/null" with administrator privileges
 		end if
 	on error errMsg number errorNumber
 		display dialog "Could not install 10.5.5 keyboard kext. Error " & errorNumber as text buttons ["Quit"] default button "Quit" with icon caution
@@ -537,12 +553,12 @@ on clicked theObject
 			if HibernationP then
 				set contents of text field "currentop" of window "DellEFI Installer" to "Enabling hibernate to file"
 				delay 1
-				do shell script "pmset hibernatemode 3 > /dev/null &" with administrator privileges
+				do shell script "pmset hibernatemode 3 > /dev/null" with administrator privileges
 			else
 				set contents of text field "currentop" of window "DellEFI Installer" to "Disabling hibernate to file"
 				delay 1
-				do shell script "pmset hibernatemode 0 > /dev/null &" with administrator privileges
-				do shell script "rm /var/vm/sleepimage > /dev/null &" with administrator privileges
+				do shell script "pmset hibernatemode 0 > /dev/null" with administrator privileges
+				do shell script "rm /var/vm/sleepimage > /dev/null" with administrator privileges
 			end if
 		end if
 	on error errMsg number errorNumber
@@ -554,24 +570,21 @@ on clicked theObject
 			if HideEFIP then
 				set contents of text field "currentop" of window "DellEFI Installer" to "Making DellEFI files visible"
 				delay 1
-				do shell script "chflags nohidden /dsdt.aml > /dev/null &" with administrator privileges
-				do shell script "chflags nohidden /boot > /dev/null &" with administrator privileges
-				do shell script "chflags nohidden /Extra > /dev/null &" with administrator privileges
+				do shell script "chflags nohidden /boot > /dev/null" with administrator privileges
+				do shell script "chflags nohidden /Extra > /dev/null" with administrator privileges
 			else
 				set contents of text field "currentop" of window "DellEFI Installer" to "Hiding DellEFI files"
 				delay 1
-				do shell script "chflags hidden /dsdt.aml > /dev/null &" with administrator privileges
-				do shell script "chflags hidden /boot > /dev/null &" with administrator privileges
-				do shell script "chflags hidden /Extra > /dev/null &" with administrator privileges
+				do shell script "chflags hidden /boot > /dev/null" with administrator privileges
+				do shell script "chflags hidden /Extra > /dev/null" with administrator privileges
 			end if
 		else
 			-- If user does not ask to hide or reveal files then check if files where hidden and then apply hiding again to hide updated files
 			if HideEFIP then
 				set contents of text field "currentop" of window "DellEFI Installer" to "Hiding updated DellEFI files"
 				delay 1
-				do shell script "chflags hidden /dsdt.aml > /dev/null &" with administrator privileges
-				do shell script "chflags hidden /boot > /dev/null &" with administrator privileges
-				do shell script "chflags hidden /Extra > /dev/null &" with administrator privileges
+				do shell script "chflags hidden /boot > /dev/null" with administrator privileges
+				do shell script "chflags hidden /Extra > /dev/null" with administrator privileges
 			end if
 		end if
 	on error errMsg number errorNumber
@@ -617,7 +630,7 @@ on clicked theObject
 				do shell script "cp -R " & workingDir & "/2FingerScroll/ApplePS2Controller.kext /Extra/Mini9Ext" with administrator privileges
 				do shell script "chown -R root:wheel /Extra/Mini9Ext/ApplePS2Controller.kext" with administrator privileges
 				try
-					do shell script "mkdir -p /usr/local/bin > /dev/null &" with administrator privileges
+					do shell script "mkdir -p /usr/local/bin > /dev/null" with administrator privileges
 				end try
 				do shell script "cp " & workingDir & "/2FingerScroll/FFScrollDaemon /usr/local/bin" with administrator privileges
 				do shell script "chmod 755 /usr/local/bin/FFScrollDaemon" with administrator privileges
@@ -688,10 +701,9 @@ on makeDSDT()
 		do shell script "cp -Rf " & workingDir & "/DSDTPatcher /.dellefi/" with administrator privileges
 	end try
 	
-	do shell script "cd /.dellefi/DSDTPatcher; ./DSDTPatcher > /dev/null 2>&1 &" with administrator privileges
-	delay 10
+	do shell script "cd /.dellefi/DSDTPatcher; ./DSDTPatcher > /dev/null 2>&1" with administrator privileges
 	
-	do shell script "cp /.dellefi/DSDTPatcher/dsdt.aml /dsdt.aml" with administrator privileges
+	do shell script "cp /.dellefi/DSDTPatcher/dsdt.aml /Extra/dsdt.aml" with administrator privileges
 	
 	set needreboot to true
 end makeDSDT

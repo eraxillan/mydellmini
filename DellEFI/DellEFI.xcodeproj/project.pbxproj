@@ -29,8 +29,9 @@
 		257572CD072881A4000BE9CA /* AppleScriptKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */; };
 		60A014C40DBD2AA20071D9A8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60A014C20DBD2AA20071D9A8 /* MainMenu.xib */; };
 		A10152F60F476D0900E065AB /* oldgma in Resources */ = {isa = PBXBuildFile; fileRef = A10152F20F476D0900E065AB /* oldgma */; };
-		A1221FE90F43AD8100F06954 /* UpdateExtra.app in Resources */ = {isa = PBXBuildFile; fileRef = A1221FE80F43AD8100F06954 /* UpdateExtra.app */; };
-		A153D99D0F314B3800AEA39E /* bootpcefiv9 in Resources */ = {isa = PBXBuildFile; fileRef = A153D9480F314B3400AEA39E /* bootpcefiv9 */; };
+		A103BAAE0F9403B100813BC4 /* 1056kext in Resources */ = {isa = PBXBuildFile; fileRef = A103BAAA0F9403B100813BC4 /* 1056kext */; };
+		A1511DD10F82D42200EA4ED8 /* Extra in Resources */ = {isa = PBXBuildFile; fileRef = A1511D8B0F82D42200EA4ED8 /* Extra */; };
+		A1511DDA0F82D43100EA4ED8 /* i386 in Resources */ = {isa = PBXBuildFile; fileRef = A1511DD20F82D43100EA4ED8 /* i386 */; };
 		A153D99E0F314B3800AEA39E /* Boot in Resources */ = {isa = PBXBuildFile; fileRef = A153D94E0F314B3400AEA39E /* Boot */; };
 		A153D99F0F314B3800AEA39E /* SystemConfiguration in Resources */ = {isa = PBXBuildFile; fileRef = A153D9520F314B3400AEA39E /* SystemConfiguration */; };
 		A153D9A00F314B3800AEA39E /* DellMini9.png in Resources */ = {isa = PBXBuildFile; fileRef = A153D9550F314B3400AEA39E /* DellMini9.png */; };
@@ -43,26 +44,9 @@
 		A153D9AB0F314B9D00AEA39E /* dellefi.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = A153D9AA0F314B9D00AEA39E /* dellefi.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		A17619E30F50E7010062FD99 /* colorsync in Resources */ = {isa = PBXBuildFile; fileRef = A17619E00F50E7010062FD99 /* colorsync */; };
 		A199B42D0F3A67A700BB581E /* 2FingerScroll in Resources */ = {isa = PBXBuildFile; fileRef = A199B4240F3A67A700BB581E /* 2FingerScroll */; };
-		A1B828450F3E675500DAFAC4 /* Extensions in Resources */ = {isa = PBXBuildFile; fileRef = A1B828440F3E675500DAFAC4 /* Extensions */; };
-		A1B82A0C0F406CF300DAFAC4 /* bin in Resources */ = {isa = PBXBuildFile; fileRef = A1B82A090F406CF300DAFAC4 /* bin */; };
 		A1CE6F420F34F4F6003348FB /* radiobt.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = A1CE6F410F34F4F6003348FB /* radiobt.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
-		A1D3BDB30F37BAA300A5D3C2 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D3BDB20F37BAA300A5D3C2 /* Sparkle.framework */; };
-		A1D3BDD50F37BB3600A5D3C2 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A1D3BDB20F37BAA300A5D3C2 /* Sparkle.framework */; };
 		A1D3BDDA0F37BD7A00A5D3C2 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = A1D3BDD90F37BD7A00A5D3C2 /* dsa_pub.pem */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		A1D3BDCE0F37BAC800A5D3C2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				A1D3BDD50F37BB3600A5D3C2 /* Sparkle.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -75,8 +59,9 @@
 		60A014C30DBD2AA20071D9A8 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		65359356078DD41800E8BB2F /* AppleScriptKit.sdef */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.sdef; name = AppleScriptKit.sdef; path = /System/Library/Frameworks/AppleScriptKit.framework/Versions/A/Resources/AppleScriptKit.sdef; sourceTree = "<absolute>"; };
 		A10152F20F476D0900E065AB /* oldgma */ = {isa = PBXFileReference; lastKnownFileType = folder; path = oldgma; sourceTree = "<group>"; };
-		A1221FE80F43AD8100F06954 /* UpdateExtra.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = UpdateExtra.app; sourceTree = "<group>"; };
-		A153D9480F314B3400AEA39E /* bootpcefiv9 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bootpcefiv9; sourceTree = "<group>"; };
+		A103BAAA0F9403B100813BC4 /* 1056kext */ = {isa = PBXFileReference; lastKnownFileType = folder; path = 1056kext; sourceTree = "<group>"; };
+		A1511D8B0F82D42200EA4ED8 /* Extra */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Extra; sourceTree = "<group>"; };
+		A1511DD20F82D43100EA4ED8 /* i386 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = i386; sourceTree = "<group>"; };
 		A153D94E0F314B3400AEA39E /* Boot */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Boot; sourceTree = "<group>"; };
 		A153D9520F314B3400AEA39E /* SystemConfiguration */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SystemConfiguration; sourceTree = "<group>"; };
 		A153D9550F314B3400AEA39E /* DellMini9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DellMini9.png; sourceTree = "<group>"; };
@@ -89,10 +74,7 @@
 		A153D9AA0F314B9D00AEA39E /* dellefi.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = dellefi.applescript; sourceTree = "<group>"; };
 		A17619E00F50E7010062FD99 /* colorsync */ = {isa = PBXFileReference; lastKnownFileType = folder; path = colorsync; sourceTree = "<group>"; };
 		A199B4240F3A67A700BB581E /* 2FingerScroll */ = {isa = PBXFileReference; lastKnownFileType = folder; path = 2FingerScroll; sourceTree = "<group>"; };
-		A1B828440F3E675500DAFAC4 /* Extensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Extensions; sourceTree = "<group>"; };
-		A1B82A090F406CF300DAFAC4 /* bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bin; sourceTree = "<group>"; };
 		A1CE6F410F34F4F6003348FB /* radiobt.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = radiobt.applescript; sourceTree = "<group>"; };
-		A1D3BDB20F37BAA300A5D3C2 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		A1D3BDD90F37BD7A00A5D3C2 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptKit.framework; path = /System/Library/Frameworks/AppleScriptKit.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -104,7 +86,6 @@
 			files = (
 				257572CC072881A4000BE9CA /* Cocoa.framework in Frameworks */,
 				257572CD072881A4000BE9CA /* AppleScriptKit.framework in Frameworks */,
-				A1D3BDB30F37BAA300A5D3C2 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,7 +106,6 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A1D3BDB20F37BAA300A5D3C2 /* Sparkle.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */,
 			);
@@ -173,14 +153,13 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A103BAAA0F9403B100813BC4 /* 1056kext */,
+				A1511DD20F82D43100EA4ED8 /* i386 */,
+				A1511D8B0F82D42200EA4ED8 /* Extra */,
 				A17619E00F50E7010062FD99 /* colorsync */,
 				A10152F20F476D0900E065AB /* oldgma */,
-				A1221FE80F43AD8100F06954 /* UpdateExtra.app */,
-				A1B82A090F406CF300DAFAC4 /* bin */,
-				A1B828440F3E675500DAFAC4 /* Extensions */,
 				A199B4240F3A67A700BB581E /* 2FingerScroll */,
 				A1D3BDD90F37BD7A00A5D3C2 /* dsa_pub.pem */,
-				A153D9480F314B3400AEA39E /* bootpcefiv9 */,
 				A153D94E0F314B3400AEA39E /* Boot */,
 				A153D9520F314B3400AEA39E /* SystemConfiguration */,
 				A153D9550F314B3400AEA39E /* DellMini9.png */,
@@ -226,7 +205,6 @@
 				257572C6072881A4000BE9CA /* Resources */,
 				257572C9072881A4000BE9CA /* Sources */,
 				257572CB072881A4000BE9CA /* Frameworks */,
-				A1D3BDCE0F37BAC800A5D3C2 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -262,7 +240,6 @@
 			files = (
 				257572C8072881A4000BE9CA /* InfoPlist.strings in Resources */,
 				60A014C40DBD2AA20071D9A8 /* MainMenu.xib in Resources */,
-				A153D99D0F314B3800AEA39E /* bootpcefiv9 in Resources */,
 				A153D99E0F314B3800AEA39E /* Boot in Resources */,
 				A153D99F0F314B3800AEA39E /* SystemConfiguration in Resources */,
 				A153D9A00F314B3800AEA39E /* DellMini9.png in Resources */,
@@ -272,11 +249,11 @@
 				A153D9A50F314B3800AEA39E /* DSDTPatcher in Resources */,
 				A1D3BDDA0F37BD7A00A5D3C2 /* dsa_pub.pem in Resources */,
 				A199B42D0F3A67A700BB581E /* 2FingerScroll in Resources */,
-				A1B828450F3E675500DAFAC4 /* Extensions in Resources */,
-				A1B82A0C0F406CF300DAFAC4 /* bin in Resources */,
-				A1221FE90F43AD8100F06954 /* UpdateExtra.app in Resources */,
 				A10152F60F476D0900E065AB /* oldgma in Resources */,
 				A17619E30F50E7010062FD99 /* colorsync in Resources */,
+				A1511DD10F82D42200EA4ED8 /* Extra in Resources */,
+				A1511DDA0F82D43100EA4ED8 /* i386 in Resources */,
+				A103BAAE0F9403B100813BC4 /* 1056kext in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

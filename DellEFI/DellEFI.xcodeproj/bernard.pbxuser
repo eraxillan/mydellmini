@@ -90,7 +90,7 @@
 			257572C2072881A4000BE9CA /* DellEFI */,
 		);
 		breakpoints = (
-			A199B4460F3BC21F00BB581E /* dellefi.applescript:13 */,
+			A199B4460F3BC21F00BB581E /* dellefi.applescript:12 */,
 		);
 		codeSenseManager = 25D9445B07B1533700FF306F /* Code sense */;
 		executables = (
@@ -138,7 +138,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					954,
+					844,
 					60,
 					20,
 					48,
@@ -155,22 +155,28 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 259377122;
-			PBXWorkspaceStateSaveDate = 259377122;
+			PBXPerProjectTemplateStateSaveDate = 261249065;
+			PBXWorkspaceStateSaveDate = 261249065;
 		};
 		perUserProjectItems = {
+			A103BA5A0F92582500813BC4 /* PBXTextBookmark */ = A103BA5A0F92582500813BC4 /* PBXTextBookmark */;
+			A103BB3C0F94285A00813BC4 /* PBXTextBookmark */ = A103BB3C0F94285A00813BC4 /* PBXTextBookmark */;
 			A12220290F43BFD100F06954 /* PlistBookmark */ = A12220290F43BFD100F06954 /* PlistBookmark */;
 			A127D2D40F360D3E001AB52A /* PlistBookmark */ = A127D2D40F360D3E001AB52A /* PlistBookmark */;
 			A13415D20F33DF9B000877FF /* PBXTextBookmark */ = A13415D20F33DF9B000877FF /* PBXTextBookmark */;
 			A13415D30F33DF9B000877FF /* PlistBookmark */ = A13415D30F33DF9B000877FF /* PlistBookmark */;
 			A13415D50F33DF9B000877FF /* PlistBookmark */ = A13415D50F33DF9B000877FF /* PlistBookmark */;
+			A1511E0C0F82E8EA00EA4ED8 /* PlistBookmark */ = A1511E0C0F82E8EA00EA4ED8 /* PlistBookmark */;
+			A1511E860F83014400EA4ED8 /* PBXBookmark */ = A1511E860F83014400EA4ED8 /* PBXBookmark */;
+			A1511E880F83014400EA4ED8 /* PBXBookmark */ = A1511E880F83014400EA4ED8 /* PBXBookmark */;
+			A1511E8C0F83014400EA4ED8 /* PBXBookmark */ = A1511E8C0F83014400EA4ED8 /* PBXBookmark */;
+			A1511E8E0F83014400EA4ED8 /* PBXBookmark */ = A1511E8E0F83014400EA4ED8 /* PBXBookmark */;
 			A153D9D10F31548500AEA39E /* PBXTextBookmark */ = A153D9D10F31548500AEA39E /* PBXTextBookmark */;
 			A1576A470F75868800D8B1E1 /* PBXTextBookmark */ = A1576A470F75868800D8B1E1 /* PBXTextBookmark */;
 			A1576A480F75868800D8B1E1 /* PBXTextBookmark */ = A1576A480F75868800D8B1E1 /* PBXTextBookmark */;
 			A1576A490F75868800D8B1E1 /* PBXTextBookmark */ = A1576A490F75868800D8B1E1 /* PBXTextBookmark */;
 			A16444530F5A43B8006095F5 /* PBXTextBookmark */ = A16444530F5A43B8006095F5 /* PBXTextBookmark */;
 			A16444550F5A43B8006095F5 /* PBXTextBookmark */ = A16444550F5A43B8006095F5 /* PBXTextBookmark */;
-			A17619EF0F5388E80062FD99 /* PlistBookmark */ = A17619EF0F5388E80062FD99 /* PlistBookmark */;
 			A17619F00F5388E80062FD99 /* PlistBookmark */ = A17619F00F5388E80062FD99 /* PlistBookmark */;
 			A1802BA80F37F890001608DA /* PBXTextBookmark */ = A1802BA80F37F890001608DA /* PBXTextBookmark */;
 			A1827D950F33E06F004AE6FA /* PBXTextBookmark */ = A1827D950F33E06F004AE6FA /* PBXTextBookmark */;
@@ -180,19 +186,36 @@
 			A199B4500F3BC22700BB581E /* PBXBookmark */ = A199B4500F3BC22700BB581E /* PBXBookmark */;
 			A199B4600F3BC22700BB581E /* PBXBookmark */ = A199B4600F3BC22700BB581E /* PBXBookmark */;
 			A1B825FF0F3D19EB00DAFAC4 /* PBXBookmark */ = A1B825FF0F3D19EB00DAFAC4 /* PBXBookmark */;
+			A1B938030F8C1E63002CF8F5 /* PBXTextBookmark */ = A1B938030F8C1E63002CF8F5 /* PBXTextBookmark */;
+			A1B938070F8C1E63002CF8F5 /* PBXTextBookmark */ = A1B938070F8C1E63002CF8F5 /* PBXTextBookmark */;
 			A1CE6F4F0F35013B003348FB /* PBXTextBookmark */ = A1CE6F4F0F35013B003348FB /* PBXTextBookmark */;
 			A1E667610F76F9BF0007E0D6 /* PBXTextBookmark */ = A1E667610F76F9BF0007E0D6 /* PBXTextBookmark */;
 			A1E667620F76F9BF0007E0D6 /* PlistBookmark */ = A1E667620F76F9BF0007E0D6 /* PlistBookmark */;
-			A1E667630F76F9BF0007E0D6 /* PBXTextBookmark */ = A1E667630F76F9BF0007E0D6 /* PBXTextBookmark */;
-			A1E667640F76F9BF0007E0D6 /* PBXTextBookmark */ = A1E667640F76F9BF0007E0D6 /* PBXTextBookmark */;
 			A1E667650F76F9BF0007E0D6 /* PlistBookmark */ = A1E667650F76F9BF0007E0D6 /* PlistBookmark */;
-			A1E667660F76F9BF0007E0D6 /* PBXTextBookmark */ = A1E667660F76F9BF0007E0D6 /* PBXTextBookmark */;
-			A1E667670F76F9BF0007E0D6 /* PlistBookmark */ = A1E667670F76F9BF0007E0D6 /* PlistBookmark */;
-			A1E667680F76F9BF0007E0D6 /* PBXTextBookmark */ = A1E667680F76F9BF0007E0D6 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 25D9445A07B1533700FF306F /* Source Control */;
 		userBuildSettings = {
 		};
+	};
+	A103BA5A0F92582500813BC4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A153D9AA0F314B9D00AEA39E /* dellefi.applescript */;
+		name = "dellefi.applescript: 412";
+		rLen = 0;
+		rLoc = 19545;
+		rType = 0;
+		vrLen = 2104;
+		vrLoc = 19052;
+	};
+	A103BB3C0F94285A00813BC4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A153D9AA0F314B9D00AEA39E /* dellefi.applescript */;
+		name = "dellefi.applescript: 709";
+		rLen = 0;
+		rLoc = 33631;
+		rType = 0;
+		vrLen = 2229;
+		vrLoc = 19213;
 	};
 	A12220290F43BFD100F06954 /* PlistBookmark */ = {
 		isa = PlistBookmark;
@@ -285,6 +308,61 @@
 		path = /Users/bernard/Documents/src/mydellmini/DellEFI/Boot/com.apple.Boot.plist;
 		sourceTree = "<absolute>";
 	};
+	A1511E0C0F82E8EA00EA4ED8 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = A122202A0F43BFD100F06954 /* com.apple.Boot.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/bernard/Documents/xcode/DellEFI/Boot/com.apple.Boot.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	A1511E860F83014400EA4ED8 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = A1511E870F83014400EA4ED8 /* background.png */;
+	};
+	A1511E870F83014400EA4ED8 /* background.png */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = image.png;
+		name = background.png;
+		path = /Users/bernard/Documents/xcode/DellEFI/Extra/Themes/Default/background.png;
+		sourceTree = "<absolute>";
+	};
+	A1511E880F83014400EA4ED8 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = A1511E890F83014400EA4ED8 /* progress_bar_background.png */;
+	};
+	A1511E890F83014400EA4ED8 /* progress_bar_background.png */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = image.png;
+		name = progress_bar_background.png;
+		path = /Users/bernard/Documents/xcode/DellEFI/Extra/Themes/Default/progress_bar_background.png;
+		sourceTree = "<absolute>";
+	};
+	A1511E8C0F83014400EA4ED8 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = A1511E8D0F83014400EA4ED8 /* background.png */;
+	};
+	A1511E8D0F83014400EA4ED8 /* background.png */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = image.png;
+		name = background.png;
+		path = /Users/bernard/Documents/xcode/DellEFI/Extra/Themes/Default/background.png;
+		sourceTree = "<absolute>";
+	};
+	A1511E8E0F83014400EA4ED8 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = A1511E8F0F83014400EA4ED8 /* progress_bar_background.png */;
+	};
+	A1511E8F0F83014400EA4ED8 /* progress_bar_background.png */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = image.png;
+		name = progress_bar_background.png;
+		path = /Users/bernard/Documents/xcode/DellEFI/Extra/Themes/Default/progress_bar_background.png;
+		sourceTree = "<absolute>";
+	};
 	A153D9560F314B3400AEA39E /* dell_mini_icon.icns */ = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{15, 205}, {1264, 668}}";
@@ -307,9 +385,9 @@
 	};
 	A153D9AA0F314B9D00AEA39E /* dellefi.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1062, 10133}}";
-			sepNavSelRange = "{33856, 0}";
-			sepNavVisRange = "{0, 687}";
+			sepNavIntBoundsRect = "{{0, 0}, {1836, 9156}}";
+			sepNavSelRange = "{33631, 0}";
+			sepNavVisRange = "{19213, 2229}";
 			sepNavWindowFrame = "{{15, 205}, {1264, 668}}";
 		};
 	};
@@ -318,7 +396,7 @@
 		fRef = A153D9AA0F314B9D00AEA39E /* dellefi.applescript */;
 		name = "dellefi.applescript: 241";
 		rLen = 0;
-		rLoc = 33856;
+		rLoc = 33631;
 		rType = 0;
 		vrLen = 1963;
 		vrLoc = 7521;
@@ -372,18 +450,6 @@
 		rType = 0;
 		vrLen = 1024;
 		vrLoc = 0;
-	};
-	A17619EF0F5388E80062FD99 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = A122202A0F43BFD100F06954 /* com.apple.Boot.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			Timeout,
-		);
-		name = /Users/bernard/Documents/xcode/DellEFI/Boot/com.apple.Boot.plist;
-		rLen = 0;
-		rLoc = 2147483647;
 	};
 	A17619F00F5388E80062FD99 /* PlistBookmark */ = {
 		isa = PlistBookmark;
@@ -440,7 +506,7 @@
 		rLen = 0;
 		rLoc = 2147483647;
 	};
-	A199B4460F3BC21F00BB581E /* dellefi.applescript:13 */ = {
+	A199B4460F3BC21F00BB581E /* dellefi.applescript:12 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -451,8 +517,8 @@
 		fileReference = A153D9AA0F314B9D00AEA39E /* dellefi.applescript */;
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 13;
-		modificationTime = 257301056.08359;
+		lineNumber = 12;
+		modificationTime = 260417393.996086;
 		state = 1;
 	};
 	A199B4490F3BC22700BB581E /* PBXBookmark */ = {
@@ -470,6 +536,40 @@
 	A1B825FF0F3D19EB00DAFAC4 /* PBXBookmark */ = {
 		isa = PBXBookmark;
 		fRef = 65359356078DD41800E8BB2F /* AppleScriptKit.sdef */;
+	};
+	A1B938030F8C1E63002CF8F5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A1B938040F8C1E63002CF8F5 /* rmdellefi */;
+		name = "rmdellefi: 5";
+		rLen = 0;
+		rLoc = 58;
+		rType = 0;
+		vrLen = 58;
+		vrLoc = 0;
+	};
+	A1B938040F8C1E63002CF8F5 /* rmdellefi */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text;
+		name = rmdellefi;
+		path = /Users/bernard/Documents/xcode/DellEFI/Extra/bin/rmdellefi;
+		sourceTree = "<absolute>";
+	};
+	A1B938070F8C1E63002CF8F5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A1B938080F8C1E63002CF8F5 /* rmdellefi */;
+		name = "rmdellefi: 5";
+		rLen = 0;
+		rLoc = 58;
+		rType = 0;
+		vrLen = 58;
+		vrLoc = 0;
+	};
+	A1B938080F8C1E63002CF8F5 /* rmdellefi */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text;
+		name = rmdellefi;
+		path = /Users/bernard/Documents/xcode/DellEFI/Extra/bin/rmdellefi;
+		sourceTree = "<absolute>";
 	};
 	A1CE6F410F34F4F6003348FB /* radiobt.applescript */ = {
 		uiCtxt = {
@@ -511,26 +611,6 @@
 		rLen = 0;
 		rLoc = 2147483647;
 	};
-	A1E667630F76F9BF0007E0D6 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A153D9AA0F314B9D00AEA39E /* dellefi.applescript */;
-		name = "dellefi.applescript: 697";
-		rLen = 0;
-		rLoc = 33856;
-		rType = 0;
-		vrLen = 687;
-		vrLoc = 0;
-	};
-	A1E667640F76F9BF0007E0D6 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A153D9AA0F314B9D00AEA39E /* dellefi.applescript */;
-		name = "dellefi.applescript: 697";
-		rLen = 0;
-		rLoc = 33856;
-		rType = 0;
-		vrLen = 687;
-		vrLoc = 0;
-	};
 	A1E667650F76F9BF0007E0D6 /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = 257572D5072881A4000BE9CA /* Info.plist */;
@@ -542,37 +622,5 @@
 		name = /Users/bernard/Documents/xcode/DellEFI/Info.plist;
 		rLen = 0;
 		rLoc = 2147483647;
-	};
-	A1E667660F76F9BF0007E0D6 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 089C165DFE840E0CC02AAC07 /* English */;
-		name = "InfoPlist.strings: 6";
-		rLen = 0;
-		rLoc = 217;
-		rType = 0;
-		vrLen = 219;
-		vrLoc = 0;
-	};
-	A1E667670F76F9BF0007E0D6 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 257572D5072881A4000BE9CA /* Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			CFBundleVersion,
-		);
-		name = /Users/bernard/Documents/xcode/DellEFI/Info.plist;
-		rLen = 0;
-		rLoc = 2147483647;
-	};
-	A1E667680F76F9BF0007E0D6 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A153D9AA0F314B9D00AEA39E /* dellefi.applescript */;
-		name = "dellefi.applescript: 697";
-		rLen = 0;
-		rLoc = 33856;
-		rType = 0;
-		vrLen = 687;
-		vrLoc = 0;
 	};
 }
