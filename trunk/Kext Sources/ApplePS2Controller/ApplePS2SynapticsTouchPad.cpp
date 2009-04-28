@@ -20,9 +20,18 @@
  * @APPLE_LICENSE_HEADER_END@
  */
 
+/**
+ *
+ * Two finger scroll implimentation by Meklort
+ * Copyright (c) 2009
+ *
+ **/
+
 #include <IOKit/assert.h>
 #include <IOKit/IOLib.h>
 #include <IOKit/hidsystem/IOHIDParameter.h>
+#include <IOKit/IOTimerEventSource.h>
+
 #include "ApplePS2SynapticsTouchPad.h"
 
 
@@ -62,26 +71,31 @@ bool ApplePS2SynapticsTouchPad::init( OSDictionary * properties )
 	_prevButtons			   = 0;
     _interruptHandlerInstalled = false;
 	_packetByteCount           = 0;
-    _resolution                = ((int)(UNKNOWN_RESOLUTION_X * 25.4)) << 16; // This is read later from teh device, UNKNOWN is teh default value for unknown models
-	//_resolution				   = (100) << 16; // (100 dpi, 4 counts/mm) (this will be read later on from the device
+    _resolution                = ((int)(UNKNOWN_RESOLUTION_X * 25.4)) << 16; // UNKNOWN is used untill it cna be read from the device.
     _touchPadModeByte          = 0; //GESTURES_MODE_BIT; //| ABSOLUTE_MODE_BIT;	// We like absolute mode
 	
+	_dragLocked = false;
+	_tapped = false;
+	_packetByteCount = 0;
+	_settleTime = 0;
+	_streamdt = 0;
+	_streamdx = 0;
+	_streamdy = 0;
+	
 	// Defaults...
-	_prefTwoFingerScroll	= true;
-	_prefEdgeScroll			= false;
+	_prefScrollMode			= SCROLL_MODE_NONE;
 	_prefHorizScroll		= false;
 	_prefClicking			= false;
 	_prefDragging			= false;
 	_prefDragLock			= false;
 	
 	
-	_prefSensitivity		= 300;
-	_prefScrollArea			= .05;
-	_prefScrollSpeed		= 1.3;
-	_prefTrackSpeed			= .8;
-	
-	_prefAccelRate			= 1;
-	
+	_prefScrollSensitivity		= 250;
+	_prefTrackpadSensitivity	= Z_LIGHT_FINGER;
+	_prefScrollArea				= .05;
+	_prefScrollSpeed			= 1.3;
+	_prefTrackSpeed				= 1.2;
+		
 
     return true;
 }
@@ -190,7 +204,12 @@ bool ApplePS2SynapticsTouchPad::start( IOService * provider )
 	setProperty("TouchpadInfo"	, _touchpadIntormation, sizeof(_touchpadIntormation));
 
 
+	//getSerialNumber();
 	getCapabilities();
+	getModelID();
+	
+	IOLog("ApplePS2Trackpad: Detected toucpad controller \"%s\" (ModelID: 0x%X)\n", model_names[INFO_SENSOR & 0x0f], (unsigned int)_modelId);	// anding with 0x0f because we only have 16 versions stored in the char array
+	IOLog("ApplePS2Trackpad: Initializing resolution to %d dpi\n", (int)(model_resolution[(INFO_SENSOR & 0x0f)][0] * 25.4));
 	IOLog("ApplePS2Trackpad: Capabilities 0x%X\n", (unsigned int) (_capabilties));
 	
 	if(CAP_W_MODE) 	{
@@ -207,7 +226,8 @@ bool ApplePS2SynapticsTouchPad::start( IOService * provider )
 
 	}
 	
-	IOLog("ApplePS2Trackpad: Initializing resolution to %d dpi\n", (int)(model_resolution[(INFO_SENSOR & 0x0f)][0] * 25.4));
+
+	
 	_resolution = (int)(model_resolution[(INFO_SENSOR & 0x0f)][0] * 25.4) << 16;
 	
 	
@@ -217,8 +237,6 @@ bool ApplePS2SynapticsTouchPad::start( IOService * provider )
 	
 	
 	
-	getModelID();
-	IOLog("ApplePS2Trackpad: Detected toucpad controller \"%s\" (ModelID: 0x%X)\n", model_names[INFO_SENSOR & 0x0f], (unsigned int)_modelId);	// anding with 0x0f because we only have 16 versions stored in the char array
 
 	//setSteamMode();
     //
@@ -238,9 +256,9 @@ bool ApplePS2SynapticsTouchPad::start( IOService * provider )
     // trackpad acceleration settings from user space.  Without this, tracking
     // speed adjustments from the mouse prefs panel have no effect.
     //
-
-    setProperty(kIOHIDPointerAccelerationTypeKey, kIOHIDTrackpadAccelerationType);
-
+	// This is handeled in this driver
+    //setProperty(kIOHIDPointerAccelerationTypeKey, kIOHIDTrackpadAccelerationType);
+	
     //
     // Install our driver's interrupt handler, for asynchronous data delivery.
     //
@@ -268,6 +286,15 @@ bool ApplePS2SynapticsTouchPad::start( IOService * provider )
 
 	_device->installPowerControlAction( this, OSMemberFunctionCast(PS2PowerControlAction, this, &ApplePS2SynapticsTouchPad::setDevicePowerState));
 	_powerControlHandlerInstalled = true;
+	
+	
+	_dragTimeout = IOTimerEventSource::timerEventSource( this,
+														OSMemberFunctionCast( IOTimerEventSource::Action,
+																					this, &ApplePS2SynapticsTouchPad::draggingTimeout) );
+	
+	// Attach to our parent's work look fo rthe timer
+//	IOWorkLook* fWorkLoop = getWorkLoop();
+	getWorkLoop()->addEventSource(_dragTimeout);
 
     return true;
 }
@@ -428,10 +455,10 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	SInt32 dx = absX - _prevX;
 	SInt32 dy = absY - _prevY;	// Y is negative for ps2 (according to synaptics)
 	
-	dy *= ( ((double)model_resolution[(INFO_SENSOR & 0x0f)][0] * model_dimensions[(INFO_SENSOR & 0x0f)][0]) ) / 
-					(model_resolution[(INFO_SENSOR & 0x0f)][1] * model_dimensions[(INFO_SENSOR & 0x0f)][1]);
+	dx *= ( ((double)model_resolution[(INFO_SENSOR & 0x0f)][1] * model_dimensions[(INFO_SENSOR & 0x0f)][0]) ) / 
+					(model_resolution[(INFO_SENSOR & 0x0f)][0] * model_dimensions[(INFO_SENSOR & 0x0f)][1]);
 	// This one SHOULD work instead of the above, but it doesnt, I'll fix it before the next release
-	//dy *=  model_factor[(INFO_SENSOR & 0x0f)];
+	//dx *=  model_factor[(INFO_SENSOR & 0x0f)];
 
 
 	// Scale dx and dy bassed on the type of movement. This does not need to happen after event calculation because IF the event changes, dx and dy are reset to 0
@@ -445,6 +472,9 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 
 	// TODO: Instead of calculating this every loop, just read it form a (static) variable
 
+	// Handel Acceleration	
+	if(ABS(dx) < ACCELERATION_TABLE_SIZE) ABS(dx) == dx ? dx = accelerationTable[ABS(dx)] : dx = -1 * accelerationTable[ABS(dx)];
+	if(ABS(dy) < ACCELERATION_TABLE_SIZE) ABS(dy) == dy ? dy = accelerationTable[ABS(dy)] : dy = -1 * accelerationTable[ABS(dy)];
 	
 	_streamdx += dx;
 	_streamdy += dy;
@@ -453,82 +483,99 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	
 
 	// Wait for the data to stabalize, if its below Z_LIGHT_FINGER, we treat it as a new stream
-	if(dt > 20000 || pressureZ < Z_LIGHT_FINGER)	{ //{return;}
-		dx = 0;		
-		dy = 0;
-
-		//Ignore input untill valid
-		_event = DEFAULT_EVENT;	// We reset dx and dy untill it is a reliable number (Z MUST be larger than 8 for it to be reliable)
-	} 
-	else if(_event & (VERTICAL_SCROLLING | HORIZONTAL_SCROLLING | DRAGGING));	// These are events that are persistant
-	else if((_event == SCROLLING) && (Wvalue < W_RESERVED))						_event = SCROLLING;	// our touchpad doesnt support anything below W_RESERVED so keep on scrolling, actual it should be scroling anyway...
-	else if((W_MODE) && ((Wvalue * pressureZ) > _prefSensitivity))				_event = SCROLLING;
+	if(dt > 20000 || pressureZ < _prefTrackpadSensitivity)																			_event = DEFAULT_EVENT;	// We reset dx and dy untill it is a reliable number (Z MUST be larger than 8 for it to be reliable)
+	else if(_event & (VERTICAL_SCROLLING | HORIZONTAL_SCROLLING | DRAGGING));																  //_event = _event; // These are events that are persistant
+	else if((_event == SCROLLING) && (Wvalue < W_RESERVED))																			_event = SCROLLING;	// our touchpad doesnt support anything below W_RESERVED so keep on scrolling, actual it should be scroling anyway...
+	else if((_prefScrollMode == SCROLL_MODE_TWO_FINGER) && (W_MODE) && ((Wvalue * pressureZ) > _prefScrollSensitivity))				_event = SCROLLING;
 	//else if((W_MODE) && (Wvalue >= W_FINGER_MAX))	_event = SCROLLING;	// This is an alternate method verses the one above
-	else																		_event = MOVEMENT;
+	else																															_event = MOVEMENT;
+	
+	
 	
 	
 	// If the event has just changed, OR if it has recently changed, let the touchpad settle
 	if((prevEvent ^ _event) || _settleTime) {
-		// TODO: Clena this up
-		
-		if(_prevEvent == DEFAULT_EVENT && _prefEdgeScroll &&
+		/***		Edge Scrolling Calculations		***/
+		if(_prevEvent == DEFAULT_EVENT && (_prefScrollMode == SCROLL_MODE_EDGE) &&
 		   (absX > (ABSOLUTE_X_MAX * (1 - _prefScrollArea)))) _event = VERTICAL_SCROLLING;
-		else if(_prevEvent == DEFAULT_EVENT && _prefEdgeScroll && _prefHorizScroll &&
-			(absY < (ABSOLUTE_Y_MIN * (1 + _prefScrollArea)))) _event = HORIZONTAL_SCROLLING;
+		else if(_prevEvent == DEFAULT_EVENT && (_prefScrollMode == SCROLL_MODE_EDGE) && _prefHorizScroll &&
+			(absY < (ABSOLUTE_Y_MIN * (1 + (_prefScrollArea / 2))))) _event = HORIZONTAL_SCROLLING;
 		
 		
-		// Determine if we want to drag here, or if we were dragging, add a small delay for the finger to make contact with the pad again
-		else if(_prefDragging && _tapped && _streamdt < TAP_LENGTH_MAX && _event == MOVEMENT) _event = DRAGGING;
-		else if(_prefDragging && _prevEvent == DRAGGING && _event == DEFAULT_EVENT) _event = DRAGGING;
-		else _tapped = false;
+		/***		Dragging Calculations			***/
+		if(_event == DRAGGING);
+		else if(_prefClicking && _prefDragging && _prefDragLock && _prevEvent == DRAGGING) _event = DRAGGING;
+		else if(_prefClicking && _prefDragging && _tapped && _streamdt < TAP_LENGTH_MAX && _event == MOVEMENT) {
+			_event = DRAGGING;
+			_tapped = false;
+			IOLog("Dragging mode\n");
+			_dragTimeout->cancelTimeout();	// Cancel the timeout, the _tapped = false also does this
+			//	if(_prefDragLock) _dragLocked = true;
+		} else _tapped = false;
 		
-		
+		/**			Scrolling Calculations			***/
+		if(prevEvent != SCROLLING || _event != SCROLLING) {
+		   dx = 0;		
+		   dy = 0;
+		} else if(_event != SCROLLING){
+			_event = SCROLLING;
+		}
 		   
-		// We do this last so we can detect events first
+		
+		
+		
+		/***		Event Changed calculations		***/
 		if(!_settleTime) {
+			/***		New Stream Calculations			***/
 			if(prevEvent == DEFAULT_EVENT) {
 				_settleTime = 2; // we SHOULD have already settle, but just in case
 				_streamdx = 0;
 				_streamdy = 0;
 				_streamdt = 0;
-				//buttons = _prevButtons;
-			} else if(_event == DEFAULT_EVENT &&
-			   _prefClicking  && 
-			   //(ABS(_streamdx) <= 200) && 
-			   // I really didnt need to cahnge it from ABS, but it was for debuggin. The next version may have it fixed
-			   (((_streamdx > 0) && (_streamdx <= 250)) || ((_streamdx <= 0) && (_streamdx >= -250))) &&
-			   (((_streamdy > 0) && (_streamdy <= 250)) || ((_streamdy <= 0) && (_streamdy >= -250))) &&
-			   
-			   //(ABS(_streamdy) <= 200) && //)		// 200 ~ 2 mm of movement on the trackpad
-			   ((_streamdt < TAP_LENGTH_MAX)  &&
-				(_streamdt > TAP_LENGTH_MIN))
-			   
-			   )
-			{
-				if(prevEvent == MOVEMENT)
-				{
-					//IOLog("Tapping: dx: %d\tdy: %d\t dt: %d", _streamdx, _streamdy, _streamdt);
-					_tapped = true;
-					buttons = 0x01; // _tapped;
-					
+
+			/***		End of Stream Calculations		***/
+			} else if(_event == DEFAULT_EVENT) {
+				/***		Click detection code (NO DRAGGING)		***/
+				if(_prefClicking  && ((_streamdt < TAP_LENGTH_MAX)  && (_streamdt > TAP_LENGTH_MIN))) {
+					_dragTimeout->cancelTimeout();
+					if((ABS(_streamdx) <= 250) && (ABS(_streamdy) <= 250))
+					{	
+						if(prevEvent == MOVEMENT)
+						{
+							if(_prefDragging) {								
+								// THIS SHOULDNT HAPPEN IF WE HAVE DRAGGING ENABLE, 
+								//if(!_tapped) {		// Firt time through
+								//	IOLog("Entering FIRST tap algrithm\n");
+								_tapped = true;
+								_dragTimeout->setTimeoutUS(TAP_LENGTH_MAX);			// Set timout to send tap event if no double tap
+								//}
+							} else buttons = 0x01;		// Send tap event
+							
+						} else if(prevEvent == DRAGGING) {	// this tap occured quickly enough so that the DRAGGING is set
+							//IOLog("Tap while dragging (aka DOUBLE CLICK)\n");
+							// We should be doing a double click now, instead of a drag
+							dispatchRelativePointerEvent(0, 0, 1, now);
+							dispatchRelativePointerEvent(0, 0, 0, now);	// Release the button so we can send a double click event
+							buttons = 0x01;
+							_tapped = false;
+							//_dragLocked = false;	// This will be removed soon
+							_event = DEFAULT_EVENT;	// Cancel teh draggin event (aka, we are no longer drag locked
+						} else if(prevEvent == SCROLLING) {
+							buttons = 0x02;
+						}
+					} else if(prevEvent == DRAGGING) {	// We moved a bit too much, lets call it dragging is we tapped quickly enough
+						_event = DRAGGING;
+					}
+
 				}
-				else if(prevEvent == SCROLLING) buttons = 0x02;
+								
+				if(_prevEvent == DRAGGING) _settleTime = 30;	// This doesnt do anything...
 			}
 			else _settleTime = 10;		// Lets wait 5 packets for it to settle
 		} else _settleTime--;
+	}	
 
-		   
-		if(prevEvent != SCROLLING || _event != SCROLLING) {	// Scrolling is special, we DONT reset it because we want it to be fluid
-			dx = 0;		
-			dy = 0;
-		} else if(_event != SCROLLING){
-			//IOLog("Reseting event to SCROLLING (%d)\n", SCROLLING);
-			_event = SCROLLING;
-		}
-	} else if(_settleTime) _settleTime = 0;	// This should NEVER happen
-		
-	
-	
+
 	
 	// Lets send the button / movement / scrolling events
 	switch(_event) {
@@ -541,45 +588,43 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 			//dispatchRelativePointerEvent(0, 0, buttons, now);
 			break;
 		case SCROLLING:
+			if(_prefHorizScroll == false) dx = 0;
+			else {
+				if(ABS(dy) << 1 > ABS(dx)) dx = 0;		// dx has been  << 2, sox dy << 2 gives ut the origional.,  << 1 gives up >> 1
+				else if(ABS(dx) >> 3 > ABS(dy)) dy = 0;		// dx has been << 2, so >> 3 gives us  >> 1
+			}
 			dispatchScrollWheelEvent(dy, -1 * dx, 0, now);
 			//dispatchRelativePointerEvent(0, 0, buttons, now);
 			break;
 			
 		case DRAGGING:
-			//IOLog("Event = Dragging :)\n");
 			if(buttons) {
-				_tapped = false;
+				//_dragLocked = false;
+				_event = MOVEMENT;
 				buttons = 0;
 			}
-			else buttons = 0x01;
+			else buttons = 0x01; //_dragLocked | _tapped;
 			
 		case MOVEMENT:
 			dy *= -1;	// PS2 spec has the direction backwards from what the os wants (lower left corner is the orign, verses upper left)
 			dispatchRelativePointerEvent((SInt32) dx, (SInt32) dy, buttons, now);
 			break;
-			
 		// No mevement, just send button presses
 		case DEFAULT_EVENT:
 		default:
-			
+			//if(_tapped) && 
 			// TODO: Make this configureable (or get a good value, bassed ont he model_resolution)
 			/*if(prevEvent ^ _event) {	// This will NOT happen on a new stream since prevEvent was set to DEFAULT_EVENT on the prev stream...
 				
 			} else */
-			if(prevEvent == SCROLLING) buttons = 0;
-
-
+			//if(prevEvent == SCROLLING) buttons = 0;
 			dispatchRelativePointerEvent(0, 0, buttons, now);
-
 			break;
 			
 	}
 	
-	//IOLog("Streamdt: %d\n", _streamdt);
-
 	_prevX = absX;
 	_prevY = absY;
-	//_prevButtons = buttons;		// Used for third button emulation
 	_prevPacketSecond = second;
 	_prevPacketTime = currentTime;
 }
@@ -858,46 +903,27 @@ void ApplePS2SynapticsTouchPad::setCommandByte( UInt8 setBits, UInt8 clearBits )
 // This method is used by the prefrences pane to communicate with the driver (currently only supports clicking) called when IORegistryEntrySetCFProperties
 IOReturn ApplePS2SynapticsTouchPad::setParamProperties( OSDictionary * dict )
 {
-   /* OSNumber *   clicking = OSDynamicCast( OSNumber, dict->getObject("Clicking") );
+	// Scrolling stuff
+	if(OSDynamicCast(OSNumber,  dict->getObject(kTPScrollMode)))				_prefScrollMode		= ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollMode)))->unsigned8BitValue();
+	if(OSDynamicCast(OSBoolean, dict->getObject(kTPHorizScroll)))			_prefHorizScroll	= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPHorizScroll)))->getValue();
+
+	// Clickign stuff
+	if(OSDynamicCast(OSBoolean, dict->getObject(kTPTapToClick)))			_prefClicking		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPTapToClick)))->getValue();
+	if(OSDynamicCast(OSBoolean, dict->getObject(kTPDraggin)))				_prefDragging		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPDraggin)))->getValue();
+	if(OSDynamicCast(OSBoolean, dict->getObject(kTPDragLock)))				_prefDragLock		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPDragLock)))->getValue();
 	
-    if ( clicking )
-    {    
-		// This now only resets the gesture bit, not everything else (yay, bug is fixed)
-		UInt8  newModeByteValue = _touchPadModeByte & ~ GESTURES_MODE_BIT; // Clear out the gesture bit
-		
-        if(RELATIVE_MODE) clicking->unsigned32BitValue() & 0x1 ? newModeByteValue |= GESTURES_MODE_BIT : 0;	// set it if the user wants us to
+	// Sensitivity stuff
+	if(OSDynamicCast(OSNumber, dict->getObject(kTPScrollSensitivity)))		_prefScrollSensitivity	= (215 + 20 *	(11 - ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollSensitivity)))->unsigned32BitValue()));
+	if(OSDynamicCast(OSNumber, dict->getObject(kTPTrackpadSensitivity)))	_prefTrackpadSensitivity	= Z_LIGHT_FINGER + (2 * ( 11 - ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPTrackpadSensitivity)))->unsigned32BitValue()));
 
-        if (_touchPadModeByte != newModeByteValue)
-        {
-            _touchPadModeByte = newModeByteValue;
+	// Speed stuff
+	if(OSDynamicCast(OSNumber, dict->getObject(kTPScrollArea)))				_prefScrollArea		= (.006 *		((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollArea)))->unsigned32BitValue());
+	if(OSDynamicCast(OSNumber, dict->getObject(kTPScrollSpeed)))			_prefScrollSpeed	= .9 + (.2 *	((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollSpeed)))->unsigned32BitValue());
+	if(OSDynamicCast(OSNumber, dict->getObject(kTPTrackSpeed)))				_prefTrackSpeed		= .4 + (.2 *			((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPTrackSpeed)))->unsigned32BitValue());
 
-            //
-            // Write the TouchPad mode byte value.
-            //
-
-            setTouchPadModeByte(_touchPadModeByte, true);
-
-            //
-            // Advertise the current state of the tapping feature.
-            //
-
-            setProperty("Clicking", clicking);
-        }
-    } else */ 
-	if(OSDynamicCast(OSBoolean, dict->getObject(kTPEdgeScrolling)))
-	{
-		_prefEdgeScroll		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPEdgeScrolling)))->getValue();
-		_prefHorizScroll	= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPHorizScroll)))->getValue();
-		_prefClicking		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPTapToClick)))->getValue();
-		_prefDragging		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPDraggin)))->getValue();
-		_prefDragLock		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPDragLock)))->getValue();
-	
-		_prefSensitivity	= (300 + 25 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPSensitivity)))->unsigned32BitValue());
-		_prefScrollArea		= (.01 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollArea)))->unsigned32BitValue());
-		_prefScrollSpeed	= .5 + (.2 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollSpeed)))->unsigned32BitValue());
-		_prefTrackSpeed		= (.2 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPTrackSpeed)))->unsigned32BitValue());
-		_prefAccelRate		= (.01 * ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPAccelRate)))->unsigned32BitValue());
-	}
+	// If the various prefClicking values have changes, things might be weird, so we reset these values just in case.
+	_dragLocked = false;
+	_tapped = false;
 
 
     return super::setParamProperties(dict);
@@ -914,14 +940,6 @@ void ApplePS2SynapticsTouchPad::setDevicePowerState( UInt32 whatToDo )
             break;
 
         case kPS2C_EnableDevice:
-			// Reset vars for the absolute mode handler.
-			_streamdx = 0;
-			_streamdy = 0;
-			_settleTime = 0;
-			//_newStream = true;
-			//_streamStartSecond = second;
-			//_streamStartMicro = currentTime;
-            
 			//
             // Must not issue any commands before the device has
             // completed its power-on self-test and calibration.
@@ -935,11 +953,16 @@ void ApplePS2SynapticsTouchPad::setDevicePowerState( UInt32 whatToDo )
             setCommandByte( kCB_EnableMouseIRQ, kCB_DisableMouseClock );
 
             //
-            // Clear packet buffer pointer to avoid issues caused by
-            // stale packet fragments.
+            // Clear packet buffer and various values to avoid issues caused by
+            // stale values.
             //
 
             _packetByteCount = 0;
+			_streamdx = 0;
+			_streamdy = 0;
+			_settleTime = 0;
+			_tapped = false;
+			_dragLocked = false;
 
             //
             // Finally, we enable the trackpad itself, so that it may
@@ -1041,4 +1064,18 @@ bool   ApplePS2SynapticsTouchPad::getSerialNumber() {
 }
 bool   ApplePS2SynapticsTouchPad::getResolutions() {
 	return false;
+}
+
+bool   ApplePS2SynapticsTouchPad::draggingTimeout() {
+	AbsoluteTime now;
+	if(_tapped) {
+		_tapped = false;
+		_event = MOVEMENT;
+		
+		_dragTimeout->cancelTimeout();
+		clock_get_uptime((uint64_t *)&now);
+		dispatchRelativePointerEvent(0, 0, 0x01, now);	// Now we send the tap event, since the second tap timed out.
+	}
+
+	return true;
 }

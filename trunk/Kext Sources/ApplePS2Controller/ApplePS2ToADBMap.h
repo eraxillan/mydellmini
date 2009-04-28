@@ -23,6 +23,87 @@
 #ifndef _APPLEPS2TOADBMAP_H
 #define _APPLEPS2TOADBMAP_H
 
+
+
+/* 
+ * Special key values
+ */
+
+#define ADBK_DELETE	0x33
+#define ADBK_FORWARD_DELETE	0x75
+#define ADBK_PBFNKEY	0x3F
+#define ADBK_LEFT	0x3B
+#define ADBK_RIGHT	0x3C
+#define ADBK_UP		0x3E
+#define ADBK_DOWN	0x3D
+#define ADBK_PGUP	0x74
+#define ADBK_PGDN	0x79
+#define ADBK_HOME	0x73
+#define ADBK_END	0x77
+#define ADBK_CONTROL	0x36
+#define ADBK_CONTROL_R  0x7D
+#define ADBK_FLOWER	0x37
+#define ADBK_SHIFT	0x38
+#define ADBK_SHIFT_R    0x7B
+#define ADBK_CAPSLOCK	0x39
+#define ADBK_OPTION	0x3A
+#define ADBK_OPTION_R   0x7C
+#define	ADBK_NUMLOCK	0x47
+#define ADBK_SPACE	0x31
+#define ADBK_F		0x03
+#define ADBK_O		0x1F
+#define ADBK_P		0x23
+#define ADBK_Q		0x0C
+#define ADBK_V		0x09
+#define ADBK_1		0x12
+#define ADBK_2		0x13
+#define ADBK_3		0x14
+#define ADBK_4		0x15
+#define ADBK_5		0x17
+#define ADBK_6		0x16
+#define ADBK_7		0x1A
+#define ADBK_8		0x1C
+#define ADBK_9		0x19
+#define ADBK_0		0x1D
+#define ADBK_F9		0x65
+#define ADBK_F10	0x6D
+#define ADBK_F11	0x67
+#define ADBK_F12	0x6F
+#define	ADBK_POWER	0x7f	/* actual 0x7f 0x7f */
+
+#define ADBK_KEYVAL(key)	((key) & 0x7f)
+#define ADBK_PRESS(key)		(((key) & 0x80) == 0)
+#define ADBK_KEYDOWN(key)	(key)
+#define ADBK_KEYUP(key)		((key) | 0x80)
+#define ADBK_MODIFIER(key)	((((key) & 0x7f) == ADBK_SHIFT) || \
+(((key) & 0x7f) == ADBK_SHIFT_R) || \
+(((key) & 0x7f) == ADBK_CONTROL) || \
+(((key) & 0x7f) == ADBK_CONTROL_R) || \
+(((key) & 0x7f) == ADBK_FLOWER) || \
+(((key) & 0x7f) == ADBK_OPTION) || \
+(((key) & 0x7f) == ADBK_OPTION_R) || \
+(((key) & 0x7f) == ADBK_NUMLOCK) || \
+(((key) & 0x7f) == ADBK_CAPSLOCK))
+
+/* ADB Keyboard Status - ADB Register 2 */
+
+#define	ADBKS_LED_NUMLOCK		0x0001
+#define	ADBKS_LED_CAPSLOCK		0x0002
+#define	ADBKS_LED_SCROLLLOCK		0x0004
+#define	ADBKS_SCROLL_LOCK		0x0040
+#define	ADBKS_NUMLOCK			0x0080
+/* Bits 3 to 5 are reserved */
+#define	ADBKS_APPLE_CMD			0x0100
+#define	ADBKS_OPTION			0x0200
+#define	ADBKS_SHIFT			0x0400
+#define	ADBKS_CONTROL			0x0800
+#define	ADBKS_CAPSLOCK			0x1000
+#define	ADBKS_RESET			0x2000
+#define	ADBKS_DELETE			0x4000
+/* bit 16 is reserved */
+
+
+
 #define DEADKEY 0x80
 
 static const UInt8 PS2ToADBMap[0x82] = 
@@ -31,21 +112,21 @@ static const UInt8 PS2ToADBMap[0x82] =
  ======================== */
 DEADKEY,  // 00
 0x35,  // 01  Escape
-0x12,  // 02  1
-0x13,  // 03  2
-0x14,  // 04  3
-0x15,  // 05  4
-0x17,  // 06  5
-0x16,  // 07  6
-0x1a,  // 08  7
-0x1c,  // 09  8
-0x19,  // 0a  9
-0x1d,  // 0b  0
+ADBK_1,  // 02  1
+ADBK_2,  // 03  2
+ADBK_3,  // 04  3
+ADBK_4,  // 05  4
+ADBK_5,  // 06  5
+ADBK_6,  // 07  6
+ADBK_7,  // 08  7
+ADBK_8,  // 09  8
+ADBK_9,  // 0a  9
+ADBK_0,  // 0b  0
 0x1b,  // 0c  -_
 0x18,  // 0d  =+
-0x33,  // 0e  Backspace
+ADBK_DELETE,  // 0e  Backspace
 0x30,  // 0f  Tab
-0x0c,  // 10  Q
+ADBK_Q,  // 10  Q
 0x0d,  // 11  W
 0x0e,  // 12  E
 0x0f,  // 13  R
@@ -53,8 +134,8 @@ DEADKEY,  // 00
 0x10,  // 15  Y
 0x20,  // 16  U
 0x22,  // 17  I
-0x1f,  // 18  O
-0x23,  // 19  P
+ADBK_O,  // 18  O
+ADBK_P,  // 19  P
 0x21,  // 1a  [{
 0x1e,  // 1b  ]}
 0x24,  // 1c  Enter
@@ -62,7 +143,7 @@ DEADKEY,  // 00
 0x00,  // 1e  A
 0x01,  // 1f  S
 0x02,  // 20  D
-0x03,  // 21  F
+ADBK_F,  // 21  F
 0x05,  // 22  G
 0x04,  // 23  H
 0x26,  // 24  J
@@ -76,7 +157,7 @@ DEADKEY,  // 00
 0x06,  // 2c  Z
 0x07,  // 2d  X
 0x08,  // 2e  C
-0x09,  // 2f  V
+ADBK_V,  // 2f  V
 0x0b,  // 30  B
 0x2d,  // 31  N
 0x2e,  // 32  M
@@ -86,8 +167,8 @@ DEADKEY,  // 00
 0x3c,  // 36  Right Shift
 0x43,  // 37  Keypad *
 0x3a,  // 38  Left Alt
-0x31,  // 39  Space
-0x39,  // 3a  Caps Lock
+ADBK_SPACE,  // 39  Space
+ADBK_CAPSLOCK,  // 3a  Caps Lock
 0x7a,  // 3b  F1
 0x78,  // 3c  F2
 0x63,  // 3d  F3
@@ -96,9 +177,9 @@ DEADKEY,  // 00
 0x61,  // 40  F6
 0x62,  // 41  F7
 0x64,  // 42  F8
-0x65,  // 43  F9
-0x6d,  // 44  F10
-0x47,  // 45  Num Lock
+ADBK_F9,  // 43  F9
+ADBK_F10,  // 44  F10
+ADBK_NUMLOCK,  // 45  Num Lock
 0x6b,  // 46  Scroll Lock
 0x59,  // 47  Keypad Home
 0x5b,  // 48  Keypad Up
@@ -116,8 +197,8 @@ DEADKEY,  // 00
 DEADKEY,  // 54  SysReq
 DEADKEY,  // 55
 /*DEADKEY*/ 0x0a,  // 56 ABNT2 "\|"
-0x67,  // 57  F11
-0x6f,  // 58  F12
+ADBK_F11,  // 57  F11
+ADBK_F12,  // 58  F12
 DEADKEY,  // 59
 DEADKEY,  // 5a
 DEADKEY,  // 5b
@@ -134,14 +215,14 @@ DEADKEY,  // 5f
 0x7b,  // 66  Left Arrow
 0x7c,  // 67  Right Arrow
 0x72,  // 68  Insert
-0x75,  // 69  Delete
-0x74,  // 6a  Page Up
-0x79,  // 6b  Page Down
-0x73,  // 6c  Home
-0x77,  // 6d  End
+ADBK_FORWARD_DELETE,  // 69  Delete
+ADBK_PGUP,  // 6a  Page Up
+ADBK_PGDN,  // 6b  Page Down
+ADBK_HOME,  // 6c  Home
+ADBK_END,  // 6d  End
 0x69,  // 6e  Print Scrn
 0x71,  // 6f  Pause
-0x37,  // 70  Left Window
+ADBK_FLOWER,  // 70  Left Window
 0x36,  // 71  Right Window
 0x6e,  // 72  Applications
 /*DEADKEY*/ 0x5e,  // 73 ABNT2 "?/"
@@ -149,7 +230,7 @@ DEADKEY,  // 74
 DEADKEY,  // 75
 DEADKEY,  // 76
 DEADKEY,  // 77
-DEADKEY,  // 78
+/* International */ DEADKEY,  // 78
 DEADKEY,  // 79
 DEADKEY,  // 7a
 DEADKEY,  // 7b
