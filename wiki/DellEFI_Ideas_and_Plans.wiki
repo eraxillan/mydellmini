@@ -1,5 +1,8 @@
 #summary Meklort's Ideas and TODO List, in no particular order...
 
+== Keyboard Enhancements ==
+The keyboard kext currently does not support international buttons. Also, some of the buttons that we map either do nothing, or do something not traditionaly to os x. We can use a preference pane to allow the user to customize certain behaviors (such as what the context key does, the wireless, or battery key)
+
 == Trackpad / Keyboard wake support ==
 According to the Acpi specification, any device that is capable of waking the sistem form slepp sounld have a dsdt method "_PRW". This method tells the os / bios waht the lowest power state the device can go to. In our case, we want to disable sleeping for the PS2{K,M} devices so that they can provide wake events. The ApplePS2Controller already puts the touchpad into its own sleep power state that allows to button clicks, so it will not use too much more power.
 
@@ -20,9 +23,6 @@ The bios currently handles brightness control. I have found a way to get the dsd
 
 == Touchpad Scrolling support (In Progress / Working)==
 The current driver uses the touchpad in relative mode. If we put the touchpad in absolute mode we can then allow for side scrolling and some other features (hot corners, etc).
-
-== Network Drivers ==
-The Realtek1000 driver curently does not report the network speed and duplex mode to the OS.
 
 == Startup Chime ==
 Just beacause some people have requested it, A kext could be made that loads initialy to play a startup sound (after the audio driver of course).
