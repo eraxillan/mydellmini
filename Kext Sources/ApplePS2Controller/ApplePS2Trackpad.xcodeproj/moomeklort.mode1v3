@@ -273,6 +273,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>5</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -326,7 +328,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>6615D40C0FA79B8400E89CB3</string>
+										<string>663BE68B0FC65F4500190397</string>
 										<key>history</key>
 										<array>
 											<string>661FF2B20F7ED11E00535397</string>
@@ -344,13 +346,13 @@
 											<string>661B93E40F9FB5C200166E95</string>
 											<string>661B93E60F9FB5C200166E95</string>
 											<string>667889D70FA0E155006BF809</string>
-											<string>667889D90FA0E155006BF809</string>
 											<string>66788A4B0FA2BD14006BF809</string>
 											<string>66788A4C0FA2BD14006BF809</string>
 											<string>66788A4E0FA2BD14006BF809</string>
-											<string>663E31240FA54DF8008DE7F9</string>
 											<string>66D4EC1B0FA75D4A0098A99F</string>
-											<string>66D4EC2C0FA763B50098A99F</string>
+											<string>66FA24550FC5EE2700415FCD</string>
+											<string>663BE6560FC64AEF00190397</string>
+											<string>663BE6570FC64AEF00190397</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -376,6 +378,30 @@
 											<string>661B93ED0F9FB5C200166E95</string>
 											<string>66788A540FA2BD14006BF809</string>
 											<string>66D4EC1F0FA75D4A0098A99F</string>
+											<string>663BE5F10FC6195600190397</string>
+											<string>663BE5F20FC6195600190397</string>
+											<string>663BE5F30FC6195600190397</string>
+											<string>663BE5F40FC6195600190397</string>
+											<string>663BE6040FC63EE700190397</string>
+											<string>663BE6050FC63EE700190397</string>
+											<string>663BE6060FC63EE700190397</string>
+											<string>663BE6070FC63EE700190397</string>
+											<string>663BE6080FC63EE700190397</string>
+											<string>663BE6090FC63EE700190397</string>
+											<string>663BE60A0FC63EE700190397</string>
+											<string>663BE60B0FC63EE700190397</string>
+											<string>663BE60C0FC63EE700190397</string>
+											<string>663BE60D0FC63EE700190397</string>
+											<string>663BE6120FC6404400190397</string>
+											<string>663BE6130FC6404400190397</string>
+											<string>663BE6230FC6435A00190397</string>
+											<string>663BE6290FC643F800190397</string>
+											<string>663BE63B0FC6473700190397</string>
+											<string>663BE63C0FC6473700190397</string>
+											<string>663BE6460FC6491C00190397</string>
+											<string>663BE64E0FC649A900190397</string>
+											<string>663BE6580FC64AEF00190397</string>
+											<string>663BE6590FC64AEF00190397</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -387,14 +413,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1079, 568}}</string>
+								<string>{{0, 0}, {1079, 677}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 55 1224 723 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>568pt</string>
+							<string>677pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -407,14 +433,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 573}, {1079, 109}}</string>
+								<string>{{0, 682}, {1079, 0}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 55 1224 723 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>109pt</string>
+							<string>0pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -433,9 +459,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>6615D4080FA79AEC00E89CB3</string>
+				<string>663BE5CD0FC610AB00190397</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>6615D4090FA79AEC00E89CB3</string>
+				<string>663BE5CE0FC610AB00190397</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -650,7 +676,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>661372370F4A9A4E00415899</string>
-				<string>6615D40D0FA79B8500E89CB3</string>
+				<string>663BE5CF0FC610AB00190397</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

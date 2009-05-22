@@ -28,9 +28,15 @@
 
 
 // 10 to 500ms = a tap
-#define TAP_LENGTH_MAX		 275000
+#define TAP_LENGTH_MAX			275000
 // MIN isn't really used since 12500 is the time between packets (aprox, according to spec)
-#define TAP_LENGTH_MIN		  10000
+#define TAP_LENGTH_MIN			10000
+#define DRAGGING_RELEASE_DEALY	500000
+
+#define TAPPING					(((_streamdt < TAP_LENGTH_MAX)  && (_streamdt > TAP_LENGTH_MIN)) && (ABS(_streamdx) <= 250) && (ABS(_streamdy) <= 250))
+#define LEFT_CLICK				0x01;
+#define RIGHT_CLICK				0x02;
+
 
 #define RELATIVE_PACKET_SIZE	3
 #define ABSOLUTE_PACKET_SIZE	6
@@ -122,8 +128,9 @@
 #define SCROLLING				1 << 1
 #define HORIZONTAL_SCROLLING	1 << 2
 #define VERTICAL_SCROLLING		1 << 3
-#define ZOOMING					1 << 4
+#define ZOOMING					1 << 4			// Pinch in / out
 #define MOVEMENT				1 << 5
+#define SWIPE					1 << 6			// Three finger swipe;
 
 
 
@@ -384,6 +391,7 @@ private:
 	long long			  _serialNumber;
 	
 	bool				  _tapped;
+	bool				  _dragging;
 	bool				  _dragLocked;
 	SInt32				  _streamdx;
 	SInt32				  _streamdy;
@@ -392,10 +400,12 @@ private:
 	
 	UInt32				  _prevX;
 	UInt32				  _prevY;
-	UInt32				  _prevButtons;
+	UInt8				  _prevButtons;
 	
 	uint32_t			  _prevPacketTime;
 	uint32_t			  _prevPacketSecond;
+	uint32_t			  _streamEndTime;
+	uint32_t			  _streamEndSecond;
 	uint64_t			  _streamdt;
 	uint32_t			  _settleTime;
 	
