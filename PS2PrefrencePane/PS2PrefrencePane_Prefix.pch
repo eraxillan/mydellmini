@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'PS2PrefrencePane' target in the 'PS2PrefrencePane' project.
+// Prefix header for all source files of the 'PS2PreferencePane' target in the 'PS2PrefrencePane' project.
 //
 
 #ifdef __OBJC__
