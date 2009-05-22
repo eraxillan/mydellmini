@@ -23,12 +23,12 @@
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>NSMainNibFile</key>
-	<string>PS2PrefrencePanePref</string>
+	<string>PS2PreferencePanePref</string>
 	<key>NSPrefPaneIconFile</key>
-	<string>PS2PrefrencePanePref.tiff</string>
+	<string>PS2PreferencePanePref.tiff</string>
 	<key>NSPrefPaneIconLabel</key>
-	<string>PS2PrefrencePane</string>
+	<string>PS2PreferencePane</string>
 	<key>NSPrincipalClass</key>
-	<string>PS2PrefrencePanePref</string>
+	<string>PS2PreferencePanePref</string>
 </dict>
 </plist>
