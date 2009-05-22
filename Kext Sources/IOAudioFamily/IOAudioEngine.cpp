@@ -1730,9 +1730,9 @@ AbsoluteTime IOAudioEngine::getTimerInterval()
     currentRate = getSampleRate();
     
     if ((getNumSampleFramesPerBuffer() == 0) || (currentRate && (currentRate->whole == 0))) {
-        nanoseconds_to_absolutetime(NSEC_PER_SEC, &interval);
+        nanoseconds_to_absolutetime(NSEC_PER_SEC, (uint64_t *)&interval);
     } else if ((numErasesPerBuffer == 0) || (!getRunEraseHead())) {	// Run once per ring buffer
-        nanoseconds_to_absolutetime(((UInt64)NSEC_PER_SEC * (UInt64)getNumSampleFramesPerBuffer() / (UInt64)currentRate->whole), &interval);
+        nanoseconds_to_absolutetime(((UInt64)NSEC_PER_SEC * (UInt64)getNumSampleFramesPerBuffer() / (UInt64)currentRate->whole), (uint64_t *)&interval);
     } else {
         OSCollectionIterator *outputIterator;
         IOAudioStream *outputStream;
@@ -1754,7 +1754,7 @@ AbsoluteTime IOAudioEngine::getTimerInterval()
 			}
 			outputIterator->release();
 		}
-		nanoseconds_to_absolutetime(((UInt64)NSEC_PER_SEC * (UInt64)getNumSampleFramesPerBuffer() / (UInt64)currentRate->whole / (UInt64)numErasesPerBuffer), &interval);
+		nanoseconds_to_absolutetime(((UInt64)NSEC_PER_SEC * (UInt64)getNumSampleFramesPerBuffer() / (UInt64)currentRate->whole / (UInt64)numErasesPerBuffer), (uint64_t *)&interval);
     }
     return interval;
 }
@@ -1936,7 +1936,7 @@ void IOAudioEngine::takeTimeStamp(bool incrementLoopCount, AbsoluteTime *timesta
     if (timestamp) {
         ts = timestamp;
     } else {
-        clock_get_uptime(&uptime);
+        clock_get_uptime((uint64_t *)&uptime);
         ts = &uptime;
     }
     
@@ -1967,7 +1967,8 @@ IOReturn IOAudioEngine::getLoopCountAndTimeStamp(UInt32 *loopCount, AbsoluteTime
         nextTimestamp.lo = status->fLastLoopTime.lo;
         nextLoopCount = status->fCurrentLoopCount;
         
-        while ((*loopCount != nextLoopCount) || (CMP_ABSOLUTETIME(timestamp, &nextTimestamp) != 0)) {
+		while ((*loopCount != nextLoopCount) || (((*(uint64_t *)(timestamp)) > (*(uint64_t *)(&nextTimestamp))? (int)+1 :
+												  ((*(uint64_t *)(timestamp)) < (*(uint64_t *)(&nextTimestamp))? (int)-1 : 0)) != 0)) {
             *timestamp = nextTimestamp;
             *loopCount = nextLoopCount;
             
@@ -2012,18 +2013,18 @@ IOReturn IOAudioEngine::calculateSampleTimeout(AbsoluteTime *sampleInterval, UIn
         
         samplesFromLoopStart = ((wakeupPosition.fLoopCount - currentLoopCount) * numSampleFramesPerBuffer) + wakeupPosition.fSampleFrame;
         
-        wakeupIntervalScalar = AbsoluteTime_to_scalar(sampleInterval);
+        wakeupInterval = *(AbsoluteTime *)(&wakeupIntervalScalar);
         wakeupIntervalScalar *= samplesFromLoopStart;
         
         //wakeupInterval = scalar_to_AbsoluteTime(&wakeupIntervalScalar);
         wakeupInterval = *(AbsoluteTime *)(&wakeupIntervalScalar);
         
-        nanoseconds_to_absolutetime(WATCHDOG_THREAD_LATENCY_PADDING_NS, &wakeupThreadLatencyPaddingInterval);
+        nanoseconds_to_absolutetime(WATCHDOG_THREAD_LATENCY_PADDING_NS, (uint64_t *)&wakeupThreadLatencyPaddingInterval);
         
-        SUB_ABSOLUTETIME(&wakeupInterval, &wakeupThreadLatencyPaddingInterval);
+		((*(uint64_t *)(&wakeupInterval)) -= (*(uint64_t *)(&wakeupThreadLatencyPaddingInterval)));
         
         *wakeupTime = lastLoopTime;
-        ADD_ABSOLUTETIME(wakeupTime, &wakeupInterval);
+		((*(uint64_t *)(wakeupTime)) += (int32_t)(&wakeupInterval));
         
         result = kIOReturnSuccess;
     }

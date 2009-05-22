@@ -177,7 +177,7 @@ void IOAudioClientBufferSet::setWatchdogTimeout(AbsoluteTime *timeout)
     
     timerPending = true;
 
-    result = thread_call_enter1_delayed(watchdogThreadCall, (thread_call_param_t)generationCount, outputTimeout);
+    result = thread_call_enter1_delayed(watchdogThreadCall, (thread_call_param_t)generationCount, *(uint64_t*)&outputTimeout);
 	if (result) {
 		release();		// canceled the previous call
 	}
@@ -212,7 +212,7 @@ void IOAudioClientBufferSet::watchdogTimerFired(IOAudioClientBufferSet *clientBu
 	if (clientBufferSet) {
 #ifdef DEBUG
 		AbsoluteTime now;
-		clock_get_uptime(&now);
+		clock_get_uptime((uint64_t*)&now);
 		audioDebugIOLog(3, "IOAudioClientBufferSet[%p]::watchdogTimerFired(%ld):(%lx,%lx)(%lx,%lx)(%lx,%lx)", clientBufferSet, generationCount, now.hi, now.lo, clientBufferSet->outputTimeout.hi, clientBufferSet->outputTimeout.lo, clientBufferSet->nextOutputPosition.fLoopCount, clientBufferSet->nextOutputPosition.fSampleFrame);
 #endif
 
@@ -2123,7 +2123,8 @@ void IOAudioEngineUserClient::sendFormatChangeNotification(IOAudioStream *audioS
 {
     audioDebugIOLog(3, "IOAudioEngineUserClient[%p]::sendFormatChangeNotification(%p)", this, audioStream);
 
-    if (audioStream && notificationMessage && (notificationMessage->messageHeader.msgh_remote_port != MACH_PORT_NULL)) {
+	//  <rdar://problems/6674310&6687920>
+    if ( ( !isInactive () ) && audioStream && notificationMessage && ( notificationMessage->messageHeader.msgh_remote_port != MACH_PORT_NULL ) ) {
         io_object_t clientStreamRef;
         
         audioStream->retain();
