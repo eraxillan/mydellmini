@@ -759,13 +759,16 @@ void IOAudioDevice::setDeviceName(const char *deviceName)
 			stringLen += strlen (deviceName) + 1;
 			stringLen += strlen (getName ());
 			string = (char *)IOMalloc (stringLen);
-			strncpy (string, getName (), stringLen);
-			tempLength = strlen (string);
-			strncat (string, ":", tempLength);
-			tempLength = strlen (string);
-			strncat (string, deviceName, tempLength);
-			setDeviceModelName (string);
-			IOFree (string, stringLen);
+			if ( string )									// we should not panic for this
+			{	
+				strncpy (string, getName (), stringLen);
+				tempLength = strlen (".");					//	<rdar://problem/6216216>
+				strncat (string, ":", tempLength);
+				tempLength = strlen (deviceName);			//	<rdar://problem/6216216>
+				strncat (string, deviceName, tempLength);
+				setDeviceModelName (string);
+				IOFree (string, stringLen);
+			}
 		}
     }
 }
@@ -899,7 +902,9 @@ IOReturn IOAudioDevice::activateAudioEngine(IOAudioEngine *audioEngine, bool sho
     }
 
 	Mini9MuteControl *mmc = NULL;
-	if (::strcmp(audioEngine->getMetaClass()->getClassName(), "AppleHDAEngineOutput") == 0) {
+	if ((::strcmp(audioEngine->getMetaClass()->getClassName(), "AppleHDAEngineOutput") == 0) ||		// Dell Mini 9
+		(::strcmp(audioEngine->getMetaClass()->getClassName(), "AppleAzaliaAudioEngineOutput") == 0)		// Lenovo S10
+		) {
 		mmc = Mini9MuteControl::create();
 		audioEngine->addDefaultAudioControl(mmc);
 	}
@@ -1036,7 +1041,7 @@ IOReturn IOAudioDevice::addTimerEvent(OSObject *target, TimerEvent event, Absolu
     
 #ifdef DEBUG
     UInt64 newInt;
-    absolutetime_to_nanoseconds(interval, &newInt);
+    absolutetime_to_nanoseconds(*(uint64_t *)&interval, &newInt);
     audioDebugIOLog(3, "IOAudioDevice::addTimerEvent(%p, %p, %lums)", target, event, (UInt32)(newInt/1000000));
 #endif
 
@@ -1085,7 +1090,7 @@ IOReturn IOAudioDevice::addTimerEvent(OSObject *target, TimerEvent event, Absolu
 #ifdef DEBUG
         {
             UInt64 nanos;
-            absolutetime_to_nanoseconds(minimumInterval, &nanos);
+            absolutetime_to_nanoseconds((*(uint64_t *)&minimumInterval), &nanos);
             audioDebugIOLog(5, "IOAudioDevice::addTimerEvent() - scheduling timer to fire in %lums - previousTimerFire = {%ld,%lu}", (UInt32) (nanos / 1000000), previousTimerFire.hi, previousTimerFire.lo);
         }
 #endif
@@ -1110,7 +1115,7 @@ IOReturn IOAudioDevice::addTimerEvent(OSObject *target, TimerEvent event, Absolu
 #ifdef DEBUG
             {
                 UInt64 nanos;
-                absolutetime_to_nanoseconds(interval, &nanos);
+                absolutetime_to_nanoseconds(*(uint64_t *)&interval, &nanos);
                 audioDebugIOLog(5, "IOAudioDevice::addTimerEvent() - scheduling timer to fire in %lums at {%ld,%lu} - previousTimerFire = {%ld,%lu}", (UInt32) (nanos / 1000000), desiredNextFire.hi, desiredNextFire.lo, previousTimerFire.hi, previousTimerFire.lo);
             }
 #endif
@@ -1176,16 +1181,16 @@ void IOAudioDevice::removeTimerEvent(OSObject *target)
             {
                 AbsoluteTime now, then;
                 UInt64 nanos, mi;
-                clock_get_uptime(&now);
+                clock_get_uptime((uint64_t *)&now);
                 then = nextTimerFire;
-                absolutetime_to_nanoseconds(minimumInterval, &mi);
+                absolutetime_to_nanoseconds(*(uint64_t *)&minimumInterval, &mi);
                 if (CMP_ABSOLUTETIME(&then, &now)) {
                     SUB_ABSOLUTETIME(&then, &now);
-                    absolutetime_to_nanoseconds(then, &nanos);
+                    absolutetime_to_nanoseconds(*(uint64_t *)&then, &nanos);
                     audioDebugIOLog(5, "IOAudioDevice::removeTimerEvent() - scheduling timer to fire in %lums at {%ld,%lu} - previousTimerFire = {%ld,%lu} - interval=%lums", (UInt32) (nanos / 1000000), nextTimerFire.hi, nextTimerFire.lo, previousTimerFire.hi, previousTimerFire.lo, (UInt32)(mi/1000000));
                 } else {
                     SUB_ABSOLUTETIME(&now, &then);
-                    absolutetime_to_nanoseconds(now, &nanos);
+                    absolutetime_to_nanoseconds(*(uint64_t *)&now, &nanos);
                     audioDebugIOLog(5, "IOAudioDevice::removeTimerEvent() - scheduling timer to fire in -%lums - previousTimerFire = {%ld,%lu}", (UInt32) (nanos / 1000000), previousTimerFire.hi, previousTimerFire.lo);
                 }
             }
@@ -1229,10 +1234,10 @@ void IOAudioDevice::dispatchTimerEvents(bool force)
         AbsoluteTime now, delta;
         UInt64 nanos;
         
-        clock_get_uptime(&now);
+        clock_get_uptime((uint64_t *)&now);
         delta = now;
         SUB_ABSOLUTETIME(&delta, &previousTimerFire);
-        absolutetime_to_nanoseconds(delta, &nanos);
+        absolutetime_to_nanoseconds(*(uint64_t *)&delta, &nanos);
         audioDebugIOLog(5, "IOAudioDevice::dispatchTimerEvents() - woke up %lums after last fire - now = {%ld,%lu} - previousFire = {%ld,%lu}", (UInt32)(nanos / 1000000), now.hi, now.lo, previousTimerFire.hi, previousTimerFire.lo);
 #endif
 
@@ -1272,14 +1277,14 @@ void IOAudioDevice::dispatchTimerEvents(bool force)
                     AbsoluteTime later;
                     UInt64 mi;
                     later = nextTimerFire;
-                    absolutetime_to_nanoseconds(minimumInterval, &mi);
+                    absolutetime_to_nanoseconds(*(uint64_t *)&minimumInterval, &mi);
                     if (CMP_ABSOLUTETIME(&later, &now)) {
                         SUB_ABSOLUTETIME(&later, &now);
-                        absolutetime_to_nanoseconds(later, &nanos);
+                        absolutetime_to_nanoseconds(*(uint64_t *)&later, &nanos);
                         audioDebugIOLog(5, "IOAudioDevice::dispatchTimerEvents() - scheduling timer to fire in %lums at {%ld,%lu} - previousTimerFire = {%ld,%lu} - interval=%lums", (UInt32) (nanos / 1000000), nextTimerFire.hi, nextTimerFire.lo, previousTimerFire.hi, previousTimerFire.lo, (UInt32)(mi/1000000));
                     } else {
                         SUB_ABSOLUTETIME(&now, &later);
-                        absolutetime_to_nanoseconds(now, &nanos);
+                        absolutetime_to_nanoseconds(*(uint64_t *)&now, &nanos);
                         audioDebugIOLog(5, "IOAudioDevice::dispatchTimerEvents() - scheduling timer to fire in -%lums - previousTimerFire = {%ld,%lu}", (UInt32) (nanos / 1000000), previousTimerFire.hi, previousTimerFire.lo);
                     }
                 }
