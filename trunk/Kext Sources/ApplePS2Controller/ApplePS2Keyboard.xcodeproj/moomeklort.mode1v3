@@ -312,12 +312,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ApplePS2Keyboard.h</string>
+								<string>ApplePS2Keyboard.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -325,49 +327,25 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ApplePS2Keyboard.h</string>
+										<string>ApplePS2Keyboard.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>66788A870FA2BEFD006BF809</string>
+										<string>66FA23EE0FC5E26900415FCD</string>
 										<key>history</key>
 										<array>
 											<string>667889650FA0B3D0006BF809</string>
 											<string>66788A780FA2BEFD006BF809</string>
-											<string>66788A790FA2BEFD006BF809</string>
-											<string>66788A7A0FA2BEFD006BF809</string>
+											<string>66FA23EB0FC5E26900415FCD</string>
+											<string>66FA23EC0FC5E26900415FCD</string>
 										</array>
 										<key>prevStack</key>
 										<array>
 											<string>663520710F4B1536003F1AF7</string>
 											<string>663520840F4B15A4003F1AF7</string>
 											<string>6682A2D90F6B159C00106E00</string>
-											<string>667889460FA0A6DF006BF809</string>
-											<string>6678894F0FA0B17D006BF809</string>
 											<string>667889660FA0B3D0006BF809</string>
-											<string>667889760FA0B6D8006BF809</string>
-											<string>667889770FA0B6D8006BF809</string>
-											<string>667889780FA0B6D8006BF809</string>
-											<string>667889790FA0B6D8006BF809</string>
-											<string>6678897A0FA0B6D8006BF809</string>
-											<string>6678897B0FA0B6D8006BF809</string>
-											<string>6678897C0FA0B6D8006BF809</string>
-											<string>6678897D0FA0B6D8006BF809</string>
-											<string>6678897E0FA0B6D8006BF809</string>
-											<string>6678897F0FA0B6D8006BF809</string>
-											<string>667889800FA0B6D8006BF809</string>
-											<string>66788A7B0FA2BEFD006BF809</string>
-											<string>66788A7C0FA2BEFD006BF809</string>
-											<string>66788A7D0FA2BEFD006BF809</string>
-											<string>66788A7E0FA2BEFD006BF809</string>
-											<string>66788A7F0FA2BEFD006BF809</string>
-											<string>66788A800FA2BEFD006BF809</string>
-											<string>66788A810FA2BEFD006BF809</string>
-											<string>66788A820FA2BEFD006BF809</string>
-											<string>66788A830FA2BEFD006BF809</string>
-											<string>66788A840FA2BEFD006BF809</string>
-											<string>66788A850FA2BEFD006BF809</string>
-											<string>66788A860FA2BEFD006BF809</string>
+											<string>66FA23ED0FC5E26900415FCD</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -389,8 +367,6 @@
 							<string>504pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -427,9 +403,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>667889480FA0A6DF006BF809</string>
+				<string>66FA23EF0FC5E26900415FCD</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>667889490FA0A6DF006BF809</string>
+				<string>66FA23F00FC5E26900415FCD</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -564,7 +540,6 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>6613727A0F4A9AA200415899</string>
-		<string>667889520FA0B17D006BF809</string>
 		<string>/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/ApplePS2Keyboard.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -584,14 +559,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ApplePS2ToADBMap.h</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -647,7 +620,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>6613727A0F4A9AA200415899</string>
-				<string>667889550FA0B17D006BF809</string>
+				<string>66FA23F10FC5E26900415FCD</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

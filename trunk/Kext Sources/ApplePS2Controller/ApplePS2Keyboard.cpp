@@ -64,7 +64,7 @@ bool ApplePS2Keyboard::init(OSDictionary * properties)
 	_device                    = 0;
 	_extendCount               = 0;
 	_interruptHandlerInstalled = false;
-	//_ledState                  = 0;
+	_ledState                  = 0;
 	
 	for (int index = 0; index < KBV_NUNITS; index++)  _keyBitVector[index] = 0;
 	
@@ -148,7 +148,7 @@ bool ApplePS2Keyboard::start(IOService * provider)
 	// Initialize the keyboard LED state.
 	//
 	
-	//setLEDs(_ledState);
+	setLEDs(_ledState);
 	
 	//
 	// Enable the keyboard clock (should already be so), the keyboard IRQ line,
@@ -480,8 +480,8 @@ void ApplePS2Keyboard::setAlphaLockFeedback(bool locked)
 	// It is safe to issue this request from the interrupt/completion context.
 	//
 	
-	//_ledState = locked ? (_ledState | kLED_CapsLock):(_ledState & ~kLED_CapsLock);
-	//setLEDs(_ledState);
+	_ledState = locked ? (_ledState | kLED_CapsLock):(_ledState & ~kLED_CapsLock);
+	setLEDs(_ledState);
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -494,16 +494,16 @@ void ApplePS2Keyboard::setNumLockFeedback(bool locked)
 	// It is safe to issue this request from the interrupt/completion context.
 	//
 	
-	//_ledState = locked ? (_ledState | kLED_NumLock):(_ledState & ~kLED_NumLock);
-	//setLEDs(_ledState);
+	_ledState = locked ? (_ledState | kLED_NumLock):(_ledState & ~kLED_NumLock);
+	setLEDs(_ledState);
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 void ApplePS2Keyboard::setLEDs(UInt8 ledState)
 {
-	return;	// We are on a dell mini 9, there are no LED's, TODO: test with external kbd
-	/*
+	//return;	// We are on a dell mini 9, there are no LED's, TODO: test with external kbd
+	///*
 	 //
 	 // Asynchronously instructs the controller to set the keyboard LED state.
 	 //
@@ -523,7 +523,7 @@ void ApplePS2Keyboard::setLEDs(UInt8 ledState)
 	 request->commands[3].inOrOut = kSC_Acknowledge;
 	 request->commandsCount = 4;
 	 _device->submitRequest(request); // asynchronous, auto-free'd
-	 */
+	 //*/
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -774,7 +774,7 @@ void ApplePS2Keyboard::setDevicePowerState( UInt32 whatToDo )
 			//
 			
 			
-			//setLEDs(_ledState);
+			setLEDs(_ledState);
 			
 			//
 			// Enable the keyboard clock (should already be so), the keyboard

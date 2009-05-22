@@ -326,7 +326,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>66BD21760F98387E00116D84</string>
+										<string>66FA24070FC5E28800415FCD</string>
 										<key>history</key>
 										<array>
 											<string>6699B2640F77003600BCE3CC</string>
@@ -334,7 +334,7 @@
 											<string>66DCD2EE0F82F32C00902DA0</string>
 											<string>66DCD2EF0F82F32C00902DA0</string>
 											<string>66E262950F884976005A3EC3</string>
-											<string>661F4F1B0F92B2DF00E46E11</string>
+											<string>66FA23DA0FC5E21800415FCD</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -401,9 +401,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>66BD21770F98387E00116D84</string>
+				<string>66FA24080FC5E28800415FCD</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>66BD21780F98387E00116D84</string>
+				<string>66FA24090FC5E28800415FCD</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -537,6 +537,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>66245B8B0F4A989C00BA2A61</string>
 		<string>/Users/moomeklort/mydellmini/Kext Sources/ApplePS2Controller/ApplePS2Controller.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -617,7 +618,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>66245B8B0F4A989C00BA2A61</string>
-				<string>66E2629B0F884976005A3EC3</string>
+				<string>66FA240A0FC5E28800415FCD</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
