@@ -3,6 +3,8 @@
  * Updated bootloader from PC EFI V9 to Chameleon 2.0 RC1.
  * *PLANNED* Includes new touchpad driver with two finger scrolling support.
  * *PLANNED* Patch BroadcomUSBBluetoothHCIController to recognize our module as an Apple suppled / internal module (thanks to *tetany* for the fix).
+ * *PLANNED* Update IOAudioFamily so that it is the same as the 10.5.7 version
+
 
 = DellEFI 1.1 =
  * Updated AppleACPIBatteryManager which reads battery information correctly.
