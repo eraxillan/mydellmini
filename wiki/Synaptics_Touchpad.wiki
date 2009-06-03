@@ -7,4 +7,4 @@
 || Firmware Version || Machine || Multiple Finger ||
 || 6.2 || Dell Mini 9 || No ||
 || 7.2 || Lenovo S10 || No ||
-|| 7.4 || Dell Mini 10v || ||
+|| 7.4 || Dell Mini 10v || No ||
