@@ -26,14 +26,27 @@
 #include "ApplePS2MouseDevice.h"
 #include <IOKit/hidsystem/IOHIPointing.h>
 
+//  a better way might be to make a sub class that alllows access to teh variables
+#define private public					
+#define protected public
+
+#include <IOKit/hidsystem/IOHIKeyboard.h>
+#include "IOHIDFamily/IOHIDFamily/IOHIDEvent.h"
+#include "IOHIDFamily/IOHIDFamily/IOHIDEventData.h"
+
+
+
+#undef private
+#undef protected
+
+#include "IOHIDFamily/IOHIDSystem/IOKit/hidsystem/IOHIDSystem.h"
+
 
 // 10 to 500ms = a tap
-#define TAP_LENGTH_MAX			275000
 // MIN isn't really used since 12500 is the time between packets (aprox, according to spec)
 #define TAP_LENGTH_MIN			10000
-#define DRAGGING_RELEASE_DEALY	500000
 
-#define TAPPING					(((_streamdt < TAP_LENGTH_MAX)  && (_streamdt > TAP_LENGTH_MIN)) && (ABS(_streamdx) <= 250) && (ABS(_streamdy) <= 250))
+#define TAPPING					(((_streamdt < _prefClickDelay)  && (_streamdt > TAP_LENGTH_MIN)) && (ABS(_streamdx) <= 50) && (ABS(_streamdy) <= 50))
 #define LEFT_CLICK				0x01;
 #define RIGHT_CLICK				0x02;
 
@@ -41,8 +54,8 @@
 #define RELATIVE_PACKET_SIZE	3
 #define ABSOLUTE_PACKET_SIZE	6
 
-// These values are coppied from the spec sheet, however they can cahnge per device
-#define ABSOLUTE_X_MIN			1472
+// These values are coppied from the spec sheet, however they can change per device
+#define ABSOLUTE_X_MIN			1632
 #define ABSOLUTE_X_MAX			5312
 #define ABSOLUTE_Y_MIN			1568
 #define ABSOLUTE_Y_MAX			4288
@@ -68,20 +81,36 @@
 // Read the _capabilties (16 bit number) (These are ONLY true if W_MODE is also true)
 #define CAP_PALM_DETECT				(_capabilties & 0x0001)
 #define CAP_MULTIFINGER				(_capabilties & 0x0002)
-// #define CAP_RESERVER_CAP1		(_capabilties & 0x0004)
+#define CAP_BALLISTICS				(_capabilties & 0x0004)
 #define CAP_FOUR_BUTTONS			(_capabilties & 0x0008)
-// #define CAP_RESERVER_CAP2		(_capabilties & 0x0010)
-// #define CAP_RESERVER_CAP3		(_capabilties & 0x0020)
-// #define CAP_RESERVER_CAP4		(_capabilties & 0x0040)
-// #define CAP_RESERVER_CAP5		(_capabilties & 0x0080)
-// #define CAP_RESERVER_CAP6		(_capabilties & 0x0100)
-// #define CAP_RESERVER_CAP7		(_capabilties & 0x0200)
-// #define CAP_RESERVER_CAP8		(_capabilties & 0x0400)
-// #define CAP_RESERVER_CAP9		(_capabilties & 0x0800)
-// #define CAP_RESERVER_CAP10		(_capabilties & 0x1000)
-// #define CAP_RESERVER_CAP11		(_capabilties & 0x2000)
-// #define CAP_RESERVER_CAP12		(_capabilties & 0x4000)
-#define CAP_W_MODE					(_capabilties & 0x8000) 
+#define CAP_SLEEP					(_capabilties & 0x0010)
+// #define CAP_RESERVER_CAP1		(_capabilties & 0x0020)
+// #define CAP_RESERVER_CAP2		(_capabilties & 0x0040)
+// #define CAP_RESERVER_CAP3		(_capabilties & 0x0080)
+
+// #define CAP_RESERVER_CAP11		(_capabilties & 0x0100)
+// #define CAP_RESERVER_CAP12		(_capabilties & 0x0200)
+
+#define CAP_MIDDLE_BUTTON			(_capabilties & 0x0400)
+// #define CAP_RESERVER_CAP14		(_capabilties & 0x0800) 
+#define CAP_N_EXTENDED_QUERY	   ((_capabilties & 0x7000) >> 12)
+#define CAP_W_MODE					(_capabilties & 0x8000)
+
+// EXTended Model ID query information, supported if nQueriesExtended > 1
+#define EXT_LIGHT_CONTROL			(_extendedCapabilitied & 0x400000) 
+#define EXT_PEAK_DETECT				(_extendedCapabilitied & 0x200000) 
+#define EXT_GLASS_PASS				(_extendedCapabilitied & 0x100000)
+#define EXT_VERTICAL_WHEEL			(_extendedCapabilitied & 0x080000)
+#define EXT_W_MODE					(_extendedCapabilitied & 0x040000)
+#define EXT_HORIZONTAL_SCROLL		(_extendedCapabilitied & 0x020000)
+#define EXT_VERTICAL_SCROLL			(_extendedCapabilitied & 0x010000)
+#define EXT_N_BUTTONS			   ((_extendedCapabilitied & 0x00F000) >> 12)
+#define EXT_INFO_SENSOR			   ((_extendedCapabilitied & 0x000C00) >> 10)
+#define EXT_PROD_ID					(_extendedCapabilitied & 0x0000FF)
+
+
+
+
 
 // The folowing are available W Modes values
 // Rquires CAP_MULTIFINGER (values 0 to 1)
@@ -144,6 +173,7 @@
 #define kST_getSerialNumberPrefix	0x06
 #define kST_getSerialNumberSuffix	0x07
 #define kST_getResolution			0x08
+#define kST_getExtendedModelID		0x09
 
 
 
@@ -176,8 +206,6 @@ static char *model_names [] = {	// 16 models currenlty in this list
 #define UNKNOWN_DIMENSIONS_X	47.1
 #define UNKNOWN_DIMENSIONS_Y	32.3
 
-#define UNKNOWN_FACTOR			1.31858903
-
 
 // Resolutions of the sensor (in X x Y) to convert to dpi multiply by 25.4
 static UInt32 model_resolution [][2] = {
@@ -193,7 +221,7 @@ static UInt32 model_resolution [][2] = {
 	{73, 96},
 	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
 	{187, 170},
-	{122, 76},
+	{122, 167},
 	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
 	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
 	{UNKNOWN_RESOLUTION_X, UNKNOWN_RESOLUTION_Y},
@@ -220,42 +248,27 @@ static float model_dimensions [][2] = {
 	{UNKNOWN_DIMENSIONS_X, UNKNOWN_DIMENSIONS_Y},
 };
 
-/*
-static float model_factor [] = {
-	UNKNOWN_FACTOR,
-	1.31858903,
-	1.31797235,
-	1.31659647,
-	UNKNOWN_FACTOR,
-	UNKNOWN_FACTOR,
-	UNKNOWN_FACTOR,
-	UNKNOWN_FACTOR,
-	1.31858903,
-	1.31453733,
-	UNKNOWN_FACTOR,
-	1.3150838,
-	2.89300174,
-	UNKNOWN_FACTOR,
-	UNKNOWN_FACTOR,
-	UNKNOWN_FACTOR,
-	UNKNOWN_FACTOR,
-};
-*/
- 
-
-
 #define	kTPScrollMode				"kTPScrollMode"
 #define kTPScrollArea				"kTPScrollArea"
 #define kTPHorizScroll				"kTPHorizScroll"
 #define kTPScrollSpeed				"kTPScrollSpeed"
-#define	kTPScrollSensitivity		"kTPScrollSensitivity"
+
+#define	kTPOneFingerThreshold		"kTPOneFingerThreshold"
+#define	kTPTwoFingerThreshold		"kTPTwoFingerThreshold"
+#define	kTPThreeFingerThreshold		"kTPThreeFingerThreshold"
+
 
 #define kTPTrackSpeed				"kTPTrackSpeed"
-#define	kTPTrackpadSensitivity		"kTPTrackpadSensitivity"
 #define kTPAccelRate				"kTPAccelRate"
 #define kTPTapToClick				"kTPTapToClick"
 #define kTPDraggin					"kTPDraggin"
 #define kTPDragLock					"kTPDragLock"
+#define kTPSecondaryClick			"kTPSecondaryClick"
+#define kTPSwapButtons				"kTPSwapButtons"
+
+
+#define kTPClickDelay				"kTPClickDelay"
+#define kTPReleaseDelay				"kTPReleaseDelay"
 
 #define kKBSwapKeys					"kKBSwapKeys"
 #define kKBKeyScroll				"kKBKeyScroll"
@@ -376,19 +389,24 @@ class ApplePS2SynapticsTouchPad : public IOHIPointing
 
 private:
     ApplePS2MouseDevice * _device;
+	IOHIKeyboard		* _keyboard;
+	
+	
     UInt32                _interruptHandlerInstalled:1;
     UInt32                _powerControlHandlerInstalled:1;
     UInt8                 _packetBuffer[ABSOLUTE_PACKET_SIZE];
-    UInt32                _packetByteCount;
+    UInt8				  _packetByteCount;
+	
     IOFixed               _resolution;
     UInt16                _touchPadVersion;
     UInt8                 _touchPadModeByte;
 	UInt32				  _touchpadIntormation;
-	UInt32				  _capabilties;
+	UInt16				  _capabilties;
+	UInt32				  _extendedCapabilitied;
 	UInt32				  _modelId;
 	UInt8				  _event;
-	UInt8				  _prevEvent;
 	long long			  _serialNumber;
+	double				  _scaleFactor;
 	
 	bool				  _tapped;
 	bool				  _dragging;
@@ -401,34 +419,42 @@ private:
 	UInt32				  _prevX;
 	UInt32				  _prevY;
 	UInt8				  _prevButtons;
+	UInt8				  _prevNumFingers;
 	
 	uint32_t			  _prevPacketTime;
 	uint32_t			  _prevPacketSecond;
-	uint32_t			  _streamEndTime;
-	uint32_t			  _streamEndSecond;
 	uint64_t			  _streamdt;
 	uint32_t			  _settleTime;
 	
+	
+	
 	// Prefrences from the pref pane...
+	UInt32				  _prefClickDelay;
+	UInt32				  _prefReleaseDelay;
 	UInt8				  _prefScrollMode;
+	double				  _prefHysteresis;
 	bool				  _prefHorizScroll;
 	bool				  _prefClicking;
 	bool				  _prefDragging;
 	bool				  _prefDragLock;
-	
-	
-	double				  _prefTrackpadSensitivity;
-	double				  _prefScrollSensitivity;
+	bool				  _prefSecondaryClick;
+	bool				  _prefSwapButtons;
+	bool				  _prefIgnoreAccidental;
+
+	double				  _prefOneFingerThreshold;
+	double				  _prefTwoFingerThreshold;
+	double				  _prefThreeFingerThreshold;
 
 	double				  _prefScrollArea;
 	double				  _prefScrollSpeed;
 	double				  _prefTrackSpeed;
 
 	// dispatchRelativePointerEvent reall is dispatch relative packet, while the absolute one is the absolute packet
-	virtual void   dispatchRelativePointerEventWithPacket( UInt8 * packet, UInt32  packetSize );
-	virtual void   dispatchAbsolutePointerEventWithPacket( UInt8 * packet, UInt32  packetSize );
-	
-    virtual void   setCommandByte( UInt8 setBits, UInt8 clearBits );
+	virtual void   dispatchRelativePointerEventWithRelativePacket( UInt8 * packet, UInt32  packetSize, AbsoluteTime now );
+	virtual void   dispatchRelativePointerEventWithAbsolutePacket( UInt8 * packet, UInt32  packetSize, AbsoluteTime now );
+	virtual void   dispatchSwipeEvent ( IOHIDSwipeMask swipeType, AbsoluteTime now);
+									   
+	virtual void   setCommandByte( UInt8 setBits, UInt8 clearBits );
 
 	
 	// Synaptic specific stuff... (added by meklort)
@@ -437,6 +463,7 @@ private:
 	virtual bool   setStreamMode( bool enable );
 
 	virtual bool   getCapabilities();
+	virtual bool   getExtendedCapabilities();
 	virtual bool   getModelID();
 	virtual bool   identifyTouchpad();
 	virtual bool   getTouchpadModes();

@@ -112,8 +112,10 @@
 		1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = ApplePS2SynapticsTouchPad.cpp; sourceTree = "<group>"; };
 		219BA5C905EE680D00AA3E64 /* ApplePS2ALPSGlidePoint.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = ApplePS2ALPSGlidePoint.cpp; sourceTree = "<group>"; };
 		219BA5CA05EE680D00AA3E64 /* ApplePS2ALPSGlidePoint.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ApplePS2ALPSGlidePoint.h; sourceTree = "<group>"; };
+		2720E3EA0FDA29C3004784F8 /* IOHIDFamily */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IOHIDFamily; sourceTree = "<group>"; };
 		6613722C0F4A9A0F00415899 /* Info-ApplePS2Trackpad__Upgraded_.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-ApplePS2Trackpad__Upgraded_.plist"; sourceTree = "<group>"; };
 		6613722D0F4A9A0F00415899 /* ApplePS2Trackpad.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApplePS2Trackpad.kext; sourceTree = BUILT_PRODUCTS_DIR; };
+		6652F71A0FC7902A0017FBBE /* Kernel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kernel.framework; path = /System/Library/Frameworks/Kernel.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				247142CAFF3F8F9811CA285C /* Source */,
 				19C28FB6FE9D52B211CA2CBB /* Products */,
 				6613722C0F4A9A0F00415899 /* Info-ApplePS2Trackpad__Upgraded_.plist */,
+				6652F7BE0FC7932A0017FBBE /* Frameworks and Libraries */,
 			);
 			name = ApplePS2Trackpad;
 			sourceTree = "<group>";
@@ -156,12 +159,21 @@
 		247142CAFF3F8F9811CA285C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				2720E3EA0FDA29C3004784F8 /* IOHIDFamily */,
 				219BA5C905EE680D00AA3E64 /* ApplePS2ALPSGlidePoint.cpp */,
 				219BA5CA05EE680D00AA3E64 /* ApplePS2ALPSGlidePoint.h */,
 				1A224C3EFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.h */,
 				1A224C3FFF42367911CA2CB7 /* ApplePS2SynapticsTouchPad.cpp */,
 			);
 			name = Source;
+			sourceTree = "<group>";
+		};
+		6652F7BE0FC7932A0017FBBE /* Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				6652F71A0FC7902A0017FBBE /* Kernel.framework */,
+			);
+			name = "Frameworks and Libraries";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
