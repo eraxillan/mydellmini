@@ -30,6 +30,8 @@
 #include <IOKit/assert.h>
 #include <IOKit/IOLib.h>
 #include <IOKit/hidsystem/IOHIDParameter.h>
+#include <IOKit/hidevent/IOHIDEventService.h>
+
 #include <IOKit/IOTimerEventSource.h>
 
 #include "ApplePS2SynapticsTouchPad.h"
@@ -89,13 +91,22 @@ bool ApplePS2SynapticsTouchPad::init( OSDictionary * properties )
 	_prefClicking			= false;
 	_prefDragging			= false;
 	_prefDragLock			= false;
+	_prefSwapButtons		= false;
+	_prefIgnoreAccidental	= true;
 	
+	_prefOneFingerThreshold		= Z_LIGHT_FINGER;
+	_prefTwoFingerThreshold		= 250;
+	_prefThreeFingerThreshold	= 450;
 	
-	_prefScrollSensitivity		= 250;
-	_prefTrackpadSensitivity	= Z_LIGHT_FINGER;
+	_prefHysteresis				= .08;	// 8 percent
+
 	_prefScrollArea				= .05;
 	_prefScrollSpeed			= 1.3;
 	_prefTrackSpeed				= 1.2;
+	_prefClickDelay				= 280000;
+	_prefReleaseDelay			= 400000;
+	
+	_keyboard = NULL;
 		
 
     return true;
@@ -207,12 +218,15 @@ bool ApplePS2SynapticsTouchPad::start( IOService * provider )
 
 	//getSerialNumber();
 	getCapabilities();
+	getExtendedCapabilities();
 	getModelID();
 	
+	_scaleFactor = ( ((double)	 model_resolution[(INFO_SENSOR & 0x0f)][1] * model_dimensions[(INFO_SENSOR & 0x0f)][0]) ) / 
+								(model_resolution[(INFO_SENSOR & 0x0f)][0] * model_dimensions[(INFO_SENSOR & 0x0f)][1]);
+	
 	_resolution = (int)(model_resolution[(INFO_SENSOR & 0x0f)][0] * 25.4) << 16;
-	_resolution /= ( ((double)model_resolution[(INFO_SENSOR & 0x0f)][1] * model_dimensions[(INFO_SENSOR & 0x0f)][0]) ) / 
-	(model_resolution[(INFO_SENSOR & 0x0f)][0] * model_dimensions[(INFO_SENSOR & 0x0f)][1]);
-	_resolution = (int) _resolution;
+	_resolution /= _scaleFactor;
+	
 	
 	IOLog("ApplePS2Trackpad: Detected toucpad controller \"%s\" (ModelID: 0x%X)\n", model_names[INFO_SENSOR & 0x0f], (unsigned int)_modelId);	// anding with 0x0f because we only have 16 versions stored in the char array
 	IOLog("ApplePS2Trackpad: Initializing resolution to %d dpi\n", (int)(model_resolution[(INFO_SENSOR & 0x0f)][0] * 25.4));
@@ -220,33 +234,37 @@ bool ApplePS2SynapticsTouchPad::start( IOService * provider )
 
 	IOLog("ApplePS2Trackpad: Capabilities 0x%X\n", (unsigned int) (_capabilties));
 	
-	if(CAP_W_MODE) 	{
+	if(CAP_W_MODE || EXT_W_MODE) 	{
 		_touchPadModeByte |= W_MODE_BIT | ABSOLUTE_MODE_BIT | RATE_MODE_BIT;
 		
 		IOLog("ApplePS2Trackpad: W Mode Supported :D\n");
 		if(CAP_PALM_DETECT)	IOLog("ApplePS2Trackpad: Palm detection Supported :D\n");
 		if(CAP_MULTIFINGER)	IOLog("ApplePS2Trackpad: Multiple finger detection Supported :D\n");
 		else	IOLog("ApplePS2Trackpad: Multiple finger detection NOT Supported :(\n");
-
+		
+		if(EXT_W_MODE) IOLog("ApplePS2Trackpad: Trackpad supports extended W mode\n");
+		if(EXT_PEAK_DETECT) IOLog("ApplePS2Trackpad: Using peak detection method\n");
 	} else {
 		IOLog("ApplePS2Trackpad: W Mode not available, defaulting to Z mode :(\n");
 		_touchPadModeByte |= ABSOLUTE_MODE_BIT | RATE_MODE_BIT;
 
 	}
 	
-
-	
-	
 	
     setProperty(kIOHIDScrollResolutionKey, _resolution, 32);
 	setProperty(kIOHIDPointerResolutionKey, _resolution, 32);
 
-	
-	
-	
+	//---------          Keyboard dissable code				---------/
+	// This is probably a very bad way to do this, and was copied from Fredrik Andersson
+	IOService* keyboard = IOService::waitForService( IOService::serviceMatching("ApplePS2Keyboard"));
+	if(!keyboard)							IOLog("ApplePS2Trackpad: No keyboard interface\n");
+	_keyboard = OSDynamicCast( IOHIKeyboard, keyboard );
+	if (!_keyboard)							IOLog("ApplePS2Trackpad: Failed to abstract IOHIKeyboard\n");
+	if (!_keyboard->_keyboardEventTarget)	IOLog("ApplePS2Trackpad: IOHIKeyboard does not have any target!\n");
 
-	//setSteamMode();
-    //
+
+	
+	//
     // Write the TouchPad mode byte value.
     //
 
@@ -291,7 +309,8 @@ bool ApplePS2SynapticsTouchPad::start( IOService * provider )
 	// Install our power control handler.
 	//
 
-	_device->installPowerControlAction( this, OSMemberFunctionCast(PS2PowerControlAction, this, &ApplePS2SynapticsTouchPad::setDevicePowerState));
+	_device->installPowerControlAction( this, OSMemberFunctionCast(PS2PowerControlAction, this,
+										&ApplePS2SynapticsTouchPad::setDevicePowerState));
 	_powerControlHandlerInstalled = true;
 	
 	
@@ -300,7 +319,6 @@ bool ApplePS2SynapticsTouchPad::start( IOService * provider )
 																					this, &ApplePS2SynapticsTouchPad::draggingTimeout) );
 	
 	// Attach to our parent's work look fo rthe timer
-//	IOWorkLook* fWorkLoop = getWorkLoop();
 	getWorkLoop()->addEventSource(_dragTimeout);
 
     return true;
@@ -330,6 +348,8 @@ void ApplePS2SynapticsTouchPad::stop( IOService * provider )
 
     setCommandByte( kCB_DisableMouseClock, kCB_EnableMouseIRQ );
 
+	getWorkLoop()->removeEventSource(_dragTimeout);
+	
     //
     // Uninstall the interrupt handler.
     //
@@ -343,6 +363,7 @@ void ApplePS2SynapticsTouchPad::stop( IOService * provider )
 
     if ( _powerControlHandlerInstalled ) _device->uninstallPowerControlAction();
     _powerControlHandlerInstalled = false;
+	
 
 	super::stop(provider);
 }
@@ -400,10 +421,41 @@ void ApplePS2SynapticsTouchPad::interruptOccurred( UInt8 data )
 	
     if (RELATIVE_MODE  && (_packetByteCount == RELATIVE_PACKET_SIZE))
     {
-        dispatchRelativePointerEventWithPacket(_packetBuffer, RELATIVE_PACKET_SIZE);
+		AbsoluteTime now;
+		clock_get_uptime((uint64_t *)&now);
+		
+		// TODO: credit link. Also, verify 16700000ULL * 30....
+		if(_prefIgnoreAccidental && (int)_keyboard->_codeToRepeat!=-1 && ((now.lo - _keyboard->_lastEventTime.lo)<(16700000ULL)*30))
+		{
+			// Do nothing
+			// We are ignoring this packet...
+			// TODO: We MIGHT not want to ignore button presss... (aka, just make it a DEFAULT_EVENT)
+		}
+		else
+		{
+			dispatchRelativePointerEventWithRelativePacket(_packetBuffer, RELATIVE_PACKET_SIZE, now);
+		}
+		
         _packetByteCount = 0;
 	} else if (ABSOLUTE_MODE && (_packetByteCount == ABSOLUTE_PACKET_SIZE)) {
-		dispatchAbsolutePointerEventWithPacket(_packetBuffer, ABSOLUTE_PACKET_SIZE);
+		AbsoluteTime now;
+		clock_get_uptime((uint64_t *)&now);
+
+		// TODO: credit link. Also, verify 16700000ULL * 30....
+		if(_prefIgnoreAccidental && (int)_keyboard->_codeToRepeat!=-1 && ((now.lo - _keyboard->_lastEventTime.lo)<(16700000ULL)*30))
+		{
+			// Do nothing
+			// We are ignoring this packet...
+			// TODO: We MIGHT not want to ignore button presss... (aka, just make it a DEFAULT_EVENT)
+		}
+		else
+		{
+			dispatchRelativePointerEventWithAbsolutePacket(_packetBuffer, ABSOLUTE_PACKET_SIZE, now);
+
+		}
+		
+		
+		
 		_packetByteCount = 0;
 	}
 }
@@ -411,10 +463,10 @@ void ApplePS2SynapticsTouchPad::interruptOccurred( UInt8 data )
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 void ApplePS2SynapticsTouchPad::
-dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
-									   UInt32  packetSize )
+dispatchRelativePointerEventWithAbsolutePacket( UInt8 * packet,
+									   UInt32  packetSize, AbsoluteTime now )
 {
-	// Packet without W mode dissabled	(twice as long as relativ mode, first two bits specify which packer (10 = 1, 11 = 2)
+	// Packet without W mode disabled	(twice as long as relative mode, first two bits specify which type and packet (10 = Abs, pkt 1 -- 11 = Abs, pkt2), 
 	//	7		6		5			4			3		2		1		0
 	
 	//	{1}		{0}		Finger		Reserved	{0}		Gesture Right	Left
@@ -424,7 +476,7 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	//	X7		X6		X5			X4			X3		X2		X1		X0			(X 7..0)
 	//	Y7		Y6		Y5			Y4			Y3		Y2		Y1		Y0			(Y 7..0)
 	
-	// With W mode enabes
+	// With W mode enabed
 	//	7		6		5			4			3		2		1		0
 	
 	//	{1}		{0}		W3			W2			{0}		W1		Right	Left		(W 3..2) (W1)
@@ -434,15 +486,14 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	//	X7		X6		X5			X4			X3		X2		X1		X0			(X 7..0)
 	//	Y7		Y6		Y5			Y4			Y3		Y2		Y1		Y0			(Y 7..0)
 		
-	UInt8  buttons;
+	UInt8	buttons;
 	UInt32	absX, absY;
-	UInt32	pressureZ;
+	UInt8	pressureZ;
 	UInt8	Wvalue;
 	UInt8	prevEvent = _event;
-	AbsoluteTime now;
+	UInt8	numFingers;
 	uint32_t currentTime, second;
 
-	clock_get_uptime((uint64_t *)&now);
 	clock_get_system_microtime(&second, &currentTime);
 	
 	
@@ -451,7 +502,10 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 
 	
 	
-	buttons =			(packet[0] & 0x3);	// buttons =  last two bits of byte one of packet
+	if(!_prefSwapButtons)
+		buttons =			(packet[0] & 0x3);	// buttons =  last two bits of byte one of packet
+	else 
+		buttons = ((packet[0] & 0x01) << 1) | ((packet[0] & 0x02) >> 1); 
 	pressureZ =			packet[2];												//	  (max value is 255)
 	absX =				(packet[4] | ((packet[1] & 0x0F) << 8) | ((packet[3] & 0x10) << 8));
 	absY =				(packet[5] | ((packet[1] & 0xF0) << 4) | ((packet[3] & 0x20) << 7));
@@ -462,20 +516,17 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	SInt32 dx = absX - _prevX;
 	SInt32 dy = absY - _prevY;	// Y is negative for ps2 (according to synaptics)
 	
-	dy /= ( ((double)model_resolution[(INFO_SENSOR & 0x0f)][1] * model_dimensions[(INFO_SENSOR & 0x0f)][0]) ) / 
-					(model_resolution[(INFO_SENSOR & 0x0f)][0] * model_dimensions[(INFO_SENSOR & 0x0f)][1]);
-	
+	dy /= _scaleFactor;
 
 	// Scale dx and dy bassed on the type of movement. This does not need to happen after event calculation because IF the event changes, dx and dy are reset to 0
 	if((_event & (SCROLLING | VERTICAL_SCROLLING | HORIZONTAL_SCROLLING)) == 0) {
 		dx *= _prefTrackSpeed;
 		dy *= _prefTrackSpeed;
 	} else {
-		dx = (dx << 2) * _prefScrollSpeed;
+		dx = (dx << 1) * _prefScrollSpeed;
 		dy *= _prefScrollSpeed;
 	}
 
-	// TODO: Instead of calculating this every loop, just read it form a (static) variable
 
 	// Handel Acceleration	
 	if(ABS(dx) < ACCELERATION_TABLE_SIZE) ABS(dx) == dx ? dx = accelerationTable[ABS(dx)] : dx = -1 * accelerationTable[ABS(dx)];
@@ -485,27 +536,98 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	_streamdy += dy;
 	
 	
+	numFingers = 4;
+	// Finger detection algorithm
+	if(W_MODE && CAP_MULTIFINGER)											// Touchpad is multitouch capable
+	{
+		if(pressureZ < _prefOneFingerThreshold)											numFingers = 0;
+		else if(Wvalue == W_TWOFINGERS)					numFingers = 2;	
+		else if(Wvalue == W_THREEPLUS)				numFingers = 3;
+		else										numFingers = 1;
+
+	} 
+	else if(W_MODE)																// Touchpad is W Mode enabled
+	{
+		// Yay for hysterisys (only for going from a larger number to smaller.
+		
+		if(_prevNumFingers == 0)
+		{
+			if(pressureZ < _prefOneFingerThreshold)											numFingers = 0;
+			else
+			{
+//				if(_dragging) _dragTimeout->cancelTimeout();
+				     if(((Wvalue * pressureZ) < _prefTwoFingerThreshold))						numFingers = 1;
+				else if(((Wvalue * pressureZ) < _prefThreeFingerThreshold))						numFingers = 2;
+				else																			numFingers = 3;
+			}
+		}
+		else if (_prevNumFingers == 1)
+		{
+			if(pressureZ < (_prefOneFingerThreshold * (1 - _prefHysteresis)))				numFingers = 0;
+			else if(((Wvalue * pressureZ) < _prefTwoFingerThreshold))						numFingers = 1;
+			else if(((Wvalue * pressureZ) < _prefThreeFingerThreshold))						numFingers = 2;
+			else																			numFingers = 3;
+			
+		}
+		else if (_prevNumFingers == 2)
+		{
+			if(pressureZ < (_prefOneFingerThreshold * (1 - _prefHysteresis)))						numFingers = 0;
+			else if(((Wvalue * pressureZ) < (_prefTwoFingerThreshold  * (1 - _prefHysteresis))))	numFingers = 1;
+			else if(((Wvalue * pressureZ) < _prefThreeFingerThreshold))				numFingers = 2;
+			else																					numFingers = 3;
+		}
+		else if (_prevNumFingers == 3) 
+		{
+			if(pressureZ < (_prefOneFingerThreshold * (1 - _prefHysteresis)))						numFingers = 0;
+			else if(((Wvalue * pressureZ) < (_prefTwoFingerThreshold  * (1 - _prefHysteresis))))	numFingers = 1;
+			else if((Wvalue < 12) || (pressureZ * Wvalue < (_prefThreeFingerThreshold * (1 - _prefHysteresis))))				numFingers = 2;
+			else																					numFingers = 3;
+			
+		}
+
+	} 
+	else																		// Touchpad does not suport W mode
+	{
+		if(pressureZ < _prefOneFingerThreshold)											numFingers = 0;
+		numFingers = 1;
+	}
+	//if(_prevNumFingers ^ numFingers) IOLog("Number of Fingers: %d, from %d\n", numFingers, _prevNumFingers);
 	
-	
-	
+	//IOLog("Num FIngers: %d, W: %d, Z: %d, W*Z: %d\n", numFingers, Wvalue, pressureZ, Wvalue * pressureZ);
+//	else if(
+		
 	
 	
 	
 	
 
 	// Wait for the data to stabalize, if its below Z_LIGHT_FINGER, we treat it as a new stream
-	if(dt > 20000 || pressureZ < _prefTrackpadSensitivity) {
+	if(dt > 20000 || numFingers == 0) {
 		_event = DEFAULT_EVENT;	// We reset dx and dy untill it is a reliable number (Z MUST be larger than 8 for it to be reliable)
-//		_settleTime = 0;
 	}
-	else if(_event & (VERTICAL_SCROLLING | HORIZONTAL_SCROLLING | DRAGGING));																  //_event = _event; // These are events that are persistant
-	else if((_event == SCROLLING) && (Wvalue < W_RESERVED))																			_event = SCROLLING;	// our touchpad doesnt support anything below W_RESERVED so keep on scrolling, actual it should be scroling anyway...
-	else if((_prefScrollMode == SCROLL_MODE_TWO_FINGER) && (W_MODE) && ((Wvalue * pressureZ) > _prefScrollSensitivity))				_event = SCROLLING;
-	//else if((W_MODE) && (Wvalue >= W_FINGER_MAX))	_event = SCROLLING;	// This is an alternate method verses the one above
-	else																															_event = MOVEMENT;
-	
-	
-	
+	else if(_event & (VERTICAL_SCROLLING | HORIZONTAL_SCROLLING | DRAGGING));	// These are events that are persistant
+	else if(W_MODE && !(CAP_MULTIFINGER) && (Wvalue < W_RESERVED));	// Dont change events, firmware is not reporting a reliable value		_event = SCROLLING;	// our touchpad doesnt support anything below W_RESERVED so keep on scrolling, actual it should be scroling anyway...
+	else
+	{
+			switch(numFingers)
+			{
+				case 1:
+					_event = MOVEMENT;
+					break;
+				case 2:
+					if(_prefScrollMode == SCROLL_MODE_TWO_FINGER) _event = SCROLLING;
+					else											_event = DEFAULT_EVENT;
+					break;
+				case 3:
+					_event = SWIPE;	// Do nothing, swipe event is set later on
+					break;
+				default:
+					_event = DEFAULT_EVENT;
+					break;
+			}
+	}	
+
+	if(prevEvent == SWIPE && _settleTime) _event = SWIPE;
 	
 	// If the event has just changed, OR if it has recently changed, let the touchpad settle
 	if((prevEvent ^ _event) || _settleTime) {
@@ -555,9 +677,10 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 				switch(prevEvent)
 				{
 					case SCROLLING:
-						_settleTime = 10;
+						if(numFingers == 3) _settleTime = 5;
+						else _settleTime = 10;
 						_event = SCROLLING;
-						if(_prefClicking && TAPPING) {
+						if(_prefClicking && _prefSecondaryClick && TAPPING) {
 							buttons = RIGHT_CLICK;
 							_event = MOVEMENT;
 						}
@@ -581,7 +704,7 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 								{
 									//IOLog("First tap\n");
 									_tapped = true;
-									_dragTimeout->setTimeoutUS(TAP_LENGTH_MAX);			// Set timout to send tap event if no double tap
+									_dragTimeout->setTimeoutUS(_prefClickDelay);			// Set timout to send tap event if no double tap
 								}
 							}
 						}
@@ -607,12 +730,12 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 								_event = MOVEMENT;
 								//_dragLocked = false;	// This will be removed soon
 							}
-							_event = DEFAULT_EVENT;	// Cancel teh draggin event (aka, we are no longer drag locked
+							_event = DEFAULT_EVENT;	// Cancel the draggin event (aka, we are no longer drag locked
 						}
 						else
 						{
 							_dragging = true;
-							_dragTimeout->setTimeoutUS(DRAGGING_RELEASE_DEALY);			// Set timout to send tap event if no double tap
+							_dragTimeout->setTimeoutUS(_prefReleaseDelay);			// Set timout to send tap event if no double tap
 							//IOLog("Setting drag timeout\n");
 							_event = DEFAULT_EVENT;
 
@@ -623,7 +746,45 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 						break;
 						
 					case ZOOMING:
+						/*static IOHIDEvent *     zoomEvent (
+														   AbsoluteTime            timeStamp,
+														   IOFixed                 x,
+														   IOFixed                 y,
+														   IOFixed                 z,
+														   IOOptionBits            options = 0);
+						 */
+//						IOHIDEvent* me;
+//						me = IOHIDEvent::zoomEvent(timeStamp, data->scrollWheel.pointDeltaAxis2<<16, data->scrollWheel.pointDeltaAxis1<<16, data->scrollWheel.pointDeltaAxis3<<16, options);
+
+						/*
+						 IOHIDEventType kIOHIDEventTypeZooming
+						 */
+						
+						/*IOHIDEvent* event = new IOHIDEvent;
+						event->initWithType(kIOHIDEventTypeZoom);
+						IOHIDSwipeEventData* swipe = (IOHIDZoomEventData*)event->_data;
+						
+						swipe->swipeMask = 0;
+						
+						IOHIDSystem::instance()->dispatchEvent(event, 0);*/
+						
 					case SWIPE:
+						if(numFingers == 0)	// end of swipe
+						{
+							//if(_streamdx /*<< 1*/ > _streamdy)	// Swipe left / right
+							{
+								if(_streamdx > 25) dispatchSwipeEvent(kIOHIDSwipeRight, now);
+								else if(_streamdx < -25) dispatchSwipeEvent(kIOHIDSwipeLeft, now);
+							}
+							/*else if( _streamdy << 1 > _streamdx)
+							{
+								if(_streamdy > 100) dispatchSwipeEvent(kIOHIDSwipeUp, now);
+								else if(_streamdy < -100) dispatchSwipeEvent(kIOHIDSwipeDown, now);
+							}*/								
+							_event = DEFAULT_EVENT;	// no more swiping
+						} else if (!_settleTime) _settleTime = 15;
+
+						//dispatchAbsoluteEvent(
 					case HORIZONTAL_SCROLLING:
 					case VERTICAL_SCROLLING:
 					case DEFAULT_EVENT:
@@ -631,8 +792,9 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 						break;
 				}
 			} else {
-				if(_event != SCROLLING) _settleTime = 4;
-//				else _settl
+				// _event != DEFAULT_EVENT && prevEvent != DEFAULT_EVENT
+				if(_event != SCROLLING) _settleTime = 10;
+//				else _settleTime
 				dx = 0;
 				dy = 0;
 			}
@@ -643,17 +805,7 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 		
 		/***		Dragging Calculations			***/
 		if(_event == DRAGGING);
-		//else if (_dragLocked) _event = DRAGGING;
-		/*else if(_dragging && !_tapped && _streamdt > TAP_LENGTH_MAX) {
-			IOLog("Tapping is nolonger an option, enableing tapping delay.");
-			_dragging = true;
-			
-		}
-		else if(_dragging) {
-			_dragTimeout->setTimeoutUS(TAP_LENGTH_MAX);			// Set timout to send tap event if no double tap
-		}*/
-		//else if(_prefClicking && _prefDragging && _prefDragLock && _prevEvent == DRAGGING) _event = DRAGGING;
-		else if(_prefClicking && _prefDragging && _tapped && _streamdt < TAP_LENGTH_MAX && _event == MOVEMENT) {
+		else if(_prefClicking && _prefDragging && _tapped && _streamdt < _prefClickDelay && _event == MOVEMENT) {
 			_event = DRAGGING;
 			_tapped = false;
 			_dragging = false;
@@ -680,8 +832,9 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 		case SCROLLING:
 			if(_prefHorizScroll == false) dx = 0;
 			else {
-				if(ABS(dy) << 1 > ABS(dx)) dx = 0;		// dx has been  << 2, sox dy << 2 gives ut the origional.,  << 1 gives us >> 1
-				else if(ABS(dx) >> 3 > ABS(dy)) dy = 0;		// dx has been << 2, so >> 3 gives us  >> 1
+				// TODO: fix this
+				if(ABS(dy) << 2 > ABS(dx)) dx = 0;		// dx has been  << 2, sox dy << 2 gives ut the origional.,  << 1 gives us >> 1
+				else if(ABS(dx) >> 2 > ABS(dy)) dy = 0;		// dx has been << 2, so >> 3 gives us  >> 1
 				//if(ABS(dy) << 1 > ABS(dx)) dx = 0;		// dx has been  << 2, sox dy << 2 gives ut the origional.,  << 1 gives up >> 1
 				//else if(ABS(dx) << 1 > ABS(dy)) dy = 0;		// dx has been << 2, so >> 3 gives us  >> 1
 			}
@@ -707,18 +860,12 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 			dispatchRelativePointerEvent((SInt32) dx, (SInt32) dy, buttons, now);
 			break;
 		// No mevement, just send button presses
+		case ZOOMING:
+			// Calculate zoom amount
+		case SWIPE:
 		case DEFAULT_EVENT:
 		default:
-//			dx = 0;
-//			dy = 0;
 			buttons |= _dragging;
-			
-			//if(_tapped) && 
-			// TODO: Make this configureable (or get a good value, bassed ont he model_resolution)
-			/*if(prevEvent ^ _event) {	// This will NOT happen on a new stream since prevEvent was set to DEFAULT_EVENT on the prev stream...
-				
-			} else */
-			//if(prevEvent == SCROLLING) buttons = 0;
 			dispatchRelativePointerEvent(0, 0, buttons, now);
 			break;
 	}
@@ -727,6 +874,7 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 	
 	_prevX = absX;
 	_prevY = absY;
+	_prevNumFingers = numFingers;
 	_prevPacketSecond = second;
 	_prevPacketTime = currentTime;
 }
@@ -734,8 +882,55 @@ dispatchAbsolutePointerEventWithPacket( UInt8 * packet,
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 void ApplePS2SynapticsTouchPad::
-     dispatchRelativePointerEventWithPacket( UInt8 * packet,
-                                             UInt32  packetSize )
+	dispatchSwipeEvent ( IOHIDSwipeMask swipeType, AbsoluteTime now)
+{
+	switch(swipeType)
+	{
+		case kIOHIDSwipeUp:
+		case kIOHIDSwipeDown:
+			break;
+		case kIOHIDSwipeLeft:
+			// Key down
+			IOLog("Swipe left\n");
+			_keyboard->dispatchKeyboardEvent( 0x37, true, now);		// 0x37 = Command
+			_keyboard->dispatchKeyboardEvent( 0x21, true, now);
+			// Key up
+			_keyboard->dispatchKeyboardEvent( 0x37, false, now);
+			_keyboard->dispatchKeyboardEvent( 0x21, false, now);
+			break;
+		case kIOHIDSwipeRight:
+			IOLog("Swipe right\n");
+			// Key down
+			_keyboard->dispatchKeyboardEvent( 0x37, true, now);		// 0x37 = Command
+			_keyboard->dispatchKeyboardEvent( 0x1e, true, now);
+			// Key up
+			_keyboard->dispatchKeyboardEvent( 0x37, false, now);
+			_keyboard->dispatchKeyboardEvent( 0x1e, false, now);
+			
+			break;
+		default:
+			break;
+	}
+	
+	/**
+	
+	IOLog("Dispatching swipe event: %d\n", swipeType);
+	IOHIDEvent* event = new IOHIDEvent;
+	event->initWithTypeTimeStamp(kIOHIDEventTypeSwipe, now);
+	
+	((IOHIDSwipeEventData*) event->_data)->swipeMask = swipeType;
+	
+	
+	IOHIDSystem::instance()->dispatchEvent(event, NULL);
+	 
+	 **/
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+void ApplePS2SynapticsTouchPad::
+     dispatchRelativePointerEventWithRelativePacket( UInt8 * packet,
+                                             UInt32  packetSize, AbsoluteTime now )
 {
     //
     // Process the three byte relative format packet that was retreived from the
@@ -750,7 +945,6 @@ void ApplePS2SynapticsTouchPad::
 
     UInt32       buttons;
     SInt32       dx, dy;
-    AbsoluteTime now;
 	uint32_t	 currentTime, second;
 	UInt8		 prevEvent;
 
@@ -1009,23 +1203,33 @@ IOReturn ApplePS2SynapticsTouchPad::setParamProperties( OSDictionary * dict )
 	// Scrolling stuff
 	if(OSDynamicCast(OSNumber,  dict->getObject(kTPScrollMode)))				_prefScrollMode		= ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollMode)))->unsigned8BitValue();
 	if(OSDynamicCast(OSBoolean, dict->getObject(kTPHorizScroll)))			_prefHorizScroll	= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPHorizScroll)))->getValue();
+	if(OSDynamicCast(OSNumber, dict->getObject(kTPScrollArea)))				_prefScrollArea		= (.006 *		((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollArea)))->unsigned32BitValue());
 
-	// Clickign stuff
+	// Clicking stuff
 	if(OSDynamicCast(OSBoolean, dict->getObject(kTPTapToClick)))			_prefClicking		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPTapToClick)))->getValue();
 	if(OSDynamicCast(OSBoolean, dict->getObject(kTPDraggin)))				_prefDragging		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPDraggin)))->getValue();
 	if(OSDynamicCast(OSBoolean, dict->getObject(kTPDragLock)))				_prefDragLock		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPDragLock)))->getValue();
+	if(OSDynamicCast(OSBoolean, dict->getObject(kTPSecondaryClick)))		_prefSecondaryClick		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPSecondaryClick)))->getValue();
+	if(OSDynamicCast(OSBoolean, dict->getObject(kTPSwapButtons)))			_prefSwapButtons		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPSwapButtons)))->getValue();
+
 	
 	// Sensitivity stuff
-	if(OSDynamicCast(OSNumber, dict->getObject(kTPScrollSensitivity)))		_prefScrollSensitivity	= (215 + 20 *	(10 - ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollSensitivity)))->unsigned32BitValue()));
-	if(OSDynamicCast(OSNumber, dict->getObject(kTPTrackpadSensitivity)))	_prefTrackpadSensitivity	= Z_LIGHT_FINGER + (2 * ( 10 - ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPTrackpadSensitivity)))->unsigned32BitValue()));
-
+	if(OSDynamicCast(OSNumber, dict->getObject(kTPOneFingerThreshold)))		_prefOneFingerThreshold		= Z_LIGHT_FINGER + (2 * ( 10 - ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPOneFingerThreshold)))->unsigned32BitValue()));
+	if(OSDynamicCast(OSNumber, dict->getObject(kTPTwoFingerThreshold)))		_prefTwoFingerThreshold		= (215 + 20 *	(10 - ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPTwoFingerThreshold)))->unsigned32BitValue()));
+	if(OSDynamicCast(OSNumber, dict->getObject(kTPThreeFingerThreshold)))	_prefThreeFingerThreshold	= (450 + 20 *	(10 - ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPThreeFingerThreshold)))->unsigned32BitValue()));
+	
 	// Speed stuff
-	if(OSDynamicCast(OSNumber, dict->getObject(kTPScrollArea)))				_prefScrollArea		= (.006 *		((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollArea)))->unsigned32BitValue());
 	if(OSDynamicCast(OSNumber, dict->getObject(kTPScrollSpeed)))			_prefScrollSpeed	= .9 + (.2 *	((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollSpeed)))->unsigned32BitValue());
 	if(OSDynamicCast(OSNumber, dict->getObject(kTPTrackSpeed)))				_prefTrackSpeed		= .4 + (.2 *			((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPTrackSpeed)))->unsigned32BitValue());
+	
+	// Delays when dragging
+	if(OSDynamicCast(OSNumber, dict->getObject(kTPClickDelay)))				_prefClickDelay		= ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPClickDelay)))->unsigned32BitValue();
+	if(OSDynamicCast(OSNumber, dict->getObject(kTPReleaseDelay)))			_prefReleaseDelay		= ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPReleaseDelay)))->unsigned32BitValue();
+
 
 	// If the various prefClicking values have changes, things might be weird, so we reset these values just in case.
 	_dragLocked = false;
+	_dragging = false;
 	_tapped = false;
 
 
@@ -1125,13 +1329,32 @@ bool ApplePS2SynapticsTouchPad::getModelID()
 bool ApplePS2SynapticsTouchPad::getCapabilities()
 {
 	bool success = false;
+	UInt32 capabilities;
+	capabilities = getTouchPadData(kST_getCapabilities);
+	if((capabilities & 0x00FF00 == 0x004700)) success = true;	
 	
-	_capabilties = getTouchPadData(kST_getCapabilities);
-	if((_capabilties & 0x00FF00 == 0x004700)) success = true;	
 	
-	
-	_capabilties = ((_capabilties & 0xFF0000) >> 8) | (_capabilties & 0x0000FF);
+	_capabilties = ((capabilities & 0xFF0000) >> 8) | (capabilities & 0x0000FF);
 
+	
+	return success;
+}
+
+bool ApplePS2SynapticsTouchPad::getExtendedCapabilities()
+{
+	bool success = false;
+	
+	if(CAP_N_EXTENDED_QUERY)
+	{
+		_extendedCapabilitied = getTouchPadData(kST_getExtendedModelID);
+		success = true;
+	} 
+	else
+	{
+		_extendedCapabilitied = 0;
+		success = false;
+	}
+	
 	
 	return success;
 }
@@ -1172,7 +1395,7 @@ bool   ApplePS2SynapticsTouchPad::getResolutions() {
 bool   ApplePS2SynapticsTouchPad::draggingTimeout() {
 	AbsoluteTime now;
 	//if(_tapped) {
-	if(_dragLocked) return true;
+	_dragLocked = false;		// Should NEVER be true when we enter here
 	_tapped = false;
 	_dragging = false;
 	_event = MOVEMENT;
