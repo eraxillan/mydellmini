@@ -250,6 +250,7 @@ static float model_dimensions [][2] = {
 
 #define	kTPScrollMode				"kTPScrollMode"
 #define kTPScrollArea				"kTPScrollArea"
+#define kTPGestureMode				"kTPGestureMode"
 #define kTPHorizScroll				"kTPHorizScroll"
 #define kTPScrollSpeed				"kTPScrollSpeed"
 
@@ -276,6 +277,10 @@ static float model_dimensions [][2] = {
 #define SCROLL_MODE_NONE			0
 #define SCROLL_MODE_TWO_FINGER		1
 #define SCROLL_MODE_EDGE			2
+
+#define GESTURE_MODE_NONE			0
+#define GESTURE_MODE_SCROLL			1
+#define GESTURE_MODE_ENABLED		2
 
 
 #define ACCELERATION_TABLE_SIZE	1867
@@ -432,6 +437,7 @@ private:
 	UInt32				  _prefClickDelay;
 	UInt32				  _prefReleaseDelay;
 	UInt8				  _prefScrollMode;
+	UInt8				  _prefGestureMode;
 	double				  _prefHysteresis;
 	bool				  _prefHorizScroll;
 	bool				  _prefClicking;
