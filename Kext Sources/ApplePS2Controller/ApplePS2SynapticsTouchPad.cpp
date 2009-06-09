@@ -87,6 +87,7 @@ bool ApplePS2SynapticsTouchPad::init( OSDictionary * properties )
 	
 	// Defaults...
 	_prefScrollMode			= SCROLL_MODE_NONE;
+	_prefGestureMode		= GESTURE_MODE_SCROLL;	// tread 3 fingers as two
 	_prefHorizScroll		= false;
 	_prefClicking			= false;
 	_prefDragging			= false;
@@ -96,7 +97,7 @@ bool ApplePS2SynapticsTouchPad::init( OSDictionary * properties )
 	
 	_prefOneFingerThreshold		= Z_LIGHT_FINGER;
 	_prefTwoFingerThreshold		= 250;
-	_prefThreeFingerThreshold	= 450;
+	_prefThreeFingerThreshold	= 650;
 	
 	_prefHysteresis				= .08;	// 8 percent
 
@@ -105,6 +106,7 @@ bool ApplePS2SynapticsTouchPad::init( OSDictionary * properties )
 	_prefTrackSpeed				= 1.2;
 	_prefClickDelay				= 280000;
 	_prefReleaseDelay			= 400000;
+	
 	
 	_keyboard = NULL;
 		
@@ -590,6 +592,22 @@ dispatchRelativePointerEventWithAbsolutePacket( UInt8 * packet,
 	{
 		if(pressureZ < _prefOneFingerThreshold)											numFingers = 0;
 		numFingers = 1;
+	}
+	
+	if(numFingers == 3) {
+		switch(_prefGestureMode)
+		{
+			case GESTURE_MODE_NONE:
+				numFingers = 0;				// Treat as scrolling
+				break;
+			case GESTURE_MODE_SCROLL:
+				numFingers = 2;				// Dissable the trackpad
+				break;
+			case GESTURE_MODE_ENABLED:
+			default:
+				// Ignored, we keep numFingers = 3
+				break;
+		}
 	}
 	//if(_prevNumFingers ^ numFingers) IOLog("Number of Fingers: %d, from %d\n", numFingers, _prevNumFingers);
 	
@@ -1201,10 +1219,14 @@ void ApplePS2SynapticsTouchPad::setCommandByte( UInt8 setBits, UInt8 clearBits )
 IOReturn ApplePS2SynapticsTouchPad::setParamProperties( OSDictionary * dict )
 {
 	// Scrolling stuff
-	if(OSDynamicCast(OSNumber,  dict->getObject(kTPScrollMode)))				_prefScrollMode		= ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollMode)))->unsigned8BitValue();
+	if(OSDynamicCast(OSNumber,  dict->getObject(kTPScrollMode)))			_prefScrollMode		= ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollMode)))->unsigned8BitValue();
 	if(OSDynamicCast(OSBoolean, dict->getObject(kTPHorizScroll)))			_prefHorizScroll	= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPHorizScroll)))->getValue();
 	if(OSDynamicCast(OSNumber, dict->getObject(kTPScrollArea)))				_prefScrollArea		= (.006 *		((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollArea)))->unsigned32BitValue());
 
+	// Gestures
+	if(OSDynamicCast(OSNumber,  dict->getObject(kTPGestureMode)))			_prefGestureMode		= ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPGestureMode)))->unsigned8BitValue();
+
+	
 	// Clicking stuff
 	if(OSDynamicCast(OSBoolean, dict->getObject(kTPTapToClick)))			_prefClicking		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPTapToClick)))->getValue();
 	if(OSDynamicCast(OSBoolean, dict->getObject(kTPDraggin)))				_prefDragging		= ((OSBoolean * )OSDynamicCast(OSBoolean, dict->getObject(kTPDraggin)))->getValue();
@@ -1216,7 +1238,7 @@ IOReturn ApplePS2SynapticsTouchPad::setParamProperties( OSDictionary * dict )
 	// Sensitivity stuff
 	if(OSDynamicCast(OSNumber, dict->getObject(kTPOneFingerThreshold)))		_prefOneFingerThreshold		= Z_LIGHT_FINGER + (2 * ( 10 - ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPOneFingerThreshold)))->unsigned32BitValue()));
 	if(OSDynamicCast(OSNumber, dict->getObject(kTPTwoFingerThreshold)))		_prefTwoFingerThreshold		= (215 + 20 *	(10 - ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPTwoFingerThreshold)))->unsigned32BitValue()));
-	if(OSDynamicCast(OSNumber, dict->getObject(kTPThreeFingerThreshold)))	_prefThreeFingerThreshold	= (450 + 20 *	(10 - ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPThreeFingerThreshold)))->unsigned32BitValue()));
+	if(OSDynamicCast(OSNumber, dict->getObject(kTPThreeFingerThreshold)))	_prefThreeFingerThreshold	= (650 + 20 *	(10 - ((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPThreeFingerThreshold)))->unsigned32BitValue()));
 	
 	// Speed stuff
 	if(OSDynamicCast(OSNumber, dict->getObject(kTPScrollSpeed)))			_prefScrollSpeed	= .9 + (.2 *	((OSNumber * )OSDynamicCast(OSNumber, dict->getObject(kTPScrollSpeed)))->unsigned32BitValue());
