@@ -15,7 +15,7 @@ char buffer[BUFFER_SIZE]; // Line Buffer
 
 
 // Paths to files
-char origDSDTPath[50] = "./dsdt.dsl", patchedDSDTPath[] ="./dsdt_fixed.txt"; 
+char origDSDTPath[50] = "/Volumes/ramdisk/dsdt/dsdt.dsl", patchedDSDTPath[] ="/Volumes/ramdisk/dsdt/dsdt_fixed.txt"; 
 
 // THis is the HPET device we write if no HPET device is found
 char fixedHPET[]	= "		Device (HPET)\n                {\n                    Name (_HID, EisaId (\"PNP0103\"))\n                    Name (ATT3, ResourceTemplate ()\n                    {\n                        IRQNoFlags ()\n                            {0}\n                        IRQNoFlags ()\n                            {8}\n                        Memory32Fixed (ReadWrite,\n                            0xFED00000,         // Address Base\n                            0x00000400,         // Address Length\n                            )\n                    })\n                    Name (ATT4, ResourceTemplate ()\n                    {\n                    })\n                    Method (_STA, 0, NotSerialized)\n                    {\n                        Return (0x0F)\n                    }\n                    Method (_CRS, 0, NotSerialized)\n                    {\n                        Return (ATT3)\n                    }\n                }\n";
@@ -100,6 +100,8 @@ int main(int argc, const char *argv[]) {
 	printf("DSDT Patcher version %s\n", VERSION);
 	printf("Repoart any bugs to meklort@gmail.com\n");
 	printf("\tPlease include Debug/USER.tar\n\n");
+	
+	system("cd /Volumes/ramdisk/dsdt/");
 
 	
 	//printf("Press any key to continue");
@@ -108,12 +110,12 @@ int main(int argc, const char *argv[]) {
 	flagCheck(argc, argv);		// TODO: maybe change to pass by refrence
 	if (!otherDSDTFileGiven) {								// if no other file is set in the args, get the dsdt.dsl with getdsdt tool and decompile it
 		printf("\n\nGetting the DSDT through ioreg...\n");
-		system("./Tools/getDSDT.sh");
+		system("/Volumes/ramdisk/dsdt/Tools/getDSDT.sh");
 		printf("\n\n\nDecompiling the DSDT...\n");
-		system("./Tools/iasl -d ./dsdt.dat");
+		system("/Volumes/ramdisk/dsdt/Tools/iasl -d /Volumes/ramdisk/dsdt/dsdt.dat");
 		system("clear");
 	}
-	sprintf( buffer, "cp %s patched_dsdt.dsl", origDSDTPath);
+	sprintf( buffer, "cp %s /Volumes/ramdisk/dsdt/patched_dsdt.dsl", origDSDTPath);
 	system(buffer);
 	printf("Preparing to patch %s...\n", origDSDTPath);
 	printf("\tReading config file...\n");
@@ -121,7 +123,7 @@ int main(int argc, const char *argv[]) {
 	
 	
 	FILE *configFile;
-	if ((configFile=fopen("config","r"))==NULL) {
+	if ((configFile=fopen("/Volumes/ramdisk/dsdt/config","r"))==NULL) {
 		printf("Unable to open the config file\n\n");
 		return 0;
 	}
@@ -154,14 +156,14 @@ int main(int argc, const char *argv[]) {
 						for(loop=0; loop <= strlen(token); loop++)	searchString[loop] = token[loop];	// -1 to remove the \r\n
 						printf("Patching %s with patches/%s.txt; searching for: %s\n", origDSDTPath, name, searchString);// patch function\n");	
 						
-						if ((origDSDT = fopen("./patched_dsdt.dsl", "r"))== NULL) {
+						if ((origDSDT = fopen("/Volumes/ramdisk/dsdt/patched_dsdt.dsl", "r"))== NULL) {
 							if((origDSDT = fopen(origDSDTPath, "r")) == NULL ) {
-								printf("\tCould not open file ./patched_dsd.dsl or %s\n\n", origDSDTPath);
+								printf("\tCould not open file /Volumes/ramdisk/dsdt/patched_dsd.dsl or %s\n\n", origDSDTPath);
 								return 0;
 							}
 						}							// Open Files
-						if ((patchedDSDT=fopen("./latest_dsdt.dsl","w"))==NULL) {
-							printf("\tCould not create file ./latest_dsdt.dsl\n\n");
+						if ((patchedDSDT=fopen("/Volumes/ramdisk/dsdt/latest_dsdt.dsl","w"))==NULL) {
+							printf("\tCould not create file /Volumes/ramdisk/dsdt/latest_dsdt.dsl\n\n");
 							return 0;
 						}					// Open Files
 						
@@ -188,7 +190,7 @@ int main(int argc, const char *argv[]) {
 											printf("\tReplacing...\n");
 											
 											char fileString[200];
-											sprintf(fileString, "patches/%s.txt", name);
+											sprintf(fileString, "/Volumes/ramdisk/dsdt/patches/%s.txt", name);
 											FILE *patchFile = fopen(fileString, "r");
 											if(patchFile == NULL) {
 												printf("\tUnable to read patch file %s\n", fileString);
@@ -218,8 +220,8 @@ int main(int argc, const char *argv[]) {
 						if(patching == 1) {
 							printf("\tAn error occured while patching.\n\n");
 						} else {
-							system("cp latest_dsdt.dsl patched_dsdt.dsl");
-							system("rm latest_dsdt.dsl");
+							system("cp /Volumes/ramdisk/dsdt/latest_dsdt.dsl /Volumes/ramdisk/dsdt/patched_dsdt.dsl");
+							system("rm /Volumes/ramdisk/dsdt/latest_dsdt.dsl");
 						}
 						
 						// TODO: move the latest_dsdt to a new fiel to be patched
@@ -249,45 +251,47 @@ int main(int argc, const char *argv[]) {
 		printf("An error occured while patching the RTC.\n");
 		return 1;
 	}
-	system("cp latest_dsdt.dsl patched_dsdt.dsl");
-	system("rm latest_dsdt.dsl");
+	system("cp /Volumes/ramdisk/dsdt/latest_dsdt.dsl /Volumes/ramdisk/dsdt/patched_dsdt.dsl");
+	system("rm /Volumes/ramdisk/dsdt/latest_dsdt.dsl");
 	
 	if(!patchHPET()) {
 		printf("An error occured while patching the HPET.\n");
 		return 1;
 	}
 	
-	system("cp latest_dsdt.dsl patched_dsdt.dsl");
-	system("rm latest_dsdt.dsl");
+	system("cp /Volumes/ramdisk/dsdt/latest_dsdt.dsl /Volumes/ramdisk/dsdt/patched_dsdt.dsl");
+	system("rm /Volumes/ramdisk/dsdt/latest_dsdt.dsl");
 	
 	
 	patchVersion();
-	system("cp latest_dsdt.dsl patched_dsdt.dsl");
-	system("rm latest_dsdt.dsl");
+	system("cp /Volumes/ramdisk/dsdt/latest_dsdt.dsl /Volumes/ramdisk/dsdt/patched_dsdt.dsl");
+	system("rm /Volumes/ramdisk/dsdt/latest_dsdt.dsl");
 	
 	// Patching various issues
 	if(!patchVarious()) {
 		printf("An error occured while patching the misc errors.\n");
 		return 1;
 	}
-	system("cp latest_dsdt.dsl patched_dsdt.dsl");
-	system("rm latest_dsdt.dsl");
+	system("cp /Volumes/ramdisk/dsdt/latest_dsdt.dsl /Volumes/ramdisk/dsdt/patched_dsdt.dsl");
+	system("rm /Volumes/ramdisk/dsdt/latest_dsdt.dsl");
 	
 		
 	printf("\n\n\nPatching complete, compiling..\n\n");
-		
+	
+	system("mkdir -p /Volumes/ramdisk/dsdt/Volumes/ramdisk/dsdt/");	// This is needed because of teh was the iasl compiler works
+	
 	if(forceBuild)										// when -f flag is set we force the build
-		system("./Tools/iasl -ta -f ./patched_dsdt.dsl");
+		system("/Volumes/ramdisk/dsdt/Tools/iasl -ta -f /Volumes/ramdisk/dsdt/patched_dsdt.dsl");
 	else												// otherwise we compile it without forcing
-		system("./Tools/iasl -ta ./patched_dsdt.dsl");
+		system("/Volumes/ramdisk/dsdt/Tools/iasl -ta /Volumes/ramdisk/dsdt/patched_dsdt.dsl");
 		
-	printf("\n\n\nCompiling done, if it worked, you have now a patched DSDT in dsdt.aml\nIf the compiling went wrong, you could force to build it with ./DSDT\\ Patcher -f (try this DSDT at your own risk)\n\n\n");
+	printf("\n\n\nCompiling done, if it worked, you have now a patched DSDT in dsdt.aml\nIf the compiling went wrong, you could force to build it with /Volumes/ramdisk/dsd/DSDTPatcher -f (try this DSDT at your own risk)\n\n\n");
 		
 	// Clean up & make a tar for debug
-	system("rm patched_dsdt.hex && rm dsdt.dat");			
-	system("mkdir ./Debug");
-	system("mv ./patched_dsdt.dsl ./Debug");
-	system("tar -czf ./Debug/$USER.tar ./Debug/*");
+	system("rm /Volumes/ramdisk/dsdt/patched_dsdt.hex && rm /Volumes/ramdisk/dsdt/dsdt.dat");			
+	system("mkdir /Volumes/ramdisk/dsdt/Debug");
+	system("mv /Volumes/ramdisk/dsdt/patched_dsdt.dsl /Volumes/ramdisk/dsdt/Debug");
+	system("tar -czf /Volumes/ramdisk/dsdt/Debug/$USER.tar /Volumes/ramdisk/dsdt/Debug/*");
 		
 		
 	return 0;
@@ -371,12 +375,12 @@ int foundHPETDevice (char *s) {
 }							// found an HPET device?
 
 int patchRTC() {
-	if ((origDSDT=fopen("./patched_dsdt.dsl","r"))==NULL) {
+	if ((origDSDT=fopen("/Volumes/ramdisk/dsdt/patched_dsdt.dsl","r"))==NULL) {
 		printf("Could not open file %s\n\n",origDSDTPath);
 		return 0;
 	}							// Open Files
-	if ((patchedDSDT=fopen("./latest_dsdt.dsl","w"))==NULL) {
-		printf("Could not create file ./latest_dsdt.dsl\n\n");
+	if ((patchedDSDT=fopen("/Volumes/ramdisk/dsdt/latest_dsdt.dsl","w"))==NULL) {
+		printf("Could not create file /Volumes/ramdisk/dsdt/latest_dsdt.dsl\n\n");
 		return 0;
 	}					// Open Files
 		
@@ -426,12 +430,12 @@ int patchRTC() {
 
 
 int patchHPET() {
-	if ((origDSDT=fopen("./patched_dsdt.dsl","r"))==NULL) {
-		printf("Could not open file ./patched_dsdt.dsl\n\n");
+	if ((origDSDT=fopen("/Volumes/ramdisk/dsdt/patched_dsdt.dsl","r"))==NULL) {
+		printf("Could not open file /Volumes/ramdisk/dsdt/patched_dsdt.dsl\n\n");
 		return 0;
 	}				// Open Files
-	if ((patchedDSDT=fopen("./latest_dsdt.dsl","w"))==NULL) {
-		printf("Could not create file ./latest_dsdt.dsl\n\n");
+	if ((patchedDSDT=fopen("/Volumes/ramdisk/dsdt/latest_dsdt.dsl","w"))==NULL) {
+		printf("Could not create file /Volumes/ramdisk/dsdt/latest_dsdt.dsl\n\n");
 		return 0;
 	}
 	openBrackets = 0;				// count of open {
@@ -526,12 +530,12 @@ int patchHPET() {
 	if(!HPETDeviceFound) {												// If there is no HPET Device in your DSDT already
 		printf("No HPET Device found, adding one\n");
 		
-		if ((origDSDT=fopen("./patched_dsdt.dsl","r"))==NULL) {
-			printf("Could not open file ./patched_dsdt.dsl\n\n");
+		if ((origDSDT=fopen("/Volumes/ramdisk/dsdt/patched_dsdt.dsl","r"))==NULL) {
+			printf("Could not open file /Volumes/ramdisk/dsdt/patched_dsdt.dsl\n\n");
 			return 0;
 		}		// Open File
-		if ((patchedDSDT=fopen("./latest_dsdt.dsl","w"))==NULL) {
-			printf("Could not create file ./latest_dsdt.dsl\n\n");
+		if ((patchedDSDT=fopen("/Volumes/ramdisk/dsdt/latest_dsdt.dsl","w"))==NULL) {
+			printf("Could not create file /Volumes/ramdisk/dsdt/latest_dsdt.dsl\n\n");
 			return 0;
 		}		// Open File
 		
@@ -588,7 +592,7 @@ void patchVersion () {
     default:
       return;
     }
-  f=fopen ("./patched_dsdt.dsl", "rb");
+  f=fopen ("/Volumes/ramdisk/dsdt/patched_dsdt.dsl", "rb");
   fseek (f, 0, SEEK_END);
   flen=ftell (f);
   fseek (f, 0, SEEK_SET);
@@ -611,7 +615,7 @@ void patchVersion () {
     }
   memcpy (outptr, inptr, flen-(inptr-inbuf));
   outptr+=flen-(inptr-inbuf);
-  f=fopen ("./latest_dsdt.dsl", "wb");
+  f=fopen ("/Volumes/ramdisk/dsdt/latest_dsdt.dsl", "wb");
   fwrite (outbuf, outptr-outbuf,1,f);
   fclose (f);
   
@@ -629,12 +633,12 @@ int patchVarious() {
 	
 	starthere:
 	
-	if ((origDSDT=fopen("./patched_dsdt.dsl","r"))==NULL) {
-		printf("Could not open file ./patched_dsdt.dsl\n\n");
+	if ((origDSDT=fopen("/Volumes/ramdisk/dsdt/patched_dsdt.dsl","r"))==NULL) {
+		printf("Could not open file /Volumes/ramdisk/dsdt/patched_dsdt.dsl\n\n");
 		return 0;
 	}			// open files
-	if ((patchedDSDT=fopen("./latest_dsdt.dsl","w"))==NULL) {
-		printf("Could not create file ./latest_dsdt.dsl\n\n");
+	if ((patchedDSDT=fopen("/Volumes/ramdisk/dsdt/latest_dsdt.dsl","w"))==NULL) {
+		printf("Could not create file /Volumes/ramdisk/dsdt/latest_dsdt.dsl\n\n");
 		return 0;
 	}
 	
@@ -734,9 +738,9 @@ int patchVarious() {
 							}
 						}
 						closeFiles();
-						system("cp ./latest_dsdl.dsl ./latest2_dsdt.dsl");
-						origDSDT=fopen("./latest_dsdt.dsl","r");
-						patchedDSDT=fopen("./latest2_dsdt.dsl","w");
+						system("cp /Volumes/ramdisk/dsdt/latest_dsdl.dsl /Volumes/ramdisk/dsdt/latest2_dsdt.dsl");
+						origDSDT=fopen("/Volumes/ramdisk/dsdt/latest_dsdt.dsl","r");
+						patchedDSDT=fopen("/Volumes/ramdisk/dsdt/latest2_dsdt.dsl","w");
 					}
 				}
 			}				// CPU Aliases Fix
@@ -794,8 +798,8 @@ int patchVarious() {
 	closeFiles();						// Close files
 	
 	printf("Done\n\n");
-	system("cp latest2_dsdt.dsl latest_dsdt.dsl ");
-	system("rm latest2_dsdt.dsl");
+	system("cp /Volumes/ramdisk/dsdt/latest2_dsdt.dsl /Volumes/ramdisk/dsdt/latest_dsdt.dsl ");
+	system("rm /Volumes/ramdisk/dsdt/latest2_dsdt.dsl");
 	
 	return 1;
 }									// Patch various issues here
