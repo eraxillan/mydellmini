@@ -1,4 +1,4 @@
-#summary Table of devices supported by DellEFI.
+#summary Table of devices supported by NetbookInstaller.
 
 = Details =
 
